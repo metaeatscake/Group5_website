@@ -1,3 +1,13 @@
-# very cool
+# System Proposal
 
-# website
+Website name:
+
+Type of website:
+
+Description:
+
+Modules:
+
+Module 1
+Module 2
+...
