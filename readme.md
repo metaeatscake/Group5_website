@@ -2,16 +2,16 @@
 
 ### Website name
 
-> **Bookmark Collector**
+> Sociality
 
 ### Type of website
 
-> **Utility**
+> Social Media
 
 ### Description
 
-> This website will allow users to compile links from the internet and save them.<br>
-> It can also work as a mini web browser.
+> Very social media website.<br>
+> Almost like facebook except it is not as good.
 
 ### Modules
 > <<General\>>
