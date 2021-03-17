@@ -6,7 +6,7 @@
 
 ### Type of website
 
-> **Utilty**
+> **Utility**
 
 ### Description
 
