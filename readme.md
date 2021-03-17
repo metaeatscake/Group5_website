@@ -1,13 +1,20 @@
 # System Proposal
 
-Website name:
+### Website name
 
-Type of website:
+> **Bookmark Collector**
 
-Description:
+### Type of website
 
-Modules:
+> **Utilty**
 
-Module 1
-Module 2
-...
+### Description
+
+> This website will allow users to compile links from the internet and save them.
+
+### Modules
+> #### <<General\>>
+> ##### Register.php
+> Allows the client to create an account for the website.
+> Requires unique username and email.
+> ##### Login.php
