@@ -17,6 +17,7 @@
 
   $nav_userLinks = [
     "Home" => "../",
+    "Create A Post" => "createPost.php",
     "Profile" => "profile.php",
     "Liked Posts" => "likedPosts.php",
     "Log Out" => "logout.php"
@@ -42,6 +43,7 @@
     <!-- Title -->
     <span class="mdl-layout-title"><?php echo $nav_siteTitle; ?></span>
     <div class="mdl-layout-spacer"></div>
+    <span>Hello Guest!</span>
 
   </div>
   <!-- Bottom row, not visible on scroll -->
