@@ -1,7 +1,7 @@
 
 hehhehehe
 
-go to directory
+go to directory (NOTE: D:/xampp/htdocs/Group5_website)
 git status (NOTE: lists all change/new files)
 git add .
 git commit -m "message anything"
