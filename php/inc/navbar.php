@@ -24,6 +24,13 @@
     "User List" => "adm_viewUsers.php",
     "Posts List" => "adm_viewPosts.php"
   ];
+
+  /*  Reduce code redundancy in the html area
+      Ternary operators magic
+  */
+  $nav_chosenArray = (isset($_SESSION["account_type"])) ?
+    ($_SESSION["account_type"] === "user") ? $nav_userLinks : $nav_adminLinks
+    : $nav_guestLinks;
  ?>
 
 <header class="mdl-layout__header mdl-layout__header--waterfall">
@@ -44,51 +51,19 @@
         Display different links depending on $_SESSION["account_type"]
       -->
 
-      <!-- Logged Out Links -->
-      <?php if(!isset($_SESSION["account_type"])): ?>
-        <?php foreach ($nav_guestLinks as $key => $value):?>
-          <!--
-            These links will be accessed from different locations,
-            So to cover for cases where the file clicking is not in
-            the same folder, this condition check exists.
-          -->
-          <?php if (strpos($_SERVER["PHP_SELF"], $nav_folderName) !== false): ?>
-            <a class="mdl-navigation__link" href="<?php echo $value; ?>"> <?php echo $key; ?></a>
-          <?php else: ?>
-            <a class="mdl-navigation__link" href="<?php echo "$nav_folderName$value"; ?>"> <?php echo $key; ?></a>
-          <?php endif; ?>
-        <?php endforeach; ?>
+      <?php foreach ($nav_chosenArray as $key => $value):?>
+        <!--
+          These links will be accessed from different locations,
+          So to cover for cases where the file clicking is not in
+          the same folder, this condition check exists.
+        -->
+        <?php if (strpos($_SERVER["PHP_SELF"], $nav_folderName) !== false): ?>
+          <a class="mdl-navigation__link" href="<?php echo $value; ?>"> <?php echo $key; ?></a>
+        <?php else: ?>
+          <a class="mdl-navigation__link" href="<?php echo "$nav_folderName$value"; ?>"> <?php echo $key; ?></a>
+        <?php endif; ?>
+      <?php endforeach; ?>
 
-      <!-- User Accounts -->
-      <?php elseif ($_SESSION["account_type"] === "user"): ?>
-        <?php foreach ($nav_userLinks as $key => $value):?>
-          <!--
-            These links will be accessed from different locations,
-            So to cover for cases where the file clicking is not in
-            the same folder, this condition check exists.
-          -->
-          <?php if (strpos($_SERVER["PHP_SELF"], $nav_folderName) !== false): ?>
-            <a class="mdl-navigation__link" href="<?php echo $value; ?>"> <?php echo $key; ?></a>
-          <?php else: ?>
-            <a class="mdl-navigation__link" href="<?php echo "$nav_folderName$value"; ?>"> <?php echo $key; ?></a>
-          <?php endif; ?>
-        <?php endforeach; ?>
-
-      <!-- Admin Accounts -->
-      <?php elseif ($_SESSION["account_type"] === "admin"): ?>
-        <?php foreach ($nav_adminLinks as $key => $value):?>
-          <!--
-            These links will be accessed from different locations,
-            So to cover for cases where the file clicking is not in
-            the same folder, this condition check exists.
-          -->
-          <?php if (strpos($_SERVER["PHP_SELF"], $nav_folderName) !== false): ?>
-            <a class="mdl-navigation__link" href="<?php echo $value; ?>"> <?php echo $key; ?></a>
-          <?php else: ?>
-            <a class="mdl-navigation__link" href="<?php echo "$nav_folderName$value"; ?>"> <?php echo $key; ?></a>
-          <?php endif; ?>
-        <?php endforeach; ?>
-      <?php endif; ?>
     </nav>
   </div>
 </header>
@@ -96,50 +71,21 @@
   <span class="mdl-layout-title"><?php echo $nav_siteTitle; ?></span>
   <nav class="mdl-navigation">
 
-    <!-- Logged Out Links -->
-    <?php if(!isset($_SESSION["account_type"])): ?>
-      <?php foreach ($nav_guestLinks as $key => $value):?>
-        <!--
-          These links will be accessed from different locations,
-          So to cover for cases where the file clicking is not in
-          the same folder, this condition check exists.
-        -->
-        <?php if (strpos($_SERVER["PHP_SELF"], $nav_folderName) !== false): ?>
-          <a class="mdl-navigation__link" href="<?php echo $value; ?>"> <?php echo $key; ?></a>
-        <?php else: ?>
-          <a class="mdl-navigation__link" href="<?php echo "$nav_folderName$value"; ?>"> <?php echo $key; ?></a>
-        <?php endif; ?>
-      <?php endforeach; ?>
+    <!--
+      Display different links depending on $_SESSION["account_type"]
+    -->
 
-    <!-- User Accounts -->
-    <?php elseif ($_SESSION["account_type"] === "user"): ?>
-      <?php foreach ($nav_userLinks as $key => $value):?>
-        <!--
-          These links will be accessed from different locations,
-          So to cover for cases where the file clicking is not in
-          the same folder, this condition check exists.
-        -->
-        <?php if (strpos($_SERVER["PHP_SELF"], $nav_folderName) !== false): ?>
-          <a class="mdl-navigation__link" href="<?php echo $value; ?>"> <?php echo $key; ?></a>
-        <?php else: ?>
-          <a class="mdl-navigation__link" href="<?php echo "$nav_folderName$value"; ?>"> <?php echo $key; ?></a>
-        <?php endif; ?>
-      <?php endforeach; ?>
-
-    <!-- Admin Accounts -->
-    <?php elseif ($_SESSION["account_type"] === "admin"): ?>
-      <?php foreach ($nav_adminLinks as $key => $value):?>
-        <!--
-          These links will be accessed from different locations,
-          So to cover for cases where the file clicking is not in
-          the same folder, this condition check exists.
-        -->
-        <?php if (strpos($_SERVER["PHP_SELF"], $nav_folderName) !== false): ?>
-          <a class="mdl-navigation__link" href="<?php echo $value; ?>"> <?php echo $key; ?></a>
-        <?php else: ?>
-          <a class="mdl-navigation__link" href="<?php echo "$nav_folderName$value"; ?>"> <?php echo $key; ?></a>
-        <?php endif; ?>
-      <?php endforeach; ?>
-    <?php endif; ?>
+    <?php foreach ($nav_chosenArray as $key => $value):?>
+      <!--
+        These links will be accessed from different locations,
+        So to cover for cases where the file clicking is not in
+        the same folder, this condition check exists.
+      -->
+      <?php if (strpos($_SERVER["PHP_SELF"], $nav_folderName) !== false): ?>
+        <a class="mdl-navigation__link" href="<?php echo $value; ?>"> <?php echo $key; ?></a>
+      <?php else: ?>
+        <a class="mdl-navigation__link" href="<?php echo "$nav_folderName$value"; ?>"> <?php echo $key; ?></a>
+      <?php endif; ?>
+    <?php endforeach; ?>
   </nav>
 </div>
