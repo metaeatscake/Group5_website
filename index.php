@@ -37,7 +37,7 @@
       <style>
         .demo-layout-transparent {
           /* REPLACE THIS IMAGE WITH A BETTER BACKGROUND */
-          background: url('php/images/assets/sociality_banner.png') center / cover;
+          background: url('php/images/assets/bg.jpg') center / cover;
         }
         .demo-layout-transparent .mdl-layout__header,
         .demo-layout-transparent .mdl-layout__drawer-button {
