@@ -76,7 +76,7 @@
     <!--
       Display different links depending on $_SESSION["account_type"]
     -->
-
+      <span class="mdl-navigation__link"><?php echo $nav_greetings ?></span> 
     <?php foreach ($nav_chosenArray as $key => $value):?>
       <!--
         These links will be accessed from different locations,
