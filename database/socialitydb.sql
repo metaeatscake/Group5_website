@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 24, 2021 at 05:31 AM
+-- Generation Time: Mar 24, 2021 at 08:45 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.10
 
@@ -43,6 +43,7 @@ CREATE TABLE `tbl_comments` (
 CREATE TABLE `tbl_feed` (
   `post_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
+  `post_title` varchar(255) NOT NULL,
   `post_content` text NOT NULL,
   `post_img` varchar(255) DEFAULT NULL,
   `post_time` timestamp NOT NULL DEFAULT current_timestamp()
