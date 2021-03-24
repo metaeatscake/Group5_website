@@ -43,7 +43,7 @@
   </div>
   <!-- Bottom row, not visible on scroll -->
   <div class="mdl-layout__header-row">
-    <div class="mdl-layout-spacer"></div>
+    
     <!-- Navigation -->
     <nav class="mdl-navigation">
 

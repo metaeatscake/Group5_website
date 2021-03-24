@@ -15,6 +15,7 @@
  <html lang="en" dir="ltr">
    <head>
      <meta charset="utf-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
      <title>Sociality</title>
 
      <!-- Import Material Design Lite CSS -->
@@ -23,6 +24,9 @@
      <script src="mdl/material.min.js" charset="utf-8"></script>
      <!-- Import Material Design Icons from Google -->
      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+     <!-- Shortcut Icon -->
+     <link rel="shortcut icon" href="php/images/assets/socialityLogo_transparent.png">
    </head>
    <body>
 
@@ -39,10 +43,18 @@
         <?php include_once("php/inc/navbar.php"); ?>
 
        <main class="mdl-layout__content">
+
          <div class="page-content">
            <!-- Content stuff go here. -->
-           <h1>Peepeepoopoo</h1>
+           <!-- Link to top of the page. -->
+           <div id="pageTop"></div>
+
+           <!-- Default Card when user is not logged in. -->
+            <?php if(!isset($_SESSION["account_type"])): ?>
+              <?php include_once("php/inc/welcomeCard.php"); ?>
+            <?php endif; ?>
          </div>
+
        </main>
       </div>
 
