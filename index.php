@@ -27,6 +27,9 @@
 
      <!-- Shortcut Icon -->
      <link rel="shortcut icon" href="php/images/assets/socialityLogo_transparent.png">
+
+     <!-- Custom CSS File -->
+     <link rel="stylesheet" href="css/socialityOverrides.css">
    </head>
    <body>
 
@@ -54,9 +57,6 @@
        <main class="mdl-layout__content">
 
          <div class="page-content">
-           <!-- Content stuff go here. -->
-           <!-- Link to top of the page. -->
-           <div id="pageTop"></div>
 
            <!-- Default Card when user is not logged in. -->
             <?php if(!isset($_SESSION["account_type"])): ?>
@@ -67,8 +67,8 @@
        </main>
 
        <?php include_once("php/inc/footer.php"); ?>
-      </div>
 
+      </div>
 
    </body>
 
