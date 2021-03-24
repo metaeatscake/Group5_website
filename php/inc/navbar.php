@@ -35,6 +35,8 @@
   $nav_chosenArray = (isset($_SESSION["account_type"])) ?
     ($_SESSION["account_type"] === "user") ? $nav_userLinks : $nav_adminLinks
     : $nav_guestLinks;
+
+  $nav_greetings = (isset($_SESSION["username"])) ? "Hello, {$_SESSION["username"]}!" : "Hello, Guest!";
  ?>
 
 <header class="mdl-layout__header mdl-layout__header--waterfall">
@@ -43,7 +45,7 @@
     <!-- Title -->
     <span class="mdl-layout-title"><?php echo $nav_siteTitle; ?></span>
     <div class="mdl-layout-spacer"></div>
-    <span>Hello Guest!</span>
+    <span><?php echo $nav_greetings ?></span>
 
   </div>
   <!-- Bottom row, not visible on scroll -->
