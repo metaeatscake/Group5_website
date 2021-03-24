@@ -65,7 +65,10 @@
          </div>
 
        </main>
+
+       <?php include_once("php/inc/footer.php"); ?>
       </div>
+
 
    </body>
 
