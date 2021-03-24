@@ -9,8 +9,6 @@
 
   // Clients can/should still see posts even if they are not logged in, so index.php will contain the feed.
 
-  // Test kim init commit
-
  ?>
 
  <!DOCTYPE html>

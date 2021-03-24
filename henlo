@@ -1,2 +1,12 @@
 
 hehhehehe
+
+go to directory
+git status - lists all change/new files
+git add .
+git commit -m "message anything"
+git push origin master
+
+
+
+ye syes yes!!!!
