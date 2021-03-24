@@ -10,17 +10,20 @@
   */
   $nav_folderName = "php/";
   $nav_guestLinks = [
+    "Home" => "../",
     "Log In" => "login.php",
     "Register" => "register.php",
   ];
 
   $nav_userLinks = [
+    "Home" => "../",
     "Profile" => "profile.php",
     "Liked Posts" => "likedPosts.php",
     "Log Out" => "logout.php"
   ];
 
   $nav_adminLinks = [
+    "Home" => "../",
     "User List" => "adm_viewUsers.php",
     "Posts List" => "adm_viewPosts.php"
   ];
@@ -43,7 +46,7 @@
   </div>
   <!-- Bottom row, not visible on scroll -->
   <div class="mdl-layout__header-row">
-    
+
     <!-- Navigation -->
     <nav class="mdl-navigation">
 
