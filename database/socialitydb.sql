@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 24, 2021 at 05:15 AM
+-- Generation Time: Mar 24, 2021 at 05:31 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.10
 
@@ -44,7 +44,8 @@ CREATE TABLE `tbl_feed` (
   `post_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `post_content` text NOT NULL,
-  `post_img` varchar(255) DEFAULT NULL
+  `post_img` varchar(255) DEFAULT NULL,
+  `post_time` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -71,9 +72,10 @@ CREATE TABLE `tbl_users` (
   `username` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
+  `gender` varchar(255) NOT NULL,
   `profile_pic` varchar(255) NOT NULL DEFAULT 'images/users/_default.jpg',
-  `account_type` varchar(255) NOT NULL DEFAULT 'user',
-  `gender` varchar(255) NOT NULL
+  `bio` text NOT NULL DEFAULT 'New user',
+  `account_type` varchar(255) NOT NULL DEFAULT 'user'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
