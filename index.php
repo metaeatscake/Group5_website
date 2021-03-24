@@ -32,13 +32,22 @@
 
        <!-- Uses a header that contracts as the page scrolls down. -->
        <!-- Pasted CSS/HTML from MDL Documentation -->
+
+      <!-- Uses a transparent header that draws on top of the layout's background -->
       <style>
-        .demo-layout-waterfall .mdl-layout__header-row .mdl-navigation__link:last-of-type  {
-         padding-right: 0;
+        .demo-layout-transparent {
+          /* REPLACE THIS IMAGE WITH A BETTER BACKGROUND */
+          background: url('php/images/assets/sociality_banner.png') center / cover;
+        }
+        .demo-layout-transparent .mdl-layout__header,
+        .demo-layout-transparent .mdl-layout__drawer-button {
+          /* This background is dark, so we set text to white. Use 87% black instead if
+             your background is light. */
+          color: black;
         }
       </style>
 
-      <div class="demo-layout-waterfall mdl-layout mdl-js-layout">
+      <div class="demo-layout-transparent mdl-layout mdl-js-layout">
         <!-- Navbar is too long, and is repeated in all pages so it is moved to a dedicated file. -->
         <?php include_once("php/inc/navbar.php"); ?>
 

@@ -39,17 +39,12 @@
   $nav_greetings = (isset($_SESSION["username"])) ? "Hello, {$_SESSION["username"]}!" : "Hello, Guest!";
  ?>
 
-<header class="mdl-layout__header mdl-layout__header--waterfall">
+<header class="mdl-layout__header mdl-layout__header--transparent">
   <!-- Top row, always visible -->
   <div class="mdl-layout__header-row">
     <!-- Title -->
     <span class="mdl-layout-title"><?php echo $nav_siteTitle; ?></span>
     <div class="mdl-layout-spacer"></div>
-    <span><?php echo $nav_greetings ?></span>
-
-  </div>
-  <!-- Bottom row, not visible on scroll -->
-  <div class="mdl-layout__header-row">
 
     <!-- Navigation -->
     <nav class="mdl-navigation">
