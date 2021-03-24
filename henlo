@@ -2,11 +2,13 @@
 hehhehehe
 
 go to directory
-git status - lists all change/new files
+git status (NOTE: lists all change/new files)
 git add .
 git commit -m "message anything"
 git push origin master
 
+
+git pull origin master (NOTE: get merged codes of your teammates)
 
 
 ye syes yes!!!!
