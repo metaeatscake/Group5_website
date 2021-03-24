@@ -11,7 +11,11 @@
 ### Description
 
 > Very social media website.<br>
-> Almost like facebook except it is not as good.
+> Almost like facebook except it is not as good. <br>
+>>Features<br>
+>>>Users can post text or image content<br>
+>>>Users can react to their own, or other users'
+
 
 ### Modules
 > <<General\>>
