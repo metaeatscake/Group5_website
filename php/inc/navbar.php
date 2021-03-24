@@ -8,7 +8,7 @@
   /*
     Links are not edited in the HTML but prepared here.
   */
-  $nav_folderName = "/php/";
+  $nav_folderName = "php/";
   $nav_guestLinks = [
     "Log In" => "login.php",
     "Register" => "register.php",
