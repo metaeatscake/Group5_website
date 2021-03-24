@@ -11,7 +11,7 @@
   color: #000;
   height: 50vh;
   /* So scuffed, please help. */
-  background: url('php/images/assets/socialityLogo.png') 50px center;
+  background: url('php/images/assets/sociality_banner.png') center / cover;
 }
 .demo-card-wide > .mdl-card__menu {
   color: #fff;
