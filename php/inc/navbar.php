@@ -52,7 +52,7 @@
             So to cover for cases where the file clicking is not in
             the same folder, this condition check exists.
           -->
-          <?php if (strpos($_SERVER["PHP_SELF"], "/php/") !== false): ?>
+          <?php if (strpos($_SERVER["PHP_SELF"], $nav_folderName) !== false): ?>
             <a class="mdl-navigation__link" href="<?php echo $value; ?>"> <?php echo $key; ?></a>
           <?php else: ?>
             <a class="mdl-navigation__link" href="<?php echo "$nav_folderName$value"; ?>"> <?php echo $key; ?></a>
@@ -67,7 +67,7 @@
             So to cover for cases where the file clicking is not in
             the same folder, this condition check exists.
           -->
-          <?php if (strpos($_SERVER["PHP_SELF"], "/php/") !== false): ?>
+          <?php if (strpos($_SERVER["PHP_SELF"], $nav_folderName) !== false): ?>
             <a class="mdl-navigation__link" href="<?php echo $value; ?>"> <?php echo $key; ?></a>
           <?php else: ?>
             <a class="mdl-navigation__link" href="<?php echo "$nav_folderName$value"; ?>"> <?php echo $key; ?></a>
@@ -82,7 +82,7 @@
             So to cover for cases where the file clicking is not in
             the same folder, this condition check exists.
           -->
-          <?php if (strpos($_SERVER["PHP_SELF"], "/php/") !== false): ?>
+          <?php if (strpos($_SERVER["PHP_SELF"], $nav_folderName) !== false): ?>
             <a class="mdl-navigation__link" href="<?php echo $value; ?>"> <?php echo $key; ?></a>
           <?php else: ?>
             <a class="mdl-navigation__link" href="<?php echo "$nav_folderName$value"; ?>"> <?php echo $key; ?></a>
@@ -104,7 +104,7 @@
           So to cover for cases where the file clicking is not in
           the same folder, this condition check exists.
         -->
-        <?php if (strpos($_SERVER["PHP_SELF"], "/php/") !== false): ?>
+        <?php if (strpos($_SERVER["PHP_SELF"], $nav_folderName) !== false): ?>
           <a class="mdl-navigation__link" href="<?php echo $value; ?>"> <?php echo $key; ?></a>
         <?php else: ?>
           <a class="mdl-navigation__link" href="<?php echo "$nav_folderName$value"; ?>"> <?php echo $key; ?></a>
@@ -119,7 +119,7 @@
           So to cover for cases where the file clicking is not in
           the same folder, this condition check exists.
         -->
-        <?php if (strpos($_SERVER["PHP_SELF"], "/php/") !== false): ?>
+        <?php if (strpos($_SERVER["PHP_SELF"], $nav_folderName) !== false): ?>
           <a class="mdl-navigation__link" href="<?php echo $value; ?>"> <?php echo $key; ?></a>
         <?php else: ?>
           <a class="mdl-navigation__link" href="<?php echo "$nav_folderName$value"; ?>"> <?php echo $key; ?></a>
@@ -134,7 +134,7 @@
           So to cover for cases where the file clicking is not in
           the same folder, this condition check exists.
         -->
-        <?php if (strpos($_SERVER["PHP_SELF"], "/php/") !== false): ?>
+        <?php if (strpos($_SERVER["PHP_SELF"], $nav_folderName) !== false): ?>
           <a class="mdl-navigation__link" href="<?php echo $value; ?>"> <?php echo $key; ?></a>
         <?php else: ?>
           <a class="mdl-navigation__link" href="<?php echo "$nav_folderName$value"; ?>"> <?php echo $key; ?></a>
