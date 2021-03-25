@@ -40,7 +40,7 @@
       <style>
         .demo-layout-transparent {
           /* REPLACE THIS IMAGE WITH A BETTER BACKGROUND */
-          background: url('php/images/assets/bgdark.jpg') center / cover;
+          background: url('php/images/assets/test (1).jpg') center / cover;
         }
         .demo-layout-transparent .mdl-layout__header,
         .demo-layout-transparent .mdl-layout__drawer-button {
