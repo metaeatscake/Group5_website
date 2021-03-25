@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 24, 2021 at 08:45 AM
+-- Generation Time: Mar 25, 2021 at 10:27 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.10
 
@@ -73,7 +73,7 @@ CREATE TABLE `tbl_users` (
   `username` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
-  `gender` varchar(255) NOT NULL,
+  `sex` varchar(255) NOT NULL,
   `profile_pic` varchar(255) NOT NULL DEFAULT 'images/users/_default.jpg',
   `bio` text NOT NULL,
   `account_type` varchar(255) NOT NULL DEFAULT 'user'

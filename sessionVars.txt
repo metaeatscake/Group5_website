@@ -1,3 +1,5 @@
 $_SESSION["account_id"] = holds account id, to be passed in database when posting to feed or commenting on a post.
 $_SESSION["account_type"] = checks if account is "user" or "admin"
 $_SESSION["username"] = for the greeting in the navbar
+
+$_SESSION["handler-alert"] = Messages passed by the handler file to confirm data.
