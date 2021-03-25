@@ -54,6 +54,128 @@
 
         <!-- MAIN CONTENT -->
 
+        <!-- CSS Control of the main form card. -->
+        <style>
+        /* This part controls the whole card container */
+        .formCard.mdl-card {
+          width: 30%;
+          margin:auto;
+          margin-top: 20px;
+        }
+
+        /* This part controls the title area and it's background */
+        .formCard > .mdl-card__title {
+          color: black;
+          height: 130px;
+          text-align: center;
+          background: url('images/assets/bglight.jpg') center / cover;
+        }
+
+        #formSubmitButton{
+          visibility:hidden;
+        }
+
+        #formSubmitButton-container{
+          margin:auto;
+          width:100%;
+        }
+
+        .formCard-inputFields{
+          margin:auto;
+          padding:10px;
+          align-items: center;
+          align-content: center;
+        }
+
+        .form_itemPadding{
+          visibility:hidden;
+        }
+
+        </style>
+
+        <!-- Form Proper -->
+        <form class="" action="handleRegister.php" method="post">
+
+          <div class="formCard mdl-card mdl-shadow--4dp">
+
+            <!-- Title Area (including the background pic) -->
+            <div class="mdl-card__title">
+              <h2 class="mdl-card__title-text">Register</h2>
+            </div>
+
+            <!-- Subtext underneath title -->
+            <!-- <div class="mdl-card__supporting-text">
+              Register an account.
+            </div> -->
+
+            <!-- Form Input Fields. -->
+            <!-- So Scuffed omg. -->
+            <div class="mdl-card__actions mdl-card--border">
+
+              Username
+              <div class="mdl-textfield mdl-js-textfield">
+                <input class="mdl-textfield__input" type="text" id="username" name="username">
+                <label class="mdl-textfield__label" for="username">Username</label>
+              </div>
+
+              <div class="mdl-layout-spacer"></div>
+
+              Password
+              <div class="mdl-textfield mdl-js-textfield">
+                <input class="mdl-textfield__input" type="password" id="password" name="password">
+                <label class="mdl-textfield__label" for="password">Password</label>
+              </div>
+
+              <div class="mdl-layout-spacer"></div>
+
+              Confirm Password
+              <div class="mdl-textfield mdl-js-textfield">
+                <input class="mdl-textfield__input" type="password" id="password-confirm" name="password-confirm">
+                <label class="mdl-textfield__label" for="password-confirm">Password Confirm</label>
+              </div>
+
+              <div class="mdl-layout-spacer"></div>
+
+              Email
+              <div class="mdl-textfield mdl-js-textfield">
+                <input class="mdl-textfield__input" type="email" id="email" name="email">
+                <label class="mdl-textfield__label" for="email">Email</label>
+                <span class="mdl-textfield__error">This is not a valid email address</span>
+
+              </div>
+
+              <div class="mdl-layout-spacer"></div>
+
+              Sex
+              <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-1">
+                <input type="radio" id="option-1" class="mdl-radio__button" name="sex" value="male">
+                <span class="mdl-radio__label">Male</span>
+              </label>
+              <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-2">
+                <input type="radio" id="option-2" class="mdl-radio__button" name="sex" value="female">
+                <span class="mdl-radio__label">Female</span>
+              </label>
+              <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-3">
+                <input type="radio" id="option-3" class="mdl-radio__button" name="sex" value="Prefer not to say">
+                <span class="mdl-radio__label">Prefer not to say</span>
+              </label>
+
+            </div>
+
+            <!-- Submit Button Area -->
+            <div class="mdl-card__actions mdl-card--border">
+
+              <button class="mdl-button mdl-js-button mdl-button--raised" id="formSubmitButton-container">
+                <i class="material-icons">done</i>
+                Submit
+                <input type="submit" name="registerSubmit" id="formSubmitButton" value="">
+              </button>
+            </div>
+
+          </div>
+
+        </form>
+
       </div>
 
     </main>
