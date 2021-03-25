@@ -112,53 +112,65 @@
             <!-- So Scuffed omg. -->
             <div class="mdl-card__actions mdl-card--border">
 
-              Username
-              <div class="mdl-textfield mdl-js-textfield">
-                <input class="mdl-textfield__input" type="text" id="username" name="username">
-                <label class="mdl-textfield__label" for="username">Username</label>
+              <div class="mdl-grid">
+                <div class="mdl-cell mdl-cell--4-col">
+                  Username
+                  <div class="mdl-textfield mdl-js-textfield mdl-cell--30-col">
+                    <input class="mdl-textfield__input" type="text" id="username" name="username">
+                    <label class="mdl-textfield__label" for="username">Username</label>
+                  </div>
+                </div>
               </div>
 
-              <div class="mdl-layout-spacer"></div>
-
-              Password
-              <div class="mdl-textfield mdl-js-textfield">
-                <input class="mdl-textfield__input" type="password" id="password" name="password">
-                <label class="mdl-textfield__label" for="password">Password</label>
+              <div class="mdl-grid">
+                <div class="mdl-cell">
+                  Password
+                  <div class="mdl-textfield mdl-js-textfield">
+                    <input class="mdl-textfield__input" type="password" id="password" name="password">
+                    <label class="mdl-textfield__label" for="password">Password</label>
+                  </div>
+                </div>
               </div>
 
-              <div class="mdl-layout-spacer"></div>
+              <div class="mdl-grid">
 
-              Confirm Password
-              <div class="mdl-textfield mdl-js-textfield">
-                <input class="mdl-textfield__input" type="password" id="password-confirm" name="password-confirm">
-                <label class="mdl-textfield__label" for="password-confirm">Password Confirm</label>
-              </div>
+                  <div class="mdl-cell mdl-cell--6-col">Confirm Password</div>
 
-              <div class="mdl-layout-spacer"></div>
-
-              Email
-              <div class="mdl-textfield mdl-js-textfield">
-                <input class="mdl-textfield__input" type="email" id="email" name="email">
-                <label class="mdl-textfield__label" for="email">Email</label>
-                <span class="mdl-textfield__error">This is not a valid email address</span>
+                  <div class="mdl-textfield mdl-js-textfield">
+                    <input class=" mdl-textfield__input" type="password" id="password-confirm" name="password-confirm">
+                    <label class="mdl-textfield__label" for="password-confirm">Password Confirm</label>
+                  </div>
 
               </div>
 
-              <div class="mdl-layout-spacer"></div>
+              <div class="mdl-grid">
+                <div class="mdl-cell">Email</div>
 
-              Sex
-              <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-1">
-                <input type="radio" id="option-1" class="mdl-radio__button" name="sex" value="male">
-                <span class="mdl-radio__label">Male</span>
-              </label>
-              <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-2">
-                <input type="radio" id="option-2" class="mdl-radio__button" name="sex" value="female">
-                <span class="mdl-radio__label">Female</span>
-              </label>
-              <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-3">
-                <input type="radio" id="option-3" class="mdl-radio__button" name="sex" value="Prefer not to say">
-                <span class="mdl-radio__label">Prefer not to say</span>
-              </label>
+                  <div class="mdl-textfield mdl-js-textfield">
+                    <input class="mdl-textfield__input" type="email" id="email" name="email">
+                    <label class="mdl-textfield__label" for="email">Email</label>
+                    <span class="mdl-textfield__error">This is not a valid email address</span>
+                  </div>
+
+              </div>
+
+              <div class="mdl-grid">
+                <div class="mdl-cell">
+                  <div class="mdl-grid">Sex</div>
+                  <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-1">
+                    <input type="radio" id="option-1" class="mdl-radio__button" name="sex" value="male">
+                    <span class="mdl-radio__label">Male</span>
+                  </label>
+                  <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-2">
+                    <input type="radio" id="option-2" class="mdl-radio__button" name="sex" value="female">
+                    <span class="mdl-radio__label">Female</span>
+                  </label>
+                  <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-3">
+                    <input type="radio" id="option-3" class="mdl-radio__button" name="sex" value="Prefer not to say">
+                    <span class="mdl-radio__label">Prefer not to say</span>
+                  </label>
+                </div>
+              </div>
 
             </div>
 
