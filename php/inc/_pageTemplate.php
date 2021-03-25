@@ -1,8 +1,8 @@
 <?php
 
   //Database and session start.
-  include_once("database.php");
-  
+  include_once("inc/database.php");
+
   // Backend Code here.
 
  ?>
