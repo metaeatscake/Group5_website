@@ -7,6 +7,7 @@
  <!-- HTML Area. -->
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
+
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -31,12 +32,10 @@
     <!-- Alert message from handler. The user will NOT access handler. -->
     <?php if(isset($_SESSION["handler-alert"])): ?>
       <script type="text/javascript">
-         var message = '<?php echo $_SESSION["handler-alert"]; ?>';
-         alert(message);
+         alert('<?php echo "{$_SESSION["handler-alert"]}"; ?>');
          <?php unset($_SESSION["handler-alert"]); ?>
       </script>
     <?php endif; ?>
-
 
     <!-- Uses a header that contracts as the page scrolls down. -->
     <!-- Pasted CSS/HTML from MDL Documentation -->
@@ -100,6 +99,7 @@
 
         .form_itemPadding{
           visibility:hidden;
+          width:100%;
         }
 
         </style>
@@ -169,7 +169,7 @@
                 <div class="mdl-cell">
                   <div class="mdl-grid">Sex</div>
                   <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-1">
-                    <input type="radio" id="option-1" class="mdl-radio__button" name="sex" value="male">
+                    <input type="radio" id="option-1" class="mdl-radio__button" name="sex" value="male" checked>
                     <span class="mdl-radio__label">Male</span>
                   </label>
                   <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-2">
@@ -191,7 +191,7 @@
               <button class="mdl-button mdl-js-button mdl-button--raised" id="formSubmitButton-container">
                 <i class="material-icons">done</i>
                 Submit
-                <input type="submit" name="registerSubmit" id="formSubmitButton" value="">
+                <input type="submit" name="registerSubmit" id="formSubmitButton" value="submit">
               </button>
             </div>
 
