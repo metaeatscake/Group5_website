@@ -1,5 +1,8 @@
 <?php
 
+  //Database and session start.
+  include_once("database.php");
+  
   // Backend Code here.
 
  ?>
@@ -59,7 +62,7 @@
     </main>
 
     <!-- Footer -->
-    <?php include_once("php/inc/footer.php"); ?>
+    <?php include_once("inc/footer.php"); ?>
 
    </div>
   </body>
