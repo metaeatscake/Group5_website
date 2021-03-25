@@ -27,6 +27,17 @@
     <link rel="stylesheet" href="../css/socialityOverrides.css">
   </head>
   <body>
+
+    <!-- Alert message from handler. The user will NOT access handler. -->
+    <?php if(isset($_SESSION["handler-alert"])): ?>
+      <script type="text/javascript">
+         var message = '<?php echo $_SESSION["handler-alert"]; ?>';
+         alert(message);
+         <?php unset($_SESSION["handler-alert"]); ?>
+      </script>
+    <?php endif; ?>
+
+
     <!-- Uses a header that contracts as the page scrolls down. -->
     <!-- Pasted CSS/HTML from MDL Documentation -->
 
