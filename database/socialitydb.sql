@@ -75,7 +75,7 @@ CREATE TABLE `tbl_users` (
   `email` varchar(255) NOT NULL,
   `gender` varchar(255) NOT NULL,
   `profile_pic` varchar(255) NOT NULL DEFAULT 'images/users/_default.jpg',
-  `bio` text NOT NULL DEFAULT 'New user',
+  `bio` text NOT NULL,
   `account_type` varchar(255) NOT NULL DEFAULT 'user'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
