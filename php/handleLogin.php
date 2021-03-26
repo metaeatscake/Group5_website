@@ -2,9 +2,9 @@
 //Connection to database
   include_once("inc/database.php");
   //This is a prevention of thingy
-  if (isset($_SESSION["user_type"]) || !isset($_POST["loginForm"])) 
+  if (isset($_SESSION["account_type"]) || !isset($_POST["loginForm"])) 
   {
-    header("location: index.php");
+    header("location: ../");
     exit();
   }
   $processMake = false;
@@ -75,15 +75,15 @@
         {
           if(password_verify($form_password, $row["password"]))
           {
-            $userType = ($row["user_type"] == 1) ? "admin":"user";
-            $_SESSION["user_type"] = $userType;
+            $userType = ($row["account_type"] == 1) ? "admin":"user";
+            $_SESSION["account_type"] = $userType;
             $_SESSION["user_name"] = $form_username;
             $_SESSION["user_id"] = $row["id"];
 
             if($processMake){
               echo "<br>Phase 3: Password Check, process results<br>";
               echo "Passwords match, should be redirecting to index.php<br>";
-              echo "<br>SESSION var 'user_type':".$_SESSION["user_type"];
+              echo "<br>SESSION var 'account_type':".$_SESSION["account_type"];
               echo "<br>SESSION var 'user_name':".$_SESSION["user_name"];
               echo "<br>SESSION var 'user_id':".$_SESSION["user_id"];
           }
