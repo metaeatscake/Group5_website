@@ -5,6 +5,7 @@
 // Prevent Illegal Access
   if(isset($_SESSION["account_type"]) || empty($_POST)){
     header("location: ../");
+    exit();
   }
 
 // Get all available usernames and emails
