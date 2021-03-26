@@ -1,6 +1,7 @@
 <!-- Wide card with share menu button -->
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Staatliches&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 .demo-card-wide.mdl-card {
   width: 70%;
   /* border:1px solid red; */
@@ -10,7 +11,7 @@
 
 }
 .demo-card-wide > .mdl-card__title {
-  color: #cca8e6;
+  color: white;
   font-weight: bold;
   height: 50vh;
   /* So scuffed, please help. */
@@ -26,8 +27,10 @@
 #wel{
   /* font-weight: bold; */
   font-size: 3rem;
-  font-family: 'Staatliches', cursive;
+  font-family: 'Montserrat', sans-serif;
   text-shadow: 2px 2px 5px black;
+  text-transform: capitalize;
+
 }
 </style>
 
