@@ -24,7 +24,7 @@
 // Data Cleaning, now with redirects.
 
   //When debugging, set $redirect to false
-  $redirect = false;
+  $redirect = true;
 
   if (in_array(true, $emptyVars)) {
     $errorMessage = "ERROR: The following fields were empty: \\n";
@@ -37,60 +37,71 @@
 
     // I can't believe ternary operations work by itself.
     $_SESSION["handler-alert"] = $errorMessage;
-    ($redirect) ? header("location: register.php") : print_r(nl2br($errorMessage));
+    if($redirect){header("location: register.php"); exit();}
+    else{print_r(nl2br($errorMessage));}
   }
 
-  //Data is not empty, proceed.
+  else{
+    //Data is not empty, proceed.
 
-    /*
-      Verification
+      /*
+        Verification
 
-      Password and confirm password must match
-      Password length >= 8 characters
-      Unique username
-      Unique password
-    */
+        Password and confirm password must match
+        Password length >= 8 characters
+        Unique username
+        Unique password
+      */
 
-    // TRUE if passwords DO NOT match
-    $validationChecks["passwords_given_do_not_match"] = (strcmp($_POST["password"], $_POST["password-confirm"]) !== 0);
+      // TRUE if passwords DO NOT match
+      $validationChecks["passwords_given_do_not_match"] = (strcmp($_POST["password"], $_POST["password-confirm"]) !== 0);
 
-    // TRUE if passwords
-    $validationChecks["password_less_than_8_characters"] = (strlen($_POST["password"]) < 8);
+      // TRUE if passwords
+      $validationChecks["password_less_than_8_characters"] = (strlen($_POST["password"]) < 8);
 
-    // TRUE if username IS already registered
-    $validationChecks["username_already_registered"] = (in_array($_POST["username"], $usernames));
+      // TRUE if username IS already registered
+      $validationChecks["username_already_registered"] = (in_array($_POST["username"], $usernames));
 
-    // TRUE if email IS already registered
-    $validationChecks["email_already_registered"] = (in_array($_POST["email"], $emails));
+      // TRUE if email IS already registered
+      $validationChecks["email_already_registered"] = (in_array($_POST["email"], $emails));
 
-    // Final Redirects for errors
-    if(in_array(true, $validationChecks)){
-      $errorMessage = "ERROR: \\n";
-      foreach ($validationChecks as $key => $value) {
-        if($value){
-          $errorMessage .= "\\n".str_replace("_", " ", ucfirst($key));
+      // Final Redirects for errors
+      if(in_array(true, $validationChecks)){
+        $errorMessage = "ERROR: \\n";
+        foreach ($validationChecks as $key => $value) {
+          if($value){
+            $errorMessage .= "\\n".str_replace("_", " ", ucfirst($key));
+          }
         }
+        $errorMessage .= "\\nRegistration Failed.";
+
+        $_SESSION["handler-alert"] = $errorMessage;
+
+        if($redirect){header("location: register.php"); exit();}
+        else{print_r(nl2br($errorMessage));}
       }
-      $errorMessage .= "\\nRegistration Failed.";
 
-      $_SESSION["handler-alert"] = $errorMessage;
-      ($redirect) ? header("location: register.php") : print_r(nl2br($errorMessage));
+      else{
+        // Data has passed validations.
+        $password_encrypted = password_hash($_POST["password"], PASSWORD_DEFAULT);
+        $query = "INSERT INTO tbl_users(
+          username,
+          password,
+          email,
+          sex
+        ) VALUES (
+          '{$_POST["username"]}',
+          '{$password_encrypted}',
+          '{$_POST["email"]}',
+          '{$_POST["sex"]}'
+        )";
+
+        $sql->query($query);
+        $_SESSION["handler-alert"] = "Registration Success!";
+        if($redirect){header("location: register.php"); exit();}
+        else{echo "Query Success";}
+      }
     }
-
-    // Data has passed validations.
-    $password_encrypted = password_hash($_POST["password"], PASSWORD_DEFAULT);
-    $query = "INSERT INTO tbl_users(
-      username,
-      password,
-      email,
-      sex
-    ) VALUES (
-      '{$_POST["username"]}',
-      '{$password_encrypted}',
-      '{$_POST["email"]}',
-      '{$_POST["sex"]}'
-    )";
-
 
 
  ?>
