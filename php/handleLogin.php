@@ -62,7 +62,7 @@
 
         // CHECK IF PASSWORD MATCH.
         if(password_verify($_POST["password"], $row["password"])){
-          $_SESSION["account_id"] = $row["id"];
+          $_SESSION["account_id"] = $row["user_id"];
           $_SESSION["account_type"] = $row["account_type"];
           $_SESSION["username"] = $row["username"];
 
