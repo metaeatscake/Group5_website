@@ -7,6 +7,7 @@
   }
   $processMake = false;
 
+  
   $listEmptyVars = [];
   foreach ($_POST as $key => $value) 
   {
