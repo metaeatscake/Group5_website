@@ -21,24 +21,6 @@
   background-attachment: fixed;
   background-size: cover;
 }
-
-.glow {
-  font-size: 80px;
-  color: #fff;
-  text-align: center;
-  animation: glow 1s ease-in-out infinite alternate;
-}
-
-@-webkit-keyframes glow {
-  from {
-    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #e60073, 0 0 40px #e60073, 0 0 50px #e60073, 0 0 60px #e60073, 0 0 70px #e60073;
-  }
-
-  to {
-    text-shadow: 0 0 20px #fff, 0 0 30px #ff4da6, 0 0 40px #ff4da6, 0 0 50px #ff4da6, 0 0 60px #ff4da6, 0 0 70px #ff4da6, 0 0 80px #ff4da6;
-  }
-}
-
 .demo-card-wide > .mdl-card__menu {
   color: #cca8e6;
 }
@@ -48,14 +30,12 @@
   font-family: 'Montserrat', sans-serif;
   text-shadow: 2px 2px 5px black;
   text-transform: capitalize;
-
 }
 </style>
 
 <div class="demo-card-wide mdl-card mdl-shadow--2dp">
   <div class="mdl-card__title">
-    <h2 id="wel" class="mdl-card__title-text">We are Connecting you with the Digital life</h2>
-    <h1 class="glow">Social with Others</h1>
+    <h2 id="wel" class="mdl-card__title-text">WE ARE CONNECTING YOU WITH THE DIGITAL LIFE</h2>
   </div>
   <div class="mdl-card__supporting-text">
     There's no posts rn
