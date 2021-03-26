@@ -50,7 +50,7 @@
         .demo-layout-transparent .mdl-layout__drawer-button {
           /* This background is dark, so we set text to white. Use 87% black instead if
              your background is light. */
-          color: white;
+          color: #000000;
         }
       </style>
 
