@@ -87,7 +87,8 @@
               <label for="password">Password</label>
             </div>
             <div class="formItem">
-              <input class="input "type="password" name="password" required>
+              <input class="input "type="password" name="password" required placeholder="Type your password">
+              <i class="fas fa-key" aria-hidden="true"></i>
             </div>
             <br>
             <div class="formItem">
@@ -165,11 +166,20 @@
         box-shadow: 0 0 8px 0 purple;
       }
 
+      input[type="password"]:focus {
+        border-color: purple;
+        box-shadow: 0 0 8px 0 purple;
+      }
+
       .formItem{
         position: relative;
       }
 
       .formItem input[type:text]{
+        padding-left: 40px;
+      }
+
+      .formItem input[type:password]{
         padding-left: 40px;
       }
 
@@ -185,6 +195,10 @@
       }
 
       .formItem input[type="text"]:focus + i {
+        color: purple;
+      }
+
+      .formItem input[type="password"]:focus + i {
         color: purple;
       }
 </style>
