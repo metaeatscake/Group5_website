@@ -31,7 +31,6 @@
 }
 @font-face {
 	font-family: 'proxima_nova_rgbold';
-  text-shadow: 2px 2px 5px black;
 	src: url('https://litmus.com/fonts/Emails/proximanova-bold-webfont.eot');
 	src: url('https://litmus.com/fonts/Emails/proximanova-bold-webfont.eot?#iefix') format('embedded-opentype'),
 		 url('https://litmus.com/fonts/Emails/proximanova-bold-webfont.woff') format('woff'),url('https://litmus.com/fonts/Emails/adelle_reg-webfont.ttf') format('truetype'),
