@@ -37,7 +37,7 @@
     <h2 id="wel" class="mdl-card__title-text">We are Connecting you with the Digital life</h2>
   </div>
   <div class="mdl-card__supporting-text">
-    There's no posts rn
+    Join Us
   </div>
   <!--
   <div class="mdl-card__actions mdl-card--border">
@@ -50,9 +50,5 @@
       Register
     </a>
   </div>-->
-  <div class="mdl-card__menu">
-    <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
-      <i class="material-icons">share</i>
-    </button>
-  </div>
+
 </div>
