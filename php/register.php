@@ -129,8 +129,9 @@
                 <div class="mdl-cell mdl-cell--4-col">
                   Username
                   <div class="mdl-textfield mdl-js-textfield mdl-cell--30-col">
-                    <input class="mdl-textfield__input" type="text" id="username" name="username">
+                    <input class="mdl-textfield__input" type="text" id="username" name="username" required>
                     <label class="mdl-textfield__label" for="username">Username</label>
+                    <span class="mdl-textfield__error">This is field is empty</span>
                   </div>
                 </div>
               </div>
@@ -139,8 +140,9 @@
                 <div class="mdl-cell">
                   Password
                   <div class="mdl-textfield mdl-js-textfield">
-                    <input class="mdl-textfield__input" type="password" id="password" name="password">
+                    <input class="mdl-textfield__input" type="password" id="password" name="password" required>
                     <label class="mdl-textfield__label" for="password">Password</label>
+                    <span class="mdl-textfield__error">This is field is empty</span>
                   </div>
                 </div>
               </div>
@@ -150,8 +152,9 @@
                   <div class="mdl-cell mdl-cell--6-col">Confirm Password</div>
 
                   <div class="mdl-textfield mdl-js-textfield">
-                    <input class=" mdl-textfield__input" type="password" id="password-confirm" name="password-confirm">
+                    <input class=" mdl-textfield__input" type="password" id="password-confirm" name="password-confirm" required>
                     <label class="mdl-textfield__label" for="password-confirm">Password Confirm</label>
+                    <span class="mdl-textfield__error">This is field is empty</span>
                   </div>
 
               </div>
@@ -160,7 +163,7 @@
                 <div class="mdl-cell">Email</div>
 
                   <div class="mdl-textfield mdl-js-textfield">
-                    <input class="mdl-textfield__input" type="email" id="email" name="email">
+                    <input class="mdl-textfield__input" type="email" id="email" name="email" required>
                     <label class="mdl-textfield__label" for="email">Email</label>
                     <span class="mdl-textfield__error">This is not a valid email address</span>
                   </div>
