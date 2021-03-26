@@ -44,6 +44,7 @@
   <!-- Top row, always visible -->
   <div class="mdl-layout__header-row">
     <!-- Title -->
+    <br><br><img class="logo" src="php/images/assets/SCLOGO.png" width="50" height="40">
     <span class="mdl-layout-title"><?php echo $nav_siteTitle; ?></span>
     <div class="mdl-layout-spacer"></div>
 
