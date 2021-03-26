@@ -16,7 +16,7 @@
    <head>
      <meta charset="utf-8">
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <title>Sociality</title>
+     <title>Sociality | View Profile</title>
 
      <!-- Import Material Design Lite CSS -->
      <link rel="stylesheet" href="../mdl/material.min.css">
@@ -62,6 +62,8 @@
        <main class="mdl-layout__content">
 
          <div class="page-content">
+
+           <!-- ADD THE PROFILE CARD HERE. -->
 
          </div>
 
