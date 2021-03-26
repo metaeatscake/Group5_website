@@ -1,5 +1,7 @@
 <?php
+//Connection to database
   include_once("inc/database.php");
+  //This is a prevention of thingy
   if (isset($_SESSION["user_type"]) || !isset($_POST["loginForm"])) 
   {
     header("location: index.php");
@@ -7,7 +9,7 @@
   }
   $processMake = false;
 
-  
+  //Cleaning the data
   $listEmptyVars = [];
   foreach ($_POST as $key => $value) 
   {
@@ -114,3 +116,6 @@
     }
   }
 ?>
+
+
+//This is based on finals .w.
