@@ -56,7 +56,65 @@
       <div class="page-content">
 
         <!-- MAIN CONTENT -->
+        <div class="form-wrapper">
+      <form class="form-main" action="handleLogin.php" method="post" >
+        <div class="formItem">
+          <h1>Log In</h1>
+        </div>
+        <div class="formItem">
+          <label for="username">Username</label>
+        </div>
+        <div class="formItem">
+          <input type="text" name="username" required>
+        </div>
 
+        <div class="formItem">
+          <label for="password">Password</label>
+        </div>
+        <div class="formItem">
+          <input type="password" name="password" required>
+        </div>
+
+        <div class="formItem">
+          <input type="submit" name="loginForm" value="Log In">
+        </div>
+
+      </form>
+    </div>
+
+     <div class="form-wrapper">
+       <form class="form-main" action="handleLogin.php" method="post" >
+       	<table id="row-bordered">
+          <tr>
+            <td>Username</td>
+            <td>
+              <input type="text" name="username" required>
+            </td>
+          </tr>
+         
+          <tr>
+          	<td>Password</td>
+            <td>
+              <input type="password" name="password" required>
+            </td>
+          </tr>
+         
+          <tr>
+            <td colspan="2" style="text-align: center;">
+            <a href="register.php"><p style="color:yellow">Don't have a account? Register Now!</p></a>
+            </td>
+          </tr>
+         
+          <tr>
+            <td colspan="2" style="text-align: center;">
+              <div class="formItem">
+              <input type="submit" name="loginForm" value="Log In">
+              </div>
+            </td>
+          </tr>
+        </table>
+       </form>
+     </div>
       </div>
 
     </main>
