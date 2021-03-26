@@ -42,6 +42,8 @@
   // Resolve Filepath of Logo.
   $nav_logoLocation = (strpos($_SERVER["PHP_SELF"], $nav_folderName) !== false)?
     "images/assets/SCLOGO.png" : "php/images/assets/SCLOGO.png";
+  $nav_logoLink = (strpos($_SERVER["PHP_SELF"], $nav_folderName) !== false)?
+    "../" : "";
  ?>
 
 <header class="mdl-layout__header mdl-layout__header--transparent">
@@ -49,7 +51,7 @@
   <div class="mdl-layout__header-row">
     <!-- Title -->
     <br><br>
-    <p><a href="index.php">
+    <p><a href="<?php echo $nav_logoLink; ?>">
     <img src="<?php echo $nav_logoLocation; ?>" alt="index.php" width="50" height="38">
     </a></p>
     <!-- Navigation -->
