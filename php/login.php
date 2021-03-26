@@ -39,7 +39,7 @@
       </script>
       <?php unset($_SESSION["handler-alert"]); ?>
     <?php endif; ?>
-    
+
     <!-- Uses a header that contracts as the page scrolls down. -->
     <!-- Pasted CSS/HTML from MDL Documentation -->
 
@@ -47,7 +47,10 @@
    <style>
      .demo-layout-transparent {
        /* REPLACE THIS IMAGE WITH A BETTER BACKGROUND */
-       background: url('images/assets/bgdark.jpg') center / cover;
+       background: #ad5389;  /* fallback for old browsers */
+      background: -webkit-linear-gradient(to right, #3c1053, #ad5389);  /* Chrome 10-25, Safari 5.1-6 */
+      background: linear-gradient(to right, #3c1053, #ad5389); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
      }
      .demo-layout-transparent .mdl-layout__header,
      .demo-layout-transparent .mdl-layout__drawer-button {
@@ -69,7 +72,7 @@
         <div class="form-wrapper">
           <form class="form-main" action="handleLogin.php" method="post" >
             <div class="formItem">
-              <h1>Log In</h1>
+              <h1 style="text-align: center">Log In</h1>
             </div>
             <div class="formItem">
               <label for="username">Username</label>
@@ -77,16 +80,16 @@
             <div class="formItem">
               <input type="text" name="username" required>
             </div>
-
+            <br>
             <div class="formItem">
               <label for="password">Password</label>
             </div>
             <div class="formItem">
               <input type="password" name="password" required>
             </div>
-
+            <br>
             <div class="formItem">
-              <input type="submit" name="loginForm" value="Log In">
+              <input class="button" type="submit" name="loginForm" value="Log In">
             </div>
 
           </form>
@@ -103,3 +106,42 @@
    </div>
   </body>
 </html>
+
+<style media="screen">
+  .form-wrapper{
+    width:400px;
+  	margin:80px auto 0px auto;
+  	padding:10px;
+  	border-radius:5px;
+  	-moz-border-radius:5px;
+  	-webkit-border-radius:5px;
+  	background-color:#fff;
+  	overflow:auto;
+    align-items: center;
+    }
+
+    label{
+      font-family: "Roboto","Helvetica","Arial",sans-serif;
+      font-size: 1.5rem;
+    }
+
+    .button{
+      width:100px;
+    	height:35px;
+    	background-color:#ad5389;
+    	border: 1px solid #3c1053;
+    	color:#fff;
+    	font-size:1.2em;
+    	cursor:pointer;
+    	float:right;
+      display: inline-block;
+      box-shadow: inset 0 0 0 0 #D80286;
+      -webkit-transition: ease-out 0.4s;
+      -moz-transition: ease-out 0.4s;
+      transition: ease-out 0.4s;
+    }
+
+    .button:hover{
+      box-shadow: inset 400px 0 0 0 #3c1053;
+}
+</style>
