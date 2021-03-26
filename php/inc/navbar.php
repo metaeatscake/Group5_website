@@ -38,6 +38,10 @@
     : $nav_guestLinks;
 
   $nav_greetings = (isset($_SESSION["username"])) ? "Hello, {$_SESSION["username"]}!" : "Hello, Guest!";
+
+  // Resolve Filepath of Logo.
+  $nav_logoLocation = (strpos($_SERVER["PHP_SELF"], $nav_folderName) !== false)?
+    "images/assets/SCLOGO.png" : "php/images/assets/SCLOGO.png";
  ?>
 
 <header class="mdl-layout__header mdl-layout__header--transparent">
@@ -46,7 +50,7 @@
     <!-- Title -->
     <br><br>
     <p><a href="index.php">
-    <img src="php/images/assets/SCLOGO.png" alt="index.php" width="50" height="38">
+    <img src="<?php echo $nav_logoLocation; ?>" alt="index.php" width="50" height="38">
     </a></p>
     <!-- Navigation -->
     <nav class="mdl-navigation">
