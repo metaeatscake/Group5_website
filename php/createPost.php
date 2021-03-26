@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Sociality| Create Post</title>
+	<title>Sociality | Create Post</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -40,16 +40,22 @@
 	<?php 
 		include_once("inc/database.php");
  		include_once("inc/navbar.php");
+		$data = $sql->query("SELECT * FROM tbl_users WHERE user_id = '{$_SESSION["account_id"]}'");
+		$row = $data->fetch_assoc();
+		$username = $row["username"];
 
 	 ?>
-	 <h2>Create a Post</h2>
+	 <h2>Create Post</h2>
+	 <center>
+	 	<form action="handleCreatePost.php" method="POST">
+		 	<textarea name="inputText" rows="3" cols="4" placeholder="What's on your mind? <?php echo $username; ?>" maxlength="200" style="width: 50%;">
+		 	</textarea>
+		 	<br><br>
+		 	<input type="file" name="inputPic" class="">
+		 	<br><br>
 
-	 <form action="handleCreate.php" method="POST">
-	 	<textarea name="inputText" rows="3" cols="4" placeholder="What's on your mind?" maxlength="200" style="width: 50%;">
-	 	</textarea>
-	 	<input type="file" name="inputPic" class="">
-	 	<br>
-	 	<input type="submit" name="btnSubmit" class="" value="Post">
+		 	<input type="submit" name="btnSubmit" class="" value="Post">
 	 </form>
+	 </center>
 </body>
 </html>
