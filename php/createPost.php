@@ -45,17 +45,17 @@
 		$username = $row["username"];
 
 	 ?>
-	 <h2>Create Post</h2>
 	 <center>
+	 	<h2>Create Post</h2>
 	 	<form action="handleCreatePost.php" method="POST">
+	 		<input type="text" name="inputTitle" class="" placeholder="Title" required><br><br>
 		 	<textarea name="inputText" rows="3" cols="4" placeholder="What's on your mind? <?php echo $username; ?>" maxlength="200" style="width: 50%;">
 		 	</textarea>
 		 	<br><br>
 		 	<input type="file" name="inputPic" class="">
 		 	<br><br>
-
 		 	<input type="submit" name="btnSubmit" class="" value="Post">
-	 </form>
+	 	</form>
 	 </center>
 </body>
 </html>
