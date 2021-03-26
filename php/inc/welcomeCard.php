@@ -1,10 +1,12 @@
 <!-- Wide card with share menu button -->
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Staatliches&display=swap');
 .demo-card-wide.mdl-card {
   width: 70%;
   /* border:1px solid red; */
   margin:auto;
   margin-top: 40px;
+  box-shadow: 5px 6px 10px black;
 
 }
 .demo-card-wide > .mdl-card__title {
@@ -22,10 +24,10 @@
   color: #cca8e6;
 }
 #wel{
-  font-weight: bold;
+  /* font-weight: bold; */
   font-size: 3rem;
-  -webkit-text-stroke: 1px black;
-  /* text-shadow: 2px 2px black; */
+  font-family: 'Staatliches', cursive;
+  text-shadow: 2px 2px 5px black;
 }
 </style>
 
