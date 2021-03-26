@@ -30,6 +30,16 @@
     <link rel="stylesheet" href="../css/socialityOverrides.css">
   </head>
   <body>
+
+    <!-- Alert message from handler. The user will NOT access handler. -->
+    <?php if(isset($_SESSION["handler-alert"])): ?>
+      <script type="text/javascript">
+         alert('<?php echo "{$_SESSION["handler-alert"]}"; ?>');
+
+      </script>
+      <?php unset($_SESSION["handler-alert"]); ?>
+    <?php endif; ?>
+    
     <!-- Uses a header that contracts as the page scrolls down. -->
     <!-- Pasted CSS/HTML from MDL Documentation -->
 
@@ -57,64 +67,32 @@
 
         <!-- MAIN CONTENT -->
         <div class="form-wrapper">
-      <form class="form-main" action="handleLogin.php" method="post" >
-        <div class="formItem">
-          <h1>Log In</h1>
-        </div>
-        <div class="formItem">
-          <label for="username">Username</label>
-        </div>
-        <div class="formItem">
-          <input type="text" name="username" required>
-        </div>
-
-        <div class="formItem">
-          <label for="password">Password</label>
-        </div>
-        <div class="formItem">
-          <input type="password" name="password" required>
-        </div>
-
-        <div class="formItem">
-          <input type="submit" name="loginForm" value="Log In">
-        </div>
-
-      </form>
-    </div>
-
-     <div class="form-wrapper">
-       <form class="form-main" action="handleLogin.php" method="post" >
-       	<table id="row-bordered">
-          <tr>
-            <td>Username</td>
-            <td>
+          <form class="form-main" action="handleLogin.php" method="post" >
+            <div class="formItem">
+              <h1>Log In</h1>
+            </div>
+            <div class="formItem">
+              <label for="username">Username</label>
+            </div>
+            <div class="formItem">
               <input type="text" name="username" required>
-            </td>
-          </tr>
-         
-          <tr>
-          	<td>Password</td>
-            <td>
+            </div>
+
+            <div class="formItem">
+              <label for="password">Password</label>
+            </div>
+            <div class="formItem">
               <input type="password" name="password" required>
-            </td>
-          </tr>
-         
-          <tr>
-            <td colspan="2" style="text-align: center;">
-            <a href="register.php"><p style="color:yellow">Don't have a account? Register Now!</p></a>
-            </td>
-          </tr>
-         
-          <tr>
-            <td colspan="2" style="text-align: center;">
-              <div class="formItem">
+            </div>
+
+            <div class="formItem">
               <input type="submit" name="loginForm" value="Log In">
-              </div>
-            </td>
-          </tr>
-        </table>
-       </form>
-     </div>
+            </div>
+
+          </form>
+        </div>
+
+
       </div>
 
     </main>
