@@ -8,23 +8,35 @@
 
 }
 .demo-card-wide > .mdl-card__title {
-  color: #000;
+  color: #cca8e6;
+  font-weight: bold;
   height: 50vh;
   /* So scuffed, please help. */
-  background: url('php/images/assets/sociality_banner.png') center / cover;
+  background: url('php/images/assets/open.jpg');
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
 }
 .demo-card-wide > .mdl-card__menu {
-  color: #fff;
+  color: #cca8e6;
+}
+#wel{
+  font-weight: bold;
+  font-size: 3rem;
+  -webkit-text-stroke: 1px black;
+  /* text-shadow: 2px 2px black; */
 }
 </style>
 
 <div class="demo-card-wide mdl-card mdl-shadow--2dp">
   <div class="mdl-card__title">
-    <h2 class="mdl-card__title-text">Welcome</h2>
+    <h2 id="wel" class="mdl-card__title-text">We are Connecting you with the Digital life</h2>
   </div>
   <div class="mdl-card__supporting-text">
     There's no posts rn
   </div>
+  <!--
   <div class="mdl-card__actions mdl-card--border">
     <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"
       href="php/login.php">
@@ -34,7 +46,7 @@
       href="php/register.php">
       Register
     </a>
-  </div>
+  </div>-->
   <div class="mdl-card__menu">
     <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
       <i class="material-icons">share</i>
