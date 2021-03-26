@@ -25,6 +25,7 @@
 
   $nav_adminLinks = [
     "Home" => "../",
+    "Add Admin User" => "adm_addUsers.php",
     "User List" => "adm_viewUsers.php",
     "Posts List" => "adm_viewPosts.php"
   ];

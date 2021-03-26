@@ -131,7 +131,7 @@
                   <div class="mdl-textfield mdl-js-textfield mdl-cell--30-col">
                     <input class="mdl-textfield__input" type="text" id="username" name="username" required>
                     <label class="mdl-textfield__label" for="username">Username</label>
-                    <span class="mdl-textfield__error">This is field is empty</span>
+                    <span class="mdl-textfield__error">This field is empty</span>
                   </div>
                 </div>
               </div>
@@ -142,7 +142,7 @@
                   <div class="mdl-textfield mdl-js-textfield">
                     <input class="mdl-textfield__input" type="password" id="password" name="password" required>
                     <label class="mdl-textfield__label" for="password">Password</label>
-                    <span class="mdl-textfield__error">This is field is empty</span>
+                    <span class="mdl-textfield__error">This field is empty</span>
                   </div>
                 </div>
               </div>
@@ -154,7 +154,7 @@
                   <div class="mdl-textfield mdl-js-textfield">
                     <input class=" mdl-textfield__input" type="password" id="password-confirm" name="password-confirm" required>
                     <label class="mdl-textfield__label" for="password-confirm">Password Confirm</label>
-                    <span class="mdl-textfield__error">This is field is empty</span>
+                    <span class="mdl-textfield__error">This field is empty</span>
                   </div>
 
               </div>
