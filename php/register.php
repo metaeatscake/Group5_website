@@ -33,9 +33,11 @@
     <?php if(isset($_SESSION["handler-alert"])): ?>
       <script type="text/javascript">
          alert('<?php echo "{$_SESSION["handler-alert"]}"; ?>');
-         <?php unset($_SESSION["handler-alert"]); ?>
+
       </script>
+      <?php unset($_SESSION["handler-alert"]); ?>
     <?php endif; ?>
+
 
     <!-- Uses a header that contracts as the page scrolls down. -->
     <!-- Pasted CSS/HTML from MDL Documentation -->
