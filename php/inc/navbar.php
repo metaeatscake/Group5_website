@@ -69,6 +69,11 @@
     </nav>
   </div>
 </header>
+<style>
+  .mdl-navigation, .mdl-navigation__link{
+    color: black;
+  }
+</style>
 <div class="mdl-layout__drawer">
   <span class="mdl-layout-title"><?php echo $nav_siteTitle; ?></span>
   <nav class="mdl-navigation">
