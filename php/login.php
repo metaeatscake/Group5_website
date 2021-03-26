@@ -129,7 +129,6 @@
       width:100px;
     	height:35px;
     	background-color:#ad5389;
-    	border: 1px solid #3c1053;
     	color:#fff;
     	font-size:1.2em;
     	cursor:pointer;
