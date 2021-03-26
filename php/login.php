@@ -28,6 +28,7 @@
 
     <!-- Custom CSS File -->
     <link rel="stylesheet" href="../css/socialityOverrides.css">
+    <script src="https://kit.fontawesome.com/7f2eccabe0.js" crossorigin="anonymous"></script>
   </head>
   <body>
 
@@ -78,14 +79,15 @@
               <label for="username">Username</label>
             </div>
             <div class="formItem">
-              <input type="text" name="username" required>
+              <input class="input" type="text" name="username" placeholder="Type your username" required>
+              <i class="fas fa-user" aria-hidden="true"></i>
             </div>
             <br>
             <div class="formItem">
               <label for="password">Password</label>
             </div>
             <div class="formItem">
-              <input type="password" name="password" required>
+              <input class="input "type="password" name="password" required>
             </div>
             <br>
             <div class="formItem">
@@ -108,6 +110,7 @@
 </html>
 
 <style media="screen">
+
   .form-wrapper{
     width:400px;
   	margin:80px auto 0px auto;
@@ -142,5 +145,46 @@
 
     .button:hover{
       box-shadow: inset 400px 0 0 0 #3c1053;
-}
+    }
+
+    .input{
+      background-color: transparent;
+      width: 100%;
+      border: 2px solid #aaa;
+      border-radius: 4px;
+      margin: 8px 0;
+      outline: none;
+      padding: 8px;
+      box-sizing: border-box;
+      transition: 0.3s;
+      padding-left: 40px;
+      }
+
+      input[type="text"]:focus {
+        border-color: purple;
+        box-shadow: 0 0 8px 0 purple;
+      }
+
+      .formItem{
+        position: relative;
+      }
+
+      .formItem input[type:text]{
+        padding-left: 40px;
+      }
+
+      .formItem i {
+        position: absolute;
+        left: 0;
+        top: 8px;
+        padding: 9px 8px;
+        color: black;
+        transition: 0.3s;
+        font-size: 1.5rem;
+        margin-left: 2px;
+      }
+
+      .formItem input[type="text"]:focus + i {
+        color: purple;
+      }
 </style>
