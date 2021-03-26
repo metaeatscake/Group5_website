@@ -5,6 +5,7 @@
   // Redirect Admins
   if (isset($_SESSION["account_type"]) && $_SESSION["account_type"] === "admin") {
     header("location: viewUsers.php");
+    exit();
   }
 
   // Clients can/should still see posts even if they are not logged in, so index.php will contain the feed.
@@ -66,6 +67,12 @@
            <!-- Default Card when user is not logged in. -->
             <?php if(!isset($_SESSION["account_type"])): ?>
               <?php include_once("php/inc/welcomeCard.php"); ?>
+
+              <!-- USER FEED -->
+            <?php else: ?>
+              <h1>PEEPEEPOOPOO</h1>
+              <h4>hehe peepeepoopoo</h4>
+              
             <?php endif; ?>
          </div>
 
