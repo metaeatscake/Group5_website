@@ -29,13 +29,12 @@
   font-size: 3rem;
   font-family: 'Montserrat', sans-serif;
   text-shadow: 2px 2px 5px black;
-  text-transform: capitalize;
 }
 </style>
 
 <div class="demo-card-wide mdl-card mdl-shadow--2dp">
   <div class="mdl-card__title">
-    <h2 id="wel" class="mdl-card__title-text">WE ARE CONNECTING YOU WITH THE DIGITAL LIFE</h2>
+    <h2 id="wel" class="mdl-card__title-text">We are Connecting you with the Digital life</h2>
   </div>
   <div class="mdl-card__supporting-text">
     There's no posts rn
