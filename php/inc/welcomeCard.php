@@ -27,14 +27,24 @@
 #wel{
   /* font-weight: bold; */
   font-size: 3rem;
-  font-family: 'Montserrat', sans-serif;
+  font-style: normal;
+}
+@font-face {
+	font-family: 'proxima_nova_rgbold';
   text-shadow: 2px 2px 5px black;
+	src: url('https://litmus.com/fonts/Emails/proximanova-bold-webfont.eot');
+	src: url('https://litmus.com/fonts/Emails/proximanova-bold-webfont.eot?#iefix') format('embedded-opentype'),
+		 url('https://litmus.com/fonts/Emails/proximanova-bold-webfont.woff') format('woff'),url('https://litmus.com/fonts/Emails/adelle_reg-webfont.ttf') format('truetype'),
+		 url('https://litmus.com/fonts/Emails/adelle_reg-webfont.svg#adelle_rgregular') format('svg');
+	font-weight: normal;
+	font-style: normal;
+
 }
 </style>
 
 <div class="demo-card-wide mdl-card mdl-shadow--2dp">
   <div class="mdl-card__title">
-    <h2 id="wel" class="mdl-card__title-text">We are Connecting you with the Digital life</h2>
+    <h2 id="wel" class="mdl-card__title-text" style="text-shadow: 2px 2px 5px black;">We are Connecting you with the Digital life</h2>
   </div>
   <div class="mdl-card__supporting-text">
     There's no posts rn
