@@ -56,8 +56,54 @@
       <div class="page-content">
 
         <!-- MAIN CONTENT -->
-        <form action="handleLogin.php" method="POST">
-          
+        <!-- Form Proper -->
+        <form class="" action="handleLogin.php" method="post">
+
+          <div class="formCard mdl-card mdl-shadow--4dp">
+
+            <!-- Title Area (including the background pic) -->
+            <div class="mdl-card__title">
+              <h2 class="mdl-card__title-text">Login</h2>
+            </div>
+
+            <!-- Form Input Fields. -->
+            <!-- So Scuffed omg. -->
+            <div class="mdl-card__actions mdl-card--border">
+
+              <div class="mdl-grid">
+                <div class="mdl-cell mdl-cell--4-col">
+                  Username
+                  <div class="mdl-textfield mdl-js-textfield mdl-cell--30-col">
+                    <input class="mdl-textfield__input" type="text" id="username" name="username">
+                    <label class="mdl-textfield__label" for="username">Username</label>
+                  </div>
+                </div>
+              </div>
+
+              <div class="mdl-grid">
+                <div class="mdl-cell">
+                  Password
+                  <div class="mdl-textfield mdl-js-textfield">
+                    <input class="mdl-textfield__input" type="password" id="password" name="password">
+                    <label class="mdl-textfield__label" for="password">Password</label>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Submit Button Area -->
+              <div class="mdl-card__actions mdl-card--border">
+
+                <button class="mdl-button mdl-js-button mdl-button--raised" id="formSubmitButton-container">
+                  <i class="material-icons">done</i>
+                  Submit
+                  <input type="submit" name="registerSubmit" id="formSubmitButton" value="submit">
+                </button>
+              </div>
+              
+            </div>
+
+          </div>
+
         </form>
 
       </div>
