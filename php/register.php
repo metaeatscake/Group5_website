@@ -46,7 +46,9 @@
    <style>
      .demo-layout-transparent {
        /* REPLACE THIS IMAGE WITH A BETTER BACKGROUND */
-       background: url('images/assets/bgdark.jpg') center / cover;
+       background: #ad5389;  /* fallback for old browsers */
+      background: -webkit-linear-gradient(to right, #3c1053, #ad5389);  /* Chrome 10-25, Safari 5.1-6 */
+      background: linear-gradient(to right, #3c1053, #ad5389); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
      }
      .demo-layout-transparent .mdl-layout__header,
      .demo-layout-transparent .mdl-layout__drawer-button {
@@ -67,44 +69,7 @@
         <!-- MAIN CONTENT -->
 
         <!-- CSS Control of the main form card. -->
-        <style>
-        /* This part controls the whole card container */
-        .formCard.mdl-card {
-          width: 30%;
-          margin:auto;
-          margin-top: 20px;
-        }
 
-        /* This part controls the title area and it's background */
-        .formCard > .mdl-card__title {
-          color: black;
-          height: 130px;
-          text-align: center;
-          background: url('images/assets/bglight.jpg') center / cover;
-        }
-
-        #formSubmitButton{
-          visibility:hidden;
-        }
-
-        #formSubmitButton-container{
-          margin:auto;
-          width:100%;
-        }
-
-        .formCard-inputFields{
-          margin:auto;
-          padding:10px;
-          align-items: center;
-          align-content: center;
-        }
-
-        .form_itemPadding{
-          visibility:hidden;
-          width:100%;
-        }
-
-        </style>
 
         <!-- Form Proper -->
         <form class="" action="handleRegister.php" method="post">
@@ -123,56 +88,40 @@
 
             <!-- Form Input Fields. -->
             <!-- So Scuffed omg. -->
-            <div class="mdl-card__actions mdl-card--border">
+            <!-- <div class="mdl-card__actions mdl-card--border"> -->
 
-              <div class="mdl-grid">
-                <div class="mdl-cell mdl-cell--4-col">
-                  Username
-                  <div class="mdl-textfield mdl-js-textfield mdl-cell--30-col">
-                    <input class="mdl-textfield__input" type="text" id="username" name="username" required>
-                    <label class="mdl-textfield__label" for="username">Username</label>
-                    <span class="mdl-textfield__error">This field is empty</span>
+              <div class="formItem">
+                  <label>Username</label>
+                  <div class="inputform">
+                    <input class="input" type="text" id="username" name="username" required>
                   </div>
+              </div>
+
+              <div class="formItem">
+                  <label>Password</label>
+                  <input class="input" type="password" id="password" name="password" required>
+              </div>
+
+              <div class="formItem">
+                  <label>Confirm Password</label>
+                    <input class="input" type="password" id="password-confirm" name="password-confirm" required>
+                  </div>
+              </div>
+
+              <div class="formItem">
+                <div class="labelform">
+                  <label class="label" for="email">Email</label>
                 </div>
-              </div>
+                  <div class="formItem">
+                    <input class="input" type="email" id="email" name="email" required>
 
-              <div class="mdl-grid">
-                <div class="mdl-cell">
-                  Password
-                  <div class="mdl-textfield mdl-js-textfield">
-                    <input class="mdl-textfield__input" type="password" id="password" name="password" required>
-                    <label class="mdl-textfield__label" for="password">Password</label>
-                    <span class="mdl-textfield__error">This field is empty</span>
-                  </div>
-                </div>
-              </div>
-
-              <div class="mdl-grid">
-
-                  <div class="mdl-cell mdl-cell--6-col">Confirm Password</div>
-
-                  <div class="mdl-textfield mdl-js-textfield">
-                    <input class=" mdl-textfield__input" type="password" id="password-confirm" name="password-confirm" required>
-                    <label class="mdl-textfield__label" for="password-confirm">Password Confirm</label>
-                    <span class="mdl-textfield__error">This field is empty</span>
                   </div>
 
               </div>
 
-              <div class="mdl-grid">
-                <div class="mdl-cell">Email</div>
-
-                  <div class="mdl-textfield mdl-js-textfield">
-                    <input class="mdl-textfield__input" type="email" id="email" name="email" required>
-                    <label class="mdl-textfield__label" for="email">Email</label>
-                    <span class="mdl-textfield__error">This is not a valid email address</span>
-                  </div>
-
-              </div>
-
-              <div class="mdl-grid">
-                <div class="mdl-cell">
-                  <div class="mdl-grid">Sex</div>
+              <div class="formItem">
+                <div class="labelform">
+                  <div class="formItem">Sex</div>
                   <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-1">
                     <input type="radio" id="option-1" class="mdl-radio__button" name="sex" value="male" checked>
                     <span class="mdl-radio__label">Male</span>
@@ -185,19 +134,15 @@
                     <input type="radio" id="option-3" class="mdl-radio__button" name="sex" value="Prefer not to say">
                     <span class="mdl-radio__label">Prefer not to say</span>
                   </label>
+
+                  <button class="mdl-button mdl-js-button mdl-button--raised" id="formSubmitButton-container">
+                    <i class="material-icons">done</i>
+                    Submit
+                    <input type="submit" name="registerSubmit" id="formSubmitButton" value="submit">
+                  </button>
                 </div>
               </div>
 
-            </div>
-
-            <!-- Submit Button Area -->
-            <div class="mdl-card__actions mdl-card--border">
-
-              <button class="mdl-button mdl-js-button mdl-button--raised" id="formSubmitButton-container">
-                <i class="material-icons">done</i>
-                Submit
-                <input type="submit" name="registerSubmit" id="formSubmitButton" value="submit">
-              </button>
             </div>
 
           </div>
@@ -214,3 +159,42 @@
    </div>
   </body>
 </html>
+
+<style>
+/* This part controls the whole card container */
+.formCard.mdl-card {
+  width: 30%;
+  margin:auto;
+  margin-top: 20px;
+}
+
+/* This part controls the title area and it's background */
+/* .formCard > .mdl-card__title {
+  color: black;
+  height: 130px;
+  text-align: center;
+  background: url('images/assets/bglight.jpg') center / cover;
+} */
+
+#formSubmitButton{
+  visibility:hidden;
+}
+
+#formSubmitButton-container{
+  margin:auto;
+  width:100%;
+}
+
+.formCard-inputFields{
+  margin:auto;
+  padding:10px;
+  align-items: center;
+  align-content: center;
+}
+
+.form_itemPadding{
+  visibility:hidden;
+  width:100%;
+}
+
+</style>
