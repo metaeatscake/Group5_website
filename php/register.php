@@ -114,9 +114,7 @@
                 </div>
                   <div class="formItem">
                     <input class="input" type="email" id="email" name="email" required>
-
                   </div>
-
               </div>
 
               <div class="formItem">
