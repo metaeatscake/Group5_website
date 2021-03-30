@@ -64,19 +64,19 @@
          <div class="page-content">
 
 					 <?php
-					   $data = $sql->query("SELECT * FROM tbl_users WHERE user_id = '{$_SESSION["account_id"]}'");
-					   $row = $data->fetch_assoc();
-					   $username = $row["username"];
+
+						 $username = $sql->query("SELECT * FROM tbl_users WHERE user_id = '{$_SESSION["account_id"]}'")->fetch_assoc()["username"];
 
 					  ?>
 					  <center>
 					   <h2>Create Post</h2>
-					   <form action="handleCreatePost.php" method="POST">
+					   <form action="handleCreatePost.php" method="POST" enctype="multipart/form-data">
 					     <input type="text" name="inputTitle" class="" placeholder="Title" required><br><br>
-					     <textarea name="inputText" rows="3" cols="4" placeholder="What's on your mind? <?php echo $username; ?>" maxlength="200" style="width: 50%;">
-					     </textarea>
+					     <textarea name="inputText" rows="8" cols="3" placeholder="What's on your mind? <?php echo $username; ?>" maxlength="200">
+
+						   </textarea>
 					     <br><br>
-					     <input type="file" name="inputPic" class="">
+							 	<input type="file" name="inputPic" class="">
 					     <br><br>
 					     <input type="submit" name="btnSubmit" class="" value="Post">
 					   </form>
