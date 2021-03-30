@@ -1,12 +1,6 @@
 <?php
-
   //Get database and session.
   include_once("inc/database.php");
-
-  if (isset($_SESSION["account_type"]) && $_SESSION["account_type"] === "admin") {
-    header("location: viewUsers.php");
-    exit();
-  }
 
   $id = $_SESSION["account_id"];
   if($_GET["user_id"]){
@@ -24,6 +18,10 @@
   $profile_pic = $row["profile_pic"];
   $bio = $row["bio"];
 
+  if (isset($_SESSION["account_type"]) && $_SESSION["account_type"] === "admin") {
+    header("location: adm_viewUsers.php");
+    exit();
+  }
  ?>
  <!DOCTYPE html>
  <html lang="en" dir="ltr">
@@ -81,8 +79,36 @@
          <div class="page-content">
 
            <!-- ADD THE PROFILE CARD HERE. -->
+           <h2><?php echo $username; ?> | Sociality</h2>
+           <p> ───────────────────────────── </p>
+           <?php 
+           //the first div contains all the information for the card
+           //the second div contains the profile picture 
+           //the third div contains the other important details of user
+           //note that i'll not put css, so i'll just leave the class empty for less hassle
+              echo "<div class=''>
+                      <br>
+                      <div class=''>
+                        <img src='images/users/$profile_pic'>
+                      </div>
+                      <div class=''>
+                        <b>$username</b> <br> 
+                        $bio <br>
+                        $sex <br>
+                        $email
+                      </div>
+                    </div>" ;
 
-
+              //the class that contain the href, can be the same class on the one above (line 91)
+              //you might miss the class inside the 'a' tag
+              if((isset($_GET['id']) && $_SESSION["account_id"] === $_GET['id']) || !isset($_GET['id'])){
+                echo "<div class=''>
+                        <a href = 'editProfile.php?id=$id' class=''> Edit Profile </a>
+                      </div>";
+              }
+              echo "<br>";
+              echo "<a href='../' class=''> Go back to News Feed? </a>";
+            ?>
          </div>
 
        </main>

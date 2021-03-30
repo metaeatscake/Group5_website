@@ -4,7 +4,7 @@
 
   // Redirect Admins
   if (isset($_SESSION["account_type"]) && $_SESSION["account_type"] === "admin") {
-    header("location: viewUsers.php");
+    header("location: adm_viewUsers.php");
     exit();
   }
 
@@ -77,7 +77,7 @@
                 $post_title = $row["post_title"];
                 $post_content = $row["post_content"];
                 $profile_pic = $row["profile_pic"];
-                $post_time = $row["post_time"];
+                $post_time = date('M d, Y H:i A', strtotime($row["post_time"]));
                 $username = $row["username"];
                 if($_SESSION["account_id"]){
                   echo "<br>";
