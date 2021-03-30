@@ -70,7 +70,8 @@
 
               <!-- USER FEED -->
             <?php else: 
-              $data = $sql->query("SELECT * FROM tbl_feed LEFT JOIN tbl_users ON tbl_users on tbl_users.user_id = tbl_feed.user_id ORDER BY post_time DESC");
+              $data = $sql->query("SELECT * FROM tbl_feed LEFT JOIN tbl_users ON  tbl_users.user_id = tbl_feed.user_id ORDER BY post_time DESC");
+
               while($row = $data->fetch_assoc()){
                 $user_id = $row["user_id"];
                 $post_title = $row["post_title"];
@@ -92,7 +93,7 @@
                           <div class = ' '>
                             <b>$post_title</b>
                             <br><br>
-                            <p> ――――――――――――――――――――――――――――――― </p>
+                            <p> ──────────────────── </p>
                             <br>
                             $post_content
                           </div>                                                 

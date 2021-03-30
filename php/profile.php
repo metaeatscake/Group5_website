@@ -8,7 +8,21 @@
     exit();
   }
 
-  //
+  $id = $_SESSION["account_id"];
+  if($_GET["user_id"]){
+
+    $id = $_GET["user_id"];
+
+  }
+
+  $data = $sql->query("SELECT * FROM tbl_users WHERE user_id = '$id'");
+  $row = $data->fetch_assoc();
+
+  $username = $row["username"];
+  $email = $row["email"];
+  $sex = $row["sex"];
+  $profile_pic = $row["profile_pic"];
+  $bio = $row["bio"];
 
  ?>
  <!DOCTYPE html>
@@ -31,6 +45,9 @@
      <!-- Custom CSS File -->
      <link rel="stylesheet" href="../css/socialityOverrides.css">
    </head>
+   <title>
+     <?php echo $username; ?> | Profile
+   </title>
    <body>
 
        <!-- Uses a header that contracts as the page scrolls down. -->
@@ -64,6 +81,7 @@
          <div class="page-content">
 
            <!-- ADD THE PROFILE CARD HERE. -->
+
 
          </div>
 
