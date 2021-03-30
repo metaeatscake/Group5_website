@@ -3,15 +3,15 @@
   //Get database and session.
   include_once("inc/database.php");
 
-  if (!isset($_SESSION["account_type"]) || $_SESSION["account_type"] === "admin") {
+  if (isset($_SESSION["account_type"]) && $_SESSION["account_type"] === "admin") {
     header("location: viewUsers.php");
     exit();
   }
 
   $id = $_SESSION["account_id"];
 
-  $data = $sql->query("SELECT * FROM tbl_users WHERE user_id = '$id'");
-  $row = $data->fetch_assoc();
+  // If the query only returns one row, the array can be fetched in one line.
+  $row = $sql->query("SELECT * FROM tbl_users WHERE user_id = '$id'")->fetch_assoc();
 
   extract($row, EXTR_PREFIX_ALL, "db");
     /*
