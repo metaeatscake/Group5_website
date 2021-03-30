@@ -1,6 +1,5 @@
-<?php 
+<?php
 	include_once("inc/database.php");
-	include_once("inc/navbar.php");
 
 	$inputTitle = $_POST["inputTitle"];
 	$inputText = $_POST["inputText"];

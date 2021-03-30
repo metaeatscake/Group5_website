@@ -3,20 +3,27 @@
   include_once("inc/database.php");
 
   $id = $_SESSION["account_id"];
-  if($_GET["user_id"]){
 
-    $id = $_GET["user_id"];
+  // If the query only returns one row, the array can be fetched in one line.
+  $row = $sql->query("SELECT * FROM tbl_users WHERE user_id = '$id'")->fetch_assoc();
 
-  }
+  extract($row, EXTR_PREFIX_ALL, "db");
+    /*
+      Declares the following:
+        $db_user_id
+        $db_username
+        $db_password
+        $db_email
+        $db_sex
+        $db_profile_pic
+        $db_bio
+        $db_account_type
+    */
 
-  $data = $sql->query("SELECT * FROM tbl_users WHERE user_id = '$id'");
-  $row = $data->fetch_assoc();
-
-  $username = $row["username"];
-  $email = $row["email"];
-  $sex = $row["sex"];
-  $profile_pic = $row["profile_pic"];
-  $bio = $row["bio"];
+  //DEBUGGING
+  // echo "<pre>";
+  // var_dump(get_defined_vars());
+  // echo "</pre>";
 
   if (isset($_SESSION["account_type"]) && $_SESSION["account_type"] === "admin") {
     header("location: adm_viewUsers.php");
