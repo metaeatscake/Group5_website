@@ -69,36 +69,37 @@
               <?php include_once("php/inc/welcomeCard.php"); ?>
 
               <!-- USER FEED -->
-            <?php else: 
-              $data = $sql->query("SELECT * FROM tbl_feed LEFT JOIN tbl_users ON  tbl_users.user_id = tbl_feed.user_id ORDER BY post_time DESC");
+            <?php else:?>
 
-              while($row = $data->fetch_assoc()){
-                $user_id = $row["user_id"];
-                $post_title = $row["post_title"];
-                $post_content = $row["post_content"];
-                $profile_pic = $row["profile_pic"];
-                $post_time = date('M d, Y H:i A', strtotime($row["post_time"]));
-                $username = $row["username"];
-                if($_SESSION["account_id"]){
-                  echo "<br>";
-                  echo "<div class = ' ' >
-                          <div class = ' '>
-                            <img src='images/users/$profile_pic'>
-                          </div>
-                          <div class = ' '>
-                            <a href='php/profile.php?id=$user_id' class=''> $username </a>
-                            <br>
-                            <p style='font-size: 10px;'> $post_time </p>
-                          </div>
-                          <div class = ' '>
-                            <b>$post_title</b>
-                            <p> ──────────────────── </p>
-                            $post_content
-                          </div>                                                 
-                        </div>";
-                }
-              }
-            ?>
+              <?php
+                $feed_dateFormat = "%M %d %Y, %H:%i:%s";
+                // Read this before editing the format: http://www.sqlines.com/oracle-to-mysql/to_char_datetime
+                // Otherwise, DO NOT TOUCH.
+
+                //Fetch all posts from tbl_feed, also do the date formatting from MySQL instead of PHP
+                $queryString = "SELECT user_id, post_title, post_content, post_img, DATE_FORMAT(post_time, '$feed_dateFormat') AS post_date FROM tbl_feed";
+                $feed_data = $sql->query($queryString);
+              ?>
+              <!-- Connect tbl_feed ID to tbl_user user_id -->
+              <?php while($row1 = $feed_data->fetch_assoc()): ?>
+
+                <?php $user_data = $sql->query("SELECT * FROM tbl_users WHERE user_id = '{$row1["user_id"]}'"); ?>
+
+                <?php while($row2 = $user_data->fetch_assoc()): ?>
+
+                  <!-- Feed Card design starts here. -->
+                  <!-- Note: $row1 = tbl_feed, $row2 = tbl_users -->
+                  <!-- No need for echo html, treat this like a normal html area. -->
+                  <div class="">
+                    <h1>Title: <?php echo $row1["post_title"]; ?></h1>
+                    <h4>Content: <?php echo $row1["post_content"]; ?></h4>
+                    <h6>Time: <?php echo $row1["post_date"]; ?></h6>
+                    <h3>Post Creator: <?php echo $row2["username"]; ?></h3>
+                  </div>
+
+                <?php endwhile; ?>
+
+              <?php endwhile; ?>
             <?php endif; ?>
          </div>
        </main>
