@@ -74,11 +74,6 @@
              your background is light. */
           color: #cca8e6;
         }
-        .btnEdit{
-          position: absolute;
-          top: 10px;
-          right: 490px;
-        }
       </style>
 
       <div class="demo-layout-transparent mdl-layout mdl-js-layout">
