@@ -110,8 +110,8 @@
                       </div>
                     </div>" ;
 
-              //the class that contain the href, can be the same class on the one above (line 91)
-              //you might missed the class inside the 'a' tag, for now I'll put a temporary css for it
+              //the class that contain the href, can be the same class on the one above (line 100)
+              //you might missed the class inside the 'a' tag, for now I'll put a temporary inline css for it
               if((isset($_GET['id']) && $_SESSION["account_id"] === $_GET['id']) || !isset($_GET['id'])){
                 echo "<div class=''>
                         <a href = 'editProfile.php?id=$id' class='btnEdit'> Edit Profile </a>

@@ -1,14 +1,6 @@
 <?php
-
+  //Get database and session.
   include_once("inc/database.php");
-
-  // Redirect Admins
-  if (isset($_SESSION["account_type"]) && $_SESSION["account_type"] === "admin") {
-    header("location: adm_viewUsers.php");
-    exit();
-  }
-
-  // Clients can/should still see posts even if they are not logged in, so index.php will contain the feed.
 
   $id = $_SESSION["account_id"];
 
@@ -27,28 +19,39 @@
         $db_bio
         $db_account_type
     */
- ?>
 
+  //DEBUGGING
+  // echo "<pre>";
+  // var_dump(get_defined_vars());
+  // echo "</pre>";
+
+  //Redirect Admins
+  if (isset($_SESSION["account_type"]) && $_SESSION["account_type"] === "admin") {
+    header("location: adm_viewUsers.php");
+    exit();
+  }
+ ?>
  <!DOCTYPE html>
  <html lang="en" dir="ltr">
    <head>
      <meta charset="utf-8">
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <title>Edit Profile | Sociality</title>
+     <title><?php echo $db_username; ?> | Edit Profile</title>
 
      <!-- Import Material Design Lite CSS -->
-     <link rel="stylesheet" href="mdl/material.min.css">
+     <link rel="stylesheet" href="../mdl/material.min.css">
      <!-- Import Material Design Lite Javascript -->
-     <script src="mdl/material.min.js" charset="utf-8"></script>
+     <script src="../mdl/material.min.js" charset="utf-8"></script>
      <!-- Import Material Design Icons from Google -->
      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
      <!-- Shortcut Icon -->
-     <link rel="shortcut icon" href="php/images/assets/socialityLogo_transparent.png">
+     <link rel="shortcut icon" href="images/assets/socialityLogo_transparent.png">
 
      <!-- Custom CSS File -->
-     <link rel="stylesheet" href="css/socialityOverrides.css">
+     <link rel="stylesheet" href="../css/socialityOverrides.css">
    </head>
+
    <body>
 
        <!-- Uses a header that contracts as the page scrolls down. -->
@@ -71,6 +74,11 @@
              your background is light. */
           color: #cca8e6;
         }
+        .btnEdit{
+          position: absolute;
+          top: 10px;
+          right: 490px;
+        }
       </style>
 
       <div class="demo-layout-transparent mdl-layout mdl-js-layout">
@@ -79,33 +87,81 @@
 
        <main class="mdl-layout__content">
 
-         <div class="page-content">
+         <div class="page-content" align="center">
 
-           <!-- Default Card when user is not logged in. -->
-            <?php if(!isset($_SESSION["account_type"])): ?>
-              <?php include_once("php/inc/welcomeCard.php"); ?>
-            <?php else: 
-              echo"hi";?>
-            <?php endif; ?>
-              <!--Edit Profile -->
-                <!-- <h2>Edit Profile | <?php echo $db_username; ?></h2>
-                <hr>
-                <form action="handleEditProfile.php" method="POST" enctype="multipart/form-data"> -->
-                <!--NOTE: i'll leave the clases empty, it's up to nirvana-->
-                <!--  <div class="">
-                    <label>Username</label>
-                    <div class="">
-                      <input class="input" type="text" id="username" name="username" value="<?php echo $db_username; ?>">
-                    </div>
+           <!-- Edit Profile Card. -->
+           <!--Form Proper-->
+          <br><br>
+           <form class="" action="handleEditProfile.php" method="POST">
+             <div class="formCard mdl-card mdl-shadow--4dp">
+            
+            <!-- Title Area (including the background pic) -->
+            <!--i just copied some css on register, you can still change it-->
+              <div class="mdl-card__title">
+                <h2 class="mdl-card__title-text" ><?php echo $db_username; ?> | Sociality</h2>
+              </div>
+
+               <div class="formItem">
+                 <label>Username</label>
+                 <div class="">
+                   <input type="text" name="username" class="input" id="username" value="<?php echo $db_username;?>">
+                 </div>
+               </div>
+               <br>
+               <div class="formItem">
+                 <label>Bio</label>
+                 <div>
+                   <input type="text" name="bio" class="input" id="bio" value="<?php echo $db_bio; ?>">
+                 </div>
+               </div>
+               <br>
+              <div class="formItem">
+                <div class="labelform">
+                  <div class="formItem">Sex</div>
+                  <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-1">
+                    <input type="radio" id="option-1" class="mdl-radio__button" name="sex" value="male" checked>
+                    <span class="mdl-radio__label">Male</span>
+                  </label>
+                  <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-2">
+                    <input type="radio" id="option-2" class="mdl-radio__button" name="sex" value="female">
+                    <span class="mdl-radio__label">Female</span>
+                  </label>
+                  <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-3">
+                    <input type="radio" id="option-3" class="mdl-radio__button" name="sex" value="Prefer not to say">
+                    <span class="mdl-radio__label">Prefer not to say</span>
+                  </label>
                 </div>
-                </form> -->
-         </div>
+                <br>
+              <div class="formItem">
+                <div class="labelform">
+                  <label class="label" for="email">Email</label>
+                </div>
+                  <div class="formItem">
+                    <input class="input" type="email" id="email" name="email" value="<?php echo $db_email; ?>">
+                  </div>
+              </div>
+              <br>
+               <div class="formItem">
+                 <label>Profile Picture</label>
+                 <div align="right">
+                   <input type="file" name="profilePicture" class="input" id="profilePicture" value="<?php echo $db_profile_pic; ?>">
+                 </div>
+               </div> 
+               <br>
+                  <button class="mdl-button mdl-js-button mdl-button--raised" id="formSubmitButton-container">
+                    <i class="material-icons">done</i>
+                    <input type="submit" name="registerSubmit" id="formSubmitButton" value="submit">
+                  </button>
+              </div>            
+             </form>
+          </div>
 
        </main>
 
-       <?php include_once("php/inc/footer.php"); ?>
+       <?php include_once("inc/footer.php"); ?>
 
       </div>
+
    </body>
 
  </html>
