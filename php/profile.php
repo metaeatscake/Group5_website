@@ -6,7 +6,7 @@
 
   // If the query only returns one row, the array can be fetched in one line.
   $row = $sql->query("SELECT * FROM tbl_users WHERE user_id = '$id'")->fetch_assoc();
-  
+
   extract($row, EXTR_PREFIX_ALL, "db");
     /*
       Declares the following:
@@ -92,18 +92,18 @@
            <!-- ADD THE PROFILE CARD HERE. -->
            <h3><?php echo $db_username; ?> | Sociality</h3>
            <p> ───────────────────────────────────── </p>
-           <?php 
+           <?php
            //the first div contains all the information for the card
-           //the second div contains the profile picture 
+           //the second div contains the profile picture
            //the third div contains the other important details of user
            //note that i'll not put css, so i'll just leave the class empty for less hassle
               echo "<div class=''>
                       <br>
                       <div class=''>
-                        <img src='images/users/$db_profile_pic'>
+                        <img src='$db_profile_pic'>
                       </div>
                       <div class=''>
-                        <b>$db_username</b> <br> 
+                        <b>$db_username</b> <br>
                         $db_bio <br>
                         $db_sex <br>
                         $db_email
