@@ -76,3 +76,10 @@
     * adm_addAdmins.php
       * Allows admins to register other admins.
       * Similar validation pattern as `register.php`
+
+
+# Progress Tracker
+- [x] System proposal - Approved, March 26 2021
+- [x] Core files
+- [x] meh i will finish this tracker
+- [ ] some other time
