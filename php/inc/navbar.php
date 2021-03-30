@@ -20,7 +20,7 @@
     "Register" => "register.php",
   ];
   $nav_guestLinks_icons = [
-    "Log In" => "<i class='material-icons>login</i>'",
+    "Log In" => "<i class='material-icons'>login</i>'",
     "Register" => "<i class='material-icons'>face</i>"
   ];
 
