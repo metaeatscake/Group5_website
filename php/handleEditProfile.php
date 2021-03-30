@@ -86,7 +86,17 @@
                 }
               }
 
-              
+              $data = $sql->query("UPDATE tbl_users SET username = 'username', bio = 'bio', sex = 'sex', email = 'email' WHERE user_id = '$id'");
+
+              $targetDirectory = "images/users/";
+              $fileName = $_FILES["profilePicture"]["name"];
+              echo "<h1>$fileName</h1>";
+
+              $check = getimagesize($_FILES["profilePicture"]["tmp_name"]);
+
+              if($check){
+                echo "<h2>FIle is an image. </h2>";
+              } //TO BE CONTINUED
               ?>
           </div>
 
