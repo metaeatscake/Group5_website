@@ -73,6 +73,11 @@
              your background is light. */
           color: #cca8e6;
         }
+        .btnEdit{
+          position: absolute;
+          top: 10px;
+          right: 490px;
+        }
       </style>
 
       <div class="demo-layout-transparent mdl-layout mdl-js-layout">
@@ -81,11 +86,11 @@
 
        <main class="mdl-layout__content">
 
-         <div class="page-content">
+         <div class="page-content" align="center">
 
            <!-- ADD THE PROFILE CARD HERE. -->
            <h3><?php echo $db_username; ?> | Sociality</h3>
-           <p> ───────────────────────────── </p>
+           <p> ───────────────────────────────────── </p>
            <?php 
            //the first div contains all the information for the card
            //the second div contains the profile picture 
@@ -105,10 +110,10 @@
                     </div>" ;
 
               //the class that contain the href, can be the same class on the one above (line 91)
-              //you might miss the class inside the 'a' tag
+              //you might missed the class inside the 'a' tag, for now I'll put a temporary css for it
               if((isset($_GET['id']) && $_SESSION["account_id"] === $_GET['id']) || !isset($_GET['id'])){
                 echo "<div class=''>
-                        <a href = 'php/editProfile.php?id=$id' class=''> Edit Profile </a>
+                        <a href = 'php/editProfile.php?id=$id' class='btnEdit'> Edit Profile </a>
                       </div>";
               }
               echo "<br>";
