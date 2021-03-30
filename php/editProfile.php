@@ -1,6 +1,6 @@
 <?php
 
-  include("php/inc/database.php");
+  include_once("inc/database.php");
 
   // Redirect Admins
   if (isset($_SESSION["account_type"]) && $_SESSION["account_type"] === "admin") {
@@ -75,7 +75,7 @@
 
       <div class="demo-layout-transparent mdl-layout mdl-js-layout">
         <!-- Navbar is too long, and is repeated in all pages so it is moved to a dedicated file. -->
-        <?php include_once("php/inc/navbar.php"); ?>
+        <?php include_once("inc/navbar.php"); ?>
 
        <main class="mdl-layout__content">
 
