@@ -17,7 +17,7 @@
 	}
 
 	// FALSE if the data is not empty.
-	$validForm = in_array(true, $emptyVars);
+	$validForm = !in_array(true, $emptyVars);
 
 	/*
 		There are two ways that the form can be considered valid:
@@ -50,7 +50,7 @@
 			$errorMessage = "ERROR: The following fields were empty: ";
 			foreach ($emptyVars as $key => $value) {
 				if ($value) {
-					
+
 				}
 			}
 		}
