@@ -38,7 +38,7 @@
   ];
 
   $nav_adminLinks = [
-    "Add Admin User" => "adm_addUsers.php",
+    "Add Admin User" => "adm_addAdmins.php",
     "User List" => "adm_viewUsers.php",
     "Posts List" => "adm_viewPosts.php",
     "Log Out" => "logout.php"
