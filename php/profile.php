@@ -25,6 +25,7 @@
   // var_dump(get_defined_vars());
   // echo "</pre>";
 
+  //Redirect Admins
   if (isset($_SESSION["account_type"]) && $_SESSION["account_type"] === "admin") {
     header("location: adm_viewUsers.php");
     exit();
@@ -113,7 +114,7 @@
               //you might missed the class inside the 'a' tag, for now I'll put a temporary css for it
               if((isset($_GET['id']) && $_SESSION["account_id"] === $_GET['id']) || !isset($_GET['id'])){
                 echo "<div class=''>
-                        <a href = 'php/editProfile.php?id=$id' class='btnEdit'> Edit Profile </a>
+                        <a href = 'editProfile.php?id=$id' class='btnEdit'> Edit Profile </a>
                       </div>";
               }
               echo "<br>";

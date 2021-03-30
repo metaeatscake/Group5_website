@@ -10,6 +10,23 @@
 
   // Clients can/should still see posts even if they are not logged in, so index.php will contain the feed.
 
+  $id = $_SESSION["account_id"];
+
+  // If the query only returns one row, the array can be fetched in one line.
+  $row = $sql->query("SELECT * FROM tbl_users WHERE user_id = '$id'")->fetch_assoc();
+  
+  extract($row, EXTR_PREFIX_ALL, "db");
+    /*
+      Declares the following:
+        $db_user_id
+        $db_username
+        $db_password
+        $db_email
+        $db_sex
+        $db_profile_pic
+        $db_bio
+        $db_account_type
+    */
  ?>
 
  <!DOCTYPE html>
@@ -67,11 +84,21 @@
            <!-- Default Card when user is not logged in. -->
             <?php if(!isset($_SESSION["account_type"])): ?>
               <?php include_once("php/inc/welcomeCard.php"); ?>
-
-              <!--Edit Profile -->
-            <?php else: ?>
-
+            <?php else: 
+              echo"hi";?>
             <?php endif; ?>
+              <!--Edit Profile -->
+                <!-- <h2>Edit Profile | <?php echo $db_username; ?></h2>
+                <hr>
+                <form action="handleEditProfile.php" method="POST" enctype="multipart/form-data"> -->
+                <!--NOTE: i'll leave the clases empty, it's up to nirvana-->
+                <!--  <div class="">
+                    <label>Username</label>
+                    <div class="">
+                      <input class="input" type="text" id="username" name="username" value="<?php echo $db_username; ?>">
+                    </div>
+                </div>
+                </form> -->
          </div>
 
        </main>

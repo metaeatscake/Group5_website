@@ -96,21 +96,13 @@
                             $post_content
                           </div>                                                 
                         </div>";
-
                 }
-
-
               }
             ?>
-
             <?php endif; ?>
          </div>
-
        </main>
-
        <?php include_once("php/inc/footer.php"); ?>
-
       </div>
    </body>
-
  </html>
