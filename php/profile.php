@@ -3,26 +3,33 @@
   //Get database and session.
   include_once("inc/database.php");
 
-  if (isset($_SESSION["account_type"]) && $_SESSION["account_type"] === "admin") {
+  if (!isset($_SESSION["account_type"]) || $_SESSION["account_type"] === "admin") {
     header("location: viewUsers.php");
     exit();
   }
 
   $id = $_SESSION["account_id"];
-  if($_GET["user_id"]){
-
-    $id = $_GET["user_id"];
-
-  }
 
   $data = $sql->query("SELECT * FROM tbl_users WHERE user_id = '$id'");
   $row = $data->fetch_assoc();
 
-  $username = $row["username"];
-  $email = $row["email"];
-  $sex = $row["sex"];
-  $profile_pic = $row["profile_pic"];
-  $bio = $row["bio"];
+  extract($row, EXTR_PREFIX_ALL, "db");
+    /*
+      Declares the following:
+        $db_user_id
+        $db_username
+        $db_password
+        $db_email
+        $db_sex
+        $db_profile_pic
+        $db_bio
+        $db_account_type
+    */
+
+  //DEBUGGING
+  // echo "<pre>";
+  // var_dump(get_defined_vars());
+  // echo "</pre>";
 
  ?>
  <!DOCTYPE html>
