@@ -92,9 +92,7 @@
                           </div>
                           <div class = ' '>
                             <b>$post_title</b>
-                            <br><br>
                             <p> ──────────────────── </p>
-                            <br>
                             $post_content
                           </div>                                                 
                         </div>";
