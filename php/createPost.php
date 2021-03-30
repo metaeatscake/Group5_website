@@ -8,8 +8,6 @@
     exit();
   }
 
-  //
-
  ?>
  <!DOCTYPE html>
  <html lang="en" dir="ltr">
@@ -64,23 +62,21 @@
          <div class="page-content">
 
 					 <?php
-
+					 	// Direct/One-line fetch of column data. Extreme shortcut.
 						 $username = $sql->query("SELECT * FROM tbl_users WHERE user_id = '{$_SESSION["account_id"]}'")->fetch_assoc()["username"];
-
 					  ?>
-					  <center>
+
+						<!-- Someone clean this with CSS, thanks -Ian -->
 					   <h2>Create Post</h2>
 					   <form action="handleCreatePost.php" method="POST" enctype="multipart/form-data">
 					     <input type="text" name="inputTitle" class="" placeholder="Title" required><br><br>
-					     <textarea name="inputText" rows="8" cols="3" placeholder="What's on your mind? <?php echo $username; ?>" maxlength="200">
-
-						   </textarea>
+					     <textarea name="inputText" rows="8" cols="80" placeholder="What's on your mind? <?php echo $username; ?>"></textarea>
 					     <br><br>
 							 	<input type="file" name="inputPic" class="">
 					     <br><br>
 					     <input type="submit" name="btnSubmit" class="" value="Post">
 					   </form>
-					  </center>
+
 
          </div>
 
