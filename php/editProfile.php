@@ -17,7 +17,7 @@
    <head>
      <meta charset="utf-8">
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <title>Sociality</title>
+     <title>Edit Profile | Sociality</title>
 
      <!-- Import Material Design Lite CSS -->
      <link rel="stylesheet" href="mdl/material.min.css">
@@ -68,40 +68,8 @@
             <?php if(!isset($_SESSION["account_type"])): ?>
               <?php include_once("php/inc/welcomeCard.php"); ?>
 
-              <!-- USER FEED -->
-            <?php else: 
-              $data = $sql->query("SELECT * FROM tbl_feed LEFT JOIN tbl_users ON  tbl_users.user_id = tbl_feed.user_id ORDER BY post_time DESC");
-
-              while($row = $data->fetch_assoc()){
-                $user_id = $row["user_id"];
-                $post_title = $row["post_title"];
-                $post_content = $row["post_content"];
-                $profile_pic = $row["profile_pic"];
-                $post_time = date('M d, Y H:i A', strtotime($row["post_time"]));
-                $username = $row["username"];
-                if($_SESSION["account_id"]){
-                  echo "<br>";
-                  echo "<div class = ' ' >
-                          <div class = ' '>
-                            <img src='images/users/$profile_pic'>
-                          </div>
-                          <div class = ' '>
-                            <a href='php/profile.php?id=$user_id' class=''> $username </a>
-                            <br>
-                            <p style='font-size: 10px;'> $post_time </p>
-                          </div>
-                          <div class = ' '>
-                            <b>$post_title</b>
-                            <p> ──────────────────── </p>
-                            $post_content
-                          </div>                                                 
-                        </div>";
-
-                }
-
-
-              }
-            ?>
+              <!--Edit Profile -->
+            <?php else: ?>
 
             <?php endif; ?>
          </div>
