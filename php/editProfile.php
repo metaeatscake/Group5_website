@@ -6,7 +6,7 @@
 
   // If the query only returns one row, the array can be fetched in one line.
   $row = $sql->query("SELECT * FROM tbl_users WHERE user_id = '$id'")->fetch_assoc();
-  
+
   extract($row, EXTR_PREFIX_ALL, "db");
     /*
       Declares the following:
@@ -46,7 +46,7 @@
      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
      <!-- Shortcut Icon -->
-     <link rel="shortcut icon" href="images/assets/socialityLogo_transparent.png">
+     <link rel="shortcut icon" href="images/assets/sample2.png">
 
      <!-- Custom CSS File -->
      <link rel="stylesheet" href="../css/socialityOverrides.css">
@@ -89,7 +89,7 @@
           <br><br>
            <form class="" action="handleEditProfile.php" method="POST">
              <div class="formCard mdl-card mdl-shadow--4dp">
-            
+
             <!-- Title Area (including the background pic) -->
             <!--i just copied some css on register, you can still change it-->
               <div class="mdl-card__title">
@@ -141,13 +141,13 @@
                  <div align="right">
                    <input type="file" name="profilePicture" class="input" id="profilePicture" value="<?php echo $db_profile_pic; ?>">
                  </div>
-               </div> 
+               </div>
                <br>
                   <button class="mdl-button mdl-js-button mdl-button--raised" id="formSubmitButton-container">
                     <i class="material-icons">done</i>
                     <input type="submit" name="registerSubmit" id="formSubmitButton" value="submit">
                   </button>
-              </div>            
+              </div>
              </form>
           </div>
 
