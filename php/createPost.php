@@ -53,6 +53,7 @@
         }
       </style>
 
+      <?php include_once("inc/handlerAlert.php"); ?>
       <div class="demo-layout-transparent mdl-layout mdl-js-layout">
         <!-- Navbar is too long, and is repeated in all pages so it is moved to a dedicated file. -->
         <?php include_once("inc/navbar.php"); ?>
