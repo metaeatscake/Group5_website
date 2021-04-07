@@ -10,6 +10,7 @@
 		exit();
 	}
 
+	// List of accepted image types.
 	$validImages = [
 		"image/png",
 		"image/gif",
@@ -60,19 +61,21 @@
 				Directory: images/post_img/
 		*/
 		$timeFormat = "%Y-%m-%d_%H-%i-%s";
-		$time = $sql->query("SELECT DATE_FORMAT(SYSDATE(), '$timeFormat') AS time_now;")->fetch_assoc()["time_now"];
+		$time = $sql->query("SELECT DATE_FORMAT(SYSDATE(), '$timeFormat') AS time_now")->fetch_assoc()["time_now"];
 
+		// Filename of uploaded image.
 		$newfileName = $_SESSION["account_id"] . "_" . $time . {$vld_i->getFileExtension()};
 		$saveFolder = "images/post_img/";
 
+		// Don't touch.
 		$savePath = $saveFolder.$newFileName;
-
 		move_uploaded_file($_FILES["inputPic"]["tmp_name"], $savePath);
 
 		$queryString = "INSERT INTO tbl_feed(
 			user_id, post_title, post_content, post_img
 		)VALUES( '$q_id', '$q_title', '$q_content', '$savePath')";
 
+		// Redirect when done.
 		$sql->query($queryString);
 		header("location: ../");
 		exit();
@@ -80,6 +83,8 @@
 
 	// Handle text-only posts.
 	else{
+
+		// There's nothing else to verify so it's straight to query.
 		$queryString = "INSERT INTO tbl_feed(user_id, post_title, post_content)
 		VALUES('$q_id', '$q_title', '$q_content')";
 
