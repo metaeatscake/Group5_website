@@ -64,7 +64,7 @@
 
   // Resolve Filepath of Logo.
   $nav_logoLocation = (strpos($_SERVER["PHP_SELF"], $nav_folderName) !== false)?
-    "images/assets/SCLOGO.png" : "php/images/assets/SCLOGO.png";
+    "images/assets/sample2white.png" : "php/images/assets/sample2white.png";
   $nav_logoLink = (strpos($_SERVER["PHP_SELF"], $nav_folderName) !== false)?
     "../" : "";
  ?>
@@ -75,7 +75,7 @@
     <!-- Title -->
     <br><br>
     <p><a href="<?php echo $nav_logoLink; ?>">
-    <img src="<?php echo $nav_logoLocation; ?>" alt="index.php" width="50" height="38">
+    <img src="<?php echo $nav_logoLocation; ?>" alt="index.php" width="50" height="38" class="logo">
     </a></p>
     <!-- Navigation -->
     <nav class="mdl-navigation">
@@ -123,6 +123,9 @@
   <span class="mdl-layout-title"><?php echo $nav_siteTitle; ?></span>
   <nav class="mdl-navigation">
 
+    <!-- Home link in drawer -->
+    <a class="mdl-navigation__link" href="<?php echo $nav_logoLink ?>"> <i class="material-icons">home</i> Home </a>
+
     <!--
       Display different links depending on $_SESSION["account_type"]
     -->
@@ -155,3 +158,9 @@
     <?php endforeach; ?>
   </nav>
 </div>
+
+<style media="screen">
+    .logo{
+      margin-top: 18px;
+    }
+</style>

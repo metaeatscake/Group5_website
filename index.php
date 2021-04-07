@@ -69,7 +69,10 @@
               <?php include_once("php/inc/welcomeCard.php"); ?>
 
               <!-- USER FEED -->
+<<<<<<< HEAD
 
+=======
+>>>>>>> b7d010c8eaa0503f9f49fca5e364b1826f98ed7d
             <?php else:?>
 
               <?php
@@ -101,8 +104,11 @@
                 <?php endwhile; ?>
 
               <?php endwhile; ?>
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> b7d010c8eaa0503f9f49fca5e364b1826f98ed7d
             <?php endif; ?>
          </div>
        </main>

@@ -22,7 +22,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
     <!-- Shortcut Icon -->
-    <link rel="shortcut icon" href="images/assets/socialityLogo_transparent.png">
+    <link rel="shortcut icon" href="images/assets/sociality/sample.png">
 
     <!-- Custom CSS File -->
     <link rel="stylesheet" href="../css/socialityOverrides.css">
