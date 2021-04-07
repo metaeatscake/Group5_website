@@ -89,4 +89,40 @@
       .formItem input[type="password"]:focus + i {
         color: purple;
       }
+
+      .feed_post{
+        margin:auto;
+        text-align:left;
+        width: 60%;
+        font-family: Segoe UI;
+        color:white;
+        background: rgba(30,30,30,0.2);
+        padding: 20px;
+        margin-top: 30px;
+      }
+
+      .feed_title{
+        text-align: left;
+      }
+
+      .feed_image{
+        width:100%;
+      }
+
+      .feed_image img{
+        width:100%;
+        height:100%;
+      }
+
+      .feed_content{
+
+      }
+
+      .feed_post_time{
+
+      }
+
+      .feed_post_author{
+
+      }
 </style>

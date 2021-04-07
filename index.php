@@ -30,7 +30,7 @@
      <link rel="shortcut icon" href="php/images/assets/sample2.png">
 
      <!-- Custom CSS File -->
-     <link rel="stylesheet" href="css/socialityOverrides.css">
+     <?php include_once("css/customStyles.php"); ?>
    </head>
    <body>
 
@@ -69,10 +69,6 @@
               <?php include_once("php/inc/welcomeCard.php"); ?>
 
               <!-- USER FEED -->
-<<<<<<< HEAD
-
-=======
->>>>>>> b7d010c8eaa0503f9f49fca5e364b1826f98ed7d
             <?php else:?>
 
               <?php
@@ -94,21 +90,34 @@
                   <!-- Feed Card design starts here. -->
                   <!-- Note: $row1 = tbl_feed, $row2 = tbl_users -->
                   <!-- No need for echo html, treat this like a normal html area. -->
-                  <div class="">
-                    <h1>Title: <?php echo $row1["post_title"]; ?></h1>
-                    <h4>Content: <?php echo $row1["post_content"]; ?></h4>
-                    <h6>Time: <?php echo $row1["post_date"]; ?></h6>
-                    <h3>Post Creator: <?php echo $row2["username"]; ?></h3>
+                  <div class="feed_post">
+
+                    <div class="feed_title">
+                      <h1><?php echo $row1["post_title"]; ?></h1>
+                    </div>
+                    <div class="feed_image">
+                      <img src="<?php echo $row1["post_img"]; ?>" alt="<?php echo $row1["post_img"]; ?>">
+                    </div>
+                    <div class="feed_content">
+                      <h4><?php echo $row1["post_content"]; ?></h4>
+                    </div>
+                    <div class="feed_post_time">
+                      <h6><?php echo $row1["post_date"]; ?></h6>
+                    </div>
+                    <div class="feed_post_author">
+                      <h3><?php echo $row2["username"]; ?></h3>
+                    </div>
+                    <div class="feed_actions">
+                      <a href="#"> <h5>View Comments</h5> </a>
+                      <a href="#"> <i class="material-icons">thumb_up</i> </a>
+                    </div>
+
                   </div>
 
                 <?php endwhile; ?>
 
               <?php endwhile; ?>
-<<<<<<< HEAD
 
-
-=======
->>>>>>> b7d010c8eaa0503f9f49fca5e364b1826f98ed7d
             <?php endif; ?>
          </div>
        </main>
