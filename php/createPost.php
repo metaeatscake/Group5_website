@@ -70,7 +70,7 @@
 					   <h2>Create Post</h2>
 					   <form action="handleCreatePost.php" method="POST" enctype="multipart/form-data">
 					     <input type="text" name="inputTitle" class="" placeholder="Title" required><br><br>
-					     <textarea name="inputText" rows="8" cols="80" placeholder="What's on your mind? <?php echo $username; ?>"></textarea>
+					     <textarea name="inputText" rows="8" cols="80" placeholder="What's on your mind, <?php echo $username; ?>?"></textarea>
 					     <br><br>
 							 	<input type="file" name="inputPic" class="">
 					     <br><br>

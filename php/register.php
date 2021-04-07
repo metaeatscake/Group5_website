@@ -140,15 +140,10 @@
                   </button>
                 </div>
               </div>
-
-            </div>
-
           </div>
-
+          <a href="login.php"><i>Already have an account?</i></a>
         </form>
-
       </div>
-
     </main>
 
     <!-- Footer -->
