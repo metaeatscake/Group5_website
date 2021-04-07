@@ -1,22 +1,42 @@
 <?php
-
   //Get database and session.
   include_once("inc/database.php");
 
+  $id = $_SESSION["account_id"];
+
+  // If the query only returns one row, the array can be fetched in one line.
+  $row = $sql->query("SELECT * FROM tbl_users WHERE user_id = '$id'")->fetch_assoc();
+
+  extract($row, EXTR_PREFIX_ALL, "db");
+    /*
+      Declares the following:
+        $db_user_id
+        $db_username
+        $db_password
+        $db_email
+        $db_sex
+        $db_profile_pic
+        $db_bio
+        $db_account_type
+    */
+
+  //DEBUGGING
+  // echo "<pre>";
+  // var_dump(get_defined_vars());
+  // echo "</pre>";
+
+  //Redirect Admins
   if (isset($_SESSION["account_type"]) && $_SESSION["account_type"] === "admin") {
-    header("location: viewUsers.php");
+    header("location: adm_viewUsers.php");
     exit();
   }
-
-  //
-
  ?>
  <!DOCTYPE html>
  <html lang="en" dir="ltr">
    <head>
      <meta charset="utf-8">
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <title>Sociality | View Profile</title>
+     <title><?php echo $db_username; ?> | View Profile</title>
 
      <!-- Import Material Design Lite CSS -->
      <link rel="stylesheet" href="../mdl/material.min.css">
@@ -31,6 +51,7 @@
      <!-- Custom CSS File -->
      <link rel="stylesheet" href="../css/socialityOverrides.css">
    </head>
+
    <body>
 
        <!-- Uses a header that contracts as the page scrolls down. -->
@@ -53,6 +74,11 @@
              your background is light. */
           color: #cca8e6;
         }
+        .btnEdit{
+          position: absolute;
+          top: 10px;
+          right: 490px;
+        }
       </style>
 
       <div class="demo-layout-transparent mdl-layout mdl-js-layout">
@@ -61,10 +87,39 @@
 
        <main class="mdl-layout__content">
 
-         <div class="page-content">
+         <div class="page-content" align="center">
 
            <!-- ADD THE PROFILE CARD HERE. -->
+           <h3><?php echo $db_username; ?> | Sociality</h3>
+           <p> ───────────────────────────────────── </p>
+           <?php
+           //the first div contains all the information for the card
+           //the second div contains the profile picture
+           //the third div contains the other important details of user
+           //note that i'll not put css, so i'll just leave the class empty for less hassle
+              echo "<div class=''>
+                      <br>
+                      <div class=''>
+                        <img src='$db_profile_pic'>
+                      </div>
+                      <div class=''>
+                        <b>$db_username</b> <br>
+                        $db_bio <br>
+                        $db_sex <br>
+                        $db_email
+                      </div>
+                    </div>" ;
 
+              //the class that contain the href, can be the same class on the one above (line 100)
+              //you might missed the class inside the 'a' tag, for now I'll put a temporary inline css for it
+
+              echo "<div class=''>
+                      <a href = 'editProfile.php' class='btnEdit'> Edit Profile </a>
+                    </div>";
+
+              echo "<br>";
+              echo "<a href='../' class=''> Go back to News Feed? </a>";
+            ?>
          </div>
 
        </main>

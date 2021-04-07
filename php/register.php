@@ -114,9 +114,7 @@
                 </div>
                   <div class="formItem">
                     <input class="input" type="email" id="email" name="email" required>
-
                   </div>
-
               </div>
 
               <div class="formItem">
@@ -142,15 +140,10 @@
                   </button>
                 </div>
               </div>
-
-            </div>
-
           </div>
-
+          <a href="login.php"><i>Already have an account?</i></a>
         </form>
-
       </div>
-
     </main>
 
     <!-- Footer -->

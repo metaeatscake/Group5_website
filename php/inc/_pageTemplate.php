@@ -29,7 +29,7 @@
      <link rel="shortcut icon" href="images/assets/socialityLogo_transparent.png">
 
      <!-- Custom CSS File -->
-     <link rel="stylesheet" href="../css/socialityOverrides.css">
+     <?php include_once("../css/customStyles.php"); ?>
    </head>
    <body>
 

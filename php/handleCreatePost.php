@@ -1,62 +1,67 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Sociality | Create Post</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<?php
+	include_once("inc/database.php");
 
-     <title>Sociality</title>
+	//Prevent illegal access
+	if (!isset($_SESSION["account_type"]) || $_SESSION["account_type"] === "admin") {
+		header("location: ../");
+		exit();
+	}
 
-     <!-- Import Material Design Lite CSS -->
-     <link rel="stylesheet" href="mdl/material.min.css">
-     <!-- Import Material Design Lite Javascript -->
-     <script src="mdl/material.min.js" charset="utf-8"></script>
-     <!-- Import Material Design Icons from Google -->
-     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+	//Sanitize/Clean data.
+	//Check for EMPTY data first
+	foreach ($_POST as $key => $value) {
 
-     <!-- Shortcut Icon -->
-     <link rel="shortcut icon" href="php/images/assets/socialityLogo_transparent.png">
+		// Add an additional function (filter_var()) to handle data cleaning.
+		$_POST[$key] = filter_var(trim($value), FILTER_SANITIZE_STRING);
+		$emptyVars[$key] = empty($_POST[$key]);
+	}
 
-     <!-- Custom CSS File -->
-     <link rel="stylesheet" href="css/socialityOverrides.css">
+	// FALSE if the data is not empty.
+	$validForm = !in_array(true, $emptyVars);
 
-        <style>
-	      @import url('https://fonts.googleapis.com/css2?family=Staatliches&display=swap');
-	        .demo-layout-transparent {	         
-	          background: #ad5389;  /* fallback for old browsers */
-	          background: -webkit-linear-gradient(to right, #3c1053, #ad5389);  /* Chrome 10-25, Safari 5.1-6 */
-	          background: linear-gradient(to right, #3c1053, #ad5389); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+	/*
+		There are two ways that the form can be considered valid:
+			- Data is not empty, AND there IS an attached IMAGE
+			- Data is not empty, AND there IS NO attached IMAGE
+		We will first check if there is a file uploaded before
+		the next verification starts.
+	*/
 
-	        }
-	        .demo-layout-transparent .mdl-layout__header,
-	        .demo-layout-transparent .mdl-layout__drawer-button {
-	          /* This background is dark, so we set text to white. Use 87% black instead if
-	             your background is light. */
-	          color: #cca8e6;
-	        }
-        </style>
-</head>
-<body>
-	<?php 
-		include_once("inc/database.php");
- 		include_once("inc/navbar.php");
-		$inputTitle = $_POST["inputTitle"];
- 		$inputText = $_POST["inputText"];
- 		$inputPic = $_POST["inputPic"];
- 		$post = $_POST["btnSubmit"];
+	// Condition if there is NO FILE.
+	if ($_FILES["inputPic"]["error"] === 4) {
 
-		$data = $sql->query("SELECT * FROM tbl_users WHERE user_id = '{$_SESSION["account_id"]}'");
-		$row = $data->fetch_assoc();
-		$user_id = $row["user_id"];
+		// No empty data.
+		if ($validForm) {
 
- 		if($post){
- 			$insertQuery = $sql->query("INSERT INTO tbl_feed(user_id, post_title, post_content) VALUES('".$user_id."', '".addslashes($inputTitle)."', '".$inputText."')");
- 			
- 			header("Location: ../");
- 		} else {
- 			header("Location: createPost.php");
- 		}
+			$queryString = "INSERT INTO tbl_feed(
+				user_id, post_title, post_content
+			) VALUES (
+				'{$_SESSION["account_id"]}', '{$_POST["inputTitle"]}', '{$_POST["inputText"]}'
+			)";
 
-	 ?>
-</body>
-</html>
+			$sql->query($queryString);
+			header("location: ../");
+			exit();
+		}
+
+		// Empty data.
+		else{
+
+			$errorMessage = "ERROR: The following fields were empty: ";
+			foreach ($emptyVars as $key => $value) {
+				if ($value) {
+
+				}
+			}
+		}
+
+	}
+
+	// Condition if there IS a file.
+	else{
+
+	}
+
+
+
+ ?>
