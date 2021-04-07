@@ -71,14 +71,21 @@
               $sex = $_POST["sex"];
               $email = $_POST["email"];
 
-              $row = $sql->query("SELECT * FROM tbl_users WHERE email = '$email'")->fetch_assoc();
-  
-              extract($row, EXTR_PREFIX_ALL, "db");            
+              $row = "SELECT * FROM tbl_users WHERE email = '".$email."'";           
 
-              $numOfRows = mysqli_num_rows($row);
+              /*$numOfRows = $row->num_rows();*/
               //to check if there's a duplicate
               //i'll leave the classes empty
-              if($numOfRows > 0) {
+              if($stmt = $sql->prepare($row)) {
+                  /* execute query */
+                  $stmt->execute();
+
+                  /* store result */
+                  $stmt->store_result();
+
+                  $stmt->num_rows;
+
+                  $stmt->close();
                 if($email != $db_email){
                   echo "<h3 style='text-align: center;'><br>Duplicate Record! This user already exist. </h3>";
                   echo "<br><br>";
@@ -87,6 +94,8 @@
               }
 
               $data = $sql->query("UPDATE tbl_users SET username = 'username', bio = 'bio', sex = 'sex', email = 'email' WHERE user_id = '$id'");
+              header("location: ../");
+              exit();
               ?>
           </div>
 
