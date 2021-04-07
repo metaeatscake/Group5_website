@@ -17,8 +17,7 @@
   $sex = $_POST["sex"];
   $email = $_POST["email"];
 
-  $row = $sql->query("SELECT * FROM tbl_users WHERE email = '".$email."' AND user_id != '".$id."'")->fetch_assoc();     
-
+  $row = $sql->query("SELECT * FROM tbl_users WHERE email = '".$email."' OR username = '".$username."' AND user_id != '".$id."'")->fetch_assoc();     
   //to check if there's a duplicate
   //i'll leave the classes empty
   if($row != NULL) {
