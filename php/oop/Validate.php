@@ -52,11 +52,11 @@
     public function debugData(){
       echo "<h2> Cleaned Form Data </h2>";
       echo "<pre>";
-      echo print_r($this->formData);
+      print_r($this->formData);
       echo "</pre>";
       echo "<h2> Boolean Array </h2>";
       echo "<pre>";
-      echo print_r($this->booleanArray);
+      print_r($this->booleanArray);
       echo "</pre>";
     }
 
