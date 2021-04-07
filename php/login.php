@@ -24,11 +24,11 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
     <!-- Shortcut Icon -->
-    <link rel="shortcut icon" href="images/assets/socialityLogo_transparent.png">
+    <link rel="shortcut icon" href="images/assets/sample2.png">
 
     <!-- Custom CSS File -->
     <?php include_once("../css/customStyles.php"); ?>
-    
+
     <script src="https://kit.fontawesome.com/7f2eccabe0.js" crossorigin="anonymous"></script>
   </head>
   <body>
