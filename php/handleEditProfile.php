@@ -26,8 +26,8 @@
     echo "<br><br>";
     echo "<center><a href='profile.php' class='' style='text-align: center;'>Go back</a></center>"; exit;
   } else {
-    $data = $sql->query("UPDATE tbl_users SET username = 'username', bio = '$bio', sex = '$sex', email = '$email' WHERE user_id = '$id'");
-    header("location: editProfile.php");
+    $data = $sql->query("UPDATE tbl_users SET username = '$username', bio = '$bio', sex = '$sex', email = '$email' WHERE user_id = '$id'");
+    header("location: profile.php");
   exit();
   }
   ?>
