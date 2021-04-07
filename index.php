@@ -27,7 +27,7 @@
      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
      <!-- Shortcut Icon -->
-     <link rel="shortcut icon" href="php/images/assets/socialityLogo_transparent.png">
+     <link rel="shortcut icon" href="php/images/assets/sample2.png">
 
      <!-- Custom CSS File -->
      <link rel="stylesheet" href="css/socialityOverrides.css">
@@ -72,14 +72,14 @@
             <?php else: ?>
               <h1>PEEPEEPOOPOO</h1>
               <h4>hehe peepeepoopoo</h4>
-              
+
             <?php endif; ?>
          </div>
 
        </main>
 
        <?php include_once("php/inc/footer.php"); ?>
-       
+
       </div>
 
    </body>
