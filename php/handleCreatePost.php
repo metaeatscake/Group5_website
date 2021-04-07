@@ -1,67 +1,97 @@
 <?php
-	include_once("inc/database.php");
 
-	//Prevent illegal access
-	if (!isset($_SESSION["account_type"]) || $_SESSION["account_type"] === "admin") {
+	// Get database and classes.
+	include_once("inc/database.php");
+	include_once("oop/_main.php");
+
+	// Should handle cases where this file is accessed unintentionally.
+	if ($_SERVER["REQUEST_METHOD"] !== "POST") {
 		header("location: ../");
 		exit();
 	}
 
-	//Sanitize/Clean data.
-	//Check for EMPTY data first
-	foreach ($_POST as $key => $value) {
+	$validImages = [
+		"image/png",
+		"image/gif",
+		"image/jpeg"
+	];
 
-		// Add an additional function (filter_var()) to handle data cleaning.
-		$_POST[$key] = filter_var(trim($value), FILTER_SANITIZE_STRING);
-		$emptyVars[$key] = empty($_POST[$key]);
+	// Declare objects.
+	$vld = new Validate($_POST);
+	$vld_i = new Validate_Image($_FILES,"inputPic",$validImages);
+
+	// Variable to hold account ID
+	$q_id = $_SESSION["account_id"];
+
+	// Run validation and sanitize the form data.
+	$vld->cleanData();
+
+	// Check if title/content is empty
+	$alertMessage = $vld->getValidationMessage();
+	if (!empty($alertMessage)) {
+		$_SESSION["handler-alert"] = $alertMessage;
+		header("location: createPost.php");
+		exit();
 	}
 
-	// FALSE if the data is not empty.
-	$validForm = !in_array(true, $emptyVars);
+	// Assign title/content data to variables.
+	$q_title = $vld->getFormVar("inputTitle");
+	$q_content = $vld->getFormVar("inputText");
 
-	/*
-		There are two ways that the form can be considered valid:
-			- Data is not empty, AND there IS an attached IMAGE
-			- Data is not empty, AND there IS NO attached IMAGE
-		We will first check if there is a file uploaded before
-		the next verification starts.
-	*/
+	// Validate image, if it is there.
+	if ($vld->hasFile()) {
 
-	// Condition if there is NO FILE.
-	if ($_FILES["inputPic"]["error"] === 4) {
-
-		// No empty data.
-		if ($validForm) {
-
-			$queryString = "INSERT INTO tbl_feed(
-				user_id, post_title, post_content
-			) VALUES (
-				'{$_SESSION["account_id"]}', '{$_POST["inputTitle"]}', '{$_POST["inputText"]}'
-			)";
-
-			$sql->query($queryString);
-			header("location: ../");
+		// Redirect if there is error.
+		$alertMessage = $vld_i->getValidationMessage();
+		if (!empty($alertMessage)) {
+			$_SESSION["handler-alert"] = $alertMessage;
+			header("location: createPost.php");
 			exit();
 		}
 
-		// Empty data.
-		else{
+		// Continue if it is valid image.
+		/*
+			Image Filename Documentation.
+				To make sure that the filename is unique, the image name
+				will be determined by the poster's user id and the post time.
+				The time will be taken from the SQL server and formatted.
 
-			$errorMessage = "ERROR: The following fields were empty: ";
-			foreach ($emptyVars as $key => $value) {
-				if ($value) {
+				Filename: $id_$postingTime.$ext
+				Directory: images/post_img/
+		*/
+		$timeFormat = "%Y-%m-%d_%H-%i-%s";
+		$time = $sql->query("SELECT DATE_FORMAT(SYSDATE(), '$timeFormat') AS time_now;")->fetch_assoc()["time_now"];
 
-				}
-			}
-		}
+		$newfileName = $_SESSION["account_id"] . "_" . $time . {$vld_i->getFileExtension()};
+		$saveFolder = "images/post_img/";
 
+		$savePath = $saveFolder.$newFileName;
+
+		move_uploaded_file($_FILES["inputPic"]["tmp_name"], $savePath);
+
+		$queryString = "INSERT INTO tbl_feed(
+			user_id, post_title, post_content, post_img
+		)VALUES( '$q_id', '$q_title', '$q_content', '$savePath')";
+
+		$sql->query($queryString);
+		header("location: ../");
+		exit();
 	}
 
-	// Condition if there IS a file.
+	// Handle text-only posts.
 	else{
-
+		$queryString = "INSERT INTO tbl_feed(user_id, post_title, post_content)
+		VALUES('$q_id', '$q_title', '$q_content')";
+		
+		$sql->query($queryString);
+		header("location: ../");
+		exit();
 	}
 
+	//
 
+	// Testing. Seems to work.
+	$vld->debugData();
+	$vld_i->debugData();
 
  ?>
