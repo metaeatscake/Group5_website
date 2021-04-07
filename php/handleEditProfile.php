@@ -7,6 +7,7 @@
     header("location: adm_viewUsers.php");
     exit();
   }
+  if (!isset($_SESSION["account_type"]))
  ?>
  <!DOCTYPE html>
  <html lang="en" dir="ltr">
@@ -69,7 +70,6 @@
               $bio = $_POST["bio"];
               $sex = $_POST["sex"];
               $email = $_POST["email"];
-              $profile_picture = $_POST["profilePicture"];
 
               $row = $sql->query("SELECT * FROM tbl_users WHERE email = '$email'")->fetch_assoc();
   
@@ -87,16 +87,6 @@
               }
 
               $data = $sql->query("UPDATE tbl_users SET username = 'username', bio = 'bio', sex = 'sex', email = 'email' WHERE user_id = '$id'");
-
-              $targetDirectory = "images/users/";
-              $fileName = $_FILES["profilePicture"]["name"];
-              echo "<h1>$fileName</h1>";
-
-              $check = getimagesize($_FILES["profilePicture"]["tmp_name"]);
-
-              if($check){
-                echo "<h2>FIle is an image. </h2>";
-              } //TO BE CONTINUED
               ?>
           </div>
 
