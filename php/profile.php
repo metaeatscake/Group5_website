@@ -75,11 +75,28 @@
           color: #cca8e6;
         }
         .btnEdit{
+          background-color: #d9d9d9; 
+          padding: 5px;
           position: absolute;
-          top: 10px;
-          right: 950px;
+          border-radius: 5px;
+          top: 550px;
+          right: 990px;
         }
-
+        .btnEdit:hover{
+          background-color: #bfbfbf;
+        }
+        .cover-about{
+          background-color: white;
+          width: 320px;
+          padding: 19px;
+          border: 5px;
+          margin: 0;
+          border-radius: 3px;
+        }
+        a{
+          text-decoration: none;
+          color: black;
+        }
       </style>
 
       <div class="demo-layout-transparent mdl-layout mdl-js-layout">
@@ -92,7 +109,7 @@
             <div class = "mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet">
               <!-- ADD THE PROFILE CARD HERE. -->
              <h3><?php echo $db_username; ?> | Sociality</h3>
-             <p> ───────────────────────────────────── </p>
+             <p> ──────────────────────────────────── </p>
              <?php
                //the first div contains all the information for the card
                //the second div contains the profile picture
@@ -102,12 +119,12 @@
                           <div class=''>
                             <img src='$db_profile_pic'>
                           </div>
-                          <div class=''>
-                          <br>
+                          <br><br>
+                          <div class='cover-about'>
                             <b style='font-size: 30px;'>About</b> <br>
-                            $db_bio <br>
-                            $db_sex <br>
-                            $db_email
+                            Bio:  $db_bio <br>
+                            Gender: $db_sex <br>
+                            Email: $db_email
                           </div>
                         </div>" ;
 
@@ -121,7 +138,7 @@
                   echo "<br>";
               ?>
            </div>
-
+           <!--DISPLAY OF THEIR POSTS-->
            <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
             TO BE CONTINUED
           </div>
