@@ -75,9 +75,15 @@
           color: #cca8e6;
         }
         .btnEdit{
+          background-color: #d9d9d9; 
+          padding: 5px;
           position: absolute;
-          top: 10px;
-          right: 950px;
+          border-radius: 5px;
+          top: 550px;
+          right: 990px;
+        }
+        .btnEdit:hover{
+          background-color: #bfbfbf;
         }
         .cover-about{
           background-color: white;
@@ -86,7 +92,10 @@
           border: 5px;
           margin: 0;
           border-radius: 3px;
-
+        }
+        a{
+          text-decoration: none;
+          color: black;
         }
       </style>
 
@@ -100,7 +109,7 @@
             <div class = "mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet">
               <!-- ADD THE PROFILE CARD HERE. -->
              <h3><?php echo $db_username; ?> | Sociality</h3>
-             <p> ───────────────────────────────────── </p>
+             <p> ──────────────────────────────────── </p>
              <?php
                //the first div contains all the information for the card
                //the second div contains the profile picture
