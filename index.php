@@ -27,7 +27,7 @@
      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
      <!-- Shortcut Icon -->
-     <link rel="shortcut icon" href="php/images/assets/socialityLogo_transparent.png">
+     <link rel="shortcut icon" href="php/images/assets/sample2.png">
 
      <!-- Custom CSS File -->
      <link rel="stylesheet" href="css/socialityOverrides.css">
@@ -69,6 +69,7 @@
               <?php include_once("php/inc/welcomeCard.php"); ?>
 
               <!-- USER FEED -->
+<<<<<<< HEAD
             <?php else:?>
 
               <?php
@@ -100,10 +101,20 @@
                 <?php endwhile; ?>
 
               <?php endwhile; ?>
+=======
+            <?php else: ?>
+              <h1>PEEPEEPOOPOO</h1>
+              <h4>hehe peepeepoopoo</h4>
+
+>>>>>>> 9d6d0d3a5e237f1199bee9b9fe3b5236a888518f
             <?php endif; ?>
          </div>
        </main>
        <?php include_once("php/inc/footer.php"); ?>
+<<<<<<< HEAD
+=======
+
+>>>>>>> 9d6d0d3a5e237f1199bee9b9fe3b5236a888518f
       </div>
    </body>
  </html>
