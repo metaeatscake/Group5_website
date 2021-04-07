@@ -77,8 +77,9 @@
         .btnEdit{
           position: absolute;
           top: 10px;
-          right: 490px;
+          right: 950px;
         }
+
       </style>
 
       <div class="demo-layout-transparent mdl-layout mdl-js-layout">
@@ -87,40 +88,45 @@
 
        <main class="mdl-layout__content">
 
-         <div class="page-content" align="center">
+         <div class="page-content mdl-grid">
+            <div class = "mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet">
+              <!-- ADD THE PROFILE CARD HERE. -->
+             <h3><?php echo $db_username; ?> | Sociality</h3>
+             <p> ───────────────────────────────────── </p>
+             <?php
+               //the first div contains all the information for the card
+               //the second div contains the profile picture
+               //the third div contains the other important details of user
+               //note that i'll not put css, so i'll just leave the class empty for less hassle
+                  echo "<div class=''>
+                          <div class=''>
+                            <img src='$db_profile_pic'>
+                          </div>
+                          <div class=''>
+                          <br>
+                            <b style='font-size: 30px;'>About</b> <br>
+                            $db_bio <br>
+                            $db_sex <br>
+                            $db_email
+                          </div>
+                        </div>" ;
 
-           <!-- ADD THE PROFILE CARD HERE. -->
-           <h3><?php echo $db_username; ?> | Sociality</h3>
-           <p> ───────────────────────────────────── </p>
-           <?php
-           //the first div contains all the information for the card
-           //the second div contains the profile picture
-           //the third div contains the other important details of user
-           //note that i'll not put css, so i'll just leave the class empty for less hassle
-              echo "<div class=''>
-                      <br>
-                      <div class=''>
-                        <img src='$db_profile_pic'>
-                      </div>
-                      <div class=''>
-                        <b>$db_username</b> <br>
-                        $db_bio <br>
-                        $db_sex <br>
-                        $db_email
-                      </div>
-                    </div>" ;
+                  //the class that contain the href, can be the same class on the one above (line 100)
+                  //you might missed the class inside the 'a' tag, for now I'll put a temporary inline css for it
 
-              //the class that contain the href, can be the same class on the one above (line 100)
-              //you might missed the class inside the 'a' tag, for now I'll put a temporary inline css for it
+                  echo "<div class=''>
+                          <a href = 'editProfile.php' class='btnEdit'> Edit Profile </a>
+                        </div>";
 
-              echo "<div class=''>
-                      <a href = 'editProfile.php' class='btnEdit'> Edit Profile </a>
-                    </div>";
+                  echo "<br>";
+              ?>
+           </div>
 
-              echo "<br>";
-              echo "<a href='../' class=''> Go back to News Feed? </a>";
-            ?>
-         </div>
+           <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
+            TO BE CONTINUED
+          </div>
+           
+
 
        </main>
 

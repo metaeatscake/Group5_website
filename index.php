@@ -69,7 +69,7 @@
               <?php include_once("php/inc/welcomeCard.php"); ?>
 
               <!-- USER FEED -->
-<<<<<<< HEAD
+
             <?php else:?>
 
               <?php
@@ -101,20 +101,12 @@
                 <?php endwhile; ?>
 
               <?php endwhile; ?>
-=======
-            <?php else: ?>
-              <h1>PEEPEEPOOPOO</h1>
-              <h4>hehe peepeepoopoo</h4>
 
->>>>>>> 9d6d0d3a5e237f1199bee9b9fe3b5236a888518f
+
             <?php endif; ?>
          </div>
        </main>
        <?php include_once("php/inc/footer.php"); ?>
-<<<<<<< HEAD
-=======
-
->>>>>>> 9d6d0d3a5e237f1199bee9b9fe3b5236a888518f
       </div>
    </body>
  </html>
