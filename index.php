@@ -95,9 +95,14 @@
                     <div class="feed_title">
                       <h1><?php echo $row1["post_title"]; ?></h1>
                     </div>
-                    <div class="feed_image">
-                      <img src="<?php echo $row1["post_img"]; ?>" alt="<?php echo $row1["post_img"]; ?>">
-                    </div>
+
+                    <!-- Only display image div if there is image. -->
+                    <?php if (isset($row["post_img"])): ?>
+                      <div class="feed_image">
+                        <img src="<?php echo $row1["post_img"]; ?>" alt="<?php echo $row1["post_img"]; ?>">
+                      </div>
+                    <?php endif; ?>
+
                     <div class="feed_content">
                       <h4><?php echo $row1["post_content"]; ?></h4>
                     </div>
