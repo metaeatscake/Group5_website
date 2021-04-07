@@ -79,7 +79,15 @@
           top: 10px;
           right: 950px;
         }
+        .cover-about{
+          background-color: white;
+          width: 320px;
+          padding: 19px;
+          border: 5px;
+          margin: 0;
+          border-radius: 3px;
 
+        }
       </style>
 
       <div class="demo-layout-transparent mdl-layout mdl-js-layout">
@@ -102,12 +110,12 @@
                           <div class=''>
                             <img src='$db_profile_pic'>
                           </div>
-                          <div class=''>
-                          <br>
+                          <br><br>
+                          <div class='cover-about'>
                             <b style='font-size: 30px;'>About</b> <br>
-                            $db_bio <br>
-                            $db_sex <br>
-                            $db_email
+                            Bio:  $db_bio <br>
+                            Gender: $db_sex <br>
+                            Email: $db_email
                           </div>
                         </div>" ;
 
