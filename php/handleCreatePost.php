@@ -39,7 +39,7 @@
 	$q_content = $vld->getFormVar("inputText");
 
 	// Validate image, if it is there.
-	if ($vld->hasFile()) {
+	if ($vld_i->hasFile()) {
 
 		// Redirect if there is error.
 		$alertMessage = $vld_i->getValidationMessage();
@@ -82,7 +82,7 @@
 	else{
 		$queryString = "INSERT INTO tbl_feed(user_id, post_title, post_content)
 		VALUES('$q_id', '$q_title', '$q_content')";
-		
+
 		$sql->query($queryString);
 		header("location: ../");
 		exit();
