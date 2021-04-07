@@ -138,7 +138,7 @@
                   echo "<br>";
               ?>
            </div>
-
+           <!--DISPLAY OF THEIR POSTS-->
            <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
             TO BE CONTINUED
           </div>
