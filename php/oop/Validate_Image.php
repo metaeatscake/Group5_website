@@ -44,23 +44,36 @@
 
     public function isValidType(){
 
-      if ($this->isImage()) {
-        $imageType = image_type_to_mime_type(exif_imagetype($this->filesArray[$this->imageKey]["tmp_name"]));
+      $result = false;
 
-        if (in_array($imageType, $this->allowedImageTypes)) {
-          return true;
-        }
-        else {
-          return false;
-        }
+      if ($this->isImage() &&
+        in_array(
+          image_type_to_mime_type(exif_imagetype($this->filesArray[$this->imageKey]["tmp_name"])),
+          $this->allowedImageTypes
+        )
+      ) {
+        $result = true;
       }
-      else{
-        return false;
-      }
+
+      return $result;
 
     }
 
+    public function getValidationMessage(){
+      $message = "";
+
+      $message = ($this->isImage())? "":"ERROR: This file is not an image.";
+      $message = ($this->isValidType())? "":"ERROR: This image file type is not accepted.";
+
+      return $message;
+    }
+
+    public function getFileExtension(){
+      return pathinfo($this->filesArray[$this->imageKey]["name"], PATHINFO_EXTENSION);
+    }
+
     public function debugData(){
+      echo "<h2> Files Array </h2>";
       echo "<pre>";
       print_r($this->filesArray);
       echo "</pre>";

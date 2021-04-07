@@ -9,14 +9,15 @@
     private $formData;
     private $booleanArray;
 
+    // Constructor
     public function __construct($POST){
       $this->formData = $POST;
     }
 
     public function cleanData(){
       foreach ($this->formData as $key => $value) {
-        $this->formData[$key] = filter_var(trim($value), FILTER_SANITIZE_STRING, FILTER_FLAG_ENCODE_LOW);
-        $this->booleanArray[$key] = empty($formData[$key]);
+        $this->formData[$key] = filter_var(trim($value), FILTER_SANITIZE_STRING, FILTER_FLAG_ENCODE_HIGH);
+        $this->booleanArray[$key] = empty($this->formData[$key]);
       }
     }
 
