@@ -124,7 +124,7 @@
   <nav class="mdl-navigation">
 
     <!-- Home link in drawer -->
-    <a class="mdl-navigation__link" href="<?php echo $nav_logoLink ?>"> Home </a>
+    <a class="mdl-navigation__link" href="<?php echo $nav_logoLink ?>"> <i class="material-icons">home</i> Home </a>
 
     <!--
       Display different links depending on $_SESSION["account_type"]
