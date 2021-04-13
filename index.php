@@ -110,7 +110,7 @@
                       $post_likeButton_text = ($post_isLiked) ? "Unlike" : "Like";
 
                     //String for building the link to handleLikePost.php.
-                      $post_likeButton_href = "handleLikePost.php?post_id={$row1['post_id']}";
+                      $post_likeButton_href = "php/handleLikePost.php?post_id={$row1['post_id']}";
                       //Debug
                       //echo $post_likeButton_href;
                    ?>
