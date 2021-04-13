@@ -76,7 +76,7 @@
             <div class="formItem">
             <br>
             <center><img src="images/assets/socialitylogoblack.png" width="300" height="75"><center>
-              <h3 style="text-align: center">Register</h3>
+              <h3 style="text-align: center">Register Now!</h3>
             </div>
             <div class="formItem">
               <label for="lname">Email</label>
