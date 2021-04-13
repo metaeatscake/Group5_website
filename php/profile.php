@@ -74,45 +74,25 @@
              your background is light. */
           color: #cca8e6;
         }
-        .btnEdit{
-          background-color: #d9d9d9; 
-          padding: 5px;
-          position: absolute;
-          border-radius: 5px;
-          top: 550px;
-          right: 990px;
-        }
-        .btnEdit:hover{
-          background-color: #bfbfbf;
-        }
-        .cover-about{
-          background-color: white;
-          width: 320px;
-          padding: 19px;
-          border: 5px;
-          margin: 0;
-          border-radius: 3px;
-        }
-        a{
-          text-decoration: none;
-          color: black;
-        }
         #profile_pic{
           width: 150px;
           margin-top: -200px;
           border-radius: 50%;
           border: solid 2px white;
         }
+
         #profile-menu-buttons{
           width: 100px;
           display: inline-block;
           margin: 2px;
         }
+
         #following-img{
           width: 75px;
           float: left;
           margin: 8px;
         }
+
         #following-bar{
           background-color: white;
           min-height: 400px;
@@ -120,11 +100,34 @@
           color: #aaa;
           padding: 8px;
         }
+        
         #following{
           clear: both;
           font-size: 12px;
           font-weight: bold;
           color: #405d9b;
+        }
+
+        textarea{
+          width: 100%;
+          border: none;
+          font-family: tahoma;
+          font-size: 14px; 
+        }
+
+        .btn-primary {
+          color: #fff;
+          background-color: #007bff;
+          border-color: #007bff;
+          border-radius: 20px;
+          width: 60px;
+          height: 30px;
+        }
+
+        .btn-primary:hover {
+          color: #fff;
+          background-color: #0069d9;
+          border-color: #0062cc;
         }
       </style>
 
@@ -184,32 +187,55 @@
                       <div id="following">
                         <img id="following-img" src="images/users/Jesse-Renz.jpg">
                         <br>
-                        Java 1 and PLF with C++ Teacher
+                        Jesse Renz Faculin Bernese
                       </div>
 
                       <div id="following">
                         <img id="following-img" src="images/users/Kyla-Nadine.jpg">
                         <br>
-                        PHP & MYSQL and PL/SQL Teacher
+                        Kyla Nadine Raquedan
                       </div>
 
                       <div id="following">
                         <img id="following-img" src="images/users/Lunar-Angelo.jpg">
                         <br>
-                        IT Essentials and Introduction to Oracle Teacher
+                        Lunar Angelo Pajaroja
                       </div>
 
                       <div id="following">
                         <img id="following-img" src="images/users/Ronnel-Tang.jpg">
                         <br>
-                        Introduction to Oracle Teacher
+                        Ronnel Tang
                       </div>
                     </div>
                   </div>
+
                    <!--POSTS AREA-->
-                  <div style="min-height: 400px;flex:2.5;">
+                  <div style="min-height: 400px;flex:2.5; padding: 20px; padding-right: 0px;">
                     
+                    <div style="border: solid thin #aaa; padding: 10px;">
+                      <?php
+                        // Direct/One-line fetch of column data. Extreme shortcut.
+                         $username = $sql->query("SELECT * FROM tbl_users WHERE user_id = '{$_SESSION["account_id"]}'")->fetch_assoc()["username"];
+                        ?>
+
+                        <form action="handleCreatePost.php" method="POST" enctype="multipart/form-data">
+
+                           <input type="text" name="inputTitle" class="" placeholder="Title" required><br><br>
+
+                           <textarea name="inputText" rows="8" cols="80" placeholder="What's on your mind, <?php echo $db_username; ?>?"></textarea>
+                           <br><br>
+
+                          <input type="file" name="inputPic" class="">
+                           <br><br>
+
+                          <input type="submit" name="btnSubmit" class="btn-primary" value="Post">
+                        </form>
+                    
+                    </div>
+
                   </div>
+
                 </div>
 
               </div>
