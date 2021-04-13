@@ -1,151 +1,101 @@
 <?php
-//Connection to database
-  include_once("inc/database.php");
 
-// Prevent Illegal Access
-  if(isset($_SESSION["account_type"]) || empty($_POST)){
+  //Get SESSION and DB, and the OOP classes
+  include_once("inc/database.php");
+  include_once("oop/_main.php");
+
+  //Redirect unwanted access.
+  if ($_SERVER["REQUEST_METHOD"] !== "POST") {
     header("location: ../");
     exit();
   }
 
-// Get all available usernames and emails
-  $data = $sql->query("SELECT * FROM tbl_users");
-  while($row = $data->fetch_assoc()){
-    $usernames[] = $row["username"];
-    $emails[] = $row["email"];
+  //Prepare DB query for fetching existing usernames and emails.
+  $queryString = "SELECT * FROM tbl_users";
+  $execQuery = $sql->query($queryString);
+
+  $emptyDB = ($execQuery->num_rows === 0);
+
+  // Declare validation object
+  $vld = new Validate($_POST);
+
+  // Do the magic data cleaning.
+  $vld->cleanData();
+
+  // Handle the empty data.
+  $errMsg = $vld->getValidationMessage();
+  echo $errMsg;
+  if (!empty($errMsg)) {
+    $_SESSION["handler-alert"] = $errMsg;
+    header("location: register.php");
+    exit();
   }
 
-// Data Cleaning
+  // Do the extra validations - OOP style;
 
-  foreach ($_POST as $key => $value) {
-    $_POST[$key] = trim($value);
-    $emptyVars[$key] = empty($_POST[$key]);
-  }
+  $vld->verify_set_checkLength([
+    "errorKey" => "password_less_than_8_characters",
+    "fieldKey" => "password",
+    "minLength" => 8
+  ]);
 
-// Data Cleaning, now with redirects.
+  // Do this extra unique entry check if there is data in db.
+  if (!$emptyDB) {
 
-  //When debugging, set $redirect to false
-  $redirect = true;
-
-  if (in_array(true, $emptyVars)) {
-    $errorMessage = "ERROR: The following fields were empty: \\n";
-    foreach ($emptyVars as $key => $value) {
-      if ($value) {
-        $errorMessage .= "\\n".ucfirst($key);
-      }
-    }
-    $errorMessage .= "\\n\\nRegistration Failed.";
-
-    // I can't believe ternary operations work by itself.
-    $_SESSION["handler-alert"] = $errorMessage;
-    if($redirect){header("location: register.php"); exit();}
-    else{print_r(nl2br($errorMessage));}
-  }
-
-  else{
-    //Data is not empty, proceed.
-
-      /*
-        Verification
-
-        Password and confirm password must match
-        Password length >= 8 characters
-        Unique username
-        Unique password
-      */
-
-      // TRUE if passwords DO NOT match
-      $validationChecks["passwords_given_do_not_match"] = (strcmp($_POST["password"], $_POST["password-confirm"]) !== 0);
-
-      // TRUE if passwords
-      $validationChecks["password_less_than_8_characters"] = (strlen($_POST["password"]) < 8);
-
-      // TRUE if username IS already registered
-      $validationChecks["username_already_registered"] = (in_array($_POST["username"], $usernames));
-
-      // TRUE if email IS already registered
-      $validationChecks["email_already_registered"] = (in_array($_POST["email"], $emails));
-
-      // Final Redirects for errors
-      if(in_array(true, $validationChecks)){
-        $errorMessage = "ERROR: \\n";
-        foreach ($validationChecks as $key => $value) {
-          if($value){
-            $errorMessage .= "\\n".str_replace("_", " ", ucfirst($key));
-          }
-        }
-        $errorMessage .= "\\nRegistration Failed.";
-
-        $_SESSION["handler-alert"] = $errorMessage;
-
-        if($redirect){header("location: register.php"); exit();}
-        else{print_r(nl2br($errorMessage));}
-      }
-
-      else{
-        // Data has passed validations.
-        $password_encrypted = password_hash($_POST["password"], PASSWORD_DEFAULT);
-        $query = "INSERT INTO tbl_users(
-          username,
-          password,
-          email,
-          sex
-        ) VALUES (
-          '{$_POST["username"]}',
-          '{$password_encrypted}',
-          '{$_POST["email"]}',
-          '{$_POST["sex"]}'
-        )";
-
-        $sql->query($query);
-        $_SESSION["handler-alert"] = "Registration Success!";
-        if($redirect){header("location: register.php"); exit();}
-        else{echo "Query Success";}
-      }
+    while ($row = $execQuery->fetch_assoc()) {
+      $arr_Usernames[] = $row["username"];
+      $arr_Emails[] = $row["email"];
     }
 
+    $vld->verify_set_checkUnique([
+        "errorKey" => "username_is_already_registered",
+        "fieldKey" => "username"
+      ],
+      $arr_Usernames
+    );
+
+    $vld->verify_set_checkUnique([
+        "errorKey" => "email_is_already_registered",
+        "fieldKey" => "email"
+      ],
+      $arr_Emails
+    );
+
+  }
+
+  $vld->verify_set_checkMatch_String([
+      "errorKey" => "password_and_confirm_password_do_not_match",
+      "match1" => $vld->getFormVar("password"),
+      "match2" => $vld->getFormVar("confirm_password")
+  ]);
+
+  // Redirect back to form if the data fails the last tests.
+  $errMsg1 = $vld->verify_get_validationMessage();
+    //Debug
+    //echo $errMsg1;
+  if (!empty($errMsg1)) {
+    $_SESSION["handler-alert"] = $errMsg1;
+    header("location: register.php");
+    exit();
+  }
+
+  extract($vld->getCleanedData(), EXTR_PREFIX_ALL, "data");
+  //echo "<pre>"; print_r($vld->getCleanedData()); echo "</pre>";
+  //echo "<pre>"; var_dump(get_defined_vars()); echo "</pre>";
+
+  $data_password = password_hash($data_password, PASSWORD_DEFAULT);
+
+  $insertUser = "INSERT INTO tbl_users(
+    username, password, email, sex
+  ) VALUES (
+    '$data_username', '$data_password', '$data_email', '$data_sex'
+  )";
+
+  //echo $insertUser;
+
+  $sql->query($insertUser);
+  $_SESSION["handler-alert"] = "User Successfully Registered!";
+  header("location: login.php");
+  exit();
 
  ?>
-
-<!-- This stuff is for debugging. -->
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>devthing</title>
-  </head>
-  <body>
-
-    <h1> $_SERVER Request Method</h1>
-    <h4><?php echo $_SERVER["REQUEST_METHOD"]; ?></h4>
-
-    <h1> $_POST Data </h1>
-    <h4><pre>
-       <?php print_r($_POST); ?>
-    </pre></h4>
-
-    <h1> $emptyVars Data </h1>
-    <h4><pre>
-       <?php print_r($emptyVars); ?>
-    </pre></h4>
-
-    <h1> $usernames, $emails Data </h1>
-    <h4><pre>
-       <?php print_r($usernames); ?>
-    </pre></h4>
-    <h4><pre>
-       <?php print_r($emails); ?>
-    </pre></h4>
-
-    <h1> $validationChecks Data </h1>
-    <h4><pre>
-       <?php @print_r($validationChecks); ?>
-    </pre></h4>
-
-    <h1> SQL Query </h1>
-    <h4><pre>
-       <?php print_r($query); ?>
-    </pre></h4>
-
-  </body>
-</html>
