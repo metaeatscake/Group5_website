@@ -90,7 +90,7 @@
                 <div style="background-color: white; text-align: center; color: #405d9b">
 
                   <!--TEMPORARY ONLY, ONCE I KNOW HOW TO WORK ON PUTTING UPLOAD IMAGE ICON BESIDE THE PROFILE PICTURE-->
-                  <img src="images/users_cover/bglight.jpg" style="width: 100%;">
+                  <img src="images/users_cover/_default.png" style="width: 100%;">
 
                   <!---CHANGE THIS WITH THE TEMPORARY IMG THAT I PUT
                     <img src="images/users_cover/bglight.jpg" style="width: 100%;">
@@ -174,12 +174,13 @@
                            <textarea name="inputText" rows="8" cols="80" placeholder="What's on your mind, <?php echo $db_username; ?>?"></textarea>
                            <br>
 
-                          <input type="file" id="actual-btn" hidden/>
-                          <label for="actual-btn">No file Chosen</label>
+                          <div class="upload-btn-wrapper">
+                            <button class="btn">Upload a file</button>
+                            <input type="file" name="myfile" />
+                          </div>
                            <br>
 
-                          <input type="submit" name="btnSubmit" class="btn-primary" value="Post"
-                          align="centered">
+                          <input type="submit" name="btnSubmit" class="btn-primary" value="Post">
                           <br><br>
                         </form>
                     

@@ -59,22 +59,6 @@ textarea{
   border-color: #0062cc;
 }
 
-label {
-  background-color:#8a426d;
-  color: white;
-  padding: 0.5rem;
-  font-family: sans-serif;
-  border-radius: 0.3rem;
-  cursor: pointer;
-  margin-top: 1rem;
-}
-
-label:hover {
-  color: #fff;
-  background-color:#ff80ff;
-  border-color: #0062cc;
-}
-
 #title-bar{
   width: 100%;
   border: none;
@@ -82,3 +66,10 @@ label:hover {
   font-size: 14px; 
   height: 60px;
 }
+
+
+
+
+
+
+
