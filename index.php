@@ -150,7 +150,7 @@
                       <h6><?php echo $row1["post_date"]; ?></h6>
                     </div>
                     <div class="feed_post_author">
-                      <h3><?php echo 'posted by '. $row2["username"]; ?></h3>
+                      <h3><?php echo 'Posted by '. $row2["username"]; ?></h3>
                     </div>
                     <div class="feed_actions">
                       <a href="#"> <h5>View Comments</h5> </a>

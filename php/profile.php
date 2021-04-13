@@ -158,34 +158,7 @@
 
                    <!--POSTS AREA-->
                   <div style="min-height: 400px;flex:2.5; padding: 20px; padding-right: 0px;">
-                    
-                    <div style="border: solid thin #aaa; padding: 10px; background-color: white;">
-                      <?php
-                        // Direct/One-line fetch of column data. Extreme shortcut.
-                         $username = $sql->query("SELECT * FROM tbl_users WHERE user_id = '{$_SESSION["account_id"]}'")->fetch_assoc()["username"];
-                        ?>
-
-                        <form action="handleCreatePost.php" method="POST" enctype="multipart/form-data">
-                          <center>
-                           <input type="text" name="inputTitle" id="title-bar" placeholder="Title" required> 
-                          </center>
-                           <br>
-
-                           <textarea name="inputText" rows="8" cols="80" placeholder="What's on your mind, <?php echo $db_username; ?>?"></textarea>
-                           <br>
-
-                          <input type="file" id="actual-btn" hidden/>
-                          <label for="actual-btn"><span class="material-icons">
-                          drive_folder_upload
-                          </span> </label>
-                          <br>
-
-                          <input type="submit" name="btnSubmit" class="btn-primary" value="Post">
-                          <br><br>
-                        </form>
-                    
-                    </div>
-
+               
                     <?php
                         $feed_dateFormat = "%M %d %Y, %H:%i:%s";
                         // Read this before editing the format: http://www.sqlines.com/oracle-to-mysql/to_char_datetime
@@ -239,7 +212,7 @@
                               <h6><?php echo $row1["post_date"]; ?></h6>
                             </div>
                             <div class="feed_post_author">
-                              <h3><?php echo 'posted by '. $row2["username"]; ?></h3>
+                              <h3><?php echo 'Posted by '. $row2["username"]; ?></h3>
                             </div>
                             <div class="feed_actions">
                               <a href="#"> <h5>View Comments</h5> </a>
@@ -251,7 +224,7 @@
                         <?php endwhile; ?>
 
                       <?php endwhile; ?>
-                      
+
                   </div>
 
                 </div>

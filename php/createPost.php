@@ -83,7 +83,7 @@
                      <textarea name="inputText" rows="8" cols="80" placeholder="What's on your mind, <?php echo $username; ?>?"></textarea>
                      <br>
 
-                    <input type="file" id="actual-btn" hidden/>
+                    <input type="file" id="actual-btn" name="inputPic" hidden/>
                     <label for="actual-btn"><span class="material-icons">
                     drive_folder_upload
                     </span> </label>
