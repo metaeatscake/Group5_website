@@ -158,8 +158,10 @@
 
                    <!--POSTS AREA-->
                   <div style="min-height: 400px;flex:2.5; padding: 20px; padding-right: 0px;">
-               
-                    <?php
+                    
+                    <div style="border: solid thin #aaa; padding: 10px; background-color: white;">
+
+                      <?php
                         $feed_dateFormat = "%M %d %Y, %H:%i:%s";
                         // Read this before editing the format: http://www.sqlines.com/oracle-to-mysql/to_char_datetime
                         // Otherwise, DO NOT TOUCH.
@@ -224,6 +226,8 @@
                         <?php endwhile; ?>
 
                       <?php endwhile; ?>
+                    
+                    </div>
 
                   </div>
 
