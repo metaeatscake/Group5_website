@@ -1,2 +1,8 @@
+# Ignore these
 php/images/post_img/*
 php/images/users/*
+php/images/users_cover/*
+
+# But not the defaults
+!php/images/users/_default.jpg
+!php/images/users_cover/_default.png
