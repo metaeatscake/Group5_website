@@ -167,7 +167,7 @@
 
                         <form action="handleCreatePost.php" method="POST" enctype="multipart/form-data">
                           <center>
-                           <input type="text" name="inputTitle" class="" placeholder="Title" required> 
+                           <input type="text" name="inputTitle" id="title-bar" placeholder="Title" required> 
                           </center>
                            <br>
 
@@ -178,7 +178,8 @@
                           <label for="actual-btn">No file Chosen</label>
                            <br>
 
-                          <input type="submit" name="btnSubmit" class="btn-primary" value="Post">
+                          <input type="submit" name="btnSubmit" class="btn-primary" value="Post"
+                          align="centered">
                           <br><br>
                         </form>
                     

@@ -8,13 +8,16 @@
     exit();
   }
 
+  // Direct/One-line fetch of column data. Extreme shortcut.
+  $username = $sql->query("SELECT * FROM tbl_users WHERE user_id = '{$_SESSION["account_id"]}'")->fetch_assoc()["username"];
+
  ?>
  <!DOCTYPE html>
  <html lang="en" dir="ltr">
    <head>
      <meta charset="utf-8">
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <title>Sociality | View Profile</title>
+     <title> <?php echo $username; ?> | View Profile</title>
 
      <!-- Import Material Design Lite CSS -->
      <link rel="stylesheet" href="../mdl/material.min.css">
@@ -28,6 +31,7 @@
 
      <!-- Custom CSS File -->
      <link rel="stylesheet" href="../css/socialityOverrides.css">
+     <link rel="stylesheet" type="text/css" href="../css/createPostStyles.css">
    </head>
    <body>
 
@@ -62,22 +66,28 @@
 
          <div class="page-content">
 
-					 <?php
-					 	// Direct/One-line fetch of column data. Extreme shortcut.
-						 $username = $sql->query("SELECT * FROM tbl_users WHERE user_id = '{$_SESSION["account_id"]}'")->fetch_assoc()["username"];
-					  ?>
+					 <div style="width: 900px; margin:auto; background: -webkit-linear-gradient(to right, #3c1053, #ad5389); min-height: 400px; align-content: center;">
 
-						<!-- Someone clean this with CSS, thanks -Ian -->
-					   <h2>Create Post</h2>
-					   <form action="handleCreatePost.php" method="POST" enctype="multipart/form-data">
-					     <input type="text" name="inputTitle" class="" placeholder="Title" required><br><br>
-					     <textarea name="inputText" rows="8" cols="80" placeholder="What's on your mind, <?php echo $username; ?>?"></textarea>
-					     <br><br>
-							 	<input type="file" name="inputPic" class="">
-					     <br><br>
-					     <input type="submit" name="btnSubmit" class="" value="Post">
-					   </form>
+              <form action="handleCreatePost.php" method="POST" enctype="multipart/form-data">
+                <center>
 
+                  <h2>Create a Post</h2>
+
+                   <input type="text" name="inputTitle" id="title-bar" placeholder="Title" required> 
+                   <br>
+                   <br>
+                   <textarea name="inputText" rows="8" cols="80" placeholder="What's on your mind, <?php echo $username; ?>?"></textarea>
+                   <br>
+                   <br>
+                  <input type="file" id="actual-btn" hidden/>
+                  <label for="actual-btn">No file Chosen</label>
+                   <br>
+                  <input type="submit" name="btnSubmit" class="btn-primary" value="Post">
+                  <br><br>
+                </center>
+              </form>
+
+           </div>
 
          </div>
 
