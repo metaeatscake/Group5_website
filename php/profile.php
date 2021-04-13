@@ -108,6 +108,24 @@
           display: inline-block;
           margin: 2px;
         }
+        #following-img{
+          width: 75px;
+          float: left;
+          margin: 8px;
+        }
+        #following-bar{
+          background-color: white;
+          min-height: 400px;
+          margin-top: 20px;
+          color: #aaa;
+          padding: 8px;
+        }
+        #following{
+          clear: both;
+          font-size: 12px;
+          font-weight: bold;
+          color: #405d9b;
+        }
       </style>
 
       <div class="demo-layout-transparent mdl-layout mdl-js-layout">
@@ -121,13 +139,23 @@
               <div style="width: 900px; margin:auto; background-color: #d9d9d9; min-height: 400px; align-content: center;">
 
                 <div style="background-color: white; text-align: center; color: #405d9b">
-                  <img src="images/assets/bglight.jpg" style="width: 100%;">
+
                   <!--TEMPORARY ONLY, ONCE I KNOW HOW TO WORK ON PUTTING UPLOAD IMAGE ICON BESIDE THE PROFILE PICTURE-->
+                  <img src="images/users_cover/bglight.jpg" style="width: 100%;">
+
+                  <!---CHANGE THIS WITH THE TEMPORARY IMG THAT I PUT
+                    <img src="images/users_cover/bglight.jpg" style="width: 100%;">
+                  -->
+
+                  <!--TEMPORARY ONLY, ONCE I KNOW HOW TO WORK ON PUTTING UPLOAD IMAGE ICON BESIDE THE PROFILE PICTURE-->
+
                   <img src="images/users/_default.jpg" id="profile_pic">
+                  
                   <!--
                     CHANGE THIS WITH THE TEMPORARY IMG THAT I PUT
                     <img id="profile_pic" src="images/users/$db_profile_pic">
                   -->
+
                   <br>
                   <!--Name of the User-->
                   <div style="font-size: 20px">
@@ -151,7 +179,31 @@
                    <!--FOLLOWING AREA-->
                   <div style="min-height: 400px; flex:1;">
                     <div id="following-bar">
-                      Following·
+                      Following· <br>
+
+                      <div id="following">
+                        <img id="following-img" src="images/users/Jesse-Renz.jpg">
+                        <br>
+                        Java 1 and PLF with C++ Teacher
+                      </div>
+
+                      <div id="following">
+                        <img id="following-img" src="images/users/Kyla-Nadine.jpg">
+                        <br>
+                        PHP & MYSQL and PL/SQL Teacher
+                      </div>
+
+                      <div id="following">
+                        <img id="following-img" src="images/users/Lunar-Angelo.jpg">
+                        <br>
+                        IT Essentials and Introduction to Oracle Teacher
+                      </div>
+
+                      <div id="following">
+                        <img id="following-img" src="images/users/Ronnel-Tang.jpg">
+                        <br>
+                        Introduction to Oracle Teacher
+                      </div>
                     </div>
                   </div>
                    <!--POSTS AREA-->
@@ -159,8 +211,6 @@
                     
                   </div>
                 </div>
-
-
 
               </div>
 
