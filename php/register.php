@@ -72,7 +72,7 @@
 
         <!-- MAIN CONTENT -->
         <div class="form-wrapper">
-          <form class="form-main" action="handleLogin.php" method="post" >
+          <form class="form-main" action="handleRegister.php" method="POST">
             <div class="formItem">
               <h1 style="text-align: center">Register</h1>
             </div>
@@ -102,17 +102,17 @@
             <br>
             <label for="password">Confirm Password</label>
           <div class="formItem">
-            <input class="input "type="password" name="cpassword" required placeholder="Re-type your password">
+            <input class="input "type="password" name="confirm_password" required placeholder="Re-type your password">
             <i class="fas fa-key" aria-hidden="true"></i>
           </div>
           <div class="formItem" id="gender">
-              <input class="gender"type="radio" name="gender" id="male">
+              <input class="gender"type="radio" name="sex" id="male" value="male" checked>
               <label for="male">
                 <i class="fas fa-male"></i>
                 <span>Male</span>
               </label>
 
-              <input class="gender"type="radio" name="gender" id="female">
+              <input class="gender"type="radio" name="sex" id="female" value="female">
               <label for="female">
                 <i class="fas fa-female"></i>
                 <span>Female</span>
