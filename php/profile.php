@@ -85,7 +85,7 @@
 
          <div class="page-content mdl-grid">
             <!-- ADD THE PROFILE CARD HERE. -->
-              <div style="width: 900px; margin:auto; background: linear-gradient(to right, #3c1053, #ad5389); min-height: 400px; align-content: center;">
+              <div style="width: 900px; margin:auto; background: -webkit-linear-gradient(to right, #3c1053, #ad5389); min-height: 400px; align-content: center;">
 
                 <div style="background-color: white; text-align: center; color: #405d9b">
 
