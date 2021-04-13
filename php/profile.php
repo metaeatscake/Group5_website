@@ -118,7 +118,7 @@
 
          <div class="page-content mdl-grid">
             <!-- ADD THE PROFILE CARD HERE. -->
-              <div style="width: 900px; height: 600px; margin:auto; background-color: #d9d9d9; min-height: 400px; align-content: center;">
+              <div style="width: 900px; margin:auto; background-color: #d9d9d9; min-height: 400px; align-content: center;">
 
                 <div style="background-color: white; text-align: center; color: #405d9b">
                   <img src="images/assets/bglight.jpg" style="width: 100%;">
@@ -129,9 +129,14 @@
                     <img id="profile_pic" src="images/users/$db_profile_pic">
                   -->
                   <br>
+                  <!--Name of the User-->
                   <div style="font-size: 20px">
                       <?php echo $db_username; ?>
-                  </div>;
+                      <!--Bio of the user-->
+                      <div style="font-size: 12px;">
+                        <?php echo $db_bio; ?>
+                      </div>
+                  </div>
                   <br>
                   <div id=profile-menu-buttons>Timeline</div>
                   <div id=profile-menu-buttons>About</div>
@@ -139,6 +144,24 @@
                   <div id=profile-menu-buttons>Photos</div>
                   <div id=profile-menu-buttons>Settings</div>
                 </div>
+
+                <!--BELOW THE PROFILE CARD AREA-->
+                <div style="display: flex;">
+                   
+                   <!--FOLLOWING AREA-->
+                  <div style="min-height: 400px; flex:1;">
+                    <div id="following-bar">
+                      Following·
+                    </div>
+                  </div>
+                   <!--POSTS AREA-->
+                  <div style="min-height: 400px;flex:2.5;">
+                    
+                  </div>
+                </div>
+
+
+
               </div>
 
           </div>

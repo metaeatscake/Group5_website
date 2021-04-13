@@ -135,13 +135,6 @@
                     <input class="input" type="email" id="email" name="email" value="<?php echo $db_email; ?>">
                   </div>
               </div>
-              <br>
-               <div class="formItem">
-                 <label>Profile Picture</label>
-                 <div align="right">
-                   <input type="file" name="profilePicture" class="input" id="profilePicture" value="<?php echo $db_profile_pic; ?>">
-                 </div>
-               </div>
                <br>
                   <button class="mdl-button mdl-js-button mdl-button--raised" id="formSubmitButton-container">
                     <i class="material-icons">done</i>
