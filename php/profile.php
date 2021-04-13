@@ -197,7 +197,7 @@
                           <div class="feed_post" id="<?php echo 'post'.$row1['post_id']; ?>">
 
                             <div class="feed_title">
-                              <h1><?php echo $row1["post_title"]; ?></h1>
+                              <h4><b><?php echo $row1["post_title"]; ?></b></h4>
                             </div>
 
                             <!-- Only display image div if there is image. -->
@@ -208,17 +208,18 @@
                             <?php endif; ?>
 
                             <div class="feed_content">
-                              <h4><?php echo $row1["post_content"]; ?></h4>
+                              <h5><?php echo $row1["post_content"]; ?></h5>
                             </div>
                             <div class="feed_post_time">
-                              <h6><?php echo $row1["post_date"]; ?></h6>
+                              <h9><?php echo $row1["post_date"]; ?></h9>
                             </div>
                             <div class="feed_post_author">
-                              <h3><?php echo 'Posted by '. $row2["username"]; ?></h3>
+                              <h9><?php echo 'Posted by '. $row2["username"]; ?></h9>
                             </div>
                             <div class="feed_actions">
-                              <a href="#"> <h5>View Comments</h5> </a>
                               <a href="<?php echo $post_likeButton_href; ?>" style="color:<?php echo $post_likeButton_color; ?>"> <i class="material-icons">thumb_up</i> <?php echo $post_likeButton_text; ?> </a>
+                              <a href="#"><span class="material-icons">mode_comment</span>View Comments</i> </a>
+                              <a href="#"><span class="material-icons">share</span>Share</i></a>
                             </div>
 
                           </div>

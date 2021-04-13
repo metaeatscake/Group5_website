@@ -89,4 +89,35 @@ label:hover {
 }
 
 
+.feed_title{
+  text-align: left;
+  font-weight: bolder;
+}
 
+.feed_image{
+  width:100%;
+}
+
+.feed_image img{
+  width:100%;
+  height:100%;
+}
+
+.feed_content{
+  font-size: 12px;
+}
+
+.feed_post_time{
+
+}
+
+.feed_post_author{
+
+}
+
+.feed_actions{
+  width: 100%;
+  display: inline-block;
+  margin: 15px;
+  vertical-align: top;
+}
