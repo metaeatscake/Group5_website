@@ -116,8 +116,40 @@ label:hover {
 }
 
 .feed_actions{
-  width: 100%;
+  padding-top: 100px;
+  text-align: center;
+  font-size: 15px;
   display: inline-block;
-  margin: 15px;
-  vertical-align: top;
+  box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0, 6);
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.feed_actions a{
+  display: block;
+  float: left;
+  text-decoration: none;
+  padding: 0 10px 0 30px;
+  line-height: 36px;
+  background-color: #cd98b8;
+  position: relative;
+}
+
+.feed_rections a.active, .feed_reactions a:hover{
+  background-color: #b46494;
+}
+
+.feed_reactions a:after{
+  content: '';
+  width: 36px;
+  height: 36px;
+  background-color: red;
+  position: absolute;
+  top: 0px;
+  z-index: 1;
+  right: -18px;
+  -webkit-transform: scale(0.707) rotate(45deg);
+  -moz-transform: scale(0.707) rotate(45deg);
+  -o-transform: scale(0.707) rotate(45deg);
+  border-radius: 0 0 0 30px;
 }
