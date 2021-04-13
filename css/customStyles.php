@@ -125,4 +125,43 @@
       .feed_post_author{
 
       }
+
+      #gender{
+        display: flex;
+        height: 15vh;
+        width: 20vw;
+        margin: auto;
+      }
+      input[type="radio"]{
+        -webkit-appearance: none;
+      }
+      #gender label{
+        height: 100px;
+        width: 150px;
+        border: 4px solid #ad5389;
+        position: relative;
+        margin: auto;
+        border-radius: 10px;
+        transition: 0.5s;
+      }
+
+      #gender i{
+        font-size: 40px;
+        position: absolute;
+        top: 50%;
+        left: 47%;
+        transform: translate(-50%, -80%);
+      }
+      #gender label>span{
+        font-size: 20px;
+        position: absolute;
+        top: 80%;
+        left: 49%;
+        transform: translate(-50%, -80%);
+      }
+      #gender input[type="radio"]:checked + label{
+        background-color: #ad5389;
+        color: white;
+        box-shadow: 0 15px 45px rgba(24, 249, 141, 0.2);
+      }
 </style>
