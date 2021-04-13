@@ -10,6 +10,19 @@
 
   // Clients can/should still see posts even if they are not logged in, so index.php will contain the feed.
 
+  // Prefetch liked posts data.
+  $q_getLikes = "SELECT * FROM tbl_feed_likes WHERE user_id = '{$_SESSION["account_id"]}'";
+  $doQuery = $sql->query($q_getLikes);
+
+  //Only initialize the array if there are actual results.
+  if ($doQuery->num_rows !== 0) {
+    while ($row0 = $doQuery->fetch_assoc()) {
+      $user_liked_post_id[] = $row0['post_id'];
+    }
+  }
+
+  // Debugging.
+  //echo (isset($user_liked_post_id))? "The user has liked stuff":"The user has liked nothing";
  ?>
 
  <!DOCTYPE html>
@@ -87,6 +100,20 @@
 
                 <?php while($row2 = $user_data->fetch_assoc()): ?>
 
+                  <?php
+                    //Setup for the Likes system.
+                    //Only true if the user has liked this specific post.
+                      $post_isLiked = (isset($user_liked_post_id) && in_array($row1['post_id'], $user_liked_post_id));
+
+                      // NOTE: First string is the color/text when the post IS LIKED, the other is when it is NOT liked.
+                      $post_likeButton_color = ($post_isLiked) ? "#c5d1e3" : "#2c6bd1";
+                      $post_likeButton_text = ($post_isLiked) ? "Unlike" : "Like";
+
+                    //String for building the link to handleLikePost.php.
+                      $post_likeButton_href = "handleLikePost.php?post_id={$row1['post_id']}";
+                      //Debug
+                      //echo $post_likeButton_href;
+                   ?>
                   <!-- Feed Card design starts here. -->
                   <!-- Note: $row1 = tbl_feed, $row2 = tbl_users -->
                   <!-- No need for echo html, treat this like a normal html area. -->
@@ -114,7 +141,7 @@
                     </div>
                     <div class="feed_actions">
                       <a href="#"> <h5>View Comments</h5> </a>
-                      <a href="#"> <i class="material-icons">thumb_up</i> </a>
+                      <a href="<?php echo $post_likeButton_href; ?>" style="color:<?php echo $post_likeButton_color; ?>"> <i class="material-icons">thumb_up</i> <?php echo $post_likeButton_text; ?> </a>
                     </div>
 
                   </div>

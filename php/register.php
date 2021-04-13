@@ -1,13 +1,15 @@
 <?php
 
+  //Database and session start.
   include_once("inc/database.php");
+
+  // Backend Code here.
 
  ?>
 
  <!-- HTML Area. -->
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -22,10 +24,12 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
     <!-- Shortcut Icon -->
-    <link rel="shortcut icon" href="images/assets/sociality/sample.png">
+    <link rel="shortcut icon" href="images/assets/sample2.png">
 
     <!-- Custom CSS File -->
-    <link rel="stylesheet" href="../css/socialityOverrides.css">
+    <?php include_once("../css/customStyles.php"); ?>
+
+    <script src="https://kit.fontawesome.com/7f2eccabe0.js" crossorigin="anonymous"></script>
   </head>
   <body>
 
@@ -38,7 +42,6 @@
       <?php unset($_SESSION["handler-alert"]); ?>
     <?php endif; ?>
 
-
     <!-- Uses a header that contracts as the page scrolls down. -->
     <!-- Pasted CSS/HTML from MDL Documentation -->
 
@@ -49,6 +52,7 @@
        background: #ad5389;  /* fallback for old browsers */
       background: -webkit-linear-gradient(to right, #3c1053, #ad5389);  /* Chrome 10-25, Safari 5.1-6 */
       background: linear-gradient(to right, #3c1053, #ad5389); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
      }
      .demo-layout-transparent .mdl-layout__header,
      .demo-layout-transparent .mdl-layout__drawer-button {
@@ -67,83 +71,65 @@
       <div class="page-content">
 
         <!-- MAIN CONTENT -->
+        <div class="form-wrapper">
+          <form class="form-main" action="handleLogin.php" method="post" >
+            <div class="formItem">
+              <h1 style="text-align: center">Register</h1>
+            </div>
+            <div class="formItem">
+              <label for="lname">Email</label>
+            </div>
+            <div class="formItem">
+              <input class="input" type="text" name="email" placeholder="Type your email" required>
+              <i class="fas fa-envelope" aria-hidden="true"></i>
+            </div>
+            <br>
+            <div class="formItem">
+              <label for="username">Username</label>
+            </div>
+            <div class="formItem">
+              <input class="input" type="text" name="username" placeholder="Type your username" required>
+              <i class="fas fa-user" aria-hidden="true"></i>
+            </div>
+            <br>
+            <div class="formItem">
+              <label for="password">Password</label>
+            </div>
+            <div class="formItem">
+              <input class="input "type="password" name="password" required placeholder="Type your password">
+              <i class="fas fa-key" aria-hidden="true"></i>
+            </div>
+            <br>
+            <label for="password">Confirm Password</label>
+          <div class="formItem">
+            <input class="input "type="password" name="cpassword" required placeholder="Re-type your password">
+            <i class="fas fa-key" aria-hidden="true"></i>
+          </div>
+          <div class="formItem" id="gender">
+              <input class="gender"type="radio" name="gender" id="male">
+              <label for="male">
+                <i class="fas fa-male"></i>
+                <span>Male</span>
+              </label>
 
-        <!-- CSS Control of the main form card. -->
-
-
-        <!-- Form Proper -->
-        <form class="" action="handleRegister.php" method="post">
-
-          <div class="formCard mdl-card mdl-shadow--4dp">
-
-            <!-- Title Area (including the background pic) -->
-            <div class="mdl-card__title">
-              <h2 class="mdl-card__title-text">Register</h2>
+              <input class="gender"type="radio" name="gender" id="female">
+              <label for="female">
+                <i class="fas fa-female"></i>
+                <span>Female</span>
+              </label>
+          </div>
+            <br>
+            <div class="formItem">
+              <input class="button" type="submit" name="registerForm" value="Register">
+            </div>
             </div>
 
-            <!-- Subtext underneath title -->
-            <!-- <div class="mdl-card__supporting-text">
-              Register an account.
-            </div> -->
+          </form>
+        </div>
 
-            <!-- Form Input Fields. -->
-            <!-- So Scuffed omg. -->
-            <!-- <div class="mdl-card__actions mdl-card--border"> -->
 
-              <div class="formItem">
-                  <label>Username</label>
-                  <div class="inputform">
-                    <input class="input" type="text" id="username" name="username" required>
-                  </div>
-              </div>
-
-              <div class="formItem">
-                  <label>Password</label>
-                  <input class="input" type="password" id="password" name="password" required>
-              </div>
-
-              <div class="formItem">
-                  <label>Confirm Password</label>
-                    <input class="input" type="password" id="password-confirm" name="password-confirm" required>
-                  </div>
-              </div>
-
-              <div class="formItem">
-                <div class="labelform">
-                  <label class="label" for="email">Email</label>
-                </div>
-                  <div class="formItem">
-                    <input class="input" type="email" id="email" name="email" required>
-                  </div>
-              </div>
-
-              <div class="formItem">
-                <div class="labelform">
-                  <div class="formItem">Sex</div>
-                  <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-1">
-                    <input type="radio" id="option-1" class="mdl-radio__button" name="sex" value="male" checked>
-                    <span class="mdl-radio__label">Male</span>
-                  </label>
-                  <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-2">
-                    <input type="radio" id="option-2" class="mdl-radio__button" name="sex" value="female">
-                    <span class="mdl-radio__label">Female</span>
-                  </label>
-                  <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-3">
-                    <input type="radio" id="option-3" class="mdl-radio__button" name="sex" value="Prefer not to say">
-                    <span class="mdl-radio__label">Prefer not to say</span>
-                  </label>
-
-                  <button class="mdl-button mdl-js-button mdl-button--raised" id="formSubmitButton-container">
-                    <i class="material-icons">done</i>
-                    Submit
-                    <input type="submit" name="registerSubmit" id="formSubmitButton" value="submit">
-                  </button>
-                </div>
-              </div>
-          </div>
-          <a href="login.php"><i>Already have an account?</i></a>
-        </form>
       </div>
+
     </main>
 
     <!-- Footer -->
@@ -152,42 +138,3 @@
    </div>
   </body>
 </html>
-
-<style>
-/* This part controls the whole card container */
-.formCard.mdl-card {
-  width: 30%;
-  margin:auto;
-  margin-top: 20px;
-}
-
-/* This part controls the title area and it's background */
-/* .formCard > .mdl-card__title {
-  color: black;
-  height: 130px;
-  text-align: center;
-  background: url('images/assets/bglight.jpg') center / cover;
-} */
-
-#formSubmitButton{
-  visibility:hidden;
-}
-
-#formSubmitButton-container{
-  margin:auto;
-  width:100%;
-}
-
-.formCard-inputFields{
-  margin:auto;
-  padding:10px;
-  align-items: center;
-  align-content: center;
-}
-
-.form_itemPadding{
-  visibility:hidden;
-  width:100%;
-}
-
-</style>
