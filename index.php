@@ -10,26 +10,31 @@
 
   // Clients can/should still see posts even if they are not logged in, so index.php will contain the feed.
 
-  // Prefetch liked posts data.
-  $q_getLikes = "SELECT * FROM tbl_feed_likes WHERE user_id = '{$_SESSION["account_id"]}'";
-  $qe_getLikes = $sql->query($q_getLikes);
+  if (isset($_SESSION["account_id"])) {
 
-  //Only initialize the array if there are actual results.
-  if ($qe_getLikes->num_rows !== 0) {
-    while ($row0 = $qe_getLikes->fetch_assoc()) {
-      $user_liked_post_id[] = $row0['post_id'];
+    // Prefetch liked posts data.
+    $q_getLikes = "SELECT * FROM tbl_feed_likes WHERE user_id = '{$_SESSION["account_id"]}'";
+    $qe_getLikes = $sql->query($q_getLikes);
+
+    //Only initialize the array if there are actual results.
+    if ($qe_getLikes->num_rows !== 0) {
+      while ($row0 = $qe_getLikes->fetch_assoc()) {
+        $user_liked_post_id[] = $row0['post_id'];
+      }
     }
+
+    // Prefetch TOTAL liked posts
+    $q_getAllLikes = "SELECT post_id, COUNT(*) AS likeCount FROM tbl_feed_likes GROUP BY post_id";
+    $qe_getAllLikes = $sql->query($q_getAllLikes);
+    if ($qe_getAllLikes->num_rows !== 0) {
+      while ($row0 = $qe_getAllLikes->fetch_assoc()) {
+        $user_total_likes[$row0["post_id"]] = $row0["likeCount"];
+        $user_total_likes_keysOnly[] = $row0["post_id"];
+      }
+    }
+    
   }
 
-  // Prefetch TOTAL liked posts
-  $q_getAllLikes = "SELECT post_id, COUNT(*) AS likeCount FROM tbl_feed_likes GROUP BY post_id";
-  $qe_getAllLikes = $sql->query($q_getAllLikes);
-  if ($qe_getAllLikes->num_rows !== 0) {
-    while ($row0 = $qe_getAllLikes->fetch_assoc()) {
-      $user_total_likes[$row0["post_id"]] = $row0["likeCount"];
-      $user_total_likes_keysOnly[] = $row0["post_id"];
-    }
-  }
 
   // Debugging.
   //echo (isset($user_liked_post_id))? "The user has liked stuff":"The user has liked nothing";
@@ -150,7 +155,7 @@
                       <h6><?php echo $row1["post_date"]; ?></h6>
                     </div>
                     <div class="feed_post_author">
-                      <h3><?php echo 'posted by '. $row2["username"]; ?></h3>
+                      <h3><?php echo 'Posted by '. $row2["username"]; ?></h3>
                     </div>
                     <div class="feed_actions">
                       <a href="#"> <h5>View Comments</h5> </a>
