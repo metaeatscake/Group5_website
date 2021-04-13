@@ -77,7 +77,7 @@
                 // Otherwise, DO NOT TOUCH.
 
                 //Fetch all posts from tbl_feed, also do the date formatting from MySQL instead of PHP
-                $queryString = "SELECT user_id, post_title, post_content, post_img, DATE_FORMAT(post_time, '$feed_dateFormat') AS post_date FROM tbl_feed";
+                $queryString = "SELECT post_id, user_id, post_title, post_content, post_img, DATE_FORMAT(post_time, '$feed_dateFormat') AS post_date FROM tbl_feed";
                 $feed_data = $sql->query($queryString);
               ?>
               <!-- Connect tbl_feed ID to tbl_user user_id -->
@@ -90,7 +90,7 @@
                   <!-- Feed Card design starts here. -->
                   <!-- Note: $row1 = tbl_feed, $row2 = tbl_users -->
                   <!-- No need for echo html, treat this like a normal html area. -->
-                  <div class="feed_post">
+                  <div class="feed_post" id="<?php echo 'post'.$row1['post_id']; ?>">
 
                     <div class="feed_title">
                       <h1><?php echo $row1["post_title"]; ?></h1>
@@ -110,7 +110,7 @@
                       <h6><?php echo $row1["post_date"]; ?></h6>
                     </div>
                     <div class="feed_post_author">
-                      <h3><?php echo $row2["username"]; ?></h3>
+                      <h3><?php echo 'posted by '. $row2["username"]; ?></h3>
                     </div>
                     <div class="feed_actions">
                       <a href="#"> <h5>View Comments</h5> </a>
