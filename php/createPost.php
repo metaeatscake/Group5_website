@@ -31,7 +31,7 @@
 
      <!-- Custom CSS File -->
      <link rel="stylesheet" href="../css/socialityOverrides.css">
-     <link rel="stylesheet" type="text/css" href="../css/createPostStyles.css">
+     <link rel="stylesheet" type="text/css" href="../css/profileStyles.css">
    </head>
    <body>
 

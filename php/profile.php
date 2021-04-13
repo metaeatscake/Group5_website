@@ -186,7 +186,7 @@
                     
                     </div>
 
-                      <?php
+                    <?php
                         $feed_dateFormat = "%M %d %Y, %H:%i:%s";
                         // Read this before editing the format: http://www.sqlines.com/oracle-to-mysql/to_char_datetime
                         // Otherwise, DO NOT TOUCH.
@@ -251,7 +251,7 @@
                         <?php endwhile; ?>
 
                       <?php endwhile; ?>
-
+                      
                   </div>
 
                 </div>
