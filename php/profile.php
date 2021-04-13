@@ -75,61 +75,6 @@
              your background is light. */
           color: #cca8e6;
         }
-       /* #profile_pic{
-          width: 150px;
-          margin-top: -200px;
-          border-radius: 50%;
-          border: solid 2px white;
-        }
-
-        #profile-menu-buttons{
-          width: 100px;
-          display: inline-block;
-          margin: 2px;
-        }
-
-        #following-img{
-          width: 75px;
-          float: left;
-          margin: 8px;
-        }
-
-        #following-bar{
-          background-color: white;
-          min-height: 400px;
-          margin-top: 20px;
-          color: #aaa;
-          padding: 8px;
-        }
-        
-        #following{
-          clear: both;
-          font-size: 12px;
-          font-weight: bold;
-          color: #405d9b;
-        }
-
-        textarea{
-          width: 100%;
-          border: none;
-          font-family: tahoma;
-          font-size: 14px; 
-        }
-
-        .btn-primary {
-          color: #fff;
-          background-color: #007bff;
-          border-color: #007bff;
-          border-radius: 20px;
-          width: 60px;
-          height: 30px;
-        }
-
-        .btn-primary:hover {
-          color: #fff;
-          background-color: #0069d9;
-          border-color: #0062cc;
-        }*/
       </style>
 
       <div class="demo-layout-transparent mdl-layout mdl-js-layout">
@@ -214,23 +159,27 @@
                    <!--POSTS AREA-->
                   <div style="min-height: 400px;flex:2.5; padding: 20px; padding-right: 0px;">
                     
-                    <div style="border: solid thin #aaa; padding: 10px;">
+                    <div style="border: solid thin #aaa; padding: 10px; background-color: white;">
                       <?php
                         // Direct/One-line fetch of column data. Extreme shortcut.
                          $username = $sql->query("SELECT * FROM tbl_users WHERE user_id = '{$_SESSION["account_id"]}'")->fetch_assoc()["username"];
                         ?>
 
                         <form action="handleCreatePost.php" method="POST" enctype="multipart/form-data">
-
-                           <input type="text" name="inputTitle" class="" placeholder="Title" required><br><br>
+                          <center>
+                           <input type="text" name="inputTitle" class="" placeholder="Title" required> 
+                          </center>
+                           <br>
 
                            <textarea name="inputText" rows="8" cols="80" placeholder="What's on your mind, <?php echo $db_username; ?>?"></textarea>
-                           <br><br>
+                           <br>
 
-                          <input type="file" name="inputPic" class="">
-                           <br><br>
+                          <input type="file" id="actual-btn" hidden/>
+                          <label for="actual-btn">No file Chosen</label>
+                           <br>
 
                           <input type="submit" name="btnSubmit" class="btn-primary" value="Post">
+                          <br><br>
                         </form>
                     
                     </div>

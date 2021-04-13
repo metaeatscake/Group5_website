@@ -37,19 +37,40 @@ textarea{
   border: none;
   font-family: tahoma;
   font-size: 14px; 
+  height: 60px;
 }
 
 .btn-primary {
   color: #fff;
-  background-color: #007bff;
+  background-color: #660066;
   border-color: #007bff;
   border-radius: 20px;
   width: 60px;
   height: 30px;
+  float: right;
+  border: none;
+  color: white;
+  font-size: 14px; 
 }
 
 .btn-primary:hover {
   color: #fff;
-  background-color: #0069d9;
+  background-color:#ff80ff;
+  border-color: #0062cc;
+}
+
+label {
+  background-color:#ff00ff;
+  color: white;
+  padding: 0.5rem;
+  font-family: sans-serif;
+  border-radius: 0.3rem;
+  cursor: pointer;
+  margin-top: 1rem;
+}
+
+label:hover {
+  color: #fff;
+  background-color:#ff80ff;
   border-color: #0062cc;
 }
