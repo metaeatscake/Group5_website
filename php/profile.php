@@ -186,6 +186,72 @@
                     
                     </div>
 
+                      <?php
+                        $feed_dateFormat = "%M %d %Y, %H:%i:%s";
+                        // Read this before editing the format: http://www.sqlines.com/oracle-to-mysql/to_char_datetime
+                        // Otherwise, DO NOT TOUCH.
+
+                        //Fetch all posts from tbl_feed, also do the date formatting from MySQL instead of PHP
+                        $queryString = "SELECT post_id, user_id, post_title, post_content, post_img, DATE_FORMAT(post_time, '$feed_dateFormat') AS post_date FROM tbl_feed";
+                        $feed_data = $sql->query($queryString);
+                      ?>
+                      <!-- Connect tbl_feed ID to tbl_user user_id -->
+                      <?php while($row1 = $feed_data->fetch_assoc()): ?>
+
+                        <?php $user_data = $sql->query("SELECT * FROM tbl_users WHERE user_id = '{$row1["user_id"]}'"); ?>
+
+                        <?php while($row2 = $user_data->fetch_assoc()): ?>
+
+                          <?php
+                            //Setup for the Likes system.
+                            //Only true if the user has liked this specific post.
+                              $post_isLiked = (isset($user_liked_post_id) && in_array($row1['post_id'], $user_liked_post_id));
+
+                              // NOTE: First string is the color/text when the post IS LIKED, the other is when it is NOT liked.
+                              $post_likeButton_color = ($post_isLiked) ? "#c5d1e3" : "#2c6bd1";
+                              $post_likeButton_text = ($post_isLiked) ? "Unlike" : "Like";
+
+                            //String for building the link to handleLikePost.php.
+                              $post_likeButton_href = "php/handleLikePost.php?post_id={$row1['post_id']}";
+                              //Debug
+                              //echo $post_likeButton_href;
+                           ?>
+                          <!-- Feed Card design starts here. -->
+                          <!-- Note: $row1 = tbl_feed, $row2 = tbl_users -->
+                          <!-- No need for echo html, treat this like a normal html area. -->
+                          <div class="feed_post" id="<?php echo 'post'.$row1['post_id']; ?>">
+
+                            <div class="feed_title">
+                              <h1><?php echo $row1["post_title"]; ?></h1>
+                            </div>
+
+                            <!-- Only display image div if there is image. -->
+                            <?php if (isset($row1["post_img"])): ?>
+                              <div class="feed_image">
+                                <img src="<?php echo 'php/'.$row1['post_img']; ?>" alt="<?php echo $row1['post_img']; ?>">
+                              </div>
+                            <?php endif; ?>
+
+                            <div class="feed_content">
+                              <h4><?php echo $row1["post_content"]; ?></h4>
+                            </div>
+                            <div class="feed_post_time">
+                              <h6><?php echo $row1["post_date"]; ?></h6>
+                            </div>
+                            <div class="feed_post_author">
+                              <h3><?php echo 'posted by '. $row2["username"]; ?></h3>
+                            </div>
+                            <div class="feed_actions">
+                              <a href="#"> <h5>View Comments</h5> </a>
+                              <a href="<?php echo $post_likeButton_href; ?>" style="color:<?php echo $post_likeButton_color; ?>"> <i class="material-icons">thumb_up</i> <?php echo $post_likeButton_text; ?> </a>
+                            </div>
+
+                          </div>
+
+                        <?php endwhile; ?>
+
+                      <?php endwhile; ?>
+
                   </div>
 
                 </div>
