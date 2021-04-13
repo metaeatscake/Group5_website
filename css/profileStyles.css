@@ -1,0 +1,55 @@
+#profile_pic{
+  width: 150px;
+  margin-top: -200px;
+  border-radius: 50%;
+  border: solid 2px white;
+}
+
+#profile-menu-buttons{
+  width: 100px;
+  display: inline-block;
+  margin: 2px;
+}
+
+#following-img{
+  width: 75px;
+  float: left;
+  margin: 8px;
+}
+
+#following-bar{
+  background-color: white;
+  min-height: 400px;
+  margin-top: 20px;
+  color: #aaa;
+  padding: 8px;
+}
+
+#following{
+  clear: both;
+  font-size: 12px;
+  font-weight: bold;
+  color: #405d9b;
+}
+
+textarea{
+  width: 100%;
+  border: none;
+  font-family: tahoma;
+  font-size: 14px; 
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #007bff;
+  border-color: #007bff;
+  border-radius: 20px;
+  width: 60px;
+  height: 30px;
+}
+
+.btn-primary:hover {
+  color: #fff;
+  background-color: #0069d9;
+  border-color: #0062cc;
+}

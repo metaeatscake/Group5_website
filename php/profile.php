@@ -50,6 +50,7 @@
 
      <!-- Custom CSS File -->
      <link rel="stylesheet" href="../css/socialityOverrides.css">
+     <link rel="stylesheet" type="text/css" href="../css/profileStyles.css">
    </head>
 
    <body>
@@ -74,7 +75,7 @@
              your background is light. */
           color: #cca8e6;
         }
-        #profile_pic{
+       /* #profile_pic{
           width: 150px;
           margin-top: -200px;
           border-radius: 50%;
@@ -128,7 +129,7 @@
           color: #fff;
           background-color: #0069d9;
           border-color: #0062cc;
-        }
+        }*/
       </style>
 
       <div class="demo-layout-transparent mdl-layout mdl-js-layout">
