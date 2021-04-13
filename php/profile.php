@@ -138,11 +138,6 @@
                   <div id=profile-menu-buttons>Friends</div>
                   <div id=profile-menu-buttons>Photos</div>
                   <div id=profile-menu-buttons>Settings</div>
-                  <?php 
-                    echo "<div class=''>
-                        <a href = 'editProfile.php' class='btnEdit'> Edit Profile </a>
-                      </div>";
-                   ?>
                 </div>
               </div>
 
