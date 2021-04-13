@@ -12,12 +12,22 @@
 
   // Prefetch liked posts data.
   $q_getLikes = "SELECT * FROM tbl_feed_likes WHERE user_id = '{$_SESSION["account_id"]}'";
-  $doQuery = $sql->query($q_getLikes);
+  $qe_getLikes = $sql->query($q_getLikes);
 
   //Only initialize the array if there are actual results.
-  if ($doQuery->num_rows !== 0) {
-    while ($row0 = $doQuery->fetch_assoc()) {
+  if ($qe_getLikes->num_rows !== 0) {
+    while ($row0 = $qe_getLikes->fetch_assoc()) {
       $user_liked_post_id[] = $row0['post_id'];
+    }
+  }
+
+  // Prefetch TOTAL liked posts
+  $q_getAllLikes = "SELECT post_id, COUNT(*) AS likeCount FROM tbl_feed_likes GROUP BY post_id";
+  $qe_getAllLikes = $sql->query($q_getAllLikes);
+  if ($qe_getAllLikes->num_rows !== 0) {
+    while ($row0 = $qe_getAllLikes->fetch_assoc()) {
+      $user_total_likes[$row0["post_id"]] = $row0["likeCount"];
+      $user_total_likes_keysOnly[] = $row0["post_id"];
     }
   }
 
@@ -113,6 +123,9 @@
                       $post_likeButton_href = "php/handleLikePost.php?post_id={$row1['post_id']}";
                       //Debug
                       //echo $post_likeButton_href;
+
+                    //Vars for counting the likes.
+                      $post_likeCount = (isset($user_total_likes) && in_array($row1['post_id'], $user_total_likes_keysOnly)) ? $user_total_likes[$row1['post_id']] : 0 ;
                    ?>
                   <!-- Feed Card design starts here. -->
                   <!-- Note: $row1 = tbl_feed, $row2 = tbl_users -->
@@ -141,7 +154,7 @@
                     </div>
                     <div class="feed_actions">
                       <a href="#"> <h5>View Comments</h5> </a>
-                      <a href="<?php echo $post_likeButton_href; ?>" style="color:<?php echo $post_likeButton_color; ?>"> <i class="material-icons">thumb_up</i> <?php echo $post_likeButton_text; ?> </a>
+                      <a href="<?php echo $post_likeButton_href; ?>" style="color:<?php echo $post_likeButton_color; ?>"> <i class="material-icons">thumb_up</i> <?php echo $post_likeButton_text . " (".$post_likeCount.")"; ?> </a>
                     </div>
 
                   </div>
