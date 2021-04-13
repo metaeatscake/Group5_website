@@ -97,7 +97,7 @@
                     </div>
 
                     <!-- Only display image div if there is image. -->
-                    <?php if (isset($row["post_img"])): ?>
+                    <?php if (isset($row1["post_img"])): ?>
                       <div class="feed_image">
                         <img src="<?php echo 'php/'.$row1['post_img']; ?>" alt="<?php echo $row1['post_img']; ?>">
                       </div>

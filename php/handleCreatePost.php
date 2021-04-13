@@ -64,7 +64,8 @@
 		$time = $sql->query("SELECT DATE_FORMAT(SYSDATE(), '$timeFormat') AS time_now")->fetch_assoc()["time_now"];
 
 		// Filename of uploaded image.
-		$newfileName = $_SESSION["account_id"] . "_" . $time . {$vld_i->getFileExtension()};
+		$ext = $vld_i->getFileExtension();
+		$newFileName = $_SESSION["account_id"] . "_" . $time . "." . $ext;
 		$saveFolder = "images/post_img/";
 
 		// Don't touch.
