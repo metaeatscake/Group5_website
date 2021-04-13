@@ -97,6 +97,17 @@
           text-decoration: none;
           color: black;
         }
+        #profile_pic{
+          width: 150px;
+          margin-top: -200px;
+          border-radius: 50%;
+          border: solid 2px white;
+        }
+        #profile-menu-buttons{
+          width: 100px;
+          display: inline-block;
+          margin: 2px;
+        }
       </style>
 
       <div class="demo-layout-transparent mdl-layout mdl-js-layout">
@@ -106,45 +117,37 @@
        <main class="mdl-layout__content">
 
          <div class="page-content mdl-grid">
-            <div class = "mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet">
-              <!-- ADD THE PROFILE CARD HERE. -->
-             <h3><?php echo $db_username; ?> | Sociality</h3>
-             <p> ──────────────────────────────────── </p>
-             <?php
-               //the first div contains all the information for the card
-               //the second div contains the profile picture
-               //the third div contains the other important details of user
-               //note that i'll not put css, so i'll just leave the class empty for less hassle
-                  echo "<div class=''>
-                          <div class=''>
-                            <img src='$db_profile_pic'>
-                          </div>
-                          <br><br>
-                          <div class='cover-about'>
-                            <b style='font-size: 30px;'>About</b> <br>
-                            Bio:  $db_bio <br>
-                            Gender: $db_sex <br>
-                            Email: $db_email
-                          </div>
-                        </div>" ;
+            <!-- ADD THE PROFILE CARD HERE. -->
+              <div style="width: 900px; height: 600px; margin:auto; background-color: #d9d9d9; min-height: 400px; align-content: center;">
 
-                  //the class that contain the href, can be the same class on the one above (line 100)
-                  //you might missed the class inside the 'a' tag, for now I'll put a temporary inline css for it
+                <div style="background-color: white; text-align: center; color: #405d9b">
+                  <img src="images/assets/bglight.jpg" style="width: 100%;">
+                  <!--TEMPORARY ONLY, ONCE I KNOW HOW TO WORK ON PUTTING UPLOAD IMAGE ICON BESIDE THE PROFILE PICTURE-->
+                  <img src="images/users/_default.jpg" id="profile_pic">
+                  <!--
+                    CHANGE THIS WITH THE TEMPORARY IMG THAT I PUT
+                    <img id="profile_pic" src="images/users/$db_profile_pic">
+                  -->
+                  <br>
+                  <div style="font-size: 20px">
+                      <?php echo $db_username; ?>
+                  </div>;
+                  <br>
+                  <div id=profile-menu-buttons>Timeline</div>
+                  <div id=profile-menu-buttons>About</div>
+                  <div id=profile-menu-buttons>Friends</div>
+                  <div id=profile-menu-buttons>Photos</div>
+                  <div id=profile-menu-buttons>Settings</div>
+                  <?php 
+                    echo "<div class=''>
+                        <a href = 'editProfile.php' class='btnEdit'> Edit Profile </a>
+                      </div>";
+                   ?>
+                </div>
+              </div>
 
-                  echo "<div class=''>
-                          <a href = 'editProfile.php' class='btnEdit'> Edit Profile </a>
-                        </div>";
-
-                  echo "<br>";
-              ?>
-           </div>
-           <!--DISPLAY OF THEIR POSTS-->
-           <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
-            TO BE CONTINUED
           </div>
-           
-
-
+  
        </main>
 
        <?php include_once("inc/footer.php"); ?>
