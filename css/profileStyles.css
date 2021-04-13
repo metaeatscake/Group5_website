@@ -123,13 +123,14 @@ label:hover {
   box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0, 6);
   border-radius: 5px;
   overflow: hidden;
+  counter-reset: flag;
 }
 
 .feed_actions a{
   display: block;
   float: left;
   text-decoration: none;
-  padding: 0 10px 0 30px;
+  padding: 0 10px 0 60px;
   line-height: 36px;
   background-color: #cd98b8;
   position: relative;
@@ -139,11 +140,14 @@ label:hover {
   background-color: #b46494;
 }
 
+.feed_rections a.active:after, .feed_reactions a:hover:after{
+  background-color: 135deg #673252;
+}
+
 .feed_reactions a:after{
   content: '';
   width: 36px;
   height: 36px;
-  background-color: red;
   position: absolute;
   top: 0px;
   z-index: 1;
@@ -152,4 +156,29 @@ label:hover {
   -moz-transform: scale(0.707) rotate(45deg);
   -o-transform: scale(0.707) rotate(45deg);
   border-radius: 0 0 0 30px;
+  box-shadow: 2px -2px 1px 1px rgba(0, 0, 0, 0, 5), 3px -2px 1px 1px rgba(255, 255, 255, 0.6);
+}
+
+.feed_reactions a:last-child:after{
+  content: none;
+}
+
+.feed_reactions a:last-child{
+  padding-right: 20px;
+  border-radius: 0 5px 5px 0;
+}
+
+.feed_reactions a:before{
+  counter: counter(flag);
+  counter-increment: flag;
+  width: 20px;
+  height: 20px;
+  background-color: white;
+  font-weight: bold;
+  position: absolute;
+  top: 0px;
+  left: 30px;
+  line-height: 20px;
+  margin: 8px 0;
+  border-radius: 100%;
 }
