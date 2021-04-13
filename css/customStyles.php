@@ -140,6 +140,7 @@
         width: 150px;
         border: 4px solid #ad5389;
         position: relative;
+        right: 6px;
         margin: auto;
         border-radius: 10px;
         transition: 0.5s;
