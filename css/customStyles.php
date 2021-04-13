@@ -2,7 +2,7 @@
 
   .form-wrapper{
     width:400px;
-  	margin:80px auto 0px auto;
+  	margin:30px auto 0px auto;
   	padding:25px;
   	border-radius:5px;
   	-moz-border-radius:5px;

@@ -74,7 +74,7 @@
         <div class="form-wrapper">
           <form class="form-main" action="handleLogin.php" method="post" >
             <div class="formItem">
-            <br><br>
+            <br>
               <center><img src="images/assets/socialitylogoblack.png" width="300" height="75"><center>
               <h3 style="text-align: center">Log In</h3>
             </div>

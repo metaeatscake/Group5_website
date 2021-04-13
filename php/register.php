@@ -74,7 +74,9 @@
         <div class="form-wrapper">
           <form class="form-main" action="handleLogin.php" method="post" >
             <div class="formItem">
-              <h1 style="text-align: center">Register</h1>
+            <br>
+            <center><img src="images/assets/socialitylogoblack.png" width="300" height="75"><center>
+              <h3 style="text-align: center">Register Now!</h3>
             </div>
             <div class="formItem">
               <label for="lname">Email</label>
