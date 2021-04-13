@@ -74,7 +74,9 @@
         <div class="form-wrapper">
           <form class="form-main" action="handleLogin.php" method="post" >
             <div class="formItem">
-              <h1 style="text-align: center">Log In</h1>
+            <br><br>
+              <center><img src="images/assets/socialitylogoblack.png" width="300" height="75"><center>
+              <h3 style="text-align: center">Log In</h3>
             </div>
             <div class="formItem">
               <label for="username">Username</label>
