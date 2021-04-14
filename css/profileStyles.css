@@ -124,4 +124,10 @@ label:hover {
 .feed_actions a{
   text-decoration: none;
   padding-right: 50px;
+  padding-inline: 82px
+}
+
+.feed_post{
+  border-color: #e6e6e6;
+  border: 5px;
 }
