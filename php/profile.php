@@ -207,7 +207,7 @@
                           <div class="feed_post" id="<?php echo 'post'.$row1['post_id']; ?>">
 
                             <div class="feed_title">
-                              <h4><b><?php echo $row1["post_title"]; ?></b></h4>
+                              <b><?php echo $row1["post_title"]; ?></b>
                             </div>
 
                             <!-- Only display image div if there is image. -->
@@ -218,13 +218,15 @@
                             <?php endif; ?>
 
                             <div class="feed_content">
-                              <h5><?php echo $row1["post_content"]; ?></h5>
+                              <?php echo $row1["post_content"]; ?>
                             </div>
                             <div class="feed_post_time">
-                              <h9><?php echo $row1["post_date"]; ?></h9>
+                              <?php echo $row1["post_date"]; ?>
                             </div>
                             <div class="feed_post_author">
-                              <h9><?php echo 'Posted by '. $row2["username"]; ?></h9>
+                              <a href="profile.php">
+                                <?php echo 'Posted by '. $row2["username"]; ?>
+                              </a>
                             </div>
                             <div class="feed_actions">
                               <a href="<?php echo $post_likeButton_href; ?>" style="color:<?php echo $post_likeButton_color; ?>"> <i class="material-icons">thumb_up</i> </a>
