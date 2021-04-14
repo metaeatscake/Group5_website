@@ -68,31 +68,24 @@
 
             <div style="min-height: 400px; flex:-5; padding: 90px;">
 
-              <div style="border: solid thin #aaa; padding: 10px; background-color: white;">
+              <div id="text-area">
                 <?php
                   // Direct/One-line fetch of column data. Extreme shortcut.
                    $username = $sql->query("SELECT * FROM tbl_users WHERE user_id = '{$_SESSION["account_id"]}'")->fetch_assoc()["username"];
                   ?>
-
                   <form action="handleCreatePost.php" method="POST" enctype="multipart/form-data">
-                    <center>
-                     <input type="text" name="inputTitle" id="title-bar" placeholder="Title" required>
-                    </center>
-                     <br>
-
-                     <textarea name="inputText" rows="8" cols="80" placeholder="What's on your mind, <?php echo $username; ?>?"></textarea>
-                     <br>
-
+                    <input type="text" name="inputTitle" id="title-bar" placeholder="Title" required>
+                      <br>
+                    <textarea name="inputText" rows="8" cols="80" placeholder="What's on your mind, <?php echo $username; ?>?"></textarea>
+                      <br>
                     <input type="file" id="actual-btn" name="inputPic" hidden/>
                     <label for="actual-btn"><span class="material-icons">
                     drive_folder_upload
                     </span> </label>
-                    <br>
-
+                      <br>
                     <input type="submit" name="btnSubmit" class="btn-primary" value="Post">
                     <br><br>
-                  </form>
-
+                  </form>                    
               </div>
 
             </div>

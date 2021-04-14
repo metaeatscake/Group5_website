@@ -280,11 +280,11 @@
 
           </div>
 
-       </main>
+        </main>
 
        <?php include_once("inc/footer.php"); ?>
 
-      </div>
+    </div>
 
    </body>
 
