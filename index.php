@@ -138,7 +138,7 @@
                   <div class="feed_post" id="<?php echo 'post'.$row1['post_id']; ?>">
 
                     <div class="feed_title">
-                      <h1><?php echo $row1["post_title"]; ?></h1>
+                      <?php echo $row1["post_title"]; ?>
                     </div>
 
                     <!-- Only display image div if there is image. -->
@@ -149,17 +149,23 @@
                     <?php endif; ?>
 
                     <div class="feed_content">
-                      <h4><?php echo $row1["post_content"]; ?></h4>
+                      <?php echo $row1["post_content"]; ?>
                     </div>
+
                     <div class="feed_post_time">
-                      <h6><?php echo $row1["post_date"]; ?></h6>
+                      <?php echo $row1["post_date"]; ?>
                     </div>
+
                     <div class="feed_post_author">
-                      <h3><?php echo 'Posted by '. $row2["username"]; ?></h3>
+                      <a href="profile.php">
+                        <?php echo 'Posted by '. $row2["username"]; ?>
+                      </a>
                     </div>
+
                     <div class="feed_actions">
-                      <a href="#"> <h5>View Comments</h5> </a>
-                      <a href="<?php echo $post_likeButton_href; ?>" style="color:<?php echo $post_likeButton_color; ?>"> <i class="material-icons">thumb_up</i> <?php echo $post_likeButton_text . " (".$post_likeCount.")"; ?> </a>
+                      <a href="<?php echo $post_likeButton_href; ?>" style="color:<?php echo $post_likeButton_color; ?>"> <i class="material-icons">thumb_up</i><?php echo $post_likeCount; ?></a>
+                      <a href="#"><span class="material-icons">mode_comment</span> </a>
+                      <a href="#"><span class="material-icons">share</span></a>
                     </div>
 
                   </div>

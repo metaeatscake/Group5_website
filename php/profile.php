@@ -200,6 +200,8 @@
                               $post_likeButton_href = "php/handleLikePost.php?post_id={$row1['post_id']}";
                               //Debug
                               //echo $post_likeButton_href;
+
+                              $post_likeCount = (isset($user_total_likes) && in_array($row1['post_id'], $user_total_likes_keysOnly)) ? $user_total_likes[$row1['post_id']] : 0 ;
                            ?>
                           <!-- Feed Card design starts here. -->
                           <!-- Note: $row1 = tbl_feed, $row2 = tbl_users -->
@@ -229,7 +231,7 @@
                               </a>
                             </div>
                             <div class="feed_actions">
-                              <a href="<?php echo $post_likeButton_href; ?>" style="color:<?php echo $post_likeButton_color; ?>"> <i class="material-icons">thumb_up</i> </a>
+                              <a href="<?php echo $post_likeButton_href; ?>" style="color:<?php echo $post_likeButton_color; ?>"> <i class="material-icons">thumb_up</i><?php echo $post_likeCount; ?></a>
                               <a href="#"><span class="material-icons">mode_comment</span> </a>
                               <a href="#"><span class="material-icons">share</span></a>
                             </div>
