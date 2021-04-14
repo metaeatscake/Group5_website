@@ -85,12 +85,12 @@
 
          <div class="page-content mdl-grid">
             <!-- ADD THE PROFILE CARD HERE. -->
-              <div style="width: 900px; margin:auto; background: -webkit-linear-gradient(to right, #3c1053, #ad5389); min-height: 400px; align-content: center;">
+              <div style="width: 900px; margin:auto; background: -webkit-linear-gradient(to right, #3c1053, #ad5389); align-content: center;">
 
                 <div style="background-color: white; text-align: center; color: #405d9b">
 
                   <!--TEMPORARY ONLY, ONCE I KNOW HOW TO WORK ON PUTTING UPLOAD IMAGE ICON BESIDE THE PROFILE PICTURE-->
-                  <img src="images/users_cover/_default.png" style="width: 100%;">
+                  <img src="images/users_cover/_default.png" style="width: 100%; height: 380px;">
 
                   <!---CHANGE THIS WITH THE TEMPORARY IMG THAT I PUT
                     <img src="images/users_cover/bglight.jpg" style="width: 100%;">
@@ -107,19 +107,26 @@
 
                   <br>
                   <!--Name of the User-->
-                  <div style="font-size: 20px">
-                      <?php echo $db_username; ?>
-                      <!--Bio of the user-->
-                      <div style="font-size: 12px;">
-                        <?php echo $db_bio; ?>
-                      </div>
+                  <div id="profile-menu-username">
+                    <a href="editProfile.php"><?php echo $db_username; ?></a>
                   </div>
                   <br>
-                  <div id=profile-menu-buttons>Timeline</div>
-                  <div id=profile-menu-buttons>About</div>
-                  <div id=profile-menu-buttons>Friends</div>
-                  <div id=profile-menu-buttons>Photos</div>
-                  <div id=profile-menu-buttons>Settings</div>
+                  <!--Bio of the user-->
+                  <div class="profile-menu-bio">
+                    <?php echo $db_bio; ?>
+                  </div>
+                  <br>
+                  <!--Edit Profile Button-->
+                  <div id="edit-button" align="centered">
+                    <a href="editProfile.php">Edit</a>
+                  </div>
+
+                  <hr>
+                  <a href="#" id=profile-menu-buttons>Timeline</a>
+                  <a href="#" id=profile-menu-buttons>About</a>
+                  <a href="#" id=profile-menu-buttons>Friends</a>
+                  <a href="#" id=profile-menu-buttons>Photos</a>
+                  <a href="#" id=profile-menu-buttons>Settings</a>
                 </div>
 
                 <!--BELOW THE PROFILE CARD AREA-->

@@ -8,9 +8,41 @@
 #profile-menu-buttons{
   width: 100px;
   display: inline-block;
-  margin: 2px;
+  margin: 5px;
+  text-decoration: none;
+  color: black;
+  padding: 5px;
 }
 
+#profile-menu-buttons:hover{
+  border-radius: 5px;
+  background-color: #eeccff;
+
+}
+
+#profile-menu-username{
+  font-size: 30px;
+}
+
+#profile-menu-username a{
+  color: black;
+  text-decoration: none;
+}
+
+.profile-menu-bio{
+  font-size: 10px;
+  color: #a6a6a6;
+  background-color: black;
+}
+
+#edit-button a{
+  color: blue;
+  text-decoration: none;
+}
+
+#edit-button a:hover{
+  text-decoration: underline;
+}
 #following-img{
   width: 75px;
   float: left;
