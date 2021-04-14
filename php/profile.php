@@ -123,11 +123,13 @@
                   </div>
 
                   <hr>
+                  <!--PROFILE MENU BUTTONS, BELOW THE AREA OF PROFILE PAGE MENU TOP-->
                   <a href="#" id=profile-menu-buttons>Timeline</a>
                   <a href="#" id=profile-menu-buttons>About</a>
                   <a href="#" id=profile-menu-buttons>Friends</a>
                   <a href="#" id=profile-menu-buttons>Photos</a>
                   <a href="#" id=profile-menu-buttons>Settings</a>
+                  <br><br>
                 </div>
 
                 <!--BELOW THE PROFILE CARD AREA-->
