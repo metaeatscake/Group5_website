@@ -143,12 +143,11 @@
                   </div>
                   <br><br>
                   <!--PROFILE MENU BUTTONS, BELOW THE AREA OF PROFILE PAGE MENU TOP-->
-                    <div class="topnav">
-                      <a href="#">My Posts</a>
-                      <a href="#">About</a>
-                      <a href="#">Following</a>
-                      <a href="editProfile.php">Customize Profile</a>
-                    </div>
+                  <div class="topnav">
+                    <a href="#">My Posts</a>
+                    <a href="#">About</a>
+                    <a href="#">Following</a>
+                    <a href="editProfile.php">Customize Profile</a>
                   </div>
                 </div>
 
@@ -279,12 +278,12 @@
 
           </div>
 
-       </main>
+        </main>
 
        <?php include_once("inc/footer.php"); ?>
 
-      </div>
+    </div>
 
    </body>
-   
+
  </html>
