@@ -48,6 +48,7 @@
 #edit-button a:hover{
   text-decoration: underline;
 }
+
 #following-img{
   width: 75px;
   float: left;
@@ -59,6 +60,7 @@
   min-height: 400px;
   margin-top: 20px;
   color: #aaa;
+  font: arial;
   padding: 8px;
   border-radius: 8px;
 }
@@ -178,6 +180,5 @@ label:hover {
 }
 
 .feed_post{
-  border-color: #e6e6e6;
   border: 5px;
 }

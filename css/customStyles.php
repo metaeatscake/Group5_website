@@ -95,11 +95,13 @@
     text-align:left;
     width: 550px;
     min-height: 20%;
-    font-family: Segoe UI;
-    color:white;
-    background: rgba(30,30,30,0.2);
+    /*font-family: Segoe UI;*/
+    color: black;
+    /*background: rgba(30,30,30,0.2);*/
+    background-color: white;
     padding: 15px;
     margin-top: 15px;
+    border-radius: 8px;
   }
 
   .feed_title{
