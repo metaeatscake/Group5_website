@@ -32,7 +32,7 @@
     <script src="https://kit.fontawesome.com/7f2eccabe0.js" crossorigin="anonymous"></script>
   </head>
 
-  <body <?php if(isset($_SESSION["handler-alert"])){echo " onload='showDialog()'";}?>>
+  <body>
 
     <!-- Alert message from handler. The user will NOT access handler. -->
     <?php include_once("inc/_js_mdl_formAlert.php"); ?>

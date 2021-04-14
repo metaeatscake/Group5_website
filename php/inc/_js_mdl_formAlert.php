@@ -18,9 +18,13 @@
   </dialog>
   <script>
     var dialog = document.querySelector('dialog');
+
+    document.querySelector('body').onload = function() {showDialog()};
+
     if (! dialog.showModal) {
       dialogPolyfill.registerDialog(dialog);
     }
+
     function showDialog(){
       dialog.showModal();
     }
@@ -30,7 +34,7 @@
     });
     dialog.querySelector('.agree').addEventListener('click', function(){
       dialog.close();
-      location.reload(); 
+      location.reload();
     })
   </script>
 
