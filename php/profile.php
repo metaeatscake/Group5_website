@@ -196,13 +196,10 @@
 
                    <!--POSTS AREA-->
                   <div id="post-area-menu" style="min-height: 400px;flex:2.5; padding: 20px; padding-right: 0px;">
-<<<<<<< HEAD
-                    
+
                     <div id="post-area-menu">
-=======
 
                     <div id="post-area-menu" style="border: solid thin #aaa; padding: 10px; background-color: white;">
->>>>>>> 9f6c520cf35bac61798ccb39a55e6862226e2d4a
 
                       <?php
                         $feed_dateFormat = "%M %d %Y, %H:%i:%s";
