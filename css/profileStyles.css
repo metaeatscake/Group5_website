@@ -66,7 +66,8 @@
 }
 
 #post-area-menu{
-  border-radius: 8px;
+  background: -webkit-linear-gradient(to right, #3c1053, #ad5389);
+  padding: 0px;
 }
 
 #following{
@@ -180,5 +181,7 @@ label:hover {
 }
 
 .feed_post{
-  border: 5px;
+  background-color: white;
+  border-radius: 8px;
+  padding: 13px;
 }

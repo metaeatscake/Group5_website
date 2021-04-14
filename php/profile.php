@@ -197,7 +197,7 @@
                    <!--POSTS AREA-->
                   <div id="post-area-menu" style="min-height: 400px;flex:2.5; padding: 20px; padding-right: 0px;">
                     
-                    <div id="post-area-menu" style="border: solid thin #aaa; padding: 10px; background-color: white;">
+                    <div id="post-area-menu">
 
                       <?php
                         $feed_dateFormat = "%M %d %Y, %H:%i:%s";
@@ -205,7 +205,7 @@
                         // Otherwise, DO NOT TOUCH.
 
                         //Fetch all posts from tbl_feed, also do the date formatting from MySQL instead of PHP
-                        $queryString = "SELECT post_id, user_id, post_title, post_content, post_img, DATE_FORMAT(post_time, '$feed_dateFormat') AS post_date FROM tbl_feed ORDER BY post_time DESC";
+                        $queryString = "SELECT post_id, user_id, post_title, post_content, post_img, DATE_FORMAT(post_time, '$feed_dateFormat') AS post_date FROM tbl_feed  WHERE user_id = '{$_SESSION['account_id']}' ORDER BY post_time DESC";
                         $feed_data = $sql->query($queryString);
                       ?>
                       <!-- Connect tbl_feed ID to tbl_user user_id -->
