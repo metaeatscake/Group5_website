@@ -19,7 +19,6 @@
 #profile-menu-buttons:hover{
   border-radius: 5px;
   background-color: #eeccff;
-
 }
 
 #profile-page-menu-top{
@@ -180,8 +179,17 @@ label:hover {
 
 .feed_actions a{
   text-decoration: none;
-  padding-right: 50px;
-  padding-inline: 82px;
+  padding: 15px 82px;
+  border: none;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+}
+
+.feed_actions a:hover{
+  border-radius: 5px;
+
+  background-color: #eeccff;
 }
 
 .feed_post{
