@@ -30,7 +30,17 @@
     header("location: adm_viewUsers.php");
     exit();
   }
- ?>
+  //Changing Profile Picture
+  $tmp_id = $_SESSION["account_id"];
+  if($result = $sql->query("SELECT * FROM tbl_users WHERE id = '$tmp_id'"))
+  {
+    while($row = $result->fetch_assoc())
+    {
+      extract($row, EXTR_PREFIX_ALL, "data");
+    }
+  }
+  $requireInput = false;
+?>
  <!DOCTYPE html>
  <html lang="en" dir="ltr">
    <head>
@@ -92,10 +102,19 @@
 
             <!-- Title Area (including the background pic) -->
             <!--i just copied some css on register, you can still change it-->
-              <div class="mdl-card__title">
-                <h2 class="mdl-card__title-text" ><?php echo $db_username; ?> | Sociality</h2>
-              </div>
-
+            
+            <center><br><br><img src="images/assets/socialitylogoblack.png" width="300" height="70"><center>
+            <br>
+            <img src="<?php echo $db_profile_pic; ?> "width="215" height="200">
+               <div class="formItem">
+                <h3 class="text-align: center" >--- <?php echo $db_username; ?> ---</h3>
+               </div>
+               <div class="formItem">
+              <label>Profile Picture</label>
+               <div>
+               <input type="file" name="profile_pic" accept="image/*" <?php echo ($requireInput) ? "required":''; ?>>
+               </div>
+        
                <div class="formItem">
                  <label>Username</label>
                  <div class="">
@@ -142,6 +161,7 @@
                   </button>
               </div>
              </form>
+             <br><br>
           </div>
 
        </main>
