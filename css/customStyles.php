@@ -49,12 +49,9 @@
     padding-left: 40px;
   }
 
-  input[type="text"]:focus {
-    border-color: purple;
-    box-shadow: 0 0 8px 0 purple;
-  }
-
-  input[type="password"]:focus {
+  input[type="text"]:focus,
+  input[type="password"]:focus,
+  input[type="email"]:focus {
     border-color: purple;
     box-shadow: 0 0 8px 0 purple;
   }
@@ -63,10 +60,7 @@
     position: relative;
   }
 
-  .formItem input[type:text]{
-    padding-left: 40px;
-  }
-
+  .formItem input[type:text],
   .formItem input[type:password]{
     padding-left: 40px;
   }
@@ -82,11 +76,9 @@
     margin-left: 2px;
   }
 
-  .formItem input[type="text"]:focus + i {
-    color: purple;
-  }
-
-  .formItem input[type="password"]:focus + i {
+  .formItem input[type="text"]:focus + i,
+  .formItem input[type="password"]:focus + i,
+  .formItem input[type="email"]:focus + i {
     color: purple;
   }
 

@@ -70,7 +70,7 @@
               <label for="lname">Email</label>
             </div>
             <div class="formItem">
-              <input class="input" type="text" name="email" placeholder="Type your email" required>
+              <input class="input" type="email" name="email" placeholder="Type your email" required>
               <i class="fas fa-envelope" aria-hidden="true"></i>
             </div>
             <br>
