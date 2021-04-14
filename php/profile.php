@@ -30,6 +30,34 @@
     header("location: adm_viewUsers.php");
     exit();
   }
+
+  // Clients can/should still see posts even if they are not logged in, so index.php will contain the feed.
+
+  if (isset($_SESSION["account_id"])) {
+
+    // Prefetch liked posts data.
+    $q_getLikes = "SELECT * FROM tbl_feed_likes WHERE user_id = '{$_SESSION["account_id"]}'";
+    $qe_getLikes = $sql->query($q_getLikes);
+
+    //Only initialize the array if there are actual results.
+    if ($qe_getLikes->num_rows !== 0) {
+      while ($row0 = $qe_getLikes->fetch_assoc()) {
+        $user_liked_post_id[] = $row0['post_id'];
+      }
+    }
+
+    // Prefetch TOTAL liked posts
+    $q_getAllLikes = "SELECT post_id, COUNT(*) AS likeCount FROM tbl_feed_likes GROUP BY post_id";
+    $qe_getAllLikes = $sql->query($q_getAllLikes);
+    if ($qe_getAllLikes->num_rows !== 0) {
+      while ($row0 = $qe_getAllLikes->fetch_assoc()) {
+        $user_total_likes[$row0["post_id"]] = $row0["likeCount"];
+        $user_total_likes_keysOnly[] = $row0["post_id"];
+      }
+    }
+
+  }
+
  ?>
  <!DOCTYPE html>
  <html lang="en" dir="ltr">
@@ -99,7 +127,7 @@
                   <!--TEMPORARY ONLY, ONCE I KNOW HOW TO WORK ON PUTTING UPLOAD IMAGE ICON BESIDE THE PROFILE PICTURE-->
 
                   <img src="images/users/_default.jpg" id="profile_pic">
-                  
+
                   <!--
                     CHANGE THIS WITH THE TEMPORARY IMG THAT I PUT
                     <img id="profile_pic" src="images/users/$db_profile_pic">
@@ -134,7 +162,7 @@
 
                 <!--BELOW THE PROFILE CARD AREA-->
                 <div style="display: flex;">
-                   
+
                    <!--FOLLOWING AREA-->
                   <div style="min-height: 400px; flex:1;">
                     <div id="following-bar">
@@ -168,8 +196,10 @@
 
                    <!--POSTS AREA-->
                   <div id="post-area-menu" style="min-height: 400px;flex:2.5; padding: 20px; padding-right: 0px;">
-                    
-                    <div id="post-area-menu" style="border: solid thin #aaa; padding: 10px; background-color: white;">
+
+                    <div id="post-area-menu">
+
+                    <div id="post-area-menu">
 
                       <?php
                         $feed_dateFormat = "%M %d %Y, %H:%i:%s";
@@ -177,7 +207,7 @@
                         // Otherwise, DO NOT TOUCH.
 
                         //Fetch all posts from tbl_feed, also do the date formatting from MySQL instead of PHP
-                        $queryString = "SELECT post_id, user_id, post_title, post_content, post_img, DATE_FORMAT(post_time, '$feed_dateFormat') AS post_date FROM tbl_feed ORDER BY post_time DESC";
+                        $queryString = "SELECT post_id, user_id, post_title, post_content, post_img, DATE_FORMAT(post_time, '$feed_dateFormat') AS post_date FROM tbl_feed  WHERE user_id = '{$_SESSION['account_id']}' ORDER BY post_time DESC";
                         $feed_data = $sql->query($queryString);
                       ?>
                       <!-- Connect tbl_feed ID to tbl_user user_id -->
@@ -197,7 +227,7 @@
                               $post_likeButton_text = ($post_isLiked) ? "Unlike" : "Like";
 
                             //String for building the link to handleLikePost.php.
-                              $post_likeButton_href = "php/handleLikePost.php?post_id={$row1['post_id']}";
+                              $post_likeButton_href = "handleLikePost.php?post_id={$row1['post_id']}&returnTo=profile.php";
                               //Debug
                               //echo $post_likeButton_href;
 
@@ -209,27 +239,30 @@
                           <div class="feed_post" id="<?php echo 'post'.$row1['post_id']; ?>">
 
                             <div class="feed_title">
-                              <b><?php echo $row1["post_title"]; ?></b>
+                              <?php echo $row1["post_title"]; ?>
                             </div>
 
-                            <!-- Only display image div if there is image. -->
-                            <?php if (isset($row1["post_img"])): ?>
-                              <div class="feed_image">
-                                <img src="<?php echo $row1['post_img']; ?>" alt="<?php echo $row1['post_img']; ?>">
-                              </div>
-                            <?php endif; ?>
-
-                            <div class="feed_content">
-                              <?php echo $row1["post_content"]; ?>
-                            </div>
                             <div class="feed_post_time">
                               <?php echo $row1["post_date"]; ?>
                             </div>
+
                             <div class="feed_post_author">
                               <a href="profile.php">
                                 <?php echo 'Posted by '. $row2["username"]; ?>
                               </a>
                             </div>
+
+                            <div class="feed_content">
+                              <?php echo $row1["post_content"]; ?>
+                            </div>
+
+                            <!-- Only display image div if there is image. -->
+                            <?php if (isset($row1["post_img"])): ?>
+                              <div class="feed_image">
+                                  <img src="<?php echo $row1['post_img']; ?>" alt="<?php echo $row1['post_img']; ?>">
+                              </div>
+                            <?php endif; ?>
+
                             <div class="feed_actions">
                               <a href="<?php echo $post_likeButton_href; ?>" style="color:<?php echo $post_likeButton_color; ?>"> <i class="material-icons">thumb_up</i><?php echo $post_likeCount; ?></a>
                               <a href="#"><span class="material-icons">mode_comment</span> </a>
@@ -237,11 +270,11 @@
                             </div>
 
                           </div>
-
+                          <br><br>
                         <?php endwhile; ?>
 
                       <?php endwhile; ?>
-                    
+
                     </div>
 
                   </div>
@@ -251,7 +284,7 @@
               </div>
 
           </div>
-  
+
        </main>
 
        <?php include_once("inc/footer.php"); ?>

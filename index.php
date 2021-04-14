@@ -141,17 +141,6 @@
                       <?php echo $row1["post_title"]; ?>
                     </div>
 
-                    <!-- Only display image div if there is image. -->
-                    <?php if (isset($row1["post_img"])): ?>
-                      <div class="feed_image">
-                          <img src="<?php echo 'php/'.$row1['post_img']; ?>" alt="<?php echo $row1['post_img']; ?>">
-                      </div>
-                    <?php endif; ?>
-
-                    <div class="feed_content">
-                      <?php echo $row1["post_content"]; ?>
-                    </div>
-
                     <div class="feed_post_time">
                       <?php echo $row1["post_date"]; ?>
                     </div>
@@ -162,6 +151,17 @@
                       </a>
                     </div>
 
+                    <div class="feed_content">
+                      <?php echo $row1["post_content"]; ?>
+                    </div>
+                    
+                    <!-- Only display image div if there is image. -->
+                    <?php if (isset($row1["post_img"])): ?>
+                      <div class="feed_image">
+                          <img src="<?php echo 'php/'.$row1['post_img']; ?>" alt="<?php echo $row1['post_img']; ?>">
+                      </div>
+                    <?php endif; ?>
+
                     <div class="feed_actions">
                       <a href="<?php echo $post_likeButton_href; ?>" style="color:<?php echo $post_likeButton_color; ?>"> <i class="material-icons">thumb_up</i><?php echo $post_likeCount; ?></a>
                       <a href="#"><span class="material-icons">mode_comment</span> </a>
@@ -169,7 +169,7 @@
                     </div>
 
                   </div>
-
+                  <br>
                 <?php endwhile; ?>
 
               <?php endwhile; ?>

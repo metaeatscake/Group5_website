@@ -98,13 +98,14 @@
               <label for="password">Password</label>
             </div>
             <div class="formItem">
-              <input class="input "type="password" name="password" required placeholder="Type your password">
+              <input class="input "type="password" name="password" required placeholder="Type your password" min="8">
               <i class="fas fa-key" aria-hidden="true"></i>
             </div>
             <br>
             <label for="password">Confirm Password</label>
           <div class="formItem">
-            <input class="input "type="password" name="confirm_password" required placeholder="Re-type your password">
+            <input class="input "type="password" name="confirm_password" required placeholder="Re-type your password" min="8">
+
             <i class="fas fa-key" aria-hidden="true"></i>
           </div>
           <div class="formItem" id="gender">

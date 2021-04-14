@@ -25,7 +25,25 @@
   $liked = ($q_returnedRows !== 0);
 
   // Redirect Link Setup.
-  $redirLink = "../#post{$_GET['post_id']}";
+  if (isset($_GET["returnTo"])) {
+    $postTag = "#post{$_GET['post_id']}";
+    $targetPage = $_GET["returnTo"];
+
+    switch ($targetPage) {
+      case 'profile.php':
+        $redirLink = "profile.php$postTag";
+        break;
+
+      default:
+        $redirLink = "../$postTag";
+        break;
+    }
+  }
+  else{
+    $redirLink = "../#post{$_GET['post_id']}";
+  }
+
+
   // Normal Redirect
   //$redirLink = "../";
 
