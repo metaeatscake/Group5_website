@@ -143,11 +143,12 @@
                   </div>
                   <br><br>
                   <!--PROFILE MENU BUTTONS, BELOW THE AREA OF PROFILE PAGE MENU TOP-->
-                  <div class="topnav">
-                    <a href="#" id="profile-menu-buttons">My Posts</a>
-                    <a href="#" id="profile-menu-buttons">About</a>
-                    <a href="#" id="profile-menu-buttons">Following</a>
-                    <a href="#" id="profile-menu-buttons">Customize Profile</a>
+                    <div class="topnav">
+                      <a href="#">My Posts</a>
+                      <a href="#">About</a>
+                      <a href="#">Following</a>
+                      <a href="editProfile.php">Customize Profile</a>
+                    </div>
                   </div>
                 </div>
 
@@ -285,5 +286,5 @@
       </div>
 
    </body>
-
+   
  </html>
