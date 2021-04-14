@@ -31,7 +31,7 @@
 
     switch ($targetPage) {
       case 'profile.php':
-        $redirLink = "profile.php/$postTag";
+        $redirLink = "profile.php$postTag";
         break;
 
       default:
