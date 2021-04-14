@@ -20,6 +20,7 @@
   $emptyDataErrorMsg = $vld->getValidationMessage();
   if (!empty($emptyDataErrorMsg)) {
     $_SESSION["handler-alert"] = $emptyDataErrorMsg;
+    $_SESSION["handler-alert-type"] = "Error";
     header("location: login.php");
     exit();
   }
@@ -33,7 +34,8 @@
   // Trying to do in_array() if the array is empty causes some errors.
   // Also makes sure that the following while loop doesn't fail.
   if (!$db_hasData) {
-    $_SESSION["handler-alert"] = "ERROR: The database has no registered users.";
+    $_SESSION["handler-alert"] = "The database has no registered users.";
+    $_SESSION["handler-alert-type"] = "Error";
     header("location: login.php");
     exit();
   }
@@ -50,6 +52,7 @@
   $errMsg = $vld->verify_get_validationMessage();
   if (!empty($errMsg)) {
     $_SESSION["handler-alert"] = $errMsg;
+    $_SESSION["handler-alert-type"] = "Error";
     header("location: login.php");
     exit();
   }
@@ -69,6 +72,7 @@
   $errMsg = $vld->verify_get_validationMessage();
   if (!empty($errMsg)) {
     $_SESSION["handler-alert"] = $errMsg;
+    $_SESSION["handler-alert-type"] = "Error";
     header("location: login.php");
     exit();
   }

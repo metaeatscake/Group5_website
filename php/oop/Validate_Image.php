@@ -62,8 +62,8 @@
     public function getValidationMessage(){
       $message = "";
 
-      $message = ($this->isImage())? "":"ERROR: This file is not an image.";
-      $message = ($this->isValidType())? "":"ERROR: This image file type is not accepted.";
+      $message = ($this->isImage())? "":"This file is not an image.";
+      $message = ($this->isValidType())? "":"This image file type is not accepted.";
 
       return $message;
     }

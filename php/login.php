@@ -31,10 +31,11 @@
 
     <script src="https://kit.fontawesome.com/7f2eccabe0.js" crossorigin="anonymous"></script>
   </head>
-  <body>
+
+  <body <?php if(isset($_SESSION["handler-alert"])){echo " onload='showDialog()'";}?>>
 
     <!-- Alert message from handler. The user will NOT access handler. -->
-    <?php include_once("inc/handlerAlert.php"); ?>
+    <?php include_once("inc/_js_mdl_formAlert.php"); ?>
 
     <!-- Uses a header that contracts as the page scrolls down. -->
     <!-- Pasted CSS/HTML from MDL Documentation -->
