@@ -105,7 +105,7 @@
                 // Otherwise, DO NOT TOUCH.
 
                 //Fetch all posts from tbl_feed, also do the date formatting from MySQL instead of PHP
-                $queryString = "SELECT post_id, user_id, post_title, post_content, post_img, DATE_FORMAT(post_time, '$feed_dateFormat') AS post_date FROM tbl_feed";
+                $queryString = "SELECT post_id, user_id, post_title, post_content, post_img, DATE_FORMAT(post_time, '$feed_dateFormat') AS post_date FROM tbl_feed ORDER BY post_time DESC";
                 $feed_data = $sql->query($queryString);
               ?>
               <!-- Connect tbl_feed ID to tbl_user user_id -->
@@ -144,7 +144,7 @@
                     <!-- Only display image div if there is image. -->
                     <?php if (isset($row1["post_img"])): ?>
                       <div class="feed_image">
-                        <img src="<?php echo 'php/'.$row1['post_img']; ?>" alt="<?php echo $row1['post_img']; ?>">
+                          <img src="<?php echo 'php/'.$row1['post_img']; ?>" alt="<?php echo $row1['post_img']; ?>">
                       </div>
                     <?php endif; ?>
 

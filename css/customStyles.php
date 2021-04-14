@@ -93,7 +93,7 @@
   .feed_post{
     margin:auto;
     text-align:left;
-    width: 50%;
+    width: 550px;
     min-height: 20%;
     font-family: Segoe UI;
     color:white;
@@ -109,12 +109,14 @@
   }
 
   .feed_image{
-    width:100%;
+    width: 85%;
   }
 
   .feed_image img{
-    width:100%;
-    height:100%;
+    width:70%;
+    height:70%;
+    padding-left: 25%;
+    padding-right: 30%;
   }
 
   .feed_content{
@@ -145,7 +147,7 @@
   .feed_actions a{
     text-decoration: none;
     padding-right: 50px;
-    padding-inline: 92px;
+    padding-inline: 75px;
   }
 
   #gender{
