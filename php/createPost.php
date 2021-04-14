@@ -33,12 +33,11 @@
      <link rel="stylesheet" href="../css/socialityOverrides.css">
      <link rel="stylesheet" type="text/css" href="../css/profileStyles.css">
    </head>
-   <body>
 
-       <!-- Uses a header that contracts as the page scrolls down. -->
-       <!-- Pasted CSS/HTML from MDL Documentation -->
+   <!-- MDL Error Dialog support. -->
+   <body <?php if(isset($_SESSION["handler-alert"])){echo " onload='showDialog()'";}?> >
+     <?php include_once("inc/_js_mdl_formAlert.php"); ?>
 
-      <!-- Uses a transparent header that draws on top of the layout's background -->
       <style>
       @import url('https://fonts.googleapis.com/css2?family=Staatliches&display=swap');
         .demo-layout-transparent {
@@ -57,7 +56,6 @@
         }
       </style>
 
-      <?php include_once("inc/handlerAlert.php"); ?>
       <div class="demo-layout-transparent mdl-layout mdl-js-layout">
         <!-- Navbar is too long, and is repeated in all pages so it is moved to a dedicated file. -->
         <?php include_once("inc/navbar.php"); ?>
@@ -67,7 +65,7 @@
          <div class="page-content">
 
             <div style="min-height: 400px; flex:-5; padding: 90px;">
-              
+
               <div style="border: solid thin #aaa; padding: 10px; background-color: white;">
                 <?php
                   // Direct/One-line fetch of column data. Extreme shortcut.
@@ -76,7 +74,7 @@
 
                   <form action="handleCreatePost.php" method="POST" enctype="multipart/form-data">
                     <center>
-                     <input type="text" name="inputTitle" id="title-bar" placeholder="Title" required> 
+                     <input type="text" name="inputTitle" id="title-bar" placeholder="Title" required>
                     </center>
                      <br>
 
@@ -92,7 +90,7 @@
                     <input type="submit" name="btnSubmit" class="btn-primary" value="Post">
                     <br><br>
                   </form>
-              
+
               </div>
 
             </div>
