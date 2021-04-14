@@ -255,7 +255,7 @@
                             <div class="feed_content">
                               <?php echo $row1["post_content"]; ?>
                             </div>
-
+                            <br>
                             <!-- Only display image div if there is image. -->
                             <?php if (isset($row1["post_img"])): ?>
                               <div class="feed_image">

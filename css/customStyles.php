@@ -107,7 +107,7 @@
   .feed_title{
     text-align: left;
     font-weight: bold;
-    font-size: 15px;
+    font-size: 18px;
   }
 
   .feed_image{
@@ -120,22 +120,26 @@
   }
 
   .feed_content{
-    font-size: 15px;
+    font-size: 18px;
     font-weight: lighter;
   }
 
   .feed_post_time{
-    font-size: 12px;
+    font-size: 14px;
     font-weight: lighter;
   }
 
   .feed_post_author{
-    font-size: 12px;
+    font-size: 14px;
     font-weight: lighter;
   }
 
   .feed_post_author a{
     text-decoration: none;
+  }
+
+  .feed_post_author a:hover{
+    text-decoration: underline;
   }
 
   .feed_actions{
