@@ -22,10 +22,6 @@
 
 }
 
-#profile-menu-buttons a{
-  text-decoration: none;
-}
-
 #profile-page-menu-top{
   line-height: 22px;
 }
@@ -64,6 +60,11 @@
   margin-top: 20px;
   color: #aaa;
   padding: 8px;
+  border-radius: 8px;
+}
+
+#post-area-menu{
+  border-radius: 8px;
 }
 
 #following{
