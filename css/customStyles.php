@@ -109,14 +109,12 @@
   }
 
   .feed_image{
-    width: 85%;
+    width:100%;
   }
 
   .feed_image img{
-    width:70%;
-    height:70%;
-    padding-left: 25%;
-    padding-right: 30%;
+    width:100%;
+    height:100%;
   }
 
   .feed_content{
