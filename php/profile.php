@@ -55,7 +55,7 @@
         $user_total_likes_keysOnly[] = $row0["post_id"];
       }
     }
-    
+
   }
 
  ?>
@@ -127,7 +127,7 @@
                   <!--TEMPORARY ONLY, ONCE I KNOW HOW TO WORK ON PUTTING UPLOAD IMAGE ICON BESIDE THE PROFILE PICTURE-->
 
                   <img src="images/users/_default.jpg" id="profile_pic">
-                  
+
                   <!--
                     CHANGE THIS WITH THE TEMPORARY IMG THAT I PUT
                     <img id="profile_pic" src="images/users/$db_profile_pic">
@@ -162,7 +162,7 @@
 
                 <!--BELOW THE PROFILE CARD AREA-->
                 <div style="display: flex;">
-                   
+
                    <!--FOLLOWING AREA-->
                   <div style="min-height: 400px; flex:1;">
                     <div id="following-bar">
@@ -196,7 +196,7 @@
 
                    <!--POSTS AREA-->
                   <div id="post-area-menu" style="min-height: 400px;flex:2.5; padding: 20px; padding-right: 0px;">
-                    
+
                     <div id="post-area-menu" style="border: solid thin #aaa; padding: 10px; background-color: white;">
 
                       <?php
@@ -225,7 +225,7 @@
                               $post_likeButton_text = ($post_isLiked) ? "Unlike" : "Like";
 
                             //String for building the link to handleLikePost.php.
-                              $post_likeButton_href = "handleLikePost.php?post_id={$row1['post_id']}&returnTo='profile.php'";
+                              $post_likeButton_href = "handleLikePost.php?post_id={$row1['post_id']}&returnTo=profile.php";
                               //Debug
                               //echo $post_likeButton_href;
 
@@ -253,7 +253,7 @@
                             <div class="feed_content">
                               <?php echo $row1["post_content"]; ?>
                             </div>
-                            
+
                             <!-- Only display image div if there is image. -->
                             <?php if (isset($row1["post_img"])): ?>
                               <div class="feed_image">
@@ -272,7 +272,7 @@
                         <?php endwhile; ?>
 
                       <?php endwhile; ?>
-                    
+
                     </div>
 
                   </div>
@@ -282,7 +282,7 @@
               </div>
 
           </div>
-  
+
        </main>
 
        <?php include_once("inc/footer.php"); ?>
