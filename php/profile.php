@@ -106,19 +106,20 @@
                   -->
 
                   <br>
-                  <!--Name of the User-->
-                  <div id="profile-menu-username">
-                    <a href="editProfile.php"><?php echo $db_username; ?></a>
-                  </div>
-                  <br>
-                  <!--Bio of the user-->
-                  <div class="profile-menu-bio">
-                    <?php echo $db_bio; ?>
-                  </div>
-                  <br>
-                  <!--Edit Profile Button-->
-                  <div id="edit-button" align="centered">
-                    <a href="editProfile.php">Edit</a>
+                  <!--BELOW AREA OF PROFILE PICTURE-->
+                  <div id="profile-page-menu-top">
+                    <!--Name of the User-->
+                    <div id="profile-menu-username">
+                      <a href="editProfile.php"><?php echo $db_username; ?></a>
+                    </div>
+                    <!--Bio of the user-->
+                    <div id="profile-menu-bio">
+                      <?php echo $db_bio; ?>
+                    </div>
+                    <!--Edit Profile Button-->
+                    <div id="edit-button" align="centered">
+                      <a href="editProfile.php">Edit</a>
+                    </div>
                   </div>
 
                   <hr>

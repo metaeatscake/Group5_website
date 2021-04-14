@@ -20,6 +20,10 @@
 
 }
 
+#profile-page-menu-top{
+  line-height: 22px;
+}
+
 #profile-menu-username{
   font-size: 30px;
 }
@@ -29,10 +33,9 @@
   text-decoration: none;
 }
 
-.profile-menu-bio{
-  font-size: 10px;
-  color: #a6a6a6;
-  background-color: black;
+#profile-menu-bio{
+  font-size: 15px;
+  color: #8c8c8c;
 }
 
 #edit-button a{
