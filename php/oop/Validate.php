@@ -44,7 +44,7 @@
             $message .= "\n" . ucfirst($key);
           }
         }
-        $message .= "\n\nForm Rejected";
+
       }
 
       return $message;
@@ -124,7 +124,7 @@
             $message .= "\n" . str_replace("_", " ",ucfirst($key));
           }
         }
-        $message .= "\n\nForm Rejected";
+        
       }
 
       return $message;

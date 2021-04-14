@@ -35,7 +35,9 @@
    </head>
 
    <!-- MDL Error Dialog support. -->
-   <body <?php if(isset($_SESSION["handler-alert"])){echo " onload='showDialog()'";}?> >
+   <body>
+
+     <?php //Error Handler. ?>
      <?php include_once("inc/_js_mdl_formAlert.php"); ?>
 
       <style>

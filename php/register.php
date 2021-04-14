@@ -31,9 +31,7 @@
 
     <script src="https://kit.fontawesome.com/7f2eccabe0.js" crossorigin="anonymous"></script>
   </head>
-  <body
-    <?php if(isset($_SESSION["handler-alert"])){echo " onload='showDialog()'";}?>
-  >
+  <body>
     <?php include_once("inc/_js_mdl_formAlert.php"); ?>
 
    <style>
