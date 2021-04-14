@@ -6,11 +6,48 @@
 }
 
 #profile-menu-buttons{
-  width: 100px;
-  display: inline-block;
-  margin: 2px;
+  font-size: 16px;
+  padding: 12px 24px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  text-align: center;
+  text-decoration: none;
+  color: black;
 }
 
+#profile-menu-buttons:hover{
+  border-radius: 5px;
+  background-color: #eeccff;
+
+}
+
+#profile-page-menu-top{
+  line-height: 22px;
+}
+
+#profile-menu-username{
+  font-size: 30px;
+}
+
+#profile-menu-username a{
+  color: black;
+  text-decoration: none;
+}
+
+#profile-menu-bio{
+  font-size: 15px;
+  color: #8c8c8c;
+}
+
+#edit-button a{
+  color: blue;
+  text-decoration: none;
+}
+
+#edit-button a:hover{
+  text-decoration: underline;
+}
 #following-img{
   width: 75px;
   float: left;
@@ -23,6 +60,11 @@
   margin-top: 20px;
   color: #aaa;
   padding: 8px;
+  border-radius: 8px;
+}
+
+#post-area-menu{
+  border-radius: 8px;
 }
 
 #following{
@@ -91,7 +133,8 @@ label:hover {
 
 .feed_title{
   text-align: left;
-  font-weight: bolder;
+  font-weight: bold;
+  font-size: 15px;
 }
 
 .feed_image{
@@ -104,15 +147,22 @@ label:hover {
 }
 
 .feed_content{
-  font-size: 12px;
+  font-size: 15px;
+  font-weight: lighter;
 }
 
 .feed_post_time{
-
+  font-size: 11px;
+  font-weight: lighter;
 }
 
 .feed_post_author{
+  font-size: 11px;
+  font-weight: lighter;
+}
 
+.feed_post_author a{
+  text-decoration: none;
 }
 
 .feed_actions{

@@ -85,12 +85,12 @@
 
          <div class="page-content mdl-grid">
             <!-- ADD THE PROFILE CARD HERE. -->
-              <div style="width: 900px; margin:auto; background: -webkit-linear-gradient(to right, #3c1053, #ad5389); min-height: 400px; align-content: center;">
+              <div style="width: 900px; margin:auto; background: -webkit-linear-gradient(to right, #3c1053, #ad5389); align-content: center;">
 
                 <div style="background-color: white; text-align: center; color: #405d9b">
 
                   <!--TEMPORARY ONLY, ONCE I KNOW HOW TO WORK ON PUTTING UPLOAD IMAGE ICON BESIDE THE PROFILE PICTURE-->
-                  <img src="images/users_cover/_default.png" style="width: 100%;">
+                  <img src="images/users_cover/_default.png" style="width: 100%; height: 380px;">
 
                   <!---CHANGE THIS WITH THE TEMPORARY IMG THAT I PUT
                     <img src="images/users_cover/bglight.jpg" style="width: 100%;">
@@ -106,20 +106,30 @@
                   -->
 
                   <br>
-                  <!--Name of the User-->
-                  <div style="font-size: 20px">
-                      <?php echo $db_username; ?>
-                      <!--Bio of the user-->
-                      <div style="font-size: 12px;">
-                        <?php echo $db_bio; ?>
-                      </div>
+                  <!--BELOW AREA OF PROFILE PICTURE-->
+                  <div id="profile-page-menu-top">
+                    <!--Name of the User-->
+                    <div id="profile-menu-username">
+                      <a href="editProfile.php"><?php echo $db_username; ?></a>
+                    </div>
+                    <!--Bio of the user-->
+                    <div id="profile-menu-bio">
+                      <?php echo $db_bio; ?>
+                    </div>
+                    <!--Edit Profile Button-->
+                    <div id="edit-button" align="centered">
+                      <a href="editProfile.php">Edit</a>
+                    </div>
                   </div>
-                  <br>
-                  <div id=profile-menu-buttons>Timeline</div>
-                  <div id=profile-menu-buttons>About</div>
-                  <div id=profile-menu-buttons>Friends</div>
-                  <div id=profile-menu-buttons>Photos</div>
-                  <div id=profile-menu-buttons>Settings</div>
+
+                  <hr>
+                  <!--PROFILE MENU BUTTONS, BELOW THE AREA OF PROFILE PAGE MENU TOP-->
+                  <a href="#" id=profile-menu-buttons>Timeline</a>
+                  <a href="#" id=profile-menu-buttons>About</a>
+                  <a href="#" id=profile-menu-buttons>Friends</a>
+                  <a href="#" id=profile-menu-buttons>Photos</a>
+                  <a href="#" id=profile-menu-buttons>Settings</a>
+                  <br><br>
                 </div>
 
                 <!--BELOW THE PROFILE CARD AREA-->
@@ -157,9 +167,9 @@
                   </div>
 
                    <!--POSTS AREA-->
-                  <div style="min-height: 400px;flex:2.5; padding: 20px; padding-right: 0px;">
+                  <div id="post-area-menu" style="min-height: 400px;flex:2.5; padding: 20px; padding-right: 0px;">
                     
-                    <div style="border: solid thin #aaa; padding: 10px; background-color: white;">
+                    <div id="post-area-menu" style="border: solid thin #aaa; padding: 10px; background-color: white;">
 
                       <?php
                         $feed_dateFormat = "%M %d %Y, %H:%i:%s";
@@ -197,7 +207,7 @@
                           <div class="feed_post" id="<?php echo 'post'.$row1['post_id']; ?>">
 
                             <div class="feed_title">
-                              <h4><b><?php echo $row1["post_title"]; ?></b></h4>
+                              <b><?php echo $row1["post_title"]; ?></b>
                             </div>
 
                             <!-- Only display image div if there is image. -->
@@ -208,13 +218,15 @@
                             <?php endif; ?>
 
                             <div class="feed_content">
-                              <h5><?php echo $row1["post_content"]; ?></h5>
+                              <?php echo $row1["post_content"]; ?>
                             </div>
                             <div class="feed_post_time">
-                              <h9><?php echo $row1["post_date"]; ?></h9>
+                              <?php echo $row1["post_date"]; ?>
                             </div>
                             <div class="feed_post_author">
-                              <h9><?php echo 'Posted by '. $row2["username"]; ?></h9>
+                              <a href="profile.php">
+                                <?php echo 'Posted by '. $row2["username"]; ?>
+                              </a>
                             </div>
                             <div class="feed_actions">
                               <a href="<?php echo $post_likeButton_href; ?>" style="color:<?php echo $post_likeButton_color; ?>"> <i class="material-icons">thumb_up</i> </a>
