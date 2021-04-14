@@ -93,7 +93,7 @@
   .feed_post{
     margin:auto;
     text-align:left;
-    width: 550px;
+    width: 600px;
     min-height: 20%;
     /*font-family: Segoe UI;*/
     color: black;
@@ -125,12 +125,12 @@
   }
 
   .feed_post_time{
-    font-size: 11px;
+    font-size: 12px;
     font-weight: lighter;
   }
 
   .feed_post_author{
-    font-size: 11px;
+    font-size: 12px;
     font-weight: lighter;
   }
 
@@ -146,8 +146,16 @@
 
   .feed_actions a{
     text-decoration: none;
-    padding-right: 50px;
-    padding-inline: 75px;
+    padding: 15px 75px;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+  }
+
+  .feed_actions a:hover{
+    border-radius: 5px;
+    background-color: #eeccff;
   }
 
   #gender{
