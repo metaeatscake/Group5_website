@@ -141,25 +141,25 @@
                       Following· <br>
 
                       <div id="following">
-                        <img id="following-img" src="images/users/Jesse-Renz.jpg">
+                        <img id="following-img" src="images/assets/Jesse-Renz.jpg">
                         <br>
                         Jesse Renz Faculin Bernese
                       </div>
 
                       <div id="following">
-                        <img id="following-img" src="images/users/Kyla-Nadine.jpg">
+                        <img id="following-img" src="images/assets/Kyla-Nadine.jpg">
                         <br>
                         Kyla Nadine Raquedan
                       </div>
 
                       <div id="following">
-                        <img id="following-img" src="images/users/Lunar-Angelo.jpg">
+                        <img id="following-img" src="images/assets/Lunar-Angelo.jpg">
                         <br>
                         Lunar Angelo Pajaroja
                       </div>
 
                       <div id="following">
-                        <img id="following-img" src="images/users/Ronnel-Tang.jpg">
+                        <img id="following-img" src="images/assets/Ronnel-Tang.jpg">
                         <br>
                         Ronnel Tang
                       </div>
@@ -177,7 +177,7 @@
                         // Otherwise, DO NOT TOUCH.
 
                         //Fetch all posts from tbl_feed, also do the date formatting from MySQL instead of PHP
-                        $queryString = "SELECT post_id, user_id, post_title, post_content, post_img, DATE_FORMAT(post_time, '$feed_dateFormat') AS post_date FROM tbl_feed";
+                        $queryString = "SELECT post_id, user_id, post_title, post_content, post_img, DATE_FORMAT(post_time, '$feed_dateFormat') AS post_date FROM tbl_feed ORDER BY post_time DESC";
                         $feed_data = $sql->query($queryString);
                       ?>
                       <!-- Connect tbl_feed ID to tbl_user user_id -->
@@ -200,6 +200,8 @@
                               $post_likeButton_href = "php/handleLikePost.php?post_id={$row1['post_id']}";
                               //Debug
                               //echo $post_likeButton_href;
+
+                              $post_likeCount = (isset($user_total_likes) && in_array($row1['post_id'], $user_total_likes_keysOnly)) ? $user_total_likes[$row1['post_id']] : 0 ;
                            ?>
                           <!-- Feed Card design starts here. -->
                           <!-- Note: $row1 = tbl_feed, $row2 = tbl_users -->
@@ -213,7 +215,7 @@
                             <!-- Only display image div if there is image. -->
                             <?php if (isset($row1["post_img"])): ?>
                               <div class="feed_image">
-                                <img src="<?php echo 'php/'.$row1['post_img']; ?>" alt="<?php echo $row1['post_img']; ?>">
+                                <img src="<?php echo $row1['post_img']; ?>" alt="<?php echo $row1['post_img']; ?>">
                               </div>
                             <?php endif; ?>
 
@@ -229,7 +231,7 @@
                               </a>
                             </div>
                             <div class="feed_actions">
-                              <a href="<?php echo $post_likeButton_href; ?>" style="color:<?php echo $post_likeButton_color; ?>"> <i class="material-icons">thumb_up</i> </a>
+                              <a href="<?php echo $post_likeButton_href; ?>" style="color:<?php echo $post_likeButton_color; ?>"> <i class="material-icons">thumb_up</i><?php echo $post_likeCount; ?></a>
                               <a href="#"><span class="material-icons">mode_comment</span> </a>
                               <a href="#"><span class="material-icons">share</span></a>
                             </div>

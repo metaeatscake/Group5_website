@@ -1,106 +1,83 @@
 <?php
 
-  // Connect to Database
-    include_once("inc/database.php");
+  // Get DB and Classes.
+  include_once("inc/database.php");
+  include_once("oop/_main.php");
 
-  // Prevent Illegal Access
-    if(isset($_SESSION["account_type"]) || empty($_POST)){
-      header("location: ../");
-      exit();
-    }
+  //Prevent unwanted access.
+  if ($_SERVER["REQUEST_METHOD"] !== "POST") {
+    header("location: ../");
+    exit();
+  }
 
-  // Clean Data
-    foreach ($_POST as $key => $value) {
-      $_POST[$key] = trim($value);
-      $emptyVar[] = empty($_POST[$key]);
-    }
+  // Declare object
+  $vld = new Validate($_POST);
 
-  // Get all available usernames
-    $data = $sql->query("SELECT * FROM tbl_users");
-    while($row = $data->fetch_assoc()){
-      $usernames[] = $row["username"];
-    }
+  // Magic.
+  $vld->cleanData();
 
-  // Control handler behavior
-  // if Debugging, set this to FALSE;
-    $redirect = true;
+  // Redirect if empty data.
+  $emptyDataErrorMsg = $vld->getValidationMessage();
+  if (!empty($emptyDataErrorMsg)) {
+    $_SESSION["handler-alert"] = $emptyDataErrorMsg;
+    header("location: login.php");
+    exit();
+  }
 
-  // Redirect when Empty variables are detected.
-    if(in_array(true, $emptyVar)){
-      $errorMessage = "ERROR: The following fields were found empty: \\n";
-      foreach ($emptyVar as $key => $value) {
-        if ($value) {
-          $errorMessage .= "\\n".ucfirst($key);
-        }
-      }
-      $errorMessage = "\\n\\nLogin Failed.";
+  // Prepare existing users
+  $query_getUsers = "SELECT * FROM tbl_users";
+  $execQuery_getUsers = $sql->query($query_getUsers);
+  $query_returnedRows = $execQuery_getUsers->num_rows;
+  $db_hasData = ($query_returnedRows !== 0);
 
-      $_SESSION["handler-alert"] = $errorMessage;
-      if ($redirect) {
-        header("location: login.php");
-        exit();
-      }else{
-        echo $errorMessage;
-      }
+  // Trying to do in_array() if the array is empty causes some errors.
+  // Also makes sure that the following while loop doesn't fail.
+  if (!$db_hasData) {
+    $_SESSION["handler-alert"] = "ERROR: The database has no registered users.";
+    header("location: login.php");
+    exit();
+  }
 
-    }
+  while ($row = $execQuery_getUsers->fetch_assoc()) {
+    $arr_userList[] = $row["username"];
+  }
+  $vld->verify_set_checkExisting([
+    "errorKey" => "this_user_does_not_exist",
+    "fieldKey" => "username"
+  ], $arr_userList);
 
-  // Vars are not empty, proceed.
-    else{
-      /*
-        Validations:
-          User exists
-          The password match.
-      */
+  //Next Error Check: given user does not exist.
+  $errMsg = $vld->verify_get_validationMessage();
+  if (!empty($errMsg)) {
+    $_SESSION["handler-alert"] = $errMsg;
+    header("location: login.php");
+    exit();
+  }
 
-      // USER EXISTS
-      if(in_array($_POST["username"], $usernames)){
+  // Get User password.
+  $username = $vld->getFormVar("username");
+  $userDataArray = $sql->query("SELECT * FROM tbl_users WHERE username = '$username'")->fetch_assoc();
+  $passHash = $userDataArray["password"];
 
-        // Get the password
-        $data = $sql->query("SELECT * FROM tbl_users WHERE username = '{$_POST["username"]}'");
-        $row = $data->fetch_assoc();
+  $vld->verify_set_checkMatch_Password([
+    "errorKey" => "wrong_password",
+    "fieldKey" => "password",
+    "passwordHash" => $passHash
+  ]);
 
-        // CHECK IF PASSWORD MATCH.
-        if(password_verify($_POST["password"], $row["password"])){
-          $_SESSION["account_id"] = $row["user_id"];
-          $_SESSION["account_type"] = $row["account_type"];
-          $_SESSION["username"] = $row["username"];
+  //Last Error Check: Password doesn't match.
+  $errMsg = $vld->verify_get_validationMessage();
+  if (!empty($errMsg)) {
+    $_SESSION["handler-alert"] = $errMsg;
+    header("location: login.php");
+    exit();
+  }
 
-          header("location: ../");
-          exit();
-        }
+  // Successful Login.
+  $_SESSION["account_id"] = $userDataArray["user_id"];
+  $_SESSION["account_type"] = $userDataArray["account_type"];
+  $_SESSION["username"] = $userDataArray["username"];
 
-        // Password does not match.
-        else{
-          $errorMessage = "ERROR: Wrong password";
-          $_SESSION["handler-alert"] = $errorMessage;
-
-          if($redirect){
-            header("location: login.php");
-            exit();
-          }
-          else{
-            echo $errorMessage;
-          }
-
-        }
-
-      }
-
-      // USER DOES NOT EXIST
-      else{
-        $errorMessage = "ERROR: This user is not registered.";
-        $_SESSION["handler-alert"] = $errorMessage;
-
-        if ($redirect) {
-          header("location: login.php");
-          exit();
-        }else{
-          echo $errorMessage;
-        }
-
-      }
-
-    }
-
-?>
+  header("location: ../");
+  exit();
+ ?>
