@@ -38,13 +38,13 @@
 
       $message = "";
       if (in_array(true, $this->booleanArray)) {
-        $message = "ERROR: The following fields were found empty: ";
+        $message = "The following fields were found empty: "."\n";
         foreach ($this->booleanArray as $key => $value) {
           if ($value) {
-            $message .= "\\n" . ucfirst($key);
+            $message .= "\n" . ucfirst($key);
           }
         }
-        $message .= "\\n\\nForm Rejected";
+
       }
 
       return $message;
@@ -118,13 +118,13 @@
 
       $message = "";
       if (in_array(true, $this->boolean_verify)) {
-        $message = "ERROR: ";
+        $message = "";
         foreach ($this->boolean_verify as $key => $value) {
           if ($value) {
-            $message .= "\\n" . str_replace("_", " ",ucfirst($key));
+            $message .= "\n" . str_replace("_", " ",ucfirst($key));
           }
         }
-        $message .= "\\n\\nForm Rejected";
+        
       }
 
       return $message;

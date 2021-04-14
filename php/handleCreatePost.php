@@ -31,6 +31,7 @@
 	$alertMessage = $vld->getValidationMessage();
 	if (!empty($alertMessage)) {
 		$_SESSION["handler-alert"] = $alertMessage;
+		$_SESSION["handler-alert-type"] = "Error";
 		header("location: createPost.php");
 		exit();
 	}
@@ -46,6 +47,7 @@
 		$alertMessage = $vld_i->getValidationMessage();
 		if (!empty($alertMessage)) {
 			$_SESSION["handler-alert"] = $alertMessage;
+			$_SESSION["handler-alert-type"] = "Error";
 			header("location: createPost.php");
 			exit();
 		}

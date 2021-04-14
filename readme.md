@@ -10,7 +10,7 @@
 
 ## Description
 
- Very social media website. \
+ Very social media website. 
  Almost like facebook except it is not as good.
 
  Features

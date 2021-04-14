@@ -3,3 +3,7 @@ $_SESSION["account_type"] = checks if account is "user" or "admin"
 $_SESSION["username"] = for the greeting in the navbar
 
 $_SESSION["handler-alert"] = Messages passed by the handler file to confirm data.
+$_SESSION["handler-alert-type"] = After implementing MDL Dialogue, this is for the error title.
+
+New MDL Dialog Code, add this in the <body> tag of an alert receiving document.
+<?php if(isset($_SESSION["handler-alert"])){echo " onload='showDialog()'";}?>

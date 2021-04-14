@@ -5,23 +5,6 @@
   border: solid 2px white;
 }
 
-#profile-menu-buttons{
-  font-size: 16px;
-  padding: 12px 24px;
-  border: none;
-  cursor: pointer;
-  border-radius: 5px;
-  text-align: center;
-  text-decoration: none;
-  color: black;
-}
-
-#profile-menu-buttons:hover{
-  border-radius: 5px;
-  background-color: #eeccff;
-
-}
-
 #profile-page-menu-top{
   line-height: 22px;
 }
@@ -141,7 +124,7 @@ label:hover {
 .feed_title{
   text-align: left;
   font-weight: bold;
-  font-size: 15px;
+  font-size: 18px;
 }
 
 .feed_image{
@@ -154,22 +137,26 @@ label:hover {
 }
 
 .feed_content{
-  font-size: 15px;
+  font-size: 18px;
   font-weight: lighter;
 }
 
 .feed_post_time{
-  font-size: 11px;
+  font-size: 14px;
   font-weight: lighter;
 }
 
 .feed_post_author{
-  font-size: 11px;
+  font-size: 14px;
   font-weight: lighter;
 }
 
 .feed_post_author a{
   text-decoration: none;
+}
+
+.feed_post_author a:hover{
+  text-decoration: underline;
 }
 
 .feed_actions{
@@ -180,12 +167,41 @@ label:hover {
 
 .feed_actions a{
   text-decoration: none;
-  padding-right: 50px;
-  padding-inline: 82px;
+  padding: 15px 82px;
+  border: none;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+}
+
+.feed_actions a:hover{
+  border-radius: 5px;
+  background-color: #cccccc;
 }
 
 .feed_post{
   background-color: white;
   border-radius: 8px;
   padding: 13px;
+}
+
+.topnav {
+  overflow: hidden;
+  background-color: white;
+  margin: 0;
+}
+
+.topnav a {
+  float: left;
+  display: inline-block;
+  color: black;
+  text-align: center;
+  padding: 1px 74.9px;
+  text-decoration: none;
+  font-size: 16px;
+  border-bottom: 3px solid transparent;
+}
+
+.topnav a:hover {
+  border-bottom: 3.6px solid #262626;
 }
