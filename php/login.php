@@ -34,13 +34,7 @@
   <body>
 
     <!-- Alert message from handler. The user will NOT access handler. -->
-    <?php if(isset($_SESSION["handler-alert"])): ?>
-      <script type="text/javascript">
-         alert('<?php echo "{$_SESSION["handler-alert"]}"; ?>');
-
-      </script>
-      <?php unset($_SESSION["handler-alert"]); ?>
-    <?php endif; ?>
+    <?php include_once("inc/handlerAlert.php"); ?>
 
     <!-- Uses a header that contracts as the page scrolls down. -->
     <!-- Pasted CSS/HTML from MDL Documentation -->
@@ -72,9 +66,11 @@
 
         <!-- MAIN CONTENT -->
         <div class="form-wrapper">
-          <form class="form-main" action="handleLogin.php" method="post" >
+          <form class="form-main" action="handleLogin.php" method="POST" >
             <div class="formItem">
-              <h1 style="text-align: center">Log In</h1>
+            <br>
+              <center><img src="images/assets/socialitylogoblack.png" width="300" height="75"><center>
+              <h3 style="text-align: center">Log In</h3>
             </div>
             <div class="formItem">
               <label for="username">Username</label>
@@ -103,9 +99,6 @@
       </div>
 
     </main>
-
-    <!-- Footer -->
-    <?php include_once("inc/footer.php"); ?>
 
    </div>
   </body>

@@ -72,9 +72,11 @@
 
         <!-- MAIN CONTENT -->
         <div class="form-wrapper">
-          <form class="form-main" action="handleLogin.php" method="post" >
+          <form class="form-main" action="handleRegister.php" method="POST">
             <div class="formItem">
-              <h1 style="text-align: center">Register</h1>
+            <br>
+            <center><img src="images/assets/socialitylogoblack.png" width="300" height="75"><center>
+              <h3 style="text-align: center">Register Now!</h3>
             </div>
             <div class="formItem">
               <label for="lname">Email</label>
@@ -102,17 +104,21 @@
             <br>
             <label for="password">Confirm Password</label>
           <div class="formItem">
+<<<<<<< HEAD
             <input class="input "type="password" name="cpassword" required placeholder="Re-type your password" min="8">
+=======
+            <input class="input "type="password" name="confirm_password" required placeholder="Re-type your password">
+>>>>>>> e7a6f50047a24815755c7e0ce46fcd45be765756
             <i class="fas fa-key" aria-hidden="true"></i>
           </div>
           <div class="formItem" id="gender">
-              <input class="gender"type="radio" name="gender" id="male">
+              <input class="gender"type="radio" name="sex" id="male" value="male" checked>
               <label for="male">
                 <i class="fas fa-male"></i>
                 <span>Male</span>
               </label>
 
-              <input class="gender"type="radio" name="gender" id="female">
+              <input class="gender"type="radio" name="sex" id="female" value="female">
               <label for="female">
                 <i class="fas fa-female"></i>
                 <span>Female</span>

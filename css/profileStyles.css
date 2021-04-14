@@ -6,9 +6,47 @@
 }
 
 #profile-menu-buttons{
-  width: 100px;
-  display: inline-block;
-  margin: 2px;
+  font-size: 16px;
+  padding: 12px 24px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  text-align: center;
+  text-decoration: none;
+  color: black;
+}
+
+#profile-menu-buttons:hover{
+  border-radius: 5px;
+  background-color: #eeccff;
+
+}
+
+#profile-page-menu-top{
+  line-height: 22px;
+}
+
+#profile-menu-username{
+  font-size: 30px;
+}
+
+#profile-menu-username a{
+  color: black;
+  text-decoration: none;
+}
+
+#profile-menu-bio{
+  font-size: 15px;
+  color: #8c8c8c;
+}
+
+#edit-button a{
+  color: blue;
+  text-decoration: none;
+}
+
+#edit-button a:hover{
+  text-decoration: underline;
 }
 
 #following-img{
@@ -22,7 +60,14 @@
   min-height: 400px;
   margin-top: 20px;
   color: #aaa;
+  font: arial;
   padding: 8px;
+  border-radius: 8px;
+}
+
+#post-area-menu{
+  background: -webkit-linear-gradient(to right, #3c1053, #ad5389);
+  padding: 0px;
 }
 
 #following{
@@ -37,19 +82,106 @@ textarea{
   border: none;
   font-family: tahoma;
   font-size: 14px; 
+  height: 60px;
 }
 
 .btn-primary {
   color: #fff;
-  background-color: #007bff;
+  background-color: #660066;
   border-color: #007bff;
   border-radius: 20px;
   width: 60px;
   height: 30px;
+  float: right;
+  border: none;
+  color: white;
+  font-size: 14px; 
 }
 
 .btn-primary:hover {
   color: #fff;
-  background-color: #0069d9;
+  background-color:#ff80ff;
   border-color: #0062cc;
+}
+
+#title-bar{
+  width: 100%;
+  border: none;
+  font-family: tahoma;
+  font-size: 14px; 
+  height: 60px;
+}
+
+#actual-btn{
+  cursor: pointer;
+}
+
+label {
+  background-color:#8a426d;
+  color: white;
+  padding: 0.5rem;
+  font-family: sans-serif;
+  padding: 0.9rem;
+  cursor: pointer;
+  margin-top: 1rem;
+  border-radius: 5px;
+}
+
+label:hover {
+  color: #fff;
+  background-color:#ff80ff;
+  border-color: #0062cc;
+}
+
+
+.feed_title{
+  text-align: left;
+  font-weight: bold;
+  font-size: 15px;
+}
+
+.feed_image{
+  width:100%;
+}
+
+.feed_image img{
+  width:100%;
+  height:100%;
+}
+
+.feed_content{
+  font-size: 15px;
+  font-weight: lighter;
+}
+
+.feed_post_time{
+  font-size: 11px;
+  font-weight: lighter;
+}
+
+.feed_post_author{
+  font-size: 11px;
+  font-weight: lighter;
+}
+
+.feed_post_author a{
+  text-decoration: none;
+}
+
+.feed_actions{
+  width: 100%;
+  display: inline-block;
+  margin: 8px;
+}
+
+.feed_actions a{
+  text-decoration: none;
+  padding-right: 50px;
+  padding-inline: 82px;
+}
+
+.feed_post{
+  background-color: white;
+  border-radius: 8px;
+  padding: 13px;
 }
