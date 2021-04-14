@@ -118,7 +118,7 @@
 
       $message = "";
       if (in_array(true, $this->boolean_verify)) {
-        $message = "\n";
+        $message = "";
         foreach ($this->boolean_verify as $key => $value) {
           if ($value) {
             $message .= "\n" . str_replace("_", " ",ucfirst($key));

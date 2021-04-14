@@ -27,6 +27,7 @@
   echo $errMsg;
   if (!empty($errMsg)) {
     $_SESSION["handler-alert"] = $errMsg;
+    $_SESSION["handler-alert-type"] = "Error";
     header("location: register.php");
     exit();
   }
@@ -75,6 +76,7 @@
     //echo $errMsg1;
   if (!empty($errMsg1)) {
     $_SESSION["handler-alert"] = $errMsg1;
+    $_SESSION["handler-alert-type"] = "Error";
     header("location: register.php");
     exit();
   }
@@ -94,7 +96,8 @@
   //echo $insertUser;
 
   $sql->query($insertUser);
-  $_SESSION["handler-alert"] = "User Successfully Registered!";
+  $_SESSION["handler-alert"] = "Registration Success!\nYou may now log in.";
+  $_SESSION["handler-alert-type"] = "Success";
   header("location: login.php");
   exit();
 
