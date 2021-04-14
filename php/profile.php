@@ -141,25 +141,25 @@
                       Following· <br>
 
                       <div id="following">
-                        <img id="following-img" src="images/users/Jesse-Renz.jpg">
+                        <img id="following-img" src="images/assets/Jesse-Renz.jpg">
                         <br>
                         Jesse Renz Faculin Bernese
                       </div>
 
                       <div id="following">
-                        <img id="following-img" src="images/users/Kyla-Nadine.jpg">
+                        <img id="following-img" src="images/assets/Kyla-Nadine.jpg">
                         <br>
                         Kyla Nadine Raquedan
                       </div>
 
                       <div id="following">
-                        <img id="following-img" src="images/users/Lunar-Angelo.jpg">
+                        <img id="following-img" src="images/assets/Lunar-Angelo.jpg">
                         <br>
                         Lunar Angelo Pajaroja
                       </div>
 
                       <div id="following">
-                        <img id="following-img" src="images/users/Ronnel-Tang.jpg">
+                        <img id="following-img" src="images/assets/Ronnel-Tang.jpg">
                         <br>
                         Ronnel Tang
                       </div>
