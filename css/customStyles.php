@@ -159,7 +159,7 @@
 
   .feed_actions a:hover{
     border-radius: 5px;
-    background-color: #eeccff;
+    background-color: #cccccc;
   }
 
   #gender{

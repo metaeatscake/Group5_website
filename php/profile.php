@@ -223,7 +223,7 @@
                               $post_isLiked = (isset($user_liked_post_id) && in_array($row1['post_id'], $user_liked_post_id));
 
                               // NOTE: First string is the color/text when the post IS LIKED, the other is when it is NOT liked.
-                              $post_likeButton_color = ($post_isLiked) ? "#c5d1e3" : "#2c6bd1";
+                              $post_likeButton_color = ($post_isLiked) ? "#000099" : "#262626";
                               $post_likeButton_text = ($post_isLiked) ? "Unlike" : "Like";
 
                             //String for building the link to handleLikePost.php.
@@ -265,8 +265,8 @@
 
                             <div class="feed_actions">
                               <a href="<?php echo $post_likeButton_href; ?>" style="color:<?php echo $post_likeButton_color; ?>"> <i class="material-icons">thumb_up</i><?php echo $post_likeCount; ?></a>
-                              <a href="#"><span class="material-icons">mode_comment</span> </a>
-                              <a href="#"><span class="material-icons">share</span></a>
+                              <a href="#"><span class="material-icons" style="color: #262626;">mode_comment</span> </a>
+                              <a href="#"><span class="material-icons" style="color: #262626;">share</span></a>
                             </div>
 
                           </div>
