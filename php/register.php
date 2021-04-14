@@ -104,10 +104,7 @@
             <br>
             <label for="password">Confirm Password</label>
           <div class="formItem">
-
-            <input class="input "type="password" name="cpassword" required placeholder="Re-type your password" min="8">
-
-            <input class="input "type="password" name="confirm_password" required placeholder="Re-type your password">
+            <input class="input "type="password" name="confirm_password" required placeholder="Re-type your password" min="8">
 
             <i class="fas fa-key" aria-hidden="true"></i>
           </div>
