@@ -32,7 +32,7 @@
         $user_total_likes_keysOnly[] = $row0["post_id"];
       }
     }
-    
+
   }
 
 
@@ -152,7 +152,7 @@
                     </div>
 
                     <div class="feed_content">
-                      <?php echo $row1["post_content"]; ?>
+                      <?php echo nl2br($row1["post_content"]); ?>
                     </div>
                     <br>
                     <!-- Only display image div if there is image. -->

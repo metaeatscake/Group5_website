@@ -26,9 +26,11 @@
     }
     dialog.querySelector('.close').addEventListener('click', function() {
       dialog.close();
+      location.reload();
     });
     dialog.querySelector('.agree').addEventListener('click', function(){
       dialog.close();
+      location.reload(); 
     })
   </script>
 
