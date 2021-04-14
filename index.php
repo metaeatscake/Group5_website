@@ -169,7 +169,7 @@
                     </div>
 
                   </div>
-
+                  <br>
                 <?php endwhile; ?>
 
               <?php endwhile; ?>

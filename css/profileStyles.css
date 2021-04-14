@@ -68,6 +68,10 @@
 #post-area-menu{
   background: -webkit-linear-gradient(to right, #3c1053, #ad5389);
   padding: 0px;
+  margin-top: 15px;
+  border-radius: 8px;
+  min-height: 20%;
+  margin: auto;
 }
 
 #following{

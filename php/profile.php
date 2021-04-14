@@ -199,7 +199,7 @@
 
                     <div id="post-area-menu">
 
-                    <div id="post-area-menu" style="border: solid thin #aaa; padding: 10px; background-color: white;">
+                    <div id="post-area-menu">
 
                       <?php
                         $feed_dateFormat = "%M %d %Y, %H:%i:%s";
@@ -270,7 +270,7 @@
                             </div>
 
                           </div>
-
+                          <br><br>
                         <?php endwhile; ?>
 
                       <?php endwhile; ?>
