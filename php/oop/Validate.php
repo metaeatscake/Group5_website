@@ -91,6 +91,25 @@
       $this->boolean_verify[$errorKey] = (strcmp($var1, $var2) !== 0);
     }
 
+    public function verify_set_checkMatch_Password($args_array){
+
+      $errorKey = $args_array["errorKey"];
+      $input = $args_array["fieldKey"];
+      $passHash = $args_array["passwordHash"];
+
+      $this->boolean_verify[$errorKey] = !password_verify($this->formData[$input], $passHash);
+    }
+
+    // Passes TRUE to the array if the user does not exist; for login checks.
+    // Opposite of verify_set_checkUnique
+    public function verify_set_checkExisting($args_array, $userList_array){
+
+      $errorKey = $args_array["errorKey"];
+      $input = $args_array["fieldKey"];
+
+      $this->boolean_verify[$errorKey] = !in_array($this->formData[$input], $userList_array);
+    }
+
     public function verify_get_boolArray(){
       return $this->boolean_verify;
     }
