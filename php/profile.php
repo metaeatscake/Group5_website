@@ -77,15 +77,16 @@
      <link rel="shortcut icon" href="images/assets/sample2.png">
 
      <!-- Custom CSS File -->
+     <link rel="stylesheet" href="../css/socialityOverrides.css">
      <link rel="stylesheet" type="text/css" href="../css/profileStyles.css">
    </head>
 
    <body>
 
-     <!-- Uses a header that contracts as the page scrolls down. -->
-     <!-- Pasted CSS/HTML from MDL Documentation -->
+       <!-- Uses a header that contracts as the page scrolls down. -->
+       <!-- Pasted CSS/HTML from MDL Documentation -->
 
-     <!-- Uses a transparent header that draws on top of the layout's background -->
+      <!-- Uses a transparent header that draws on top of the layout's background -->
       <style>
       @import url('https://fonts.googleapis.com/css2?family=Staatliches&display=swap');
         .demo-layout-transparent {
@@ -122,6 +123,7 @@
                   <!---CHANGE THIS WITH THE TEMPORARY IMG THAT I PUT <img src="images/users_cover/bglight.jpg" style="width: 100%;"> -->
 
                   <!--TEMPORARY ONLY, ONCE I KNOW HOW TO WORK ON PUTTING UPLOAD IMAGE ICON BESIDE THE PROFILE PICTURE-->
+
                   <img src="images/users/_default.jpg" id="profile_pic">
 
                   <!--CHANGE THIS WITH THE TEMPORARY IMG THAT I PUT <img id="profile_pic" src="images/users/$db_profile_pic"> -->
@@ -181,8 +183,6 @@
 
                    <!--POSTS AREA-->
                   <div id="post-area-menu" style="min-height: 400px;flex:2.5; padding: 20px; padding-right: 0px;">
-
-                    <div id="post-area-menu">
 
                     <div id="post-area-menu">
 
@@ -255,29 +255,17 @@
                               <!--SHARE BUTTON IS FOR DISPLAY ONLY-->
                               <a href="#"><span class="material-icons" style="color: #262626;">share</span></a>
                             </div>
-
-                          </div>
-                          <br><br>
+                          </div>  <br><br>
                         <?php endwhile; ?>
 
                       <?php endwhile; ?>
-
                     </div>
-
                   </div>
-
                 </div>
-
               </div>
-
           </div>
-
         </main>
-
        <?php include_once("inc/footer.php"); ?>
-
     </div>
-
    </body>
-
  </html>
