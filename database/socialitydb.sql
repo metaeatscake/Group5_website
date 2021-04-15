@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 13, 2021 at 10:26 AM
+-- Generation Time: Apr 15, 2021 at 04:17 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.10
 
@@ -49,15 +49,6 @@ CREATE TABLE `tbl_feed` (
   `post_time` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `tbl_feed`
---
-
-INSERT INTO `tbl_feed` (`post_id`, `user_id`, `post_title`, `post_content`, `post_img`, `post_time`) VALUES
-(3, 5, 'Post', 'someting neat', NULL, '2021-03-30 09:11:22'),
-(4, 5, 'Nice', 'Jimmy is Nice', NULL, '2021-04-13 06:30:24'),
-(8, 5, 'image', 'for real this time', 'images/post_img/5_2021-04-13_14-37-55.png', '2021-04-13 06:37:55');
-
 -- --------------------------------------------------------
 
 --
@@ -92,16 +83,6 @@ CREATE TABLE `tbl_users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `tbl_users`
---
-
-INSERT INTO `tbl_users` (`user_id`, `username`, `password`, `email`, `sex`, `profile_pic`, `cover_photo`, `bio`, `account_type`, `register_time`) VALUES
-(2, 'Amber', '$2y$10$ShhsrgYi6w6TSg5O1yUTMugc2Znop1ucNjF7PsIVcaRfZkRSes4Qa', 'pass@gmail.com', 'male', 'images/users/_default.jpg', 'images/users_cover/_default.png', 'New user', 'user', '2021-04-13 07:49:43'),
-(3, 'Amber2', '$2y$10$JWCTGjdYTSTQDgZIHJ2eCOLN3C3QmXUvQ49/yO0jwXIgb2hjDl.n2', 'newEmail@gmail.com', 'male', 'images/users/_default.jpg', 'images/users_cover/_default.png', 'New user', 'user', '2021-04-13 07:49:43'),
-(4, 'Peemail', '$2y$10$GsuKm8cN2PKP2mJIYgt1QeiIUq5SpPH/vCNaLxTsP5G0VXSY.DSmm', 'registerrr@gmail.com', 'Prefer not to say', 'images/users/_default.jpg', 'images/users_cover/_default.png', 'New user', 'user', '2021-04-13 07:49:43'),
-(5, 'user', '$2y$10$2uWU/wR1ODM5fp1o195RwesqhE836daezDLKNs6xHN1KYrP/4v1Zi', 'user@user.com', 'Prefer not to say', 'images/users/_default.jpg', 'images/users_cover/_default.png', 'New user', 'user', '2021-04-13 07:49:43');
-
---
 -- Indexes for dumped tables
 --
 
@@ -109,14 +90,16 @@ INSERT INTO `tbl_users` (`user_id`, `username`, `password`, `email`, `sex`, `pro
 -- Indexes for table `tbl_comments`
 --
 ALTER TABLE `tbl_comments`
-  ADD PRIMARY KEY (`comment_id`);
+  ADD PRIMARY KEY (`comment_id`),
+  ADD KEY `delete_comments_on_user_delete` (`user_id`),
+  ADD KEY `delete_comments_on_post_delete` (`post_id`);
 
 --
 -- Indexes for table `tbl_feed`
 --
 ALTER TABLE `tbl_feed`
   ADD PRIMARY KEY (`post_id`),
-  ADD KEY `remove_on_delete` (`user_id`);
+  ADD KEY `delete_posts_on_user_delete` (`user_id`);
 
 --
 -- Indexes for table `tbl_feed_likes`
@@ -128,7 +111,8 @@ ALTER TABLE `tbl_feed_likes`
 -- Indexes for table `tbl_users`
 --
 ALTER TABLE `tbl_users`
-  ADD PRIMARY KEY (`user_id`);
+  ADD PRIMARY KEY (`user_id`),
+  ADD UNIQUE KEY `forceUniqueData` (`username`,`email`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -144,7 +128,7 @@ ALTER TABLE `tbl_comments`
 -- AUTO_INCREMENT for table `tbl_feed`
 --
 ALTER TABLE `tbl_feed`
-  MODIFY `post_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `post_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `tbl_feed_likes`
@@ -156,17 +140,24 @@ ALTER TABLE `tbl_feed_likes`
 -- AUTO_INCREMENT for table `tbl_users`
 --
 ALTER TABLE `tbl_users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Constraints for dumped tables
 --
 
 --
+-- Constraints for table `tbl_comments`
+--
+ALTER TABLE `tbl_comments`
+  ADD CONSTRAINT `delete_comments_on_post_delete` FOREIGN KEY (`post_id`) REFERENCES `tbl_feed` (`post_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `delete_comments_on_user_delete` FOREIGN KEY (`user_id`) REFERENCES `tbl_users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Constraints for table `tbl_feed`
 --
 ALTER TABLE `tbl_feed`
-  ADD CONSTRAINT `remove_on_delete` FOREIGN KEY (`user_id`) REFERENCES `tbl_users` (`user_id`) ON DELETE CASCADE;
+  ADD CONSTRAINT `delete_posts_on_user_delete` FOREIGN KEY (`user_id`) REFERENCES `tbl_users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

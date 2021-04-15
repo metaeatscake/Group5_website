@@ -120,18 +120,13 @@
                   <!--TEMPORARY ONLY, ONCE I KNOW HOW TO WORK ON PUTTING UPLOAD IMAGE ICON BESIDE THE PROFILE PICTURE-->
                   <img src="images/users_cover/_default.png" style="width: 100%; height: 380px;">
 
-                  <!---CHANGE THIS WITH THE TEMPORARY IMG THAT I PUT
-                    <img src="images/users_cover/bglight.jpg" style="width: 100%;">
-                  -->
+                  <!---CHANGE THIS WITH THE TEMPORARY IMG THAT I PUT <img src="images/users_cover/bglight.jpg" style="width: 100%;"> -->
 
                   <!--TEMPORARY ONLY, ONCE I KNOW HOW TO WORK ON PUTTING UPLOAD IMAGE ICON BESIDE THE PROFILE PICTURE-->
 
                   <img src="images/users/_default.jpg" id="profile_pic">
 
-                  <!--
-                    CHANGE THIS WITH THE TEMPORARY IMG THAT I PUT
-                    <img id="profile_pic" src="images/users/$db_profile_pic">
-                  -->
+                  <!--CHANGE THIS WITH THE TEMPORARY IMG THAT I PUT <img id="profile_pic" src="images/users/$db_profile_pic"> -->
 
                   <br>
                   <!--BELOW AREA OF PROFILE PICTURE-->
@@ -140,24 +135,16 @@
                     <div id="profile-menu-username">
                       <a href="editProfile.php"><?php echo $db_username; ?></a>
                     </div>
-                    <!--Bio of the user-->
-                    <div id="profile-menu-bio">
-                      <?php echo $db_bio; ?>
-                    </div>
-                    <!--Edit Profile Button-->
-                    <div id="edit-button" align="centered">
-                      <a href="editProfile.php">Edit</a>
-                    </div>
                   </div>
-
-                  <hr>
-                  <!--PROFILE MENU BUTTONS, BELOW THE AREA OF PROFILE PAGE MENU TOP-->
-                  <a href="#" id=profile-menu-buttons>Timeline</a>
-                  <a href="#" id=profile-menu-buttons>About</a>
-                  <a href="#" id=profile-menu-buttons>Friends</a>
-                  <a href="#" id=profile-menu-buttons>Photos</a>
-                  <a href="#" id=profile-menu-buttons>Settings</a>
                   <br><br>
+
+                  <!--PROFILE MENU BUTTONS, BELOW THE AREA OF PROFILE PAGE MENU TOP-->
+                  <div class="topnav">
+                    <a href="#" id="profile-menu-buttons">My Posts</a>
+                    <a href="#" id="profile-menu-buttons">About</a>
+                    <a href="#" id="profile-menu-buttons">Following</a>
+                    <a href="editProfile.php" id="profile-menu-buttons">Customize Profile</a>
+                  </div>
                 </div>
 
                 <!--BELOW THE PROFILE CARD AREA-->
@@ -199,8 +186,6 @@
 
                     <div id="post-area-menu">
 
-                    <div id="post-area-menu" style="border: solid thin #aaa; padding: 10px; background-color: white;">
-
                       <?php
                         $feed_dateFormat = "%M %d %Y, %H:%i:%s";
                         // Read this before editing the format: http://www.sqlines.com/oracle-to-mysql/to_char_datetime
@@ -223,7 +208,7 @@
                               $post_isLiked = (isset($user_liked_post_id) && in_array($row1['post_id'], $user_liked_post_id));
 
                               // NOTE: First string is the color/text when the post IS LIKED, the other is when it is NOT liked.
-                              $post_likeButton_color = ($post_isLiked) ? "#c5d1e3" : "#2c6bd1";
+                              $post_likeButton_color = ($post_isLiked) ? "#000099" : "#262626";
                               $post_likeButton_text = ($post_isLiked) ? "Unlike" : "Like";
 
                             //String for building the link to handleLikePost.php.
@@ -255,7 +240,7 @@
                             <div class="feed_content">
                               <?php echo $row1["post_content"]; ?>
                             </div>
-
+                            <br>
                             <!-- Only display image div if there is image. -->
                             <?php if (isset($row1["post_img"])): ?>
                               <div class="feed_image">
@@ -265,32 +250,22 @@
 
                             <div class="feed_actions">
                               <a href="<?php echo $post_likeButton_href; ?>" style="color:<?php echo $post_likeButton_color; ?>"> <i class="material-icons">thumb_up</i><?php echo $post_likeCount; ?></a>
-                              <a href="#"><span class="material-icons">mode_comment</span> </a>
-                              <a href="#"><span class="material-icons">share</span></a>
+                              <!--TEMPORARILY ADDED THE COLOR, WHILE IAN STILL NOT WORKING ON THIS PART, I CANNOT TOUCH THIS-->
+                              <a href="#"><span class="material-icons" style="color: #262626;">mode_comment</span> </a>
+                              <!--SHARE BUTTON IS FOR DISPLAY ONLY-->
+                              <a href="#"><span class="material-icons" style="color: #262626;">share</span></a>
                             </div>
-
-                          </div>
-
+                          </div>  <br><br>
                         <?php endwhile; ?>
 
                       <?php endwhile; ?>
-
                     </div>
-
                   </div>
-
                 </div>
-
               </div>
-
           </div>
-
-       </main>
-
+        </main>
        <?php include_once("inc/footer.php"); ?>
-
-      </div>
-
+    </div>
    </body>
-
  </html>

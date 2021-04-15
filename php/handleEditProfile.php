@@ -16,6 +16,11 @@
   $bio = $_POST["bio"];
   $sex = $_POST["sex"];
   $email = $_POST["email"];
+  $upload_template = $tmp_id."_profile_pic";
+  $upload_folder = "images/users/";
+  $upload_fileType = pathinfo($_FILES["profile_picture"]["name"])["extension"];
+  $upload_fileName = $upload_template.".".$upload_fileType;
+  $upload_destination = $upload_folder.$upload_fileName;
 
   $row = $sql->query("SELECT * FROM tbl_users WHERE (email = '".$email."' OR username = '".$username."') AND user_id != '".$id."'")->fetch_assoc();     
   //to check if there's a duplicate
