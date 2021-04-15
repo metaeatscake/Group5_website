@@ -77,16 +77,15 @@
      <link rel="shortcut icon" href="images/assets/sample2.png">
 
      <!-- Custom CSS File -->
-     <link rel="stylesheet" href="../css/socialityOverrides.css">
      <link rel="stylesheet" type="text/css" href="../css/profileStyles.css">
    </head>
 
    <body>
 
-       <!-- Uses a header that contracts as the page scrolls down. -->
-       <!-- Pasted CSS/HTML from MDL Documentation -->
+     <!-- Uses a header that contracts as the page scrolls down. -->
+     <!-- Pasted CSS/HTML from MDL Documentation -->
 
-      <!-- Uses a transparent header that draws on top of the layout's background -->
+     <!-- Uses a transparent header that draws on top of the layout's background -->
       <style>
       @import url('https://fonts.googleapis.com/css2?family=Staatliches&display=swap');
         .demo-layout-transparent {
@@ -120,18 +119,12 @@
                   <!--TEMPORARY ONLY, ONCE I KNOW HOW TO WORK ON PUTTING UPLOAD IMAGE ICON BESIDE THE PROFILE PICTURE-->
                   <img src="images/users_cover/_default.png" style="width: 100%; height: 380px;">
 
-                  <!---CHANGE THIS WITH THE TEMPORARY IMG THAT I PUT
-                    <img src="images/users_cover/bglight.jpg" style="width: 100%;">
-                  -->
+                  <!---CHANGE THIS WITH THE TEMPORARY IMG THAT I PUT <img src="images/users_cover/bglight.jpg" style="width: 100%;"> -->
 
                   <!--TEMPORARY ONLY, ONCE I KNOW HOW TO WORK ON PUTTING UPLOAD IMAGE ICON BESIDE THE PROFILE PICTURE-->
-
                   <img src="images/users/_default.jpg" id="profile_pic">
 
-                  <!--
-                    CHANGE THIS WITH THE TEMPORARY IMG THAT I PUT
-                    <img id="profile_pic" src="images/users/$db_profile_pic">
-                  -->
+                  <!--CHANGE THIS WITH THE TEMPORARY IMG THAT I PUT <img id="profile_pic" src="images/users/$db_profile_pic"> -->
 
                   <br>
                   <!--BELOW AREA OF PROFILE PICTURE-->
@@ -142,11 +135,10 @@
                     </div>
                   </div>
                   <br><br>
+
                   <!--PROFILE MENU BUTTONS, BELOW THE AREA OF PROFILE PAGE MENU TOP-->
                   <div class="topnav">
                     <a href="#" id="profile-menu-buttons">My Posts</a>
-
-                   
                     <a href="#" id="profile-menu-buttons">About</a>
                     <a href="#" id="profile-menu-buttons">Following</a>
                     <a href="editProfile.php" id="profile-menu-buttons">Customize Profile</a>
