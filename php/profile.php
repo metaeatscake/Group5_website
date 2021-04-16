@@ -264,6 +264,19 @@
                   <div id="about" class="tabmenu" style="display:none;">
                     <h2>About</h2>
 
+                    <?php 
+                      if($db_bio != NULL){
+                        echo "                       
+                          <h4>Bio</h4>
+                          <h7>$db_bio</h7>
+                        ";
+                      }
+                     ?>
+
+                    <h4>Joined</h4>
+                    <h7><?php echo $db_register_time; ?></h7>
+
+                    if()
                   </div>
 
                   <!--CONTENT OF CUSTOMIZE PROFILE -->

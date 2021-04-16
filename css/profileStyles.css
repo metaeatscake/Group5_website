@@ -45,7 +45,7 @@
   min-height: 440px;
   margin-top: 20px;
   color: #aaa;
-  font: arial;
+  font-family: tahoma;
   padding: 8px;
   border-radius: 8px;
 }
@@ -221,6 +221,6 @@ label:hover {
   background-color: white;
   border-radius: 8px;
   padding: 13px;
-  margin-top: -34% !important;
+  margin-top: -26.5% !important;
 }
 </style>
