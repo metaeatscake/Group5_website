@@ -79,6 +79,7 @@
      <!-- Custom CSS File -->
      <link rel="stylesheet" href="../css/socialityOverrides.css">
      <link rel="stylesheet" type="text/css" href="../css/profileStyles.css">
+     <link rel="stylesheet" href="../css/w3.css">
    </head>
 
    <body>
@@ -126,9 +127,8 @@
 
                   <img src="images/users/_default.jpg" id="profile_pic">
 
-                  <!--CHANGE THIS WITH THE TEMPORARY IMG THAT I PUT <img id="profile_pic" src="images/users/$db_profile_pic"> -->
+                  <!--CHANGE THIS WITH THE TEMPORARY IMG THAT I PUT <img id="profile_pic" src="images/users/$db_profile_pic"> --> <br>
 
-                  <br>
                   <!--BELOW AREA OF PROFILE PICTURE-->
                   <div id="profile-page-menu-top">
                     <!--Name of the User-->
@@ -136,14 +136,13 @@
                       <a href="editProfile.php"><?php echo $db_username; ?></a>
                     </div>
                   </div>
-                  <br><br>
+                  <br>
 
                   <!--PROFILE MENU BUTTONS, BELOW THE AREA OF PROFILE PAGE MENU TOP-->
-                  <div class="topnav">
-                    <a href="#" id="profile-menu-buttons">My Posts</a>
-                    <a href="#" id="profile-menu-buttons">About</a>
-                    <a href="#" id="profile-menu-buttons">Following</a>
-                    <a href="editProfile.php" id="profile-menu-buttons">Customize Profile</a>
+                  <div class="w3-bar" style="background-color: white;">
+                    <button class="w3-bar-item w3-button tablink" onclick="opentabs(event,'myPosts')">My Posts</button>
+                    <button class="w3-bar-item w3-button tablink" onclick="opentabs(event,'about')">About</button>
+                    <button class="w3-bar-item w3-button tablink" onclick="opentabs(event,'customizeProfile')">Customize Profile</button>
                   </div>
                 </div>
 
@@ -186,38 +185,40 @@
 
                     <div id="post-area-menu">
 
-                      <?php
-                        $feed_dateFormat = "%M %d %Y, %H:%i:%s";
-                        // Read this before editing the format: http://www.sqlines.com/oracle-to-mysql/to_char_datetime
-                        // Otherwise, DO NOT TOUCH.
+                      <!--CONTENT OF MY POSTS -->
+                      <div id="myPosts" class="tabmenu">
+                        <?php
+                          $feed_dateFormat = "%M %d %Y, %H:%i:%s";
+                            // Read this before editing the format: http://www.sqlines.com/oracle-to-mysql/to_char_datetime
+                            // Otherwise, DO NOT TOUCH.
 
-                        //Fetch all posts from tbl_feed, also do the date formatting from MySQL instead of PHP
-                        $queryString = "SELECT post_id, user_id, post_title, post_content, post_img, DATE_FORMAT(post_time, '$feed_dateFormat') AS post_date FROM tbl_feed  WHERE user_id = '{$_SESSION['account_id']}' ORDER BY post_time DESC";
-                        $feed_data = $sql->query($queryString);
-                      ?>
-                      <!-- Connect tbl_feed ID to tbl_user user_id -->
-                      <?php while($row1 = $feed_data->fetch_assoc()): ?>
+                            //Fetch all posts from tbl_feed, also do the date formatting from MySQL instead of PHP
+                            $queryString = "SELECT post_id, user_id, post_title, post_content, post_img, DATE_FORMAT(post_time, '$feed_dateFormat') AS post_date FROM tbl_feed  WHERE user_id = '{$_SESSION['account_id']}' ORDER BY post_time DESC";
+                            $feed_data = $sql->query($queryString);
+                        ?>
+                        <!-- Connect tbl_feed ID to tbl_user user_id -->
+                        <?php while($row1 = $feed_data->fetch_assoc()): ?>
 
                         <?php $user_data = $sql->query("SELECT * FROM tbl_users WHERE user_id = '{$row1["user_id"]}'"); ?>
 
                         <?php while($row2 = $user_data->fetch_assoc()): ?>
 
-                          <?php
-                            //Setup for the Likes system.
-                            //Only true if the user has liked this specific post.
-                              $post_isLiked = (isset($user_liked_post_id) && in_array($row1['post_id'], $user_liked_post_id));
+                        <?php
+                          //Setup for the Likes system.
+                          //Only true if the user has liked this specific post.
+                          $post_isLiked = (isset($user_liked_post_id) && in_array($row1['post_id'], $user_liked_post_id));
 
-                              // NOTE: First string is the color/text when the post IS LIKED, the other is when it is NOT liked.
-                              $post_likeButton_color = ($post_isLiked) ? "#000099" : "#262626";
-                              $post_likeButton_text = ($post_isLiked) ? "Unlike" : "Like";
+                          // NOTE: First string is the color/text when the post IS LIKED, the other is when it is NOT liked.
+                          $post_likeButton_color = ($post_isLiked) ? "#000099" : "#262626";
+                          $post_likeButton_text = ($post_isLiked) ? "Unlike" : "Like";
 
-                            //String for building the link to handleLikePost.php.
-                              $post_likeButton_href = "handleLikePost.php?post_id={$row1['post_id']}&returnTo=profile.php";
-                              //Debug
-                              //echo $post_likeButton_href;
+                          //String for building the link to handleLikePost.php.
+                          $post_likeButton_href = "handleLikePost.php?post_id={$row1['post_id']}&returnTo=profile.php";
+                          //Debug
+                          //echo $post_likeButton_href;
 
-                              $post_likeCount = (isset($user_total_likes) && in_array($row1['post_id'], $user_total_likes_keysOnly)) ? $user_total_likes[$row1['post_id']] : 0 ;
-                           ?>
+                          $post_likeCount = (isset($user_total_likes) && in_array($row1['post_id'], $user_total_likes_keysOnly)) ? $user_total_likes[$row1['post_id']] : 0 ;
+                        ?>
                           <!-- Feed Card design starts here. -->
                           <!-- Note: $row1 = tbl_feed, $row2 = tbl_users -->
                           <!-- No need for echo html, treat this like a normal html area. -->
@@ -259,6 +260,20 @@
                         <?php endwhile; ?>
 
                       <?php endwhile; ?>
+                      </div>
+
+                      <!--CONTENT OF ABOUT -->
+                      <div id="about" class="w3-container w3-border tabmenu" style="display:none">
+                        <h2>About</h2>
+                        <p>Paris is the capital of France.</p> 
+                      </div>
+
+                      <!--CONTENT OF CUSTOMIZE PROFILE -->
+                      <div id="customizeProfile" class="w3-container w3-border tabmenu" style="display:none">
+                        <h2>Customize Profile</h2>
+                        <p>Tokyo is the capital of Japan.</p>
+                      </div>
+
                     </div>
                   </div>
                 </div>
@@ -269,3 +284,18 @@
     </div>
    </body>
  </html>
+<script>
+  function opentabs(tab, tabname) {
+    var i, x, tablinks;
+    x = document.getElementsByClassName("tabmenu");
+    for (i = 0; i < x.length; i++) {
+      x[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablink");
+    for (i = 0; i < x.length; i++) {
+      tablinks[i].className = tablinks[i].className.replace(" w3-grey", "");
+    }
+    document.getElementById(tabname).style.display = "block";
+    tab.currentTarget.className += " w3-grey";
+  }
+</script>

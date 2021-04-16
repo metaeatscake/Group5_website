@@ -10,7 +10,6 @@
   	background-color:#fff;
   	overflow:auto;
     align-items: center;
-<<<<<<< HEAD
     }
 
     label{
@@ -166,7 +165,6 @@
         color: white;
         box-shadow: 0 15px 45px rgba(24, 249, 141, 0.2);
       }
-=======
   }
 
   label{
@@ -244,9 +242,7 @@
     text-align:left;
     width: 600px;
     min-height: 20%;
-    /*font-family: Segoe UI;*/
     color: black;
-    /*background: rgba(30,30,30,0.2);*/
     background-color: white;
     padding: 15px;
     margin-top: 15px;
@@ -299,7 +295,7 @@
 
   .feed_actions a{
     text-decoration: none;
-    padding: 15px 75px;
+    padding: 15px 83px;
     border: none;
     cursor: pointer;
     text-align: center;

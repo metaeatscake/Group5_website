@@ -169,7 +169,7 @@ label:hover {
 
 .feed_actions a{
   text-decoration: none;
-  padding: 15px 82px;
+  padding: 15px 73px;
   border: none;
   cursor: pointer;
   text-align: center;
@@ -187,33 +187,4 @@ label:hover {
   padding: 13px;
 }
 
-.topnav {
-  overflow: hidden;
-  background-color: white;
-  margin: 0;
-}
-
-.topnav a {
-  float: left;
-  display: inline-block;
-  color: black;
-  text-align: center;
-  padding: 1px 74.9px;
-  text-decoration: none;
-  font-size: 16px;
-  border-bottom: 3px solid transparent;
-}
-
-.topnav a:hover {
-  border-bottom: 3.6px solid #262626;
-}
-
-#text-area{
-  border-radius: 8px;
-  padding: 10px; 
-  background-color: white;
-  width: 600px;
-  height: 280px;
-  margin: 50px 255px;
-}
 </style>
