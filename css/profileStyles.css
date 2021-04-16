@@ -217,4 +217,9 @@ label:hover {
   margin: 50px 255px;
 }
 
+#about{
+  background-color: white;
+  border-radius: 8px;
+  padding: 13px;
+}
 </style>

@@ -114,175 +114,166 @@
        <main class="mdl-layout__content">
 
          <div class="page-content mdl-grid">
-            <!-- ADD THE PROFILE CARD HERE. -->
-              <div style="width: 900px; margin:auto; background: -webkit-linear-gradient(to right, #3c1053, #ad5389); align-content: center;">
+          <!-- ADD THE PROFILE CARD HERE. -->
+            <div style="width: 900px; margin:auto; background: -webkit-linear-gradient(to right, #3c1053, #ad5389); align-content: center;">
 
-                <div style="background-color: white; text-align: center; color: #405d9b">
+              <div style="background-color: white; text-align: center; color: #405d9b">
 
-                  <!--TEMPORARY ONLY, ONCE I KNOW HOW TO WORK ON PUTTING UPLOAD IMAGE ICON BESIDE THE PROFILE PICTURE-->
-                  <img src="images/users_cover/_default.png" style="width: 100%; height: 380px;">
+                <!--TEMPORARY ONLY, ONCE I KNOW HOW TO WORK ON PUTTING UPLOAD IMAGE ICON BESIDE THE PROFILE PICTURE-->
+                <img src="images/users_cover/_default.png" style="width: 100%; height: 380px;">
 
-                  <!---CHANGE THIS WITH THE TEMPORARY IMG THAT I PUT <img src="images/users_cover/bglight.jpg" style="width: 100%;"> -->
+                <!---CHANGE THIS WITH THE TEMPORARY IMG THAT I PUT <img src="images/users_cover/bglight.jpg" style="width: 100%;"> -->
 
-                  <!--TEMPORARY ONLY, ONCE I KNOW HOW TO WORK ON PUTTING UPLOAD IMAGE ICON BESIDE THE PROFILE PICTURE-->
+                <!--TEMPORARY ONLY, ONCE I KNOW HOW TO WORK ON PUTTING UPLOAD IMAGE ICON BESIDE THE PROFILE PICTURE-->
 
-                  <img src="images/users/_default.jpg" id="profile_pic">
+                <img src="images/users/_default.jpg" id="profile_pic">
 
-                  <!--CHANGE THIS WITH THE TEMPORARY IMG THAT I PUT <img id="profile_pic" src="images/users/$db_profile_pic"> --> <br>
+                <!--CHANGE THIS WITH THE TEMPORARY IMG THAT I PUT <img id="profile_pic" src="images/users/$db_profile_pic"> --> <br>
 
-                  <!--BELOW AREA OF PROFILE PICTURE-->
-                  <div id="profile-page-menu-top">
-                    <!--Name of the User-->
-                    <div id="profile-menu-username">
-                      <a href="editProfile.php"><?php echo $db_username; ?></a>
-                    </div>
+                <!--BELOW AREA OF PROFILE PICTURE-->
+                <div id="profile-page-menu-top">
+                  <!--Name of the User-->
+                  <div id="profile-menu-username">
+                    <a href="editProfile.php"><?php echo $db_username; ?></a>
                   </div>
-                  <br>
+                </div>
+                <br>
 
-                  <!--PROFILE MENU BUTTONS, BELOW THE AREA OF PROFILE PAGE MENU TOP-->
-                  <div class="w3-bar" style="background-color: white;">
-                    <button class="w3-bar-item w3-button tablink" onclick="opentabs(event,'myPosts')">My Posts</button>
-                    <button class="w3-bar-item w3-button tablink" onclick="opentabs(event,'about')">About</button>
-                    <button class="w3-bar-item w3-button tablink" onclick="opentabs(event,'customizeProfile')">Customize Profile</button>
+                <!--PROFILE MENU BUTTONS, BELOW THE AREA OF PROFILE PAGE MENU TOP-->
+                <div class="w3-bar" style="background-color: white;">
+                  <button class="w3-bar-item w3-button tablink" onclick="opentabs(event,'myPosts')">My Posts</button>
+                  <button class="w3-bar-item w3-button tablink" onclick="opentabs(event,'about')">About</button>
+                  <button class="w3-bar-item w3-button tablink" onclick="opentabs(event,'customizeProfile')">Customize Profile</button>
+                </div>
+              </div>
+
+              <!--BELOW THE PROFILE CARD AREA-->
+              <div style="display: flex;">
+
+                 <!--FOLLOWING AREA-->
+                <div style="min-height: 440px; flex:1;">
+                  <div id="following-bar">
+                    Following· <br>
+
+                    <div id="following">
+                      <img id="following-img" src="images/assets/Jesse-Renz.jpg">
+                      <br>
+                      Jesse Renz Faculin Bernese
+                    </div>
+
+                    <div id="following">
+                      <img id="following-img" src="images/assets/Kyla-Nadine.jpg">
+                      <br>
+                      Kyla Nadine Raquedan
+                    </div>
+
+                    <div id="following">
+                      <img id="following-img" src="images/assets/Lunar-Angelo.jpg">
+                      <br>
+                      Lunar Angelo Pajaroja
+                    </div>
+
+                    <div id="following">
+                      <img id="following-img" src="images/assets/Ronnel-Tang.jpg">
+                      <br>
+                      Ronnel Tang
+                    </div>
                   </div>
                 </div>
 
-                <!--BELOW THE PROFILE CARD AREA-->
-                <div style="display: flex;">
+                 <!--POSTS AREA/ABOUT AREA/CUSTOMIZE PROFILE-->
+                <div id="post-area-menu" style="flex:2.5; padding: 20px; padding-right: 0px;">
+                  <!--CONTENT OF MY POSTS -->
+                  <div id="myPosts" class="tabmenu">
+                    <?php
+                      $feed_dateFormat = "%M %d %Y, %H:%i:%s";
+                        // Read this before editing the format: http://www.sqlines.com/oracle-to-mysql/to_char_datetime
+                        // Otherwise, DO NOT TOUCH.
 
-                   <!--FOLLOWING AREA-->
-                  <div style="min-height: 440px; flex:1;">
-                    <div id="following-bar">
-                      Following· <br>
+                        //Fetch all posts from tbl_feed, also do the date formatting from MySQL instead of PHP
+                        $queryString = "SELECT post_id, user_id, post_title, post_content, post_img, DATE_FORMAT(post_time, '$feed_dateFormat') AS post_date FROM tbl_feed  WHERE user_id = '{$_SESSION['account_id']}' ORDER BY post_time DESC";
+                        $feed_data = $sql->query($queryString);
+                    ?>
+                    <!-- Connect tbl_feed ID to tbl_user user_id -->
+                    <?php while($row1 = $feed_data->fetch_assoc()): ?>
 
-                      <div id="following">
-                        <img id="following-img" src="images/assets/Jesse-Renz.jpg">
+                    <?php $user_data = $sql->query("SELECT * FROM tbl_users WHERE user_id = '{$row1["user_id"]}'"); ?>
+
+                    <?php while($row2 = $user_data->fetch_assoc()): ?>
+
+                    <?php
+                      //Setup for the Likes system.
+                      //Only true if the user has liked this specific post.
+                      $post_isLiked = (isset($user_liked_post_id) && in_array($row1['post_id'], $user_liked_post_id));
+
+                      // NOTE: First string is the color/text when the post IS LIKED, the other is when it is NOT liked.
+                      $post_likeButton_color = ($post_isLiked) ? "#000099" : "#262626";
+                      $post_likeButton_text = ($post_isLiked) ? "Unlike" : "Like";
+
+                      //String for building the link to handleLikePost.php.
+                      $post_likeButton_href = "handleLikePost.php?post_id={$row1['post_id']}&returnTo=profile.php";
+                      //Debug
+                      //echo $post_likeButton_href;
+
+                      $post_likeCount = (isset($user_total_likes) && in_array($row1['post_id'], $user_total_likes_keysOnly)) ? $user_total_likes[$row1['post_id']] : 0 ;
+                    ?>
+                      <!-- Feed Card design starts here. -->
+                      <!-- Note: $row1 = tbl_feed, $row2 = tbl_users -->
+                      <!-- No need for echo html, treat this like a normal html area. -->
+                      <div class="feed_post" id="<?php echo 'post'.$row1['post_id']; ?>">
+
+                        <div class="feed_title">
+                          <?php echo $row1["post_title"]; ?>
+                        </div>
+
+                        <div class="feed_post_time">
+                          <?php echo $row1["post_date"]; ?>
+                        </div>
+
+                        <div class="feed_post_author">
+                          <a href="profile.php">
+                            <?php echo 'Posted by '. $row2["username"]; ?>
+                          </a>
+                        </div>
+
+                        <div class="feed_content">
+                          <?php echo $row1["post_content"]; ?>
+                        </div>
                         <br>
-                        Jesse Renz Faculin Bernese
-                      </div>
+                        <!-- Only display image div if there is image. -->
+                        <?php if (isset($row1["post_img"])): ?>
+                          <div class="feed_image">
+                              <img src="<?php echo $row1['post_img']; ?>" alt="<?php echo $row1['post_img']; ?>">
+                          </div>
+                        <?php endif; ?>
 
-                      <div id="following">
-                        <img id="following-img" src="images/assets/Kyla-Nadine.jpg">
-                        <br>
-                        Kyla Nadine Raquedan
-                      </div>
+                        <div class="feed_actions">
+                          <a href="<?php echo $post_likeButton_href; ?>" style="color:<?php echo $post_likeButton_color; ?>"> <i class="material-icons">thumb_up</i><?php echo $post_likeCount; ?></a>
+                          <!--TEMPORARILY ADDED THE COLOR, WHILE IAN STILL NOT WORKING ON THIS PART, I CANNOT TOUCH THIS-->
+                          <a href="#"><span class="material-icons" style="color: #262626;">mode_comment</span> </a>
+                          <!--SHARE BUTTON IS FOR DISPLAY ONLY-->
+                          <a href="#"><span class="material-icons" style="color: #262626;">share</span></a>
+                        </div>
+                      </div><br><br>  
+                    <?php endwhile; ?>
 
-                      <div id="following">
-                        <img id="following-img" src="images/assets/Lunar-Angelo.jpg">
-                        <br>
-                        Lunar Angelo Pajaroja
-                      </div>
-
-                      <div id="following">
-                        <img id="following-img" src="images/assets/Ronnel-Tang.jpg">
-                        <br>
-                        Ronnel Tang
-                      </div>
-                    </div>
+                    <?php endwhile; ?>
                   </div>
 
-                   <!--POSTS AREA-->
-                  <div id="post-area-menu" style="flex:2.5; padding: 20px; padding-right: 0px;">
+                  <!--CONTENT OF ABOUT -->
+                  <div id="about" class="tabmenu" style="display:none;">
+                    <h2>About</h2>
+                    
+                  </div>
 
-                    <div id="post-area-menu">
-
-                      <!--CONTENT OF MY POSTS -->
-                      <div id="myPosts" class="tabmenu">
-                        <?php
-                          $feed_dateFormat = "%M %d %Y, %H:%i:%s";
-                            // Read this before editing the format: http://www.sqlines.com/oracle-to-mysql/to_char_datetime
-                            // Otherwise, DO NOT TOUCH.
-
-                            //Fetch all posts from tbl_feed, also do the date formatting from MySQL instead of PHP
-                            $queryString = "SELECT post_id, user_id, post_title, post_content, post_img, DATE_FORMAT(post_time, '$feed_dateFormat') AS post_date FROM tbl_feed  WHERE user_id = '{$_SESSION['account_id']}' ORDER BY post_time DESC";
-                            $feed_data = $sql->query($queryString);
-                        ?>
-                        <!-- Connect tbl_feed ID to tbl_user user_id -->
-                        <?php while($row1 = $feed_data->fetch_assoc()): ?>
-
-                        <?php $user_data = $sql->query("SELECT * FROM tbl_users WHERE user_id = '{$row1["user_id"]}'"); ?>
-
-                        <?php while($row2 = $user_data->fetch_assoc()): ?>
-
-                        <?php
-                          //Setup for the Likes system.
-                          //Only true if the user has liked this specific post.
-                          $post_isLiked = (isset($user_liked_post_id) && in_array($row1['post_id'], $user_liked_post_id));
-
-                          // NOTE: First string is the color/text when the post IS LIKED, the other is when it is NOT liked.
-                          $post_likeButton_color = ($post_isLiked) ? "#000099" : "#262626";
-                          $post_likeButton_text = ($post_isLiked) ? "Unlike" : "Like";
-
-                          //String for building the link to handleLikePost.php.
-                          $post_likeButton_href = "handleLikePost.php?post_id={$row1['post_id']}&returnTo=profile.php";
-                          //Debug
-                          //echo $post_likeButton_href;
-
-                          $post_likeCount = (isset($user_total_likes) && in_array($row1['post_id'], $user_total_likes_keysOnly)) ? $user_total_likes[$row1['post_id']] : 0 ;
-                        ?>
-                          <!-- Feed Card design starts here. -->
-                          <!-- Note: $row1 = tbl_feed, $row2 = tbl_users -->
-                          <!-- No need for echo html, treat this like a normal html area. -->
-                          <div class="feed_post" id="<?php echo 'post'.$row1['post_id']; ?>">
-
-                            <div class="feed_title">
-                              <?php echo $row1["post_title"]; ?>
-                            </div>
-
-                            <div class="feed_post_time">
-                              <?php echo $row1["post_date"]; ?>
-                            </div>
-
-                            <div class="feed_post_author">
-                              <a href="profile.php">
-                                <?php echo 'Posted by '. $row2["username"]; ?>
-                              </a>
-                            </div>
-
-                            <div class="feed_content">
-                              <?php echo $row1["post_content"]; ?>
-                            </div>
-                            <br>
-                            <!-- Only display image div if there is image. -->
-                            <?php if (isset($row1["post_img"])): ?>
-                              <div class="feed_image">
-                                  <img src="<?php echo $row1['post_img']; ?>" alt="<?php echo $row1['post_img']; ?>">
-                              </div>
-                            <?php endif; ?>
-
-                            <div class="feed_actions">
-                              <a href="<?php echo $post_likeButton_href; ?>" style="color:<?php echo $post_likeButton_color; ?>"> <i class="material-icons">thumb_up</i><?php echo $post_likeCount; ?></a>
-                              <!--TEMPORARILY ADDED THE COLOR, WHILE IAN STILL NOT WORKING ON THIS PART, I CANNOT TOUCH THIS-->
-                              <a href="#"><span class="material-icons" style="color: #262626;">mode_comment</span> </a>
-                              <!--SHARE BUTTON IS FOR DISPLAY ONLY-->
-                              <a href="#"><span class="material-icons" style="color: #262626;">share</span></a>
-                            </div>
-                          </div><br><br>  
-                        <?php endwhile; ?>
-
-                        <?php endwhile; ?>
-                      </div>
-
-                      <!--CONTENT OF ABOUT -->
-                      <div id="about" class="tabmenu" style="display:none">
-                        <div id="post-area-menu" style="min-height: 400px;flex:2.5; padding: 20px; padding-right: 0px;">
-
-                        </div>
-                        <div id="post-area-menu">
-                        
-                        </div>
-                      </div>
-
-                      <!--CONTENT OF CUSTOMIZE PROFILE -->
-                      <div id="customizeProfile" class="tabmenu" style="display:none">
-                        <h2>Customize Profile</h2>
-                        <p>Tokyo is the capital of Japan.</p>
-                      </div>
-
-                    </div>
+                  <!--CONTENT OF CUSTOMIZE PROFILE -->
+                  <!--HI JOM, IF YOU DECIDED TO REMOVE THE FOLLOWING BAR ON CUSTOMIZE PROFILE, YOU CAN MOVE THIS PART SOMEWHERE U WANT -->
+                  <div id="customizeProfile" class="tabmenu" style="display:none;">
+                    <h2>Customize Profile</h2>
                   </div>
                 </div>
               </div>
+            </div>
           </div>
         </main>
        <?php include_once("inc/footer.php"); ?>
