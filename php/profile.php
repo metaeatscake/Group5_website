@@ -83,6 +83,7 @@
    </head>
 
    <body>
+      <?php include_once("inc/_js_mdl_formAlert.php") ?>
 
        <!-- Uses a header that contracts as the page scrolls down. -->
        <!-- Pasted CSS/HTML from MDL Documentation -->
@@ -263,13 +264,13 @@
                       </div>
 
                       <!--CONTENT OF ABOUT -->
-                      <div id="about" class="w3-container w3-border tabmenu" style="display:none">
+                      <div id="about" class="tabmenu" style="display:none">
                         <h2>About</h2>
                         <p>Paris is the capital of France.</p> 
                       </div>
 
                       <!--CONTENT OF CUSTOMIZE PROFILE -->
-                      <div id="customizeProfile" class="w3-container w3-border tabmenu" style="display:none">
+                      <div id="customizeProfile" class="tabmenu" style="display:none">
                         <h2>Customize Profile</h2>
                         <p>Tokyo is the capital of Japan.</p>
                       </div>
