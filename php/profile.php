@@ -182,7 +182,7 @@
                   </div>
 
                    <!--POSTS AREA-->
-                  <div id="post-area-menu" style="min-height: 400px;flex:2.5; padding: 20px; padding-right: 0px;">
+                  <div id="post-area-menu" style="flex:2.5; padding: 20px; padding-right: 0px;">
 
                     <div id="post-area-menu">
 
@@ -257,16 +257,20 @@
                               <!--SHARE BUTTON IS FOR DISPLAY ONLY-->
                               <a href="#"><span class="material-icons" style="color: #262626;">share</span></a>
                             </div>
-                          </div>  <br><br>
+                          </div><br><br>  
                         <?php endwhile; ?>
 
-                      <?php endwhile; ?>
+                        <?php endwhile; ?>
                       </div>
 
                       <!--CONTENT OF ABOUT -->
                       <div id="about" class="tabmenu" style="display:none">
-                        <h2>About</h2>
-                        <p>Paris is the capital of France.</p> 
+                        <div id="post-area-menu" style="min-height: 400px;flex:2.5; padding: 20px; padding-right: 0px;">
+
+                        </div>
+                        <div id="post-area-menu">
+                        
+                        </div>
                       </div>
 
                       <!--CONTENT OF CUSTOMIZE PROFILE -->
@@ -294,9 +298,9 @@
     }
     tablinks = document.getElementsByClassName("tablink");
     for (i = 0; i < x.length; i++) {
-      tablinks[i].className = tablinks[i].className.replace(" w3-grey", "");
+      tablinks[i].className = tablinks[i].className.replace(" w3-purple", "");
     }
     document.getElementById(tabname).style.display = "block";
-    tab.currentTarget.className += " w3-grey";
+    tab.currentTarget.className += " w3-purple";
   }
 </script>
