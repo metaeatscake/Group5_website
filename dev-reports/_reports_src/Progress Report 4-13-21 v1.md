@@ -1,8 +1,8 @@
-Progress Report, April 13 2021
+Progress Report, __April 13 2021__
 
-Site Completion: About 60%
+Site Completion: About <span style="color: blue">60% </span>
 
-Missing Features:
+## Missing Features:
 
 * Feed Like
 * Feed View Post
@@ -11,7 +11,7 @@ Missing Features:
 * Admin Controls (not really a priority)
 * AJAX Implementation
 
-Needs Further Work:
+## Needs Further Work:
 
 * Forms CSS
 * Feed CSS (namely image size handling)
@@ -19,4 +19,5 @@ Needs Further Work:
 * A lot of Profile Backend
 * Refactoring Old Code into proper OOP
 
+----
 Other than that, it's mostly ready
