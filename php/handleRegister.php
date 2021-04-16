@@ -87,10 +87,11 @@
 
   $data_password = password_hash($data_password, PASSWORD_DEFAULT);
 
+  $data_defaultBio = "New user";
   $insertUser = "INSERT INTO tbl_users(
-    username, password, email, sex
+    username, password, email, sex, bio
   ) VALUES (
-    '$data_username', '$data_password', '$data_email', '$data_sex'
+    '$data_username', '$data_password', '$data_email', '$data_sex', '$data_defaultBio';
   )";
 
   //echo $insertUser;
