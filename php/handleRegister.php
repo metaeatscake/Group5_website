@@ -91,7 +91,7 @@
   $insertUser = "INSERT INTO tbl_users(
     username, password, email, sex, bio
   ) VALUES (
-    '$data_username', '$data_password', '$data_email', '$data_sex', '$data_defaultBio';
+    '$data_username', '$data_password', '$data_email', '$data_sex', '$data_defaultBio'
   )";
 
   //echo $insertUser;
