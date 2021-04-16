@@ -150,7 +150,7 @@
                 <div style="display: flex;">
 
                    <!--FOLLOWING AREA-->
-                  <div style="min-height: 400px; flex:1;">
+                  <div style="min-height: 440px; flex:1;">
                     <div id="following-bar">
                       Following· <br>
 
