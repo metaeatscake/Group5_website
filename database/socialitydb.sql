@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 15, 2021 at 04:17 AM
+-- Generation Time: Apr 16, 2021 at 06:21 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.10
 
@@ -20,6 +20,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `socialitydb`
 --
+CREATE DATABASE IF NOT EXISTS `socialitydb` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `socialitydb`;
 
 -- --------------------------------------------------------
 
@@ -27,6 +29,7 @@ SET time_zone = "+00:00";
 -- Table structure for table `tbl_comments`
 --
 
+DROP TABLE IF EXISTS `tbl_comments`;
 CREATE TABLE `tbl_comments` (
   `comment_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
@@ -40,6 +43,7 @@ CREATE TABLE `tbl_comments` (
 -- Table structure for table `tbl_feed`
 --
 
+DROP TABLE IF EXISTS `tbl_feed`;
 CREATE TABLE `tbl_feed` (
   `post_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
@@ -55,6 +59,7 @@ CREATE TABLE `tbl_feed` (
 -- Table structure for table `tbl_feed_likes`
 --
 
+DROP TABLE IF EXISTS `tbl_feed_likes`;
 CREATE TABLE `tbl_feed_likes` (
   `like_id` int(11) NOT NULL,
   `post_id` int(11) NOT NULL,
@@ -69,6 +74,7 @@ CREATE TABLE `tbl_feed_likes` (
 -- Table structure for table `tbl_users`
 --
 
+DROP TABLE IF EXISTS `tbl_users`;
 CREATE TABLE `tbl_users` (
   `user_id` int(11) NOT NULL,
   `username` varchar(255) NOT NULL,
@@ -77,7 +83,7 @@ CREATE TABLE `tbl_users` (
   `sex` varchar(255) NOT NULL,
   `profile_pic` varchar(255) NOT NULL DEFAULT 'images/users/_default.jpg',
   `cover_photo` varchar(255) NOT NULL DEFAULT 'images/users_cover/_default.png',
-  `bio` text NOT NULL DEFAULT 'New user',
+  `bio` text NOT NULL,
   `account_type` varchar(255) NOT NULL DEFAULT 'user',
   `register_time` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -111,8 +117,7 @@ ALTER TABLE `tbl_feed_likes`
 -- Indexes for table `tbl_users`
 --
 ALTER TABLE `tbl_users`
-  ADD PRIMARY KEY (`user_id`),
-  ADD UNIQUE KEY `forceUniqueData` (`username`,`email`);
+  ADD PRIMARY KEY (`user_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
