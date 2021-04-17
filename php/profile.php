@@ -275,8 +275,6 @@
 
                     <h4>Joined</h4>
                     <h7><?php echo $db_register_time; ?></h7>
-
-                    if()
                   </div>
 
                   <!--CONTENT OF CUSTOMIZE PROFILE -->
