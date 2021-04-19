@@ -25,22 +25,19 @@
     exit();
   }
 
-  // Prepare existing users
-  $query_getUsers = "SELECT * FROM tbl_users";
-  $execQuery_getUsers = $sql->query($query_getUsers);
-  $query_returnedRows = $execQuery_getUsers->num_rows;
-  $db_hasData = ($query_returnedRows !== 0);
+  //PDO Stuff.
+  $pdoq_getUsers = $pdo->query("SELECT * FROM tbl_users")->fetchAll();
 
   // Trying to do in_array() if the array is empty causes some errors.
   // Also makes sure that the following while loop doesn't fail.
-  if (!$db_hasData) {
+  if (!$pdoq_getUsers) {
     $_SESSION["handler-alert"] = "The database has no registered users.";
     $_SESSION["handler-alert-type"] = "Error";
     header("location: login.php");
     exit();
   }
 
-  while ($row = $execQuery_getUsers->fetch_assoc()) {
+  foreach ($pdoq_getUsers as $row) {
     $arr_userList[] = $row["username"];
   }
   $vld->verify_set_checkExisting([
@@ -57,9 +54,10 @@
     exit();
   }
 
-  // Get User password.
-  $username = $vld->getFormVar("username");
-  $userDataArray = $sql->query("SELECT * FROM tbl_users WHERE username = '$username'")->fetch_assoc();
+  // PDO style of preparing password.
+  $pdoq_getData = $pdo->prepare("SELECT * FROM tbl_users WHERE username = :username");
+  $pdoq_getData->execute(['username' => $vld->getFormVar("username")]);
+  $userDataArray = $pdoq_getData->fetch(PDO::FETCH_ASSOC);
   $passHash = $userDataArray["password"];
 
   $vld->verify_set_checkMatch_Password([
