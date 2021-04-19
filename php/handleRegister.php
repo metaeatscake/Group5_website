@@ -4,6 +4,10 @@
   include_once("inc/database.php");
   include_once("oop/_main.php");
 
+  //Toggle Debug mode on/off for testing.
+  //Debug mode disables redirects and any database transaction.
+  $dev_debugMode = true;
+
   //Redirect unwanted access.
   if ($_SERVER["REQUEST_METHOD"] !== "POST") {
     header("location: ../");
@@ -13,8 +17,11 @@
   //Prepare DB query for fetching existing usernames and emails.
   $queryString = "SELECT * FROM tbl_users";
   $execQuery = $sql->query($queryString);
-
   $emptyDB = ($execQuery->num_rows === 0);
+
+  // PDO-based Querying
+  $pdoq_getUserData = $pdo->query("SELECT * FROM tbl_users")->fetchAll();
+  var_dump($pdoq_getUserData);
 
   // Declare validation object
   $vld = new Validate($_POST);
@@ -25,7 +32,7 @@
   // Handle the empty data.
   $errMsg = $vld->getValidationMessage();
   echo $errMsg;
-  if (!empty($errMsg)) {
+  if (!empty($errMsg) && !$dev_debugMode) {
     $_SESSION["handler-alert"] = $errMsg;
     $_SESSION["handler-alert-type"] = "Error";
     header("location: register.php");
@@ -74,7 +81,7 @@
   $errMsg1 = $vld->verify_get_validationMessage();
     //Debug
     //echo $errMsg1;
-  if (!empty($errMsg1)) {
+  if (!empty($errMsg1) && !$dev_debugMode) {
     $_SESSION["handler-alert"] = $errMsg1;
     $_SESSION["handler-alert-type"] = "Error";
     header("location: register.php");
@@ -82,7 +89,7 @@
   }
 
   extract($vld->getCleanedData(), EXTR_PREFIX_ALL, "data");
-  //echo "<pre>"; print_r($vld->getCleanedData()); echo "</pre>";
+  echo "<pre>"; print_r($vld->getCleanedData()); echo "</pre>";
   //echo "<pre>"; var_dump(get_defined_vars()); echo "</pre>";
 
   $data_password = password_hash($data_password, PASSWORD_DEFAULT);
@@ -94,12 +101,16 @@
     '$data_username', '$data_password', '$data_email', '$data_sex', '$data_defaultBio'
   )";
 
-  //echo $insertUser;
+  echo "<h2> Insert Query: </h2>";
+  echo $insertUser;
 
-  $sql->query($insertUser);
-  $_SESSION["handler-alert"] = "Registration Success!\nYou may now log in.";
-  $_SESSION["handler-alert-type"] = "Success";
-  header("location: login.php");
-  exit();
+  if (!$dev_debugMode) {
+    $sql->query($insertUser);
+    $_SESSION["handler-alert"] = "Registration Success!\nYou may now log in.";
+    $_SESSION["handler-alert-type"] = "Success";
+    header("location: login.php");
+    exit();
+  }
+
 
  ?>
