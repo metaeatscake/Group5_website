@@ -83,7 +83,7 @@
                     <input type="file" id="actual-btn" name="inputPic" hidden/>
                     <label for="actual-btn"><span class="material-icons">
                     drive_folder_upload
-                    </span> </label>
+                    </span> Photo  </label>
                       <br>
                     <input type="submit" name="btnSubmit" class="btn-primary" value="Post">
                     <br><br>

@@ -271,7 +271,7 @@
                           <h7>$db_bio</h7>
                         ";
                       }
-                     ?>
+                    ?>
 
                     <h4>Joined</h4>
                     <h7><?php echo $db_register_time; ?></h7>
