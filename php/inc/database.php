@@ -26,4 +26,8 @@
   // Create Session
   session_start();
 
+  // Debug SESSION
+  //echo "<h2> SESSION data </h2>";
+  //echo "<pre>"; var_dump($_SESSION); echo "</pre>";
+
  ?>
