@@ -155,7 +155,7 @@
 
                     <div class="feed_actions">
                       <a href="<?php echo $post_likeButton_href; ?>" style="color:<?php echo $post_likeButton_color; ?>"> <i class="material-icons">thumb_up</i><?php echo $row["count_likes"]; ?></a>
-                      <a href="#"><span class="material-icons" style="color: #262626;">mode_comment</span> </a>
+                      <a href="#"><span class="material-icons" style="color: #262626;">mode_comment</span> <span style="color:black;"><?php echo $row["count_comments"]; ?></span>  </a>
                       <a href="#"><span class="material-icons" style="color: #262626;">share</span></a>
                     </div>
 
@@ -173,6 +173,6 @@
        </footer>
 
       </div>
-      
+
    </body>
  </html>
