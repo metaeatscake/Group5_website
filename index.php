@@ -12,17 +12,6 @@
 
   if (isset($_SESSION["account_id"])) {
 
-    // Prefetch liked posts data.
-    $q_getLikes = "SELECT * FROM tbl_feed_likes WHERE user_id = '{$_SESSION["account_id"]}'";
-    $qe_getLikes = $sql->query($q_getLikes);
-
-    //Only initialize the array if there are actual results.
-    if ($qe_getLikes->num_rows !== 0) {
-      while ($row0 = $qe_getLikes->fetch_assoc()) {
-        $user_liked_post_id[] = $row0['post_id'];
-      }
-    }
-
     // Prefetch TOTAL liked posts
     $q_getAllLikes = "SELECT post_id, COUNT(*) AS likeCount FROM tbl_feed_likes GROUP BY post_id";
     $qe_getAllLikes = $sql->query($q_getAllLikes);
@@ -33,6 +22,19 @@
       }
     }
 
+  }
+
+
+  if (isset($_SESSION["account_id"])) {
+
+    // PDO: Prepare the user's like data so the posts can be marked.
+    $pdoq_getUserLikedPosts = $pdo->prepare("SELECT post_id FROM tbl_feed_likes WHERE user_id = :user_id");
+    $pdoq_getUserLikedPosts->execute(['user_id' => $_SESSION["account_id"]]);
+    $user_liked_post_id = $pdoq_getUserLikedPosts->fetchAll(PDO::FETCH_COLUMN);
+
+    // PDO: Get the total likes per each post.
+    $post_totalLikes = $pdo->query("SELECT post_id, COUNT(*) AS likeCount FROM tbl_feed_likes GROUP BY post_id")->fetchAll(PDO::FETCH_ASSOC);
+    //echo "<pre>"; var_dump($pdoq_getPostLikes); echo "</pre>";
   }
 
 
@@ -108,6 +110,26 @@
                 $queryString = "SELECT post_id, user_id, post_title, post_content, post_img, DATE_FORMAT(post_time, '$feed_dateFormat') AS post_date FROM tbl_feed ORDER BY post_time DESC";
                 $feed_data = $sql->query($queryString);
               ?>
+
+              <?php
+
+                //PDO Style, get all data from tbl_feed.
+                //Also implement variable sort process.
+
+                $feed_orderByColumns = ["post_time", "post_id"];
+                $feed_orderDirection = "DESC";
+                $feed_orderBy = $feed_orderByColumns[0];
+                $feed_dateFormat = "%M %d %Y, %H:%i:%s";
+
+                //Don't touch.
+                $feed_queryString = "SELECT f.*, u.*, DATE_FORMAT(f.post_time, '$feed_dateFormat') AS date_time
+                  FROM tbl_feed f JOIN tbl_users u ON f.user_id = u.user_id
+                  ORDER BY '$feed_orderBy' '$feed_orderDirection'";
+
+                $post_dataArray = $pdo->query($feed_queryString)->fetchAll(PDO::FETCH_ASSOC);
+                //echo "<pre>"; var_dump($post_dataArray); echo "</pre>";
+
+               ?>
               <!-- Connect tbl_feed ID to tbl_user user_id -->
               <?php while($row1 = $feed_data->fetch_assoc()): ?>
 
