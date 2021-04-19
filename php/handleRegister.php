@@ -6,7 +6,7 @@
 
   //Toggle Debug mode on/off for testing.
   //Debug mode disables redirects and any database transaction.
-  $dev_debugMode = true;
+  $dev_debugMode = false;
 
   //Redirect unwanted access.
   if ($_SERVER["REQUEST_METHOD"] !== "POST") {
@@ -14,14 +14,10 @@
     exit();
   }
 
-  //Prepare DB query for fetching existing usernames and emails.
-  $queryString = "SELECT * FROM tbl_users";
-  $execQuery = $sql->query($queryString);
-  $emptyDB = ($execQuery->num_rows === 0);
-
   // PDO-based Querying
   $pdoq_getUserData = $pdo->query("SELECT * FROM tbl_users")->fetchAll();
-  var_dump($pdoq_getUserData);
+  echo "<h2> PDO User Data </h2>";
+  echo "<pre>"; var_dump($pdoq_getUserData); echo "</pre>";
 
   // Declare validation object
   $vld = new Validate($_POST);
@@ -48,12 +44,16 @@
   ]);
 
   // Do this extra unique entry check if there is data in db.
-  if (!$emptyDB) {
+  if ($pdoq_getUserData) {
 
-    while ($row = $execQuery->fetch_assoc()) {
+    foreach ($pdoq_getUserData as $row) {
       $arr_Usernames[] = $row["username"];
       $arr_Emails[] = $row["email"];
     }
+    echo "<h2> Usernames Array </h2>";
+    echo "<pre>";var_dump($arr_Usernames); echo "</pre>";
+    echo "<h2> Emails Array </h2>";
+    echo "<pre>";var_dump($arr_Emails);echo "</pre>";
 
     $vld->verify_set_checkUnique([
         "errorKey" => "username_is_already_registered",
@@ -89,23 +89,26 @@
   }
 
   extract($vld->getCleanedData(), EXTR_PREFIX_ALL, "data");
+  echo "<h2> Validation Class Data </h2>";
   echo "<pre>"; print_r($vld->getCleanedData()); echo "</pre>";
   //echo "<pre>"; var_dump(get_defined_vars()); echo "</pre>";
 
   $data_password = password_hash($data_password, PASSWORD_DEFAULT);
 
   $data_defaultBio = "New user";
-  $insertUser = "INSERT INTO tbl_users(
-    username, password, email, sex, bio
-  ) VALUES (
-    '$data_username', '$data_password', '$data_email', '$data_sex', '$data_defaultBio'
-  )";
-
-  echo "<h2> Insert Query: </h2>";
-  echo $insertUser;
 
   if (!$dev_debugMode) {
-    $sql->query($insertUser);
+
+    $pdoq_insertData = $pdo->prepare("
+      INSERT INTO tbl_users(username, password, email, sex, bio)
+      VALUES (:username, :password, :email, :sex, :bio)
+    ")->execute([
+      'username' => $data_username,
+      'password' => $data_password,
+      'email' => $data_email,
+      'sex' => $data_sex,
+      'bio' => $data_defaultBio
+    ]);
     $_SESSION["handler-alert"] = "Registration Success!\nYou may now log in.";
     $_SESSION["handler-alert-type"] = "Success";
     header("location: login.php");
