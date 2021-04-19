@@ -1,7 +1,17 @@
+<?php
+  // Annoying filepath resolver for these referenced icons.
+  $file_location = $_SERVER["PHP_SELF"];
+  $file_inPHPFolder = (strpos($file_location, 'php/') !== false);
+
+  $file_sclLogoLocation = "images/assets/sample2white.png";
+  $file_sclLogoSrc = ($file_inPHPFolder) ? $file_sclLogoLocation: 'php/'.$file_sclLogoLocation;
+
+ ?>
+
 <footer class="mdl-mini-footer">
   <div class="mdl-mini-footer__left-section">
     <div class="mdl-logo">
-      <img src="php/images/assets/sample2white.png" alt="socialityLogo.png" style="height:30px;">
+      <img src="<?php echo $file_sclLogoSrc; ?>" alt="socialityLogo.png" style="height:30px;">
       Sociality
     </div>
     <ul class="mdl-mini-footer__link-list">
