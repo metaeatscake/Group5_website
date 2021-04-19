@@ -167,7 +167,12 @@
              <?php endif; ?>
          </div>
        </main>
-       <?php include_once("php/inc/footer.php"); ?>
+
+       <footer>
+         <?php include_once("php/inc/footer.php"); ?>
+       </footer>
+
       </div>
+      
    </body>
  </html>
