@@ -1,0 +1,13 @@
+
+Index.php Query. (This can be inserted into Phpmyadmin SQL for testing.)
+
+  SELECT f.*, u.*,
+    DATE_FORMAT(f.post_time, '%M %d %Y, %H:%i:%s') AS date_time,
+    COUNT(c.comment_id) AS count_comments,
+    COUNT(fl.like_id) AS count_likes
+  FROM tbl_feed f
+  LEFT JOIN tbl_users u ON f.user_id = u.user_id
+  LEFT OUTER JOIN tbl_feed_likes fl ON (f.post_id = fl.post_id)
+  LEFT OUTER JOIN tbl_comments c ON (f.post_id = c.post_id)
+  GROUP BY f.post_id
+  ORDER BY f.post_time;

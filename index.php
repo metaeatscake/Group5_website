@@ -84,9 +84,6 @@
 
                 endif;
 
-                // Debugging.
-                //echo (isset($user_liked_post_id))? "The user has liked stuff":"The user has liked nothing";
-
                ?>
 
               <?php
@@ -94,28 +91,12 @@
                 //PDO Style, get all data from tbl_feed.
                 //Also implement variable sort process.
 
-                $feed_orderByColumns = ["post_time", "post_id"];
-                $feed_orderDirection = "DESC";
-                $feed_orderBy = $feed_orderByColumns[0];
+                $feed_orderByColumns = ["post_time", "count_comments", "count_likes"];
+                $feed_orderDirection = "DESC"; // Can either be DESC or ASC
+                $feed_orderBy = $feed_orderByColumns[0]; // 0, 1, 2 etc. follow the order in the array.
                 $feed_dateFormat = "%M %d %Y, %H:%i:%s";
 
                 //Don't touch.
-
-                // Raw Working Query as tested in PHPMyAdmin SQL block
-                /*
-                  SELECT f.*, u.*,
-                    DATE_FORMAT(f.post_time, '%M %d %Y, %H:%i:%s') AS date_time,
-                    COUNT(c.comment_id) AS count_comments,
-                    COUNT(fl.like_id) AS count_likes
-                  FROM tbl_feed f
-                  LEFT JOIN tbl_users u ON f.user_id = u.user_id
-                  LEFT OUTER JOIN tbl_feed_likes fl ON (f.post_id = fl.post_id)
-                  LEFT OUTER JOIN tbl_comments c ON (f.post_id = c.post_id)
-                  GROUP BY f.post_id
-                  ORDER BY f.post_time
-
-                */
-                // Chonkky boi.
                 $feed_queryString = "SELECT f.*, u.*,
                     DATE_FORMAT(f.post_time, '$feed_dateFormat') AS date_time,
                     COUNT(c.comment_id) AS count_comments,
