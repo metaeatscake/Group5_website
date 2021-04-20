@@ -1,5 +1,25 @@
 <?php
 
+  //Resolve location of files.
+  $loc_vendorFolder = "vendor/";
+  $loc_currentLocation = $_SERVER["PHP_SELF"];
+  $loc_isInPHPFolder = (strpos($loc_currentLocation, "php/") !== false);
+  $locVar_venderFolder = ($loc_isInPHPFolder) ? "../$loc_vendorFolder": $loc_vendorFolder;
+
+  //Works as a one-line solution, but may run into issues when used by other contributors.
+  //$locConst_vendor = $_SERVER["DOCUMENT_ROOT"]."/Group5_website/vendor/";
+
+  // Create instance of HashIDs.
+  require($locVar_venderFolder."autoload.php");
+  use Hashids\Hashids;
+  $hashId = new Hashids('socialitySalt44331122', 7);
+
+  //$hid_encodedVar = $hashId->encode(69420);
+  //Decoded var is always array wut.
+  //$hid_decodedVar = $hashId->decode($hid_encodedVar);
+  //echo $hid_decodedVar[0];
+  //echo $hashId->decode(3444);
+
   // OOP MySQLi Object.
   $sql = new mysqli("localhost", "root", "", "socialitydb");
 
