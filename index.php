@@ -119,11 +119,17 @@
                     $post_likeButton_color = ($isLiked) ? "#000099" : "#262626";
                     $post_likeButton_text = ($isLiked) ? "Unlike" : "Like";
 
-                    //String for building the link to handleLikePost.php.
-                    $post_likeButton_href = "php/handleLikePost.php?post_id={$row['post_id']}";
+                    //"Encrypted" POST ID because style.
+                    $post_fancyID = $hashId->encode($row['post_id']);
+
+                    //String for building the link to handleLikePost.php
+                    $post_likeButton_href = "php/handleLikePost.php?id=$post_fancyID&returnTo=index_clean";
+
+                    //Prepare link for ViewPost.
+                    $post_viewPost_href = "php/viewPost.php?id=$post_fancyID";
                   ?>
 
-                  <div class="feed_post" id="<?php echo 'post'.$row['post_id']; ?>">
+                  <div class="feed_post" id="<?php echo 'p_'.$post_fancyID; ?>">
 
                     <div class="feed_title">
                       <?php echo $row["post_title"]; ?>
@@ -152,7 +158,7 @@
 
                     <div class="feed_actions">
                       <a href="<?php echo $post_likeButton_href; ?>" style="color:<?php echo $post_likeButton_color; ?>"> <i class="material-icons">thumb_up</i><?php echo $row["count_likes"]; ?></a>
-                      <a href="#"><span class="material-icons" style="color: #262626;">mode_comment</span> <span style="color:black;"><?php echo $row["count_comments"]; ?></span>  </a>
+                      <a href="<?php echo $post_viewPost_href; ?>"><span class="material-icons" style="color: #262626;">mode_comment</span> <span style="color:black;"><?php echo $row["count_comments"]; ?></span>  </a>
                       <a href="#"><span class="material-icons" style="color: #262626;">share</span></a>
                     </div>
 
