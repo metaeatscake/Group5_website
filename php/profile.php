@@ -15,7 +15,7 @@
    <head>
      <meta charset="utf-8">
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <title><?php echo $db_username; ?> | View Profile</title>
+     <title><?php echo $user_dataArray['username']; ?> | View Profile</title>
 
      <!-- Import Material Design Lite CSS -->
      <link rel="stylesheet" href="../mdl/material.min.css">
