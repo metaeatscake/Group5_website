@@ -43,6 +43,10 @@
         $redirLink = "../";
         break;
 
+      case 'likedPosts_clean':
+        $redirLink = "likedPosts.php";
+        break;
+
       default:
         $redirLink = "../$postTag";
         break;
