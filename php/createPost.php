@@ -32,7 +32,8 @@
      <link rel="shortcut icon" href="images/assets/sample2.png">
 
      <!-- Custom CSS File -->
-     <link rel="stylesheet" type="text/css" href="../css/profileStyles.css">
+     <!-- <link rel="stylesheet" type="text/css" href="../css/profileStyles.css"> -->
+     <link rel="stylesheet" type="text/css" href="../css/tmp.css">
    </head>
 
    <!-- MDL Error Dialog support. -->
