@@ -2,61 +2,12 @@
   //Get database and session.
   include_once("inc/database.php");
 
-  $id = $_SESSION["account_id"];
+  //Prefetch User data.
+  $pdoq_getUserData = $pdo->prepare("SELECT * FROM tbl_users WHERE user_id = :user_id");
+  $pdoq_getUserData->execute(['user_id' => $_SESSION["account_id"]]);
+  $user_dataArray = $pdoq_getUserData->fetch(PDO::FETCH_ASSOC);
 
-  // If the query only returns one row, the array can be fetched in one line.
-  $row = $sql->query("SELECT * FROM tbl_users WHERE user_id = '$id'")->fetch_assoc();
-
-  extract($row, EXTR_PREFIX_ALL, "db");
-    /*
-      Declares the following:
-        $db_user_id
-        $db_username
-        $db_password
-        $db_email
-        $db_sex
-        $db_profile_pic
-        $db_bio
-        $db_account_type
-    */
-
-  //DEBUGGING
-  // echo "<pre>";
-  // var_dump(get_defined_vars());
-  // echo "</pre>";
-
-  //Redirect Admins
-  if (isset($_SESSION["account_type"]) && $_SESSION["account_type"] === "admin") {
-    header("location: adm_viewUsers.php");
-    exit();
-  }
-
-  // Clients can/should still see posts even if they are not logged in, so index.php will contain the feed.
-
-  if (isset($_SESSION["account_id"])) {
-
-    // Prefetch liked posts data.
-    $q_getLikes = "SELECT * FROM tbl_feed_likes WHERE user_id = '{$_SESSION["account_id"]}'";
-    $qe_getLikes = $sql->query($q_getLikes);
-
-    //Only initialize the array if there are actual results.
-    if ($qe_getLikes->num_rows !== 0) {
-      while ($row0 = $qe_getLikes->fetch_assoc()) {
-        $user_liked_post_id[] = $row0['post_id'];
-      }
-    }
-
-    // Prefetch TOTAL liked posts
-    $q_getAllLikes = "SELECT post_id, COUNT(*) AS likeCount FROM tbl_feed_likes GROUP BY post_id";
-    $qe_getAllLikes = $sql->query($q_getAllLikes);
-    if ($qe_getAllLikes->num_rows !== 0) {
-      while ($row0 = $qe_getAllLikes->fetch_assoc()) {
-        $user_total_likes[$row0["post_id"]] = $row0["likeCount"];
-        $user_total_likes_keysOnly[] = $row0["post_id"];
-      }
-    }
-
-  }
+  //var_dump($user_dataArray);
 
  ?>
  <!DOCTYPE html>
@@ -134,7 +85,7 @@
                 <div id="profile-page-menu-top">
                   <!--Name of the User-->
                   <div id="profile-menu-username">
-                    <a href="editProfile.php"><?php echo $db_username; ?></a>
+                    <a href="editProfile.php"><?php echo $user_dataArray['username']; ?></a>
                   </div>
                 </div>
                 <br>
@@ -186,95 +137,124 @@
                   <!--CONTENT OF MY POSTS -->
                   <div id="myPosts" class="tabmenu">
                     <?php
-                      $feed_dateFormat = "%M %d %Y, %H:%i:%s";
-                        // Read this before editing the format: http://www.sqlines.com/oracle-to-mysql/to_char_datetime
-                        // Otherwise, DO NOT TOUCH.
 
-                        //Fetch all posts from tbl_feed, also do the date formatting from MySQL instead of PHP
-                        $queryString = "SELECT post_id, user_id, post_title, post_content, post_img, DATE_FORMAT(post_time, '$feed_dateFormat') AS post_date FROM tbl_feed  WHERE user_id = '{$_SESSION['account_id']}' ORDER BY post_time DESC";
-                        $feed_data = $sql->query($queryString);
-                    ?>
-                    <!-- Connect tbl_feed ID to tbl_user user_id -->
-                    <?php while($row1 = $feed_data->fetch_assoc()): ?>
+                      // Handling Like data.
+                      if (isset($_SESSION["account_id"])):
 
-                    <?php $user_data = $sql->query("SELECT * FROM tbl_users WHERE user_id = '{$row1["user_id"]}'"); ?>
+                        // PDO: Prepare the user's like data so the posts can be marked.
+                        $pdoq_getUserLikedPosts = $pdo->prepare("SELECT post_id FROM tbl_feed_likes WHERE user_id = :user_id");
+                        $pdoq_getUserLikedPosts->execute(['user_id' => $_SESSION["account_id"]]);
+                        $user_liked_post_id = $pdoq_getUserLikedPosts->fetchAll(PDO::FETCH_COLUMN);
 
-                    <?php while($row2 = $user_data->fetch_assoc()): ?>
+                      endif;
+
+                     ?>
 
                     <?php
-                      //Setup for the Likes system.
-                      //Only true if the user has liked this specific post.
-                      $post_isLiked = (isset($user_liked_post_id) && in_array($row1['post_id'], $user_liked_post_id));
 
-                      // NOTE: First string is the color/text when the post IS LIKED, the other is when it is NOT liked.
-                      $post_likeButton_color = ($post_isLiked) ? "#000099" : "#262626";
-                      $post_likeButton_text = ($post_isLiked) ? "Unlike" : "Like";
+                      //PDO Style, get all data from tbl_feed.
+                      //Also implement variable sort process.
 
-                      //String for building the link to handleLikePost.php.
-                      $post_likeButton_href = "handleLikePost.php?post_id={$row1['post_id']}&returnTo=profile.php";
-                      //Debug
-                      //echo $post_likeButton_href;
+                      $feed_dateFormat = "%M %d %Y, %H:%i:%s";
 
-                      $post_likeCount = (isset($user_total_likes) && in_array($row1['post_id'], $user_total_likes_keysOnly)) ? $user_total_likes[$row1['post_id']] : 0 ;
-                    ?>
-                      <!-- Feed Card design starts here. -->
-                      <!-- Note: $row1 = tbl_feed, $row2 = tbl_users -->
-                      <!-- No need for echo html, treat this like a normal html area. -->
-                      <div class="feed_post" id="<?php echo 'post'.$row1['post_id']; ?>">
+                      //Don't touch.
 
-                        <div class="feed_title">
-                          <?php echo $row1["post_title"]; ?>
-                        </div>
+                      $feed_queryString = "SELECT f.*, u.*,
+                          DATE_FORMAT(f.post_time, '$feed_dateFormat') AS date_time,
+                          COUNT(c.comment_id) AS count_comments,
+                          COUNT(fl.like_id) AS count_likes
+                        FROM tbl_feed f
 
-                        <div class="feed_post_time">
-                          <?php echo $row1["post_date"]; ?>
-                        </div>
+                        JOIN tbl_users u ON (f.user_id = u.user_id)
+                        LEFT OUTER JOIN tbl_feed_likes fl ON (f.post_id = fl.post_id)
+                        LEFT OUTER JOIN tbl_comments c ON (f.post_id = c.post_id)
 
-                        <div class="feed_post_author">
-                          <a href="profile.php">
-                            <?php echo 'Posted by '. $row2["username"]; ?>
-                          </a>
-                        </div>
+                        GROUP BY f.post_id
+                        ORDER BY f.post_time DESC";
 
-                        <div class="feed_content">
-                          <?php echo $row1["post_content"]; ?>
-                        </div>
-                        <br>
-                        <!-- Only display image div if there is image. -->
-                        <?php if (isset($row1["post_img"])): ?>
-                          <div class="feed_image">
-                              <img src="<?php echo $row1['post_img']; ?>" alt="<?php echo $row1['post_img']; ?>">
+                      $post_dataArray = $pdo->query($feed_queryString)->fetchAll(PDO::FETCH_ASSOC);
+                      //echo "<pre style='color:white;'>"; var_dump($post_dataArray); echo "</pre>";
+
+                     ?>
+
+                     <?php foreach ($post_dataArray as $row): ?>
+
+                       <?php
+                          // Like Data setup.
+                          $isLiked = (isset($user_liked_post_id) && in_array($row["post_id"], $user_liked_post_id));
+
+                          // NOTE: First string is the color/text when the post IS LIKED, the other is when it is NOT liked.
+                          $post_likeButton_color = ($isLiked) ? "#000099" : "#262626";
+                          $post_likeButton_text = ($isLiked) ? "Unlike" : "Like";
+
+                          //"Encrypted" POST ID because style.
+                          $post_fancyID = $hashId->encode($row['post_id']);
+
+                          //String for building the link to handleLikePost.php
+                          $post_likeButton_href = "handleLikePost.php?id=$post_fancyID&returnTo=profile.php";
+
+                          //Prepare link for ViewPost.
+                          $post_viewPost_href = "viewPost.php?id=$post_fancyID";
+                        ?>
+
+                        <?php if ($row['user_id'] === $_SESSION["account_id"]): ?>
+
+                          <div class="feed_post" id="<?php echo 'p_'.$post_fancyID; ?>">
+
+                            <div class="feed_title">
+                              <?php echo $row["post_title"]; ?>
+                            </div>
+
+                            <div class="feed_post_time">
+                              <?php echo $row["date_time"]; ?>
+                            </div>
+
+                            <div class="feed_post_author">
+                              <a href="profile.php">
+                                <?php echo 'Posted by '. $row["username"]; ?>
+                              </a>
+                            </div>
+
+                            <div class="feed_content">
+                              <?php echo nl2br($row["post_content"]); ?>
+                            </div>
+                            <br>
+                            <!-- Only display image div if there is image. -->
+                            <?php if (isset($row["post_img"])): ?>
+                              <div class="feed_image">
+                                  <img src="<?php echo $row['post_img']; ?>" alt="<?php echo $row['post_img']; ?>">
+                              </div>
+                            <?php endif; ?>
+
+                            <div class="feed_actions">
+                              <a href="<?php echo $post_likeButton_href; ?>" style="color:<?php echo $post_likeButton_color; ?>"> <i class="material-icons">thumb_up</i><?php echo $row["count_likes"]; ?></a>
+                              <a href="<?php echo $post_viewPost_href; ?>"><span class="material-icons" style="color: #262626;">mode_comment</span> <span style="color:black;"><?php echo $row["count_comments"]; ?></span>  </a>
+                              <a href="#"><span class="material-icons" style="color: #262626;">share</span></a>
+                            </div>
+
                           </div>
+                          <br>
+
                         <?php endif; ?>
 
-                        <div class="feed_actions">
-                          <a href="<?php echo $post_likeButton_href; ?>" style="color:<?php echo $post_likeButton_color; ?>"> <i class="material-icons">thumb_up</i><?php echo $post_likeCount; ?></a>
-                          <!--TEMPORARILY ADDED THE COLOR, WHILE IAN STILL NOT WORKING ON THIS PART, I CANNOT TOUCH THIS-->
-                          <a href="#"><span class="material-icons" style="color: #262626;">mode_comment</span> </a>
-                          <!--SHARE BUTTON IS FOR DISPLAY ONLY-->
-                          <a href="#"><span class="material-icons" style="color: #262626;">share</span></a>
-                        </div>
-                      </div><br><br>  
-                    <?php endwhile; ?>
-
-                    <?php endwhile; ?>
+                     <?php endforeach; ?>
                   </div>
 
                   <!--CONTENT OF ABOUT -->
                   <div id="about" class="tabmenu" style="display:none;">
                     <h2>About</h2>
 
-                    <?php 
-                      if($db_bio != NULL){
-                        echo "                       
+                    <?php
+                      if($user_dataArray['bio'] != NULL){
+                        echo "
                           <h4>Bio</h4>
-                          <h7>$db_bio</h7>
+                          <h7>{$user_dataArray['bio']}</h7>
                         ";
                       }
                     ?>
 
                     <h4>Joined</h4>
-                    <h7><?php echo $db_register_time; ?></h7>
+                    <h7><?php echo $user_dataArray['register_time']; ?></h7>
                   </div>
 
                   <!--CONTENT OF CUSTOMIZE PROFILE -->
