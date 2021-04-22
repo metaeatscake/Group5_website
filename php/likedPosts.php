@@ -14,7 +14,7 @@
    <head>
      <meta charset="utf-8">
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <title>Sociality | View Profile</title>
+     <title>Sociality | Activity Log</title>
 
      <!-- Import Material Design Lite CSS -->
      <link rel="stylesheet" href="../mdl/material.min.css">
@@ -24,7 +24,7 @@
      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
      <!-- Shortcut Icon -->
-     <link rel="shortcut icon" href="php/images/assets/sample2.png">
+     <link rel="shortcut icon" href="images/assets/sample2.png">
 
      <!-- Custom CSS File -->
      <?php include_once("../css/customStyles.php"); ?>
