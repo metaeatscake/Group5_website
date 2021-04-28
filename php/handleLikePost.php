@@ -47,6 +47,10 @@
         $redirLink = "likedPosts.php";
         break;
 
+      case 'viewPost':
+        $redirLink = "viewPost.php?id=$postTag";
+        break;
+
       default:
         $redirLink = "../$postTag";
         break;

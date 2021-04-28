@@ -26,7 +26,7 @@
      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
      <!-- Shortcut Icon -->
-     <link rel="shortcut icon" href="php/images/assets/sample2.png">
+     <link rel="shortcut icon" href="images/assets/sample2.png">
 
      <!-- Custom CSS File -->
      <?php include_once("../css/customStyles.php"); ?>
@@ -58,7 +58,98 @@
 
          <div class="page-content">
 
-           <!-- MAIN STUFF. I'll do it later. -->
+           <?php
+
+             // PDO direct dump data into an array.
+             $db_existingPosts = $pdo->query("SELECT post_id FROM tbl_feed")->fetchAll(PDO::FETCH_COLUMN);
+
+             $decodedIDArr = (isset($_GET["id"])) ? $hashId->decode($_GET["id"]) : "" ;
+             $decodedID = $decodedIDArr[0];
+
+             //Redirect if there is no data, or if there is and it is not valid.
+             if (empty($decodedID) || !in_array($decodedID, $db_existingPosts)):
+               header("location: ../");
+               exit();
+             endif;
+
+             $pdoq_getPostData = $pdo->prepare("SELECT * FROM view_posts WHERE post_id = :post_id");
+             $pdoq_getPostData->execute(['post_id' => $decodedID]);
+             $row = $pdoq_getPostData->fetch(PDO::FETCH_ASSOC);
+
+             // Handling Like data.
+             // Copied from Index. very inefficient, to be rewritten.
+             if (isset($_SESSION["account_id"])):
+
+               // PDO: Prepare the user's like data so the posts can be marked.
+               $pdoq_getUserLikedPosts = $pdo->prepare("SELECT post_id FROM tbl_feed_likes WHERE user_id = :user_id");
+               $pdoq_getUserLikedPosts->execute(['user_id' => $_SESSION["account_id"]]);
+               $user_liked_post_id = $pdoq_getUserLikedPosts->fetchAll(PDO::FETCH_COLUMN);
+
+             endif;
+
+             // Like Data setup.
+             $isLiked = (isset($user_liked_post_id) && in_array($row["post_id"], $user_liked_post_id));
+
+             // NOTE: First string is the color/text when the post IS LIKED, the other is when it is NOT liked.
+             $post_likeButton_color = ($isLiked) ? "#000099" : "#262626";
+             $post_likeButton_text = ($isLiked) ? "Unlike" : "Like";
+
+             //"Encrypted" POST ID because style.
+             $post_fancyID = $_GET["id"];
+
+             //String for building the link to handleLikePost.php
+             $post_likeButton_href = "handleLikePost.php?id=$post_fancyID&returnTo=viewPost";
+
+             //Prepare link for ViewPost.
+             $post_viewPost_href = "viewPost.php?id=$post_fancyID";
+
+            ?>
+
+            <?php // Post holder. ?>
+            <div class="feed_post">
+
+              <div class="feed_title">
+                <?php echo $row["post_title"]; ?>
+              </div>
+
+              <div class="feed_post_time">
+                <?php echo $row["date_time"]; ?>
+              </div>
+
+              <div class="feed_post_author">
+                <a href="profile.php">
+                  <?php echo 'Posted by '. $row["username"]; ?>
+                </a>
+              </div>
+
+              <div class="feed_content">
+                <?php echo nl2br($row["post_content"]); ?>
+              </div>
+              <br>
+              <!-- Only display image div if there is image. -->
+              <?php if (isset($row["post_img"])): ?>
+                <div class="feed_image">
+                    <img src="<?php echo $row['post_img']; ?>" alt="<?php echo $row['post_img']; ?>">
+                </div>
+              <?php endif; ?>
+
+              <div class="feed_actions">
+                <a href="<?php echo $post_likeButton_href; ?>" style="color:<?php echo $post_likeButton_color; ?>"> <i class="material-icons">thumb_up</i><?php echo $row["count_likes"]; ?></a>
+                <a href="<?php echo $post_viewPost_href; ?>"><span class="material-icons" style="color: #262626;">mode_comment</span> <span style="color:black;"><?php echo $row["count_comments"]; ?></span>  </a>
+                <a href="#"><span class="material-icons" style="color: #262626;">share</span></a>
+              </div>
+
+            </div>
+
+            <?php // Comment box holder ?>
+            <div class="create_comment_wrapper">
+
+            </div>
+
+            <?php // Comments holder ?>
+            <div class="comment-wrapper">
+
+            </div>
 
          </div>
 
