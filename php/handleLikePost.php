@@ -31,7 +31,8 @@
 
   // Redirect Link Setup.
   if (isset($_GET["returnTo"])) {
-    $postTag = "#p_{$_GET['post_id']}";
+    $postTag = "#p_{$_GET['id']}";
+    $postRaw = $_GET['id'];
     $targetPage = $_GET["returnTo"];
 
     switch ($targetPage) {
@@ -48,7 +49,7 @@
         break;
 
       case 'viewPost':
-        $redirLink = "viewPost.php?id=$postTag";
+        $redirLink = "viewPost.php?id=$postRaw";
         break;
 
       default:
