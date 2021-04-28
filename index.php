@@ -89,20 +89,7 @@
               <?php
 
                 //PDO Style, get all data from tbl_feed.
-                //Also implement variable sort process.
-
-                $feed_dateFormat = "%M %d %Y, %H:%i:%s";
-
-                //Don't touch.
-                $feed_queryString = "SELECT f.*, u.*,
-                    DATE_FORMAT(f.post_time, '$feed_dateFormat') AS date_time,
-                    COUNT(c.comment_id) AS count_comments,
-                    COUNT(fl.like_id) AS count_likes
-                  FROM tbl_feed f JOIN tbl_users u ON (f.user_id = u.user_id)
-                  LEFT OUTER JOIN tbl_feed_likes fl ON (f.post_id = fl.post_id)
-                  LEFT OUTER JOIN tbl_comments c ON (f.post_id = c.post_id)
-                  GROUP BY f.post_id
-                  ORDER BY f.post_time DESC";
+                $feed_queryString = "SELECT * FROM view_posts ORDER BY post_time DESC";
 
                 $post_dataArray = $pdo->query($feed_queryString)->fetchAll(PDO::FETCH_ASSOC);
                 //echo "<pre style='color:white;'>"; var_dump($post_dataArray); echo "</pre>";
