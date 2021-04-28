@@ -259,6 +259,7 @@
 
                   <!--CONTENT OF CUSTOMIZE PROFILE -->
                   <!--HI JOM, IF YOU DECIDED TO REMOVE THE FOLLOWING BAR ON CUSTOMIZE PROFILE, YOU CAN MOVE THIS PART SOMEWHERE U WANT -->
+                  
                   <div id="customizeProfile" class="tabmenu" style="display:none;">
                   <?php
                   //Get database and session.
@@ -297,11 +298,12 @@
                       $tmp_id = $_SESSION["account_id"];
                       if($result = $sql->query("SELECT * FROM tbl_users WHERE id = '$tmp_id'")){
                         while($row = $result->fetch_assoc())
-                      {
-                      extract($row, EXTR_PREFIX_ALL, "data");
-                      }
+                        {
+                          extract($row, EXTR_PREFIX_ALL, "data");
+                        }
                       }
                         $requireInput = false;
+                      
                       ?>
                       <main class="mdl-layout__content">
 
@@ -340,7 +342,6 @@
                       </div>
                       <div>
                       <input type="text" name="bio" class="input" id="bio" value="<?php echo $db_bio; ?>">
-                      
                       </div>
                       <br>
                       <div class="formItem">
@@ -350,60 +351,47 @@
                       <br>
                       <label for="password">Confirm Password</label>
                       <div class="formItem">
-                      <input class="input "type="password" name="confirm_password" required placeholder="Re-type your password" min="8">
-                      <i class="fas fa-key" aria-hidden="true"></i>
+                        <input class="input "type="password" name="confirm_password" required placeholder="Re-type your password" min="8">
+                        <i class="fas fa-key" aria-hidden="true"></i>
                       </div>
                       <br>
                       <div class="formItem">
-                      <div class="labelform">
-                      <div class="formItem">Sex</div>
-                      <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-1">
-                      <input type="radio" id="option-1" class="mdl-radio__button" name="sex" value="male" checked>
-                      <span class="mdl-radio__label">Male</span>
-                      </label>
-                      <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-2">
-                      <input type="radio" id="option-2" class="mdl-radio__button" name="sex" value="female">
-                      <span class="mdl-radio__label">Female</span>
-                      </label>
-                      <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-3">
-                      <input type="radio" id="option-3" class="mdl-radio__button" name="sex" value="Prefer not to say">
-                      <span class="mdl-radio__label">Prefer not to say</span>
-                      </label>
+                        <div class="labelform">
+                          <div class="formItem">Sex</div>
+                            <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-1">
+                              <input type="radio" id="option-1" class="mdl-radio__button" name="sex" value="male" checked>
+                             <span class="mdl-radio__label">Male</span>
+                            </label>
+                            <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-2">
+                              <input type="radio" id="option-2" class="mdl-radio__button" name="sex" value="female">
+                              <span class="mdl-radio__label">Female</span>
+                            </label>
+                            <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-3">
+                              <input type="radio" id="option-3" class="mdl-radio__button" name="sex" value="Prefer not to say">
+                              <span class="mdl-radio__label">Prefer not to say</span>
+                            </label>
+                          </div>
+                        </div>
                       </div>
                       <br>
                       <div class="formItem">
-                      <div class="labelform">
-                      <label class="label" for="email">Email</label>
+                        <label class="label" for="email">Email</label>
                       </div>
                       <div class="formItem">
-                      <input class="input" type="email" id="email" name="email" value="<?php echo $db_email; ?>">
-                      </div>
+                        <input class="input" type="email" id="email" name="email" value="<?php echo $db_email; ?>">
                       </div>
                       <br>
                       <button class="mdl-button mdl-js-button mdl-button--raised" id="formSubmitButton-container">
-                      <i class="material-icons">done</i>
-                      <input type="submit" name="registerSubmit" id="formSubmitButton" value="submit">
+                        <i class="material-icons">done</i>
+                        <input type="submit" name="registerSubmit" id="formSubmitButton" value="submit">
                       </button>
                       </div>
                       </form>
                       <br><br>
                       </div>
 
-                      </main>
-
-                      </div>
-
-
-                      </div>
-                      </div>
-                      </div>
-                      </div>
-                      </div>
-                      </main>
-                        <?php include_once("inc/footer.php"); ?>
-                      </div>
-                      </body>
-                      </html>
+                    </main>
+                    </div>
 <script>
   function opentabs(tab, tabname) {
     var i, x, tablinks;
