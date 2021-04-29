@@ -1,8 +1,9 @@
 # Ignore these
-php/images/post_img/*
-php/images/users/*
-php/images/users_cover/*
+src/views/images/post_img/*
+src/views/images/users/*
+src/views/images/users_cover/*
 
 # But not the defaults
-!php/images/users/_default.jpg
-!php/images/users_cover/_default.png
+!src/views/images/users/_default.jpg
+!src/views/images/users_cover/_default.png
+!src/views/images/post_img/temp.txt
