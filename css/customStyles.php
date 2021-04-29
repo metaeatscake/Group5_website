@@ -185,6 +185,7 @@
     -webkit-transition: ease-out 0.4s;
     -moz-transition: ease-out 0.4s;
     transition: ease-out 0.4s;
+    border-radius:  10px 10px 10px;
   }
 
   .button:hover{
