@@ -6,3 +6,4 @@ php/images/users_cover/*
 # But not the defaults
 !php/images/users/_default.jpg
 !php/images/users_cover/_default.png
+!php/images/post_img/temp.txt
