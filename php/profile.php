@@ -32,7 +32,6 @@
      <link rel="stylesheet" type="text/css" href="../css/profileStyles.css">
      <link rel="stylesheet" href="../css/w3.css">
    </head>
-
    <body>
       <?php include_once("inc/_js_mdl_formAlert.php") ?>
 
@@ -56,6 +55,7 @@
              your background is light. */
           color: #cca8e6;
         }
+
       </style>
 
       <div class="demo-layout-transparent mdl-layout mdl-js-layout">
@@ -71,7 +71,7 @@
               <div style="background-color: white; text-align: center; color: #405d9b">
 
                 <!--TEMPORARY ONLY, ONCE I KNOW HOW TO WORK ON PUTTING UPLOAD IMAGE ICON BESIDE THE PROFILE PICTURE-->
-                <img src="images/users_cover/_default.png" style="width: 100%; height: 380px;">
+                <p><img src="images/users_cover/_default.png" style="width: 100%; height: 380px;" class="cover"></p>
 
                 <!---CHANGE THIS WITH THE TEMPORARY IMG THAT I PUT <img src="images/users_cover/bglight.jpg" style="width: 100%;"> -->
 
@@ -92,9 +92,9 @@
 
                 <!--PROFILE MENU BUTTONS, BELOW THE AREA OF PROFILE PAGE MENU TOP-->
                 <div class="w3-bar" style="background-color: white;">
-                  <button class="w3-bar-item w3-button tablink" onclick="opentabs(event,'myPosts')">My Posts</button>
-                  <button class="w3-bar-item w3-button tablink" onclick="opentabs(event,'about')">About</button>
-                  <button class="w3-bar-item w3-button tablink" onclick="opentabs(event,'customizeProfile')">Customize Profile</button>
+                  <button class="w3-bar-item w3-button tablink" onclick="opentabs(event,'myPosts')" style="margin:10px; margin-right: 250px;">My Posts</button>
+                  <button class="w3-bar-item w3-button tablink" onclick="opentabs(event,'about')" style="margin:10px; margin-right: 190px;">About</button>
+                  <button class="w3-bar-item w3-button tablink" onclick="opentabs(event,'customizeProfile')" style="margin:10px;">Customize Profile</button>
                 </div>
               </div>
 
@@ -259,7 +259,7 @@
 
                   <!--CONTENT OF CUSTOMIZE PROFILE -->
                   <!--HI JOM, IF YOU DECIDED TO REMOVE THE FOLLOWING BAR ON CUSTOMIZE PROFILE, YOU CAN MOVE THIS PART SOMEWHERE U WANT -->
-                  
+
                   <div id="customizeProfile" class="tabmenu" style="display:none;">
                   <?php
                   //Get database and session.
@@ -303,7 +303,7 @@
                         }
                       }
                         $requireInput = false;
-                      
+
                       ?>
                       <main class="mdl-layout__content">
 
@@ -317,7 +317,7 @@
 
                       <!-- Title Area (including the background pic) -->
                       <!--i just copied some css on register, you can still change it-->
-            
+
                       <center><br><br><img src="images/assets/socialitylogoblack.png" width="300" height="70"><center>
                       <br>
                       <img src="<?php echo $db_profile_pic; ?> "width="215" height="200">
@@ -329,7 +329,7 @@
                       <div>
                         <input type="file" name="profile_pic" accept="image/*" <?php echo ($requireInput) ? "required":''; ?>>
                       </div>
-        
+
                       <div class="formItem">
                         <label>Username</label>
                       </div>
