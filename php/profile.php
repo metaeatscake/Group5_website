@@ -93,10 +93,17 @@
                 <!--PROFILE MENU BUTTONS, BELOW THE AREA OF PROFILE PAGE MENU TOP-->
                 <div class="w3-bar" style="background-color: white;">
                   <button class="w3-bar-item w3-button tablink" onclick="opentabs(event,'myPosts')" style="margin:10px;">My Posts</button>
-                  <button class="w3-bar-item w3-button tablink" onclick="opentabs(event,'about')" style="margin:10px;">About</button>
+                  <button class="w3-bar-item w3-button tablink" onclick="opentabs(event,'about')" style="margin:10px auto;">About</button>
                   <button class="w3-bar-item w3-button tablink" onclick="opentabs(event,'customizeProfile')" style="margin:10px;">Customize Profile</button>
                 </div>
               </div>
+
+              <style media="screen">
+                .w3-bar{
+                  display: flex;
+                  justify-content: center;
+                }
+              </style>
 
               <!--BELOW THE PROFILE CARD AREA-->
               <div style="display: flex;">
