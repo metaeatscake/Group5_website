@@ -144,22 +144,61 @@
             <?php // Comment box holder
               // Front end can make this cleaner, not my problem -Ian
             ?>
-            <div class="create_comment_wrapper">
+            <div class="create_comment_wrapper" style="margin:auto;text-align:center;">
 
-              <form class="form_addComment" action="handleAddComment.php" method="post">
+              <form class="form_addComment" action="handleAddComment.php" method="POST">
 
                 <div class="addComment_title"> <h2>Add Comment</h2> </div>
                 <textarea name="post_comment" rows="8" cols="80" placeholder="Say something neato"></textarea>
-                <input type="submit" name="post_comment" value="Add Comment">
+                <input type="submit" name="subm_addComment" value="Add Comment">
+                <input type="hidden" name="post_id" value="<?php echo $_GET["id"]; ?>">
 
               </form>
 
             </div>
 
             <?php // Comments holder ?>
+            <?php
+              $pdo_getComments = $pdo->prepare("SELECT * FROM tbl_comments WHERE post_id = :post_id");
+              $pdo_getComments->execute(['post_id' => $decodedID]);
+              $arr_comments = $pdo_getComments->fetchAll(PDO::FETCH_ASSOC);
+             ?>
             <div class="comment-wrapper">
 
+               <?php if (empty($arr_comments)):?>
+
+                 <div class="comment-wrapper_noComments">
+                   <h1>There's no comments smh</h1>
+                 </div>
+
+               <?php else: ?>
+
+                 <?php foreach ($arr_comments as $row): ?>
+
+                   <?php
+                    $pdo_getCommenterData = $pdo->prepare("SELECT username,profile_pic FROM tbl_users WHERE user_id = :user_id");
+                    $pdo_getCommenterData->execute(['user_id' => $row['user_id']]);
+                    $arr_CommenterData = $pdo_getCommenterData->fetch(PDO::FETCH_ASSOC);
+                    ?>
+
+                    <?php if (file_exists($arr_CommenterData['profile_pic'])): ?>
+                      <div class="cw_profilePic">
+                        <img src="<?php echo $arr_CommenterData['profile_pic']; ?>" alt="userPic">
+                      </div>
+                    <?php endif; ?>
+                    <div class="cw_username" style="color:white; font-size:30px;">
+                      <?php echo $arr_CommenterData['username']; ?>
+                    </div>
+                   <div class="cw_comment" style="color:white; font-size:30px;">
+                     <?php echo $row['comment_content']; ?>
+                   </div>
+
+                 <?php endforeach; ?>
+
+               <?php endif; ?>
+
             </div>
+
 
          </div>
 
