@@ -127,7 +127,7 @@
               </div>
               <br>
               <!-- Only display image div if there is image. -->
-              <?php if (isset($row["post_img"])): ?>
+              <?php if (isset($row["post_img"]) && file_exists($row["post_img"])): ?>
                 <div class="feed_image">
                     <img src="<?php echo $row['post_img']; ?>" alt="<?php echo $row['post_img']; ?>">
                 </div>
@@ -141,8 +141,18 @@
 
             </div>
 
-            <?php // Comment box holder ?>
+            <?php // Comment box holder
+              // Front end can make this cleaner, not my problem -Ian
+            ?>
             <div class="create_comment_wrapper">
+
+              <form class="form_addComment" action="handleAddComment.php" method="post">
+
+                <div class="addComment_title"> <h2>Add Comment</h2> </div>
+                <textarea name="post_comment" rows="8" cols="80" placeholder="Say something neato"></textarea>
+                <input type="submit" name="post_comment" value="Add Comment">
+
+              </form>
 
             </div>
 
