@@ -170,30 +170,19 @@
                   <?php else: ?>
 
                     <?php foreach ($arr_comments as $row): ?>
-
-<<<<<<< HEAD
-                  <?php if (file_exists($arr_CommenterData['profile_pic'])): ?>
-                    <div class="comment-dp">
-                      <img  src="<?php echo $arr_CommenterData['profile_pic']; ?>" alt="userPic">
-                    </div>
-                    <div class="dialogbox">
-                      <div class="body-box">
-                        <span class="tip tip-left"></span>
-                        <div class="content-comment">
-                          <span><b><?php echo $arr_CommenterData['username']; ?></b></span><br><br>
-                          <span style="text-indent: -20px;"><?php echo $row['comment_content']; ?> </span>
+       
+                        <div class="comment-dp">
+                          <img  src="<?php echo $row['profile_pic']; ?>" alt="userPic">
                         </div>
-                      </div>
-                    </div>
-                  <?php endif; ?>
-=======
-                      <div class="comment-section">
-                        <img src="<?php echo $row['profile_pic']; ?>" alt="userPic">
-                        <b><?php echo $row['username']; ?>:</b>
-                        <?php echo $row['comment_content']; ?>
-                      </div>
-                      <br>
->>>>>>> 06a985b66d2d8c8e306af9ebf51fcae90a7814f8
+                        <div class="dialogbox">
+                          <div class="body-box">
+                            <span class="tip tip-left"></span>
+                            <div class="content-comment">
+                              <span><b><?php echo $row['username']; ?></b></span><br><br>
+                              <span style="text-indent: -20px;"><?php echo $row['comment_content']; ?> </span>
+                            </div>
+                          </div>
+                        </div>
 
                     <?php endforeach; ?>
 
@@ -216,5 +205,3 @@
    </body>
 
  </html>
-
-
