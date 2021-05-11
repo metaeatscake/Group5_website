@@ -288,15 +288,34 @@
     text-decoration: underline;
   }
 
-  .feed_actions{
+/*  .feed_actions{
       width: 100%;
       display: inline-block;
       margin: 8px;
-  }
-/*  .feed_actions{
+  }  
+
+  .feed_actions a{
+    text-decoration: none;
+    padding: 15px 83px;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+  }*/
+  .feed_actions{
     display: flex;
     padding-bottom: 10px;
     justify-content: center;
+  }
+
+  .feed_actions a{
+    text-decoration: none;
+    text-align: center;
+  }
+  #like-button, #comment-button, #share{
+    width: auto;
+    height: 15px;
+    margin-right: 5px;
   }
 
   .like-button{
@@ -306,14 +325,21 @@
     display: flex;
     cursor: pointer;
   }
-  */
-  .feed_actions a{
-    text-decoration: none;
-    padding: 15px 83px;
-    border: none;
+  
+  .comment-button{
+    padding-left: 30px;
+    padding-right: 20px;
+    margin-top: 10px;
+    display: flex;
     cursor: pointer;
-    text-align: center;
-    text-decoration: none;
+  }
+
+  .share-button{
+    padding-right: 20px;
+    padding-left: 30px;
+    margin-top: 20px;
+    display: flex;
+    cursor: pointer;
   }
 
   .feed_actions a:hover{
