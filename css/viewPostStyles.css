@@ -23,3 +23,9 @@ textarea{
   background-color:#ff80ff;
   border-color: #0062cc;
 }
+
+.cw_profilePic img{
+  width: 50px;
+  border-radius: 50%;
+  border: solid 2px white;	
+}

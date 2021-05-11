@@ -141,57 +141,62 @@
                       <form class="form_addComment" action="handleAddComment.php" method="POST">
 
                         <!-- <div class="addComment_title"> <h2>Add Comment</h2> </div> --> 
-                        <textarea name="post_comment" wrap="off" rows="3" cols="68" placeholder=" Write a comment..."></textarea><br><br>  
+                        <textarea name="post_comment" wrap="off" rows="3" cols="68" placeholder=" Write a comment..."></textarea><br>
                         <input type="submit" name="subm_addComment" class="btn-primary" value="Add Comment">
                         <input type="hidden" name="post_id" value="<?php echo $_GET["id"]; ?>">
                       </form>
                     </div>
-                </div>                
-              </center>
-            </div>
+                    <br><br>  <hr>
+              </center>      
+                    <!-- COMMENT HOLDER -->
+                      <?php
+                        $pdo_getComments = $pdo->prepare("SELECT * FROM tbl_comments WHERE post_id = :post_id");
+                        $pdo_getComments->execute(['post_id' => $decodedID]);
+                        $arr_comments = $pdo_getComments->fetchAll(PDO::FETCH_ASSOC);
+                      ?>
+                      <div class="comment-wrapper">
 
-            <?php // Comments holder ?>
-            <?php
-              $pdo_getComments = $pdo->prepare("SELECT * FROM tbl_comments WHERE post_id = :post_id");
-              $pdo_getComments->execute(['post_id' => $decodedID]);
-              $arr_comments = $pdo_getComments->fetchAll(PDO::FETCH_ASSOC);
-             ?>
-            <div class="comment-wrapper">
+                        <?php if (empty($arr_comments)):?>
 
-               <?php if (empty($arr_comments)):?>
+                          <div class="comment-wrapper_noComments">
+                            <h7>Be the first one to comment</h7>
+                          </div>
 
-                 <div class="comment-wrapper_noComments">
-                   <h1>There's no comments smh</h1>
-                 </div>
+                        <?php else: ?>
 
-               <?php else: ?>
+                          <?php foreach ($arr_comments as $row): ?>
 
-                 <?php foreach ($arr_comments as $row): ?>
+                          <?php
+                            $pdo_getCommenterData = $pdo->prepare("SELECT username,profile_pic FROM tbl_users WHERE user_id = :user_id");
+                            $pdo_getCommenterData->execute(['user_id' => $row['user_id']]);
+                            $arr_CommenterData = $pdo_getCommenterData->fetch(PDO::FETCH_ASSOC);
+                          ?>
 
-                   <?php
-                    $pdo_getCommenterData = $pdo->prepare("SELECT username,profile_pic FROM tbl_users WHERE user_id = :user_id");
-                    $pdo_getCommenterData->execute(['user_id' => $row['user_id']]);
-                    $arr_CommenterData = $pdo_getCommenterData->fetch(PDO::FETCH_ASSOC);
-                    ?>
+                          <?php if (file_exists($arr_CommenterData['profile_pic'])): ?>
+                            
+                            <div class="cw_profilePic">
+                              <img src="<?php echo $arr_CommenterData['profile_pic']; ?>" alt="userPic">
+                            </div>
 
-                    <?php if (file_exists($arr_CommenterData['profile_pic'])): ?>
-                      <div class="cw_profilePic">
-                        <img src="<?php echo $arr_CommenterData['profile_pic']; ?>" alt="userPic">
-                      </div>
-                    <?php endif; ?>
-                    <div class="cw_username" style="color:white; font-size:30px;">
-                      <?php echo $arr_CommenterData['username']; ?>
+                          <?php endif; ?>
+
+                          <div class="cw_username" style="color:black; font-size:20px;">
+                            <?php echo $arr_CommenterData['username']; ?>
+                          </div>
+
+                         <div class="cw_comment" style="color:black; font-size:16px;">
+                           <?php echo $row['comment_content']; ?>
+                         </div>
+
+                       <?php endforeach; ?>
+
+                      <?php endif; ?>
+
                     </div>
-                   <div class="cw_comment" style="color:white; font-size:30px;">
-                     <?php echo $row['comment_content']; ?>
-                   </div>
 
-                 <?php endforeach; ?>
-
-               <?php endif; ?>
+                </div>
 
             </div>
-
 
          </div>
 
