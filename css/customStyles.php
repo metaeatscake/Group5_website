@@ -364,26 +364,6 @@
     text-decoration: underline;
   }
 
-/*  .feed_actions{
-      width: 100%;
-      display: inline-block;
-      align-items: center;
-      margin: 8px;
-  }  
-
-  .feed_actions a{
-    padding: 15px 14.1%;
-    border: none;
-    cursor: pointer;
-    text-align: center;
-    text-decoration: none;
-  }
-
-  .feed_actions a:hover{
-    border-radius: 5px;
-    background-color: #cccccc;
-  }*/
-
   .feed_actions{
     width: 100%;
     display: inline-block;
@@ -391,8 +371,7 @@
   }
 
   .feed_actions a{
-    text-decoration: none;
-    padding: 15px 50px;
+    padding: 15px 60px;
     border: none;
     cursor: pointer;
     align-items: center;

@@ -131,24 +131,23 @@
                     <img src="<?php echo $row['post_img']; ?>" alt="<?php echo $row['post_img']; ?>">
                 </div>
               <?php endif; ?>
+              <center>
+                <div class="feed_actions">
+                  <a href="<?php echo $post_likeButton_href; ?>" style="color:<?php echo $post_likeButton_color; ?>"> <i class="material-icons">thumb_up</i><?php echo $row["count_likes"]; ?></a>
+                  <a href="<?php echo $post_viewPost_href; ?>"><span class="material-icons" style="color: #262626;">mode_comment</span> <span style="color:black;"><?php echo $row["count_comments"]; ?></span></a>
+                  <a href="#"><span class="material-icons" style="color: #262626;">share</span></a><hr>
+                    <!-- COMMENT BOX HOLDER -->
+                    <div class="create_comment_wrapper" style="margin:auto;text-align: center;">
+                      <form class="form_addComment" action="handleAddComment.php" method="POST">
 
-              <div class="feed_actions">
-                <a href="<?php echo $post_likeButton_href; ?>" style="color:<?php echo $post_likeButton_color; ?>"> <i class="material-icons">thumb_up</i><?php echo $row["count_likes"]; ?></a>
-                <a href="<?php echo $post_viewPost_href; ?>"><span class="material-icons" style="color: #262626;">mode_comment</span> <span style="color:black;"><?php echo $row["count_comments"]; ?></span></a>
-                <a href="#"><span class="material-icons" style="color: #262626;">share</span></a>
-                <br><hr>
-                  <!-- COMMENT BOX HOLDER -->
-                  <div class="create_comment_wrapper" style="margin:auto;text-align:center;">
-                    <form class="form_addComment" action="handleAddComment.php" method="POST">
-
-                      <!-- <div class="addComment_title"> <h2>Add Comment</h2> </div> -->
-                      <textarea name="post_comment" wrap="off" rows="3" cols="80" placeholder="Write a comment..."></textarea><br>
-                      <input type="submit" name="subm_addComment" class="btn-primary" value="Add Comment">
-                      <input type="hidden" name="post_id" value="<?php echo $_GET["id"]; ?>">
-                    </form>
-                  </div>
-              </div>
-
+                        <!-- <div class="addComment_title"> <h2>Add Comment</h2> </div> --> 
+                        <textarea name="post_comment" wrap="off" rows="3" cols="68" placeholder=" Write a comment..."></textarea><br><br>  
+                        <input type="submit" name="subm_addComment" class="btn-primary" value="Add Comment">
+                        <input type="hidden" name="post_id" value="<?php echo $_GET["id"]; ?>">
+                      </form>
+                    </div>
+                </div>                
+              </center>
             </div>
 
             <?php // Comments holder ?>
