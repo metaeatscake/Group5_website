@@ -135,14 +135,15 @@
                     <img src="<?php echo $row['post_img']; ?>" alt="<?php echo $row['post_img']; ?>">
                 </div>
               <?php endif; ?>
-              <center>
-                <div class="feed_actions">
+              
+              <div class="feed_actions">
+                <center>
                   <a href="<?php echo $post_likeButton_href; ?>" style="color:<?php echo $post_likeButton_color; ?>"> <i class="material-icons">thumb_up</i><?php echo $post_likeCount; ?></a>
-                  <a href="<?php echo $post_viewPost_href; ?>"><span class="material-icons" style="color: #262626;">mode_comment</span> <span style="color:black;"><?php echo $post_commentCount; ?></span></a>
-                  <a href="#"><span class="material-icons" style="color: #262626;">share</span></a><hr>
-                    <!-- COMMENT BOX HOLDER -->
-                    <div class="create_comment_wrapper" style="margin:auto;text-align: center;">
-                      <form class="form_addComment" action="handleAddComment.php" method="POST">
+                    <a href="<?php echo $post_viewPost_href; ?>"><span class="material-icons" style="color: #262626;">mode_comment</span> <span style="color:black;"><?php echo $post_commentCount; ?></span></a>
+                    <a href="#"><span class="material-icons" style="color: #262626;">share</span></a><hr>
+                      <!-- COMMENT BOX HOLDER -->
+                      <div class="create_comment_wrapper" style="margin:auto;text-align: center;">
+                        <form class="form_addComment" action="handleAddComment.php" method="POST">
 
                         <!-- <div class="addComment_title"> <h2>Add Comment</h2> </div> -->
                         <textarea name="post_comment" wrap="off" rows="3" cols="68" placeholder=" Write a comment..."></textarea><br>
@@ -151,59 +152,57 @@
                       </form>
                     </div>
                     <br><br>  <hr>
-              </center>
-                    <!-- COMMENT HOLDER -->
-                      <?php
-                        $pdo_getComments = $pdo->prepare("SELECT * FROM tbl_comments WHERE post_id = :post_id");
-                        $pdo_getComments->execute(['post_id' => $decodedID]);
-                        $arr_comments = $pdo_getComments->fetchAll(PDO::FETCH_ASSOC);
-                      ?>
-                      <div class="comment-wrapper">
+                </center>
+                <!-- COMMENT HOLDER -->
+                <?php
+                  $pdo_getComments = $pdo->prepare("SELECT * FROM tbl_comments WHERE post_id = :post_id");
+                  $pdo_getComments->execute(['post_id' => $decodedID]);
+                  $arr_comments = $pdo_getComments->fetchAll(PDO::FETCH_ASSOC);
+                ?>
+                <div class="comment-wrapper">
 
-                        <?php if (empty($arr_comments)):?>
+                  <?php if (empty($arr_comments)):?>
 
-                          <div class="comment-wrapper_noComments">
-                            <h7>Be the first one to comment</h7>
-                          </div>
-
-                        <?php else: ?>
-
-                          <?php foreach ($arr_comments as $row): ?>
-
-                          <?php
-                            $pdo_getCommenterData = $pdo->prepare("SELECT username,profile_pic FROM tbl_users WHERE user_id = :user_id");
-                            $pdo_getCommenterData->execute(['user_id' => $row['user_id']]);
-                            $arr_CommenterData = $pdo_getCommenterData->fetch(PDO::FETCH_ASSOC);
-                          ?>
-
-                          <?php if (file_exists($arr_CommenterData['profile_pic'])): ?>
-
-                            <div class="cw_profilePic" style="padding: 10px; width: 100px; display: inline;">
-
-                            <div class="cw_profilePic">
-                              <img src="<?php echo $arr_CommenterData['profile_pic']; ?>" alt="userPic">
-                            </div>
-
-                            <div class="comment-section" style="padding: 25px; display: inline;">
-                              <b><?php echo $arr_CommenterData['username']; ?>:</b> 
-                              <?php echo $row['comment_content']; ?>
-                            </div>
-
-                          <?php endif; ?>
-
-                       <?php endforeach; ?>
-
-                      <?php endif; ?>
-
+                    <div class="comment-wrapper_noComments">
+                      <h7>Be the first one to comment</h7>
                     </div>
+
+                  <?php else: ?>
+
+                  <?php foreach ($arr_comments as $row): ?>
+
+                  <?php
+                    $pdo_getCommenterData = $pdo->prepare("SELECT username,profile_pic FROM tbl_users WHERE user_id = :user_id");
+                    $pdo_getCommenterData->execute(['user_id' => $row['user_id']]);
+                    $arr_CommenterData = $pdo_getCommenterData->fetch(PDO::FETCH_ASSOC);
+                  ?>
+
+                  <?php if (file_exists($arr_CommenterData['profile_pic'])): ?>
+
+                  <div class="cw_profilePic" style="padding: 10px; width: 100px; display: inline;">
+                    <img src="<?php echo $arr_CommenterData['profile_pic']; ?>" alt="userPic">
+                  </div>
+
+                  <div class="comment-section" style="padding: 25px; display: inline;">
+                    <b><?php echo $arr_CommenterData['username']; ?>:</b> 
+                    <?php echo $row['comment_content']; ?>
+                  </div>
+
+                  <?php endif; ?>
+
+                  <?php endforeach; ?>
+
+                  <?php endif; ?>
 
                 </div>
 
+              </div>
+
             </div>
 
-         </div>
+          </div>
 
-       </main>
+        </main>
 
        <?php include_once("inc/footer.php"); ?>
 
