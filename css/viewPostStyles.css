@@ -27,5 +27,12 @@ textarea{
 .cw_profilePic img{
   width: 50px;
   border-radius: 50%;
-  border: solid 2px white;	
+  border: solid 3px white;	
+}
+
+.comment-section{
+	border-color: #e6e6e6;
+	background-color: #e6e6e6;
+	border-radius: 8px;
+	width: 500px;
 }

@@ -173,20 +173,16 @@
                           ?>
 
                           <?php if (file_exists($arr_CommenterData['profile_pic'])): ?>
-                            
-                            <div class="cw_profilePic">
+                            <div class="cw_profilePic" style="padding: 10px; width: 100px; display: inline;">
                               <img src="<?php echo $arr_CommenterData['profile_pic']; ?>" alt="userPic">
                             </div>
 
+                            <div class="comment-section" style="padding: 25px; display: inline;">
+                              <b><?php echo $arr_CommenterData['username']; ?>:</b> 
+                              <?php echo $row['comment_content']; ?>
+                            </div>
+
                           <?php endif; ?>
-
-                          <div class="cw_username" style="color:black; font-size:20px;">
-                            <?php echo $arr_CommenterData['username']; ?>
-                          </div>
-
-                         <div class="cw_comment" style="color:black; font-size:16px;">
-                           <?php echo $row['comment_content']; ?>
-                         </div>
 
                        <?php endforeach; ?>
 
