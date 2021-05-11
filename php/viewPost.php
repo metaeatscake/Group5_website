@@ -146,7 +146,7 @@
                         <form class="form_addComment" action="handleAddComment.php" method="POST">
 
                         <!-- <div class="addComment_title"> <h2>Add Comment</h2> </div> -->
-                        <textarea name="post_comment" wrap="off" rows="3" cols="68" placeholder=" Write a comment..."></textarea><br>
+                        <textarea name="post_comment" rows="5" cols="68" placeholder=" Write a comment..."></textarea><br>
                         <input type="submit" name="subm_addComment" class="btn-primary" value="Add Comment">
                         <input type="hidden" name="post_id" value="<?php echo $_GET["id"]; ?>">
                       </form>
@@ -178,13 +178,18 @@
                   ?>
 
                   <?php if (file_exists($arr_CommenterData['profile_pic'])): ?>
-
-                  <div class="comment-section">
-                    <img src="<?php echo $arr_CommenterData['profile_pic']; ?>" alt="userPic">
-                    <b><?php echo $arr_CommenterData['username']; ?>:</b> 
-                    <?php echo $row['comment_content']; ?> 
-                  </div>
-                  <br>
+                    <div class="comment-dp">
+                      <img  src="<?php echo $arr_CommenterData['profile_pic']; ?>" alt="userPic">
+                    </div>
+                    <div class="dialogbox">
+                      <div class="body-box">
+                        <span class="tip tip-left"></span>
+                        <div class="content-comment">
+                          <span><b><?php echo $arr_CommenterData['username']; ?></b></span><br><br>
+                          <span style="text-indent: -20px;"><?php echo $row['comment_content']; ?> </span>
+                        </div>
+                      </div>
+                    </div>
                   <?php endif; ?>
 
                   <?php endforeach; ?>
@@ -209,39 +214,4 @@
 
  </html>
 
-<script type="text/javascript">
-  function elementSupportsAttribute(element, attribute) {
-  var test = document.createElement(element);
-    if (attribute in test) {
-      return true;
-    } else {
-      return false;
-    }
-  };
 
-  if (!elementSupportsAttribute('textarea', 'placeholder')) {
-    // Fallback for browsers that don't support HTML5 placeholder attribute
-    $("#example-three")
-      .data("originalText", $("#example-three").text())
-      .css("color", "#999")
-      .focus(function() {
-          var $el = $(this);
-          if (this.value == $el.data("originalText")) {
-            this.value = "";
-          }
-      })
-      .blur(function() {
-        if (this.value == "") {
-            this.value = $(this).data("originalText");
-        }
-      });
-  } else {
-    // Browser does support HTML5 placeholder attribute, so use it.
-    $("#example-three")
-      .attr("placeholder", $("#example-three").text())
-      .text("");
-  }
-
-  $("textarea").resizable();
-  $('textarea').autoResize();
-</script>
