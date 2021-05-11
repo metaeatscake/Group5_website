@@ -71,7 +71,7 @@
                exit();
              endif;
 
-             $pdoq_getPostData = $pdo->prepare("SELECT * FROM view_posts WHERE post_id = :post_id");
+             $pdoq_getPostData = $pdo->prepare("SELECT * FROM view_posts_full WHERE post_id = :post_id");
              $pdoq_getPostData->execute(['post_id' => $decodedID]);
              $row = $pdoq_getPostData->fetch(PDO::FETCH_ASSOC);
 
@@ -101,6 +101,10 @@
 
              //Prepare link for ViewPost.
              $post_viewPost_href = "viewPost.php?id=$post_fancyID";
+
+             //Prepare like and comment count for each post.
+             $post_likeCount = (isset($row['count_likes'])) ? $row['count_likes'] : 0;
+             $post_commentCount = (isset($row['count_comments'])) ? $row['count_comments'] : 0;
 
             ?>
 
@@ -133,21 +137,21 @@
               <?php endif; ?>
               <center>
                 <div class="feed_actions">
-                  <a href="<?php echo $post_likeButton_href; ?>" style="color:<?php echo $post_likeButton_color; ?>"> <i class="material-icons">thumb_up</i><?php echo $row["count_likes"]; ?></a>
-                  <a href="<?php echo $post_viewPost_href; ?>"><span class="material-icons" style="color: #262626;">mode_comment</span> <span style="color:black;"><?php echo $row["count_comments"]; ?></span></a>
+                  <a href="<?php echo $post_likeButton_href; ?>" style="color:<?php echo $post_likeButton_color; ?>"> <i class="material-icons">thumb_up</i><?php echo $post_likeCount; ?></a>
+                  <a href="<?php echo $post_viewPost_href; ?>"><span class="material-icons" style="color: #262626;">mode_comment</span> <span style="color:black;"><?php echo $post_commentCount; ?></span></a>
                   <a href="#"><span class="material-icons" style="color: #262626;">share</span></a><hr>
                     <!-- COMMENT BOX HOLDER -->
                     <div class="create_comment_wrapper" style="margin:auto;text-align: center;">
                       <form class="form_addComment" action="handleAddComment.php" method="POST">
 
-                        <!-- <div class="addComment_title"> <h2>Add Comment</h2> </div> --> 
+                        <!-- <div class="addComment_title"> <h2>Add Comment</h2> </div> -->
                         <textarea name="post_comment" wrap="off" rows="3" cols="68" placeholder=" Write a comment..."></textarea><br>
                         <input type="submit" name="subm_addComment" class="btn-primary" value="Add Comment">
                         <input type="hidden" name="post_id" value="<?php echo $_GET["id"]; ?>">
                       </form>
                     </div>
                     <br><br>  <hr>
-              </center>      
+              </center>
                     <!-- COMMENT HOLDER -->
                       <?php
                         $pdo_getComments = $pdo->prepare("SELECT * FROM tbl_comments WHERE post_id = :post_id");
@@ -173,7 +177,12 @@
                           ?>
 
                           <?php if (file_exists($arr_CommenterData['profile_pic'])): ?>
+<<<<<<< HEAD
                             <div class="cw_profilePic" style="padding: 10px; width: 100px; display: inline;">
+=======
+
+                            <div class="cw_profilePic">
+>>>>>>> 470bb730129069a4ecb3281d14489a112b1820a8
                               <img src="<?php echo $arr_CommenterData['profile_pic']; ?>" alt="userPic">
                             </div>
 
