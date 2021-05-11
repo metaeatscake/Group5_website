@@ -177,12 +177,10 @@
                           ?>
 
                           <?php if (file_exists($arr_CommenterData['profile_pic'])): ?>
-<<<<<<< HEAD
+
                             <div class="cw_profilePic" style="padding: 10px; width: 100px; display: inline;">
-=======
 
                             <div class="cw_profilePic">
->>>>>>> 470bb730129069a4ecb3281d14489a112b1820a8
                               <img src="<?php echo $arr_CommenterData['profile_pic']; ?>" alt="userPic">
                             </div>
 
