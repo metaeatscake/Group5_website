@@ -8,8 +8,6 @@
     exit();
   }
 
-  //
-
  ?>
  <!DOCTYPE html>
  <html lang="en" dir="ltr">
@@ -30,6 +28,7 @@
 
      <!-- Custom CSS File -->
      <?php include_once("../css/customStyles.php"); ?>
+     <link rel="stylesheet" type="text/css" href="../css/viewPostStyles.css">
    </head>
    <body>
      <?php include_once("inc/_js_mdl_formAlert.php"); ?>
@@ -135,25 +134,20 @@
 
               <div class="feed_actions">
                 <a href="<?php echo $post_likeButton_href; ?>" style="color:<?php echo $post_likeButton_color; ?>"> <i class="material-icons">thumb_up</i><?php echo $row["count_likes"]; ?></a>
-                <a href="<?php echo $post_viewPost_href; ?>"><span class="material-icons" style="color: #262626;">mode_comment</span> <span style="color:black;"><?php echo $row["count_comments"]; ?></span>  </a>
+                <a href="<?php echo $post_viewPost_href; ?>"><span class="material-icons" style="color: #262626;">mode_comment</span> <span style="color:black;"><?php echo $row["count_comments"]; ?></span></a>
                 <a href="#"><span class="material-icons" style="color: #262626;">share</span></a>
+                <br><hr>
+                  <!-- COMMENT BOX HOLDER -->
+                  <div class="create_comment_wrapper" style="margin:auto;text-align:center;">
+                    <form class="form_addComment" action="handleAddComment.php" method="POST">
+
+                      <!-- <div class="addComment_title"> <h2>Add Comment</h2> </div> -->
+                      <textarea name="post_comment" wrap="off" rows="3" cols="80" placeholder="Write a comment..."></textarea><br>
+                      <input type="submit" name="subm_addComment" class="btn-primary" value="Add Comment">
+                      <input type="hidden" name="post_id" value="<?php echo $_GET["id"]; ?>">
+                    </form>
+                  </div>
               </div>
-
-            </div>
-
-            <?php // Comment box holder
-              // Front end can make this cleaner, not my problem -Ian
-            ?>
-            <div class="create_comment_wrapper" style="margin:auto;text-align:center;">
-
-              <form class="form_addComment" action="handleAddComment.php" method="POST">
-
-                <div class="addComment_title"> <h2>Add Comment</h2> </div>
-                <textarea name="post_comment" rows="8" cols="80" placeholder="Say something neato"></textarea>
-                <input type="submit" name="subm_addComment" value="Add Comment">
-                <input type="hidden" name="post_id" value="<?php echo $_GET["id"]; ?>">
-
-              </form>
 
             </div>
 
@@ -211,3 +205,40 @@
    </body>
 
  </html>
+
+<script type="text/javascript">
+  function elementSupportsAttribute(element, attribute) {
+  var test = document.createElement(element);
+    if (attribute in test) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
+  if (!elementSupportsAttribute('textarea', 'placeholder')) {
+    // Fallback for browsers that don't support HTML5 placeholder attribute
+    $("#example-three")
+      .data("originalText", $("#example-three").text())
+      .css("color", "#999")
+      .focus(function() {
+          var $el = $(this);
+          if (this.value == $el.data("originalText")) {
+            this.value = "";
+          }
+      })
+      .blur(function() {
+        if (this.value == "") {
+            this.value = $(this).data("originalText");
+        }
+      });
+  } else {
+    // Browser does support HTML5 placeholder attribute, so use it.
+    $("#example-three")
+      .attr("placeholder", $("#example-three").text())
+      .text("");
+  }
+
+  $("textarea").resizable();
+  $('textarea').autoResize();
+</script>
