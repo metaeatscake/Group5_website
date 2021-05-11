@@ -318,7 +318,7 @@
   .feed_post{
     margin:auto;
     text-align:left;
-    width: 50%;
+    width: 39%;
     min-height: 20%;
     color: black;
     background-color: white;
@@ -365,7 +365,7 @@
     text-decoration: underline;
   }
 
-/*  .feed_actions{
+  .feed_actions{
       width: 100%;
       display: inline-block;
       margin: 8px;
@@ -378,17 +378,8 @@
     cursor: pointer;
     text-align: center;
     text-decoration: none;
-  }*/
-  .feed_actions{
-    display: flex;
-    padding-bottom: 10px;
-    justify-content: center;
   }
 
-  .feed_actions a{
-    text-decoration: none;
-    text-align: center;
-  }
   #like-button, #comment-button, #share{
     width: auto;
     height: 15px;
