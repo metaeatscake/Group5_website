@@ -66,7 +66,7 @@
     <main class="mdl-layout__content">
 
       <div class="page-content">
-
+        <br>
         <!-- MAIN CONTENT -->
         <div class="form-wrapper">
           <form class="form-main" action="handleLogin.php" method="POST" >
@@ -82,7 +82,7 @@
               <input class="input" type="text" name="username" placeholder="Type your username" required>
               <i class="fas fa-user" aria-hidden="true"></i>
             </div>
-            <br>
+            <br><br>
             <div class="formItem">
               <label for="password">Password</label>
             </div>
@@ -90,7 +90,7 @@
               <input class="input "type="password" name="password" required placeholder="Type your password">
               <i class="fas fa-key" aria-hidden="true"></i>
             </div>
-            <br>
+            <br><br><br>
             <div class="formItem">
               <input class="button" type="submit" name="loginForm" value="Log In">
             </div>

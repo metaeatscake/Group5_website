@@ -1,16 +1,56 @@
 <style media="screen">
 
+.form-wrapper{
+  margin:80px auto 0px auto;
+  padding:25px;
+  border-radius:5px;
+  -moz-border-radius:5px;
+  -webkit-border-radius:5px;
+  background-color:#fff;
+  overflow:auto;
+  align-items: center;
+  }
+
+@media only screen and (max-width: 600px){
+    .form-wrapper{
+      width: 500px;
+      height: 500px;
+      }
+  }
+
+@media only screen and (min-width: 992px){
   .form-wrapper{
-    width:400px;
-  	margin:80px auto 0px auto;
-  	padding:10px;
-  	border-radius:5px;
-  	-moz-border-radius:5px;
-  	-webkit-border-radius:5px;
-  	background-color:#fff;
-  	overflow:auto;
-    align-items: center;
+    width: 800px;
+    height: 500px;
+  }
+}
+
+@media only screen and (max-width: 768px){
+  .form-wrapper{
+    width: 500px;
+    height: 500px;
     }
+}
+
+@media only screen and (min-width: 1200px){
+  .form-wrapper{
+    width: 800px;
+    height: 500px;
+  }
+}
+
+.form-wrapper-register{
+  width:800px;
+  height: auto;
+  margin:0px auto 0px auto;
+  padding:25px;
+  border-radius:5px;
+  -moz-border-radius:5px;
+  -webkit-border-radius:5px;
+  background-color:#fff;
+  overflow:auto;
+  align-items: center;
+}
 
     label{
       font-family: "Roboto","Helvetica","Arial",sans-serif;

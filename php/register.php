@@ -61,7 +61,7 @@
       <div class="page-content">
 
         <!-- MAIN CONTENT -->
-        <div class="form-wrapper">
+        <div class="form-wrapper-register">
           <form class="form-main" action="handleRegister.php" method="POST">
             <div class="formItem">
             <br>
