@@ -89,7 +89,7 @@
               <?php
 
                 //PDO Style, get all data from tbl_feed.
-                $feed_queryString = "SELECT * FROM view_posts ORDER BY post_time DESC";
+                $feed_queryString = "SELECT * FROM view_posts_full ORDER BY post_time DESC";
 
                 $post_dataArray = $pdo->query($feed_queryString)->fetchAll(PDO::FETCH_ASSOC);
                 //echo "<pre style='color:white;'>"; var_dump($post_dataArray); echo "</pre>";
@@ -114,6 +114,10 @@
 
                     //Prepare link for ViewPost.
                     $post_viewPost_href = "php/viewPost.php?id=$post_fancyID";
+
+                    //Prepare like and comment count for each post.
+                    $post_likeCount = (isset($row['count_likes'])) ? $row['count_likes'] : 0;
+                    $post_commentCount = (isset($row['count_comments'])) ? $row['count_comments'] : 0;
                   ?>
 
                   <div class="feed_post" id="<?php echo 'p_'.$post_fancyID; ?>">
@@ -145,10 +149,22 @@
                       <?php endif; ?>
 
                       <div class="feed_actions" align="centered">
-                        <a href="<?php echo $post_likeButton_href; ?>" style="color:<?php echo $post_likeButton_color; ?>"> <i class="material-icons">thumb_up</i><?php echo $row["count_likes"]; ?></a>
-                        <a href="<?php echo $post_viewPost_href; ?>"><span class="material-icons" style="color: #262626;">mode_comment</span> <span style="color:black;"><?php echo $row["count_comments"]; ?></span>  </a>
-                        <a href="#"><span class="material-icons" style="color: #262626;">share</span></a>
-                      </div>                      
+
+                        <a href="<?php echo $post_likeButton_href; ?>" style="color:<?php echo $post_likeButton_color; ?>">
+                          <i class="material-icons">thumb_up</i>
+                          <?php echo $post_likeCount; ?>
+                        </a>
+
+                        <a href="<?php echo $post_viewPost_href; ?>">
+                          <span class="material-icons" style="color: #262626;">mode_comment</span>
+                          <span style="color:black;"><?php echo $post_commentCount; ?></span>
+                        </a>
+
+                        <a href="#">
+                          <span class="material-icons" style="color: #262626;">share</span>
+                        </a>
+
+                      </div>
                     </center>
 
 
