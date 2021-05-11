@@ -317,7 +317,6 @@
 
   .feed_post{
     margin:auto;
-    text-align:left;
     width: 39%;
     min-height: 20%;
     color: black;
@@ -365,49 +364,39 @@
     text-decoration: underline;
   }
 
-  .feed_actions{
+/*  .feed_actions{
       width: 100%;
       display: inline-block;
+      align-items: center;
       margin: 8px;
   }  
 
   .feed_actions a{
-    text-decoration: none;
-    padding: 15px 83px;
+    padding: 15px 14.1%;
     border: none;
     cursor: pointer;
     text-align: center;
     text-decoration: none;
   }
 
-  #like-button, #comment-button, #share{
-    width: auto;
-    height: 15px;
-    margin-right: 5px;
+  .feed_actions a:hover{
+    border-radius: 5px;
+    background-color: #cccccc;
+  }*/
+
+  .feed_actions{
+    width: 100%;
+    display: inline-block;
+    margin: 8px;
   }
 
-  .like-button{
-    margin-left: 50px;
-    padding-right: 20px;
-    margin-top: 10px;
-    display: flex;
+  .feed_actions a{
+    text-decoration: none;
+    padding: 15px 50px;
+    border: none;
     cursor: pointer;
-  }
-  
-  .comment-button{
-    padding-left: 30px;
-    padding-right: 20px;
-    margin-top: 10px;
-    display: flex;
-    cursor: pointer;
-  }
-
-  .share-button{
-    padding-right: 20px;
-    padding-left: 30px;
-    margin-top: 20px;
-    display: flex;
-    cursor: pointer;
+    align-items: center;
+    text-decoration: none;
   }
 
   .feed_actions a:hover{

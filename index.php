@@ -118,36 +118,39 @@
 
                   <div class="feed_post" id="<?php echo 'p_'.$post_fancyID; ?>">
 
-                    <div class="feed_title">
+                    <div class="feed_title" style="text-align: left">
                       <?php echo $row["post_title"]; ?>
                     </div>
 
-                    <div class="feed_post_time">
+                    <div class="feed_post_time" style="text-align: left">
                       <?php echo $row["date_time"]; ?>
                     </div>
 
-                    <div class="feed_post_author">
+                    <div class="feed_post_author" style="text-align: left">
                       <a href="profile.php">
                         <?php echo 'Posted by '. $row["username"]; ?>
                       </a>
                     </div>
 
-                    <div class="feed_content">
+                    <div class="feed_content" style="text-align: left">
                       <?php echo nl2br($row["post_content"]); ?>
                     </div>
                     <br>
                     <!-- Only display image div if there is image. -->
-                    <?php if (isset($row["post_img"]) && file_exists("php/".$row["post_img"])): ?>
-                      <div class="feed_image">
-                          <img src="<?php echo 'php/'.$row['post_img']; ?>" alt="<?php echo $row['post_img']; ?>">
-                      </div>
-                    <?php endif; ?>
+                    <center>
+                      <?php if (isset($row["post_img"]) && file_exists("php/".$row["post_img"])): ?>
+                        <div class="feed_image">
+                            <img src="<?php echo 'php/'.$row['post_img']; ?>" alt="<?php echo $row['post_img']; ?>">
+                        </div>
+                      <?php endif; ?>
 
-                    <div class="feed_actions">
-                      <a href="<?php echo $post_likeButton_href; ?>" style="color:<?php echo $post_likeButton_color; ?>"> <i class="material-icons">thumb_up</i><?php echo $row["count_likes"]; ?></a>
-                      <a href="<?php echo $post_viewPost_href; ?>"><span class="material-icons" style="color: #262626;">mode_comment</span> <span style="color:black;"><?php echo $row["count_comments"]; ?></span>  </a>
-                      <a href="#"><span class="material-icons" style="color: #262626;">share</span></a>
-                    </div>
+                      <div class="feed_actions" align="centered">
+                        <a href="<?php echo $post_likeButton_href; ?>" style="color:<?php echo $post_likeButton_color; ?>"> <i class="material-icons">thumb_up</i><?php echo $row["count_likes"]; ?></a>
+                        <a href="<?php echo $post_viewPost_href; ?>"><span class="material-icons" style="color: #262626;">mode_comment</span> <span style="color:black;"><?php echo $row["count_comments"]; ?></span>  </a>
+                        <a href="#"><span class="material-icons" style="color: #262626;">share</span></a>
+                      </div>                      
+                    </center>
+
 
                   </div>
                   <br>

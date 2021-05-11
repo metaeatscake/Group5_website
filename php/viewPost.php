@@ -133,15 +133,9 @@
               <?php endif; ?>
 
               <div class="feed_actions">
-                <div class="like-button" id="like-button">
-                  <a href="<?php echo $post_likeButton_href; ?>" style="color:<?php echo $post_likeButton_color; ?>"> <i class="material-icons">thumb_up</i><?php echo $row["count_likes"]; ?></a>
-                </div>
-                <div class="comment-button" id="comment-button">
-                  <a href="<?php echo $post_viewPost_href; ?>"><span class="material-icons" style="color: #262626;">mode_comment</span> <span style="color:black;"><?php echo $row["count_comments"]; ?></span></a>
-                </div>
-                <div class="share-button" id="share-button">
-                  <a href="#"><span class="material-icons" style="color: #262626;">share</span></a>
-                </div>
+                <a href="<?php echo $post_likeButton_href; ?>" style="color:<?php echo $post_likeButton_color; ?>"> <i class="material-icons">thumb_up</i><?php echo $row["count_likes"]; ?></a>
+                <a href="<?php echo $post_viewPost_href; ?>"><span class="material-icons" style="color: #262626;">mode_comment</span> <span style="color:black;"><?php echo $row["count_comments"]; ?></span></a>
+                <a href="#"><span class="material-icons" style="color: #262626;">share</span></a>
                 <br><hr>
                   <!-- COMMENT BOX HOLDER -->
                   <div class="create_comment_wrapper" style="margin:auto;text-align:center;">
