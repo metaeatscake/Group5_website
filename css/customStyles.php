@@ -90,16 +90,16 @@
         color: purple;
       }
 
-      .feed_post{
+/*      .feed_post{
         margin:auto;
         text-align:left;
-        width: 60%;
+        width: 65%;
         font-family: Segoe UI;
         color:white;
         background: rgba(30,30,30,0.2);
         padding: 20px;
         margin-top: 30px;
-      }
+      }*/
 
       .feed_title{
         text-align: left;
@@ -241,12 +241,12 @@
   .feed_post{
     margin:auto;
     text-align:left;
-    width: 600px;
+    width: 50%;
     min-height: 20%;
     color: black;
     background-color: white;
-    padding: 15px;
-    margin-top: 15px;
+    padding: 1.5%;
+    margin-top: 1.5%;
     border-radius: 8px;
   }
 
@@ -289,11 +289,24 @@
   }
 
   .feed_actions{
-    width: 100%;
-    display: inline-block;
-    margin: 8px;
+      width: 100%;
+      display: inline-block;
+      margin: 8px;
+  }
+/*  .feed_actions{
+    display: flex;
+    padding-bottom: 10px;
+    justify-content: center;
   }
 
+  .like-button{
+    margin-left: 50px;
+    padding-right: 20px;
+    margin-top: 10px;
+    display: flex;
+    cursor: pointer;
+  }
+  */
   .feed_actions a{
     text-decoration: none;
     padding: 15px 83px;
@@ -347,5 +360,5 @@
     color: white;
     box-shadow: 0 15px 45px rgba(24, 249, 141, 0.2);
   }
->>>>>>> 1d692c5b6b55cbaff12ae0c4371a9ab375d2155c
+
 </style>
