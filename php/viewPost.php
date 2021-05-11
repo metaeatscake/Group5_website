@@ -135,7 +135,7 @@
                     <img src="<?php echo $row['post_img']; ?>" alt="<?php echo $row['post_img']; ?>">
                 </div>
               <?php endif; ?>
-              
+
               <div class="feed_actions">
                 <center>
                   <a href="<?php echo $post_likeButton_href; ?>" style="color:<?php echo $post_likeButton_color; ?>"> <i class="material-icons">thumb_up</i><?php echo $post_likeCount; ?></a>
@@ -155,7 +155,7 @@
                 </center>
                 <!-- COMMENT HOLDER -->
                 <?php
-                  $pdo_getComments = $pdo->prepare("SELECT * FROM tbl_comments WHERE post_id = :post_id");
+                  $pdo_getComments = $pdo->prepare("SELECT * FROM view_comments WHERE post_id = :post_id");
                   $pdo_getComments->execute(['post_id' => $decodedID]);
                   $arr_comments = $pdo_getComments->fetchAll(PDO::FETCH_ASSOC);
                 ?>
@@ -169,25 +169,16 @@
 
                   <?php else: ?>
 
-                  <?php foreach ($arr_comments as $row): ?>
+                    <?php foreach ($arr_comments as $row): ?>
 
-                  <?php
-                    $pdo_getCommenterData = $pdo->prepare("SELECT username,profile_pic FROM tbl_users WHERE user_id = :user_id");
-                    $pdo_getCommenterData->execute(['user_id' => $row['user_id']]);
-                    $arr_CommenterData = $pdo_getCommenterData->fetch(PDO::FETCH_ASSOC);
-                  ?>
+                      <div class="comment-section">
+                        <img src="<?php echo $row['profile_pic']; ?>" alt="userPic">
+                        <b><?php echo $row['username']; ?>:</b>
+                        <?php echo $row['comment_content']; ?>
+                      </div>
+                      <br>
 
-                  <?php if (file_exists($arr_CommenterData['profile_pic'])): ?>
-
-                  <div class="comment-section">
-                    <img src="<?php echo $arr_CommenterData['profile_pic']; ?>" alt="userPic">
-                    <b><?php echo $arr_CommenterData['username']; ?>:</b> 
-                    <?php echo $row['comment_content']; ?> 
-                  </div>
-                  <br>
-                  <?php endif; ?>
-
-                  <?php endforeach; ?>
+                    <?php endforeach; ?>
 
                   <?php endif; ?>
 
