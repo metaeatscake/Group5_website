@@ -131,6 +131,16 @@
                   </div>
 
                 </div>
+                <div class="sponsored-bar-footer">
+                  <a href="#">Privacy</a> · 
+                  <a href="#">Terms</a> · 
+                  <a href="#">Advertising</a> · 
+                  <a href="#">Ad Choices</a> · 
+                  <a href="#">Cookies</a> · 
+                  <a href="#">More</a> · 
+                  <a href="#">Sociality</a> &copy 2021
+                </div>
+
               </div>
 
                <!--POSTS AREA/ABOUT AREA/CUSTOMIZE PROFILE-->
@@ -283,7 +293,7 @@
     </div>
   </body>
 </html>
-<script>
+<!-- <script>
   function opentabs(tab, tabname) {
     var i, x, tablinks;
     x = document.getElementsByClassName("tabmenu");
@@ -297,4 +307,4 @@
     document.getElementById(tabname).style.display = "block";
     tab.currentTarget.className += " w3-purple";
   }
-</script>
+</script> -->
