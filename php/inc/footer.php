@@ -7,8 +7,6 @@
   $file_sclLogoSrc = ($file_inPHPFolder) ? $file_sclLogoLocation: 'php/'.$file_sclLogoLocation;
 
  ?>
-<<<<<<< HEAD
- <?php include_once("footer.php") ?>
 <script src="https://kit.fontawesome.com/7f2eccabe0.js" crossorigin="anonymous"></script>
 <div class="footer">
   <div id="button"></div>
@@ -18,25 +16,6 @@
       <a href="index.php">Sociality</a>
       <i class="fab fa-github"></i>
       <a href="https://github.com/metaeatscake/Group5_website" id="git">Github</a>
-=======
->>>>>>> a382530a1dfe6cb13f278c3a50fb297e47b968ac
-
-<footer class="mdl-mini-footer">
-  <div class="mdl-mini-footer__left-section">
-    <div class="mdl-logo">
-      <img src="<?php echo $file_sclLogoSrc; ?>" alt="socialityLogo.png" style="height:30px;">
-      Sociality
-    </div>
-    <ul class="mdl-mini-footer__link-list">
-      <li><a href="https://github.com/metaeatscake/Group5_website">Github</a></li>
-
-    </ul>
-  </div>
-  <div class="mdl-mini-footer__right-section">
-    <ul class="mdl-mini-footer__link-list">
-      <li>Dependencies: </li>
-      <li><a href="https://getmdl.io/index.html">[--Material Design Lite--]</a></li>
-      <li><a href="https://material.io/resources/icons/?style=baseline">[Material Icons]</a></li>
-    </ul>
-  </div>
-</footer>
+</div>
+</div>
+</div>
