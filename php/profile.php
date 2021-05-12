@@ -120,14 +120,14 @@
 
                   <div id="sponsored">
                     <img id="sponsored-img" src="images/assets/jolibee.jpg">
-                    <br>
-                    <a href="#">Jolibee Spaghetti P50 nalang!/a>
+                    <br><br>
+                    <a href="#">ph.jolibee.com</a>
                   </div>
 
                   <div id="sponsored">
-                    <img id="sponsored-img" src="images/assets/shortcourses.jpg">
+                    <img id="sponsored-img" src="images/assets/shein.jpg">
                     <br>
-                    <a href="#">Short Courses Avaliable Now on MFI!</a>
+                    <a href="#">ph.shein.com</a>
                   </div>
 
                 </div>
@@ -389,9 +389,7 @@
                 .topnav.responsive .dropdown .dropbtn {
                 display: block;
                 width: 100%;
-                text-align: left;
-                }
-                }
+                text-align: left;}
                </style>
                 </head>
                 <body>
@@ -420,17 +418,6 @@
                   <p></p>
                 </div>
 
-                <script>
-                  function myFunction() {
-                  var x = document.getElementById("myTopnav");
-                  if (x.className === "topnav") {
-                    x.className += " responsive";
-                  } else {
-                     x.className = "topnav";
-                    }
-                }
-                </script>
-
               </div> 
             </div> 
           </div>
@@ -439,7 +426,7 @@
     </div>
   </body>
 </html>
-<!-- <script>
+<script>
   function opentabs(tab, tabname) {
     var i, x, tablinks;
     x = document.getElementsByClassName("tabmenu");
@@ -453,4 +440,13 @@
     document.getElementById(tabname).style.display = "block";
     tab.currentTarget.className += " w3-purple";
   }
-</script> -->
+  
+  function myFunction() {
+    var x = document.getElementById("myTopnav");
+    if (x.className === "topnav") {
+      x.className += " responsive";
+    } else {
+       x.className = "topnav";
+    }
+  }
+</script>
