@@ -1,8 +1,3 @@
-<style>
-*{
-  font-family: Arial;
-}
-
 #profile-page-menu-top{
   line-height: 22px;
 }
@@ -16,6 +11,7 @@
 
 #profile-menu-username{
   font-size: 30px;
+  font-weight: normal;
 }
 
 #profile-menu-username a{
@@ -26,15 +22,6 @@
 #profile-menu-bio{
   font-size: 15px;
   color: #8c8c8c;
-}
-
-#edit-button a{
-  color: blue;
-  text-decoration: none;
-}
-
-#edit-button a:hover{
-  text-decoration: underline;
 }
 
 #following-img{

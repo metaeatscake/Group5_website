@@ -107,10 +107,10 @@
             <!--BELOW THE PROFILE CARD AREA-->
             <div style="display: flex;">
 
-               <!--FOLLOWING AREA-->
+               <!--SPONSORED-->
               <div style="min-height: 440px; flex:1;">
                 <div id="following-bar">
-                  Following· <br>
+                  <b>Sponsored</b> <br>
 
                   <div id="following">
                     <img id="following-img" src="images/assets/Jesse-Renz.jpg">
