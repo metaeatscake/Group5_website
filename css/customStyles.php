@@ -422,10 +422,11 @@
     box-shadow: 0 15px 45px rgba(24, 249, 141, 0.2);
   }
 
+  /*DON'T UNCOMMENT THIS. IT BREAKS THE ALIGNMENT OF DIALOG. 
   *{
   margin: 0;
   padding: 0;
-}
+} */
 
 .footerSCL #footer_button{
   width:35px;
