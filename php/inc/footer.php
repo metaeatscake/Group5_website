@@ -3,7 +3,7 @@
   $file_location = $_SERVER["PHP_SELF"];
   $file_inPHPFolder = (strpos($file_location, 'php/') !== false);
 
-  $file_sclLogoLocation = "images/assets/sample2white.png";
+  $file_sclLogoLocation = "images/assets/sample2.png";
   $file_sclLogoSrc = ($file_inPHPFolder) ? $file_sclLogoLocation: 'php/'.$file_sclLogoLocation;
 
  ?>
