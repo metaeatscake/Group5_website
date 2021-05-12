@@ -115,19 +115,19 @@
                   <div id="sponsored">
                     <img id="sponsored-img" src="images/assets/mfi-dts.jpg">
                     <br>
-                    <p>MFI Polytechnic Institute Inc.</p>
+                    <a href="#">MFI Polytechnic Institute Inc.</a>
                   </div>
 
                   <div id="sponsored">
                     <img id="sponsored-img" src="images/assets/mfi-dts.jpg">
                     <br>
-                    <p>MFI Polytechnic Institute Inc.</p>
+                    <a href="#">MFI Polytechnic Institute Inc.</a>
                   </div>
 
                   <div id="sponsored">
                     <img id="sponsored-img" src="images/assets/mfi-dts.jpg">
                     <br>
-                    <p>MFI Polytechnic Institute Inc.</p>
+                    <a href="#">MFI Polytechnic Institute Inc.</a>
                   </div>
 
                 </div>
@@ -213,7 +213,9 @@
                           </div> 
 
                           <div class="feed_post_time" style="text-indent: 4px;">
-                            <?php echo $row["date_time"]; ?>
+                            <a href="#">
+                              <?php echo $row["date_time"]; ?>
+                            </a>
                           </div><br>
 
                           <div class="feed_title">

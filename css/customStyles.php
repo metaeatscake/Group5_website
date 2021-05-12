@@ -350,13 +350,23 @@
     font-weight: lighter;
   }
 
+  .feed_post_time a{
+    text-decoration: none;
+    color: black;
+  }
+
+  .feed_post_time a:hover{
+    text-decoration: underline;
+  }
+
   .feed_post_author{
     font-size: 18px;
-    font-weight: lighter;
+    font-weight: normal;
   }
 
   .feed_post_author a{
     text-decoration: none;
+    color: black;
   }
 
   .feed_post_author a:hover{
