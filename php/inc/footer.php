@@ -7,6 +7,7 @@
   $file_sclLogoSrc = ($file_inPHPFolder) ? $file_sclLogoLocation: 'php/'.$file_sclLogoLocation;
 
  ?>
+ <?php include_once("inc/footer.php") ?>
 <script src="https://kit.fontawesome.com/7f2eccabe0.js" crossorigin="anonymous"></script>
 <div class="footer">
   <div id="button"></div>
