@@ -6,21 +6,59 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Developer Database Update Tool</title>
+
+  <style>
+    body{
+      text-align:center;
+      font-family:"Segoe UI";
+      background-color: #121212;
+      color:white;
+    }
+
+    h1{
+      font-size: 32px;
+    }
+
+    a{
+      text-decoration: none;
+      color:white;
+      font-size: 20px;
+    }
+
+    a:hover{
+      text-decoration: underline;
+      color: #fccfcc;
+    }
+
+    #title{
+      font-size: 40px;
+    }
+  </style>
 </head>
 <body>
 
-  <h1>Update Database</h1>
-  <a href="php/update_db/updateDatabase.php">Click me</a><br>
-  <strong>Warning: Resets all data in database.</strong>
+  <div id="main-body">
 
-  <br>
+    <h1 id="title">Sociality DB Updater</h1>
+    <hr>
 
-  <h1>Update View Tables only</h1>
-  <p>*Includes any stored procedures created within that time.*</p>
-  <a href="php/update_db/updateViews.php">Click me</a>
+    <h1>Update Database</h1>
+    <strong>Warning: Resets all data in database.</strong> <br>
+    <a href="php/update_db/updateDatabase.php">Click me</a>
 
-  <h1>Update Stored Procedures</h1>
-  <a href="php/update_db/addProcedures.php">Click me</a>
+    <hr>
+
+    <h1>Update View Tables only</h1>
+    <a href="php/update_db/updateViews.php">Click me</a>
+
+    <hr>
+
+    <h1>Update Stored Procedures</h1>
+    <a href="php/update_db/addProcedures.php">Click me</a>
+
+    <hr>
+  </div>
+
 
 </body>
 </html>
