@@ -119,15 +119,15 @@
                   </div>
 
                   <div id="sponsored">
-                    <img id="sponsored-img" src="images/assets/mfi-dts.jpg">
+                    <img id="sponsored-img" src="images/assets/jolibee.jpg">
                     <br>
-                    <a href="#">MFI Polytechnic Institute Inc.</a>
+                    <a href="#">Jolibee Spaghetti P50 nalang!/a>
                   </div>
 
                   <div id="sponsored">
-                    <img id="sponsored-img" src="images/assets/mfi-dts.jpg">
+                    <img id="sponsored-img" src="images/assets/shortcourses.jpg">
                     <br>
-                    <a href="#">MFI Polytechnic Institute Inc.</a>
+                    <a href="#">Short Courses Avaliable Now on MFI!</a>
                   </div>
 
                 </div>
@@ -271,7 +271,10 @@
 
                   <h4>Joined</h4>
                   <h7><?php echo $user_dataArray['register_time']; ?></h7>
+
                 </div>
+                 <!--CONTENT OF CUSTOMIZE PROFILE -->
+                 <div id="customizeProfile" class="tabmenu" style="display:none;">
               </div> 
             </div> 
           </div>
