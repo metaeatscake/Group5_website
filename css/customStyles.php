@@ -290,6 +290,41 @@
     border-radius: 8px;
   }
 
+  @media only screen and (min-width: 600px){
+    .feed_post{
+      width: 50%;
+      min-height: 20%;
+    }
+  }
+
+  @media only screen and (max-width: 600px){
+    .feed_post{
+      width: 50%;
+      min-height: 20%;
+    }
+  }
+
+  @media only screen and (min-width: 768px){
+    .feed_post{
+      width: 70%;
+      min-height: 20%;
+    }
+  }
+
+  @media only screen and (max-width: 992px){
+    .feed_post{
+      width: 70%;
+      min-height: 20%;
+    }
+  }
+
+  @media only screen and (min-width: 1200px){
+    .feed_post{
+      width: 50%;
+      min-height: 20%;
+    }
+  }
+
   .feed_title{
     text-align: left;
     font-size: 18px;
