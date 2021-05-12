@@ -6,7 +6,7 @@
 
   $qr = $pdo->exec($sqlDump);
 
-  header("location: ../../.php");
+  header("location: ../../");
   exit();
 
  ?>
