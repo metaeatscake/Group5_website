@@ -290,7 +290,7 @@
     </div>
   </body>
 </html>
-<script>
+<!-- <script>
   function opentabs(tab, tabname) {
     var i, x, tablinks;
     x = document.getElementsByClassName("tabmenu");
@@ -304,4 +304,4 @@
     document.getElementById(tabname).style.display = "block";
     tab.currentTarget.className += " w3-purple";
   }
-</script>
+</script> -->
