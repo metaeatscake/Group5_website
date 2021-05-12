@@ -112,7 +112,7 @@
             <div class="feed_post">
 
               <div class="feed_userpic">
-                <img src="<?php echo $row["profile_pic"]; ?>" style=" float: left; width: 50px; height: 50px; border-radius: 50px;">
+                <img src="<?php echo $row['profile_pic']; ?>" style=" float: left; width: 50px; height: 50px; border-radius: 50px;">
               </div>
 
               <div class="feed_title" style="text-indent: 4px;">
@@ -141,22 +141,28 @@
               <?php endif; ?>
               <div class="feed_actions">
                 <hr>
-                <center>
-                  <a href="<?php echo $post_likeButton_href; ?>" style="color:<?php echo $post_likeButton_color; ?>"> <i class="material-icons">thumb_up</i><?php echo $post_likeCount; ?></a>
-                    <a href="<?php echo $post_viewPost_href; ?>"><span class="material-icons" style="color: #262626;">mode_comment</span> <span style="color:black;"><?php echo $post_commentCount; ?></span></a>
-                    <a href="#"><span class="material-icons" style="color: #262626;">share</span></a><hr>
-                      <!-- COMMENT BOX HOLDER -->
-                      <div class="create_comment_wrapper" style="margin:auto;text-align: center;">
-                        <form class="form_addComment" action="handleAddComment.php" method="POST">
+                  <a href="<?php echo $post_likeButton_href; ?>" style="color:<?php echo $post_likeButton_color; ?>"> 
+                    <i class="material-icons">thumb_up</i><?php echo $post_likeCount; ?>
+                  </a>
+                  <a href="<?php echo $post_viewPost_href; ?>">
+                    <span class="material-icons" style="color: #262626;">mode_comment</span> 
+                    <span style="color:black;"><?php echo $post_commentCount; ?></span>
+                  </a>
+                  <a href="#">
+                    <span class="material-icons" style="color: #262626;">share</span>
+                  </a>
+                <hr>
+                  <!-- COMMENT BOX HOLDER -->
+                  <div class="create_comment_wrapper" style="margin:auto;text-align: center;">
+                    <form class="form_addComment" action="handleAddComment.php" method="POST">
 
-                        <!-- <div class="addComment_title"> <h2>Add Comment</h2> </div> -->
-                        <textarea name="post_comment" rows="5" cols="68" placeholder=" Write a comment..."></textarea><br>
-                        <input type="submit" name="subm_addComment" class="btn-primary" value="Add Comment">
-                        <input type="hidden" name="post_id" value="<?php echo $_GET["id"]; ?>">
-                      </form>
-                    </div>
-                    <br><br>  <hr>
-                </center>
+                    <!-- <div class="addComment_title"> <h2>Add Comment</h2> </div> -->
+                    <textarea name="post_comment" rows="5" cols="68" placeholder=" Write a comment..."></textarea><br>
+                    <input type="submit" name="subm_addComment" class="btn-primary" value="Add Comment">
+                    <input type="hidden" name="post_id" value="<?php echo $_GET["id"]; ?>">
+                  </form>
+                </div>
+                <br><br>  <hr>
                 <!-- COMMENT HOLDER -->
                 <?php
                   $pdo_getComments = $pdo->prepare("SELECT * FROM view_comments WHERE post_id = :post_id");

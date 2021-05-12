@@ -209,7 +209,7 @@
                           <div class="feed_post" id="<?php echo 'p_'.$post_fancyID; ?>">
                             
                             <div class="feed_userpic">
-                              <img src="<?php echo $row["profile_pic"]; ?>" style=" float: left; width: 50px; height: 50px; border-radius: 50px;">
+                              <img src="<?php echo $row['profile_pic']; ?>" style=" float: left; width: 50px; height: 50px; border-radius: 50px;">
                             </div>
 
                             <div class="feed_title" style="text-indent: 4px;">

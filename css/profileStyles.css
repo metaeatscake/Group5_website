@@ -1,3 +1,6 @@
+*{
+  font-family: Arial;
+}
 #profile-page-menu-top{
   line-height: 22px;
 }
@@ -43,7 +46,6 @@
   min-height: 440px;
   margin-top: 20px;
   color: #aaa;
-  font-family: tahoma;
   padding: 8px;
   border-radius: 8px;
 }
@@ -67,7 +69,6 @@
 textarea{
   width: 100%;
   border: none;
-  font-family: tahoma;
   font-size: 14px;
   height: 100%;
 }
