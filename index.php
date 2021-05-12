@@ -119,7 +119,7 @@
                     $post_likeCount = (isset($row['count_likes'])) ? $row['count_likes'] : 0;
                     $post_commentCount = (isset($row['count_comments'])) ? $row['count_comments'] : 0;
                   ?>
-
+                  <br>
                   <div class="feed_post" id="<?php echo 'p_'.$post_fancyID; ?>">
 
                     <div class="feed_title" style="text-align: left">
