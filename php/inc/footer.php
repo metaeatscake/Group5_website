@@ -8,16 +8,16 @@
 
  ?>
  <script src="https://kit.fontawesome.com/7f2eccabe0.js" crossorigin="anonymous"></script>
- <div class="footer">
-   <div id="button"></div>
-   <div id="container">
-     <div class="logo">
+ <div class="footerSCL">
+   <div id="footer_button"></div>
+   <div id="footer_container">
+     <div class="footer_logo">
        <img src="<?php echo $file_sclLogoSrc; ?>" alt="socialityLogo.png" style="height:30px;">
        <a href="index.php">Sociality</a>
        <i class="fab fa-github"></i>
        <a href="https://github.com/metaeatscake/Group5_website" id="git">Github</a>
 
-       <ul class="list">
+       <ul class="footer_list">
            <li>Dependencies: </li>
            <li><a href="https://getmdl.io/index.html">[Material Design Lite]</a></li>
            <li><a href="https://material.io/resources/icons/?style=baseline">[Material Icons]</a></li>

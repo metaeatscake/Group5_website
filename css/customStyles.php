@@ -427,7 +427,7 @@
   padding: 0;
 }
 
-.footer #button{
+.footerSCL #footer_button{
   width:35px;
   height:35px;
   border: #727172 12px solid;
@@ -442,7 +442,7 @@
 
 
 }
-.footer #button:hover{
+.footerSCL #footer_button:hover{
   width:35px;
   height:35px;
   border: #3A3A3A 12px solid;
@@ -453,7 +453,7 @@
     transition: all 1s ease;
   position:relative;
 }
-.footer{
+.footerSCL{
   bottom:0;
   left:0;
   position:fixed;
@@ -467,7 +467,7 @@
     transition: all 1s ease;
   z-index:999;
 }
-.footer:hover {
+.footerSCL:hover {
   -webkit-transition: all 1s ease;
     -moz-transition: all 1s ease;
     -o-transition: all 1s ease;
@@ -475,7 +475,7 @@
     transition: all 1s ease;
     height: 11em;
 }
-.footer #container{
+.footerSCL #footer_container{
   margin-top:5px;
   width:100%;
   height:100%;
@@ -487,18 +487,18 @@
 }
 
 
-.logo{
+.footer_logo{
   margin-left: 20px;
   padding-top: 25px;
 }
 
-.logo a{
+.footer_logo a{
   text-decoration: none;
   color: #696969;
   font-weight: bold;
 }
 
-.logo a:hover{
+.footer_logo a:hover{
   font-weight: bold;
   text-decoration: underline;
   text-underline-position: under;
@@ -506,22 +506,22 @@
   color: #3e1154;
 }
 
-.logo img{
+.footer_logo img{
   padding-bottom: 10px;
 }
 
-.logo i{
+.footer_logo i{
   font-size: 26px;
   height: 30px;
   margin-left: 20px;
 }
 
-.logo ul{
+.footer_logo ul{
   float: right;
   display: inline;
 }
 
-.logo ul li{
+.footer_logo ul li{
   display: inline-block;
   margin-right: 20px;
   padding-top: 7px;
