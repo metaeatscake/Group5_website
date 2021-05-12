@@ -225,7 +225,7 @@
                                 <?php echo 'Posted by '. $row["username"]; ?>
                               </a>
                             </div>
-
+                            <br>
                             <div class="feed_content">
                               <?php echo nl2br($row["post_content"]); ?>
                             </div>
@@ -238,11 +238,19 @@
                             <?php endif; ?>
 
                             <div class="feed_actions">
-                              <a href="<?php echo $post_likeButton_href; ?>" style="color:<?php echo $post_likeButton_color; ?>"> <i class="material-icons">thumb_up</i><?php echo $row["count_likes"]; ?></a>
-                              <a href="<?php echo $post_viewPost_href; ?>"><span class="material-icons" style="color: #262626;">mode_comment</span> <span style="color:black;"><?php echo $row["count_comments"]; ?></span>  </a>
-                              <a href="#"><span class="material-icons" style="color: #262626;">share</span></a>
+                              <hr>
+                              <a href="<?php echo $post_likeButton_href; ?>" style="color:<?php echo $post_likeButton_color; ?>"> 
+                                <i class="material-icons">thumb_up</i><?php echo $row["count_likes"]; ?>
+                              </a>
+                              <a href="<?php echo $post_viewPost_href; ?>">
+                                <span class="material-icons" style="color: #262626;">mode_comment</span> 
+                                <span style="color:black;"><?php echo $row["count_comments"]; ?></span>  
+                              </a>
+                              <a href="#">
+                                <span class="material-icons" style="color: #262626;">share</span>
+                              </a>
                             </div>
-
+                            <hr>
                           </div>
                           <br>
 
