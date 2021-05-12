@@ -63,7 +63,7 @@
 				Directory: images/post_img/
 		*/
 		$timeFormat = "%Y-%m-%d_%H-%i-%s";
-		$time = $sql->query("SELECT DATE_FORMAT(SYSDATE(), '$timeFormat') AS time_now")->fetch_assoc()["time_now"];
+		$time = $pdo->query("SELECT DATE_FORMAT(SYSDATE(), '$timeFormat') AS time_now")->fetch(PDO::FETCH_COLUMN);
 
 		// Filename of uploaded image.
 		$ext = $vld_i->getFileExtension();
@@ -74,12 +74,14 @@
 		$savePath = $saveFolder.$newFileName;
 		move_uploaded_file($_FILES["inputPic"]["tmp_name"], $savePath);
 
-		$queryString = "INSERT INTO tbl_feed(
-			user_id, post_title, post_content, post_img
-		)VALUES( '$q_id', '$q_title', '$q_content', '$savePath')";
+		$pdoq_imgInsert = $pdo->prepare("CALL add_post_img(:id, :title, :content, :image)");
+		$pdoq_imgInsert->execute([
+			'id' => $q_id,
+			'title' => $q_title,
+			'content' => $q_content,
+			'image' => $savePath
+		]);
 
-		// Redirect when done.
-		$sql->query($queryString);
 		header("location: ../");
 		exit();
 	}
@@ -88,10 +90,17 @@
 	else{
 
 		// There's nothing else to verify so it's straight to query.
-		$queryString = "INSERT INTO tbl_feed(user_id, post_title, post_content)
-		VALUES('$q_id', '$q_title', '$q_content')";
+		// $queryString = "INSERT INTO tbl_feed(user_id, post_title, post_content)
+		// VALUES('$q_id', '$q_title', '$q_content')";
+		//
+		// $sql->query($queryString);
 
-		$sql->query($queryString);
+		$pdoq_textInsert = $pdo->prepare("CALL add_post_text(:id, :title, :content)");
+		$pdoq_textInsert->execute([
+			'id' => $q_id,
+			'title' => $q_title,
+			'content' => $q_content
+		]);
 		header("location: ../");
 		exit();
 	}
