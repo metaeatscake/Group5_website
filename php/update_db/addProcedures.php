@@ -149,15 +149,19 @@
   */
   $pdo->exec("
     CREATE DEFINER=`root`@`localhost` PROCEDURE `edit_user_bio`(
-      IN prm_user_id INT(11),
-      IN prm_bio TEXT
+    	  IN prm_user_id INT(11),
+        IN prm_bio TEXT
     )
     BEGIN
 
-      UPDATE tbl_users
-        SET bio = prm_bio
-        WHERE user_id = prm_user_id;
+    	 DECLARE plc_bio TEXT;
+       SELECT bio INTO plc_bio FROM tbl_users WHERE user_id = prm_user_id;
 
+       IF prm_bio <> plc_bio AND prm_bio <> '' THEN
+    	   UPDATE tbl_users
+    			  SET bio = prm_bio
+    			  WHERE user_id = prm_user_id;
+    	 END IF;
     END");
 
   /*
