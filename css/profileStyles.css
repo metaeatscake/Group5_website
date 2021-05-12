@@ -24,17 +24,17 @@
   color: #8c8c8c;
 }
 
-#following-img{
-  width: 75px;
+#sponsored-img{
+  width: 115px;
   float: left;
   margin: 8px;
 }
 
-#following-bar{
+#sponsored-bar{
   background-color: white;
   min-height: 440px;
   margin-top: 20px;
-  color: #aaa;
+  color: #8c8c8c;
   padding: 8px;
   border-radius: 8px;
 }
@@ -48,10 +48,10 @@
   margin: auto;
 }
 
-#following{
+#sponsored{
   clear: both;
-  font-size: 12px;
-  font-weight: bold;
+  font-size: 15px;
+  font-weight: normal;
   color: #405d9b;
 }
 
