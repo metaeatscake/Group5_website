@@ -123,7 +123,7 @@
 
               <div class="feed_post_time" style="text-indent: 4px;">
                 <?php echo $row["date_time"]; ?>
-              </div><br><br><br>
+              </div><br>
 
               <div class="feed_title">
                 <?php echo $row["post_title"]; ?>

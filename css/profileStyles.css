@@ -126,7 +126,7 @@ label:hover {
 .feed_title{
   text-align: left;
   font-size: 18px;
-  font-weight: lighter !important;
+  font-weight: bold !important;
 }
 
 .feed_image{
@@ -149,14 +149,13 @@ label:hover {
 }
 
 .feed_post_author{
-  
+  font-size: 18px;
   font-weight: lighter;
 }
 
 .feed_post_author a{
   text-decoration: none;
   color: #ff4081;
-  font-size: 18px !important;
 }
 
 .feed_post_author a:hover{

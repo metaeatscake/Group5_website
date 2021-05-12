@@ -293,6 +293,7 @@
   .feed_title{
     text-align: left;
     font-size: 18px;
+    font-weight: bold !important;
   }
 
   .feed_image{
@@ -315,7 +316,7 @@
   }
 
   .feed_post_author{
-    font-size: 14px;
+    font-size: 18px;
     font-weight: lighter;
   }
 

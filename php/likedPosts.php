@@ -127,28 +127,28 @@
 
                  <div class="feed_post" id="<?php echo 'p_'.$post_fancyID; ?>">
 
-                  <div class="feed_userpic">
-                    <img src="<?php echo $row['profile_pic']; ?>" style=" float: left; width: 50px; height: 50px; border-radius: 50px;">
-                  </div>
+                    <div class="feed_userpic">
+                      <img src="<?php echo $row['profile_pic']; ?>" style=" float: left; width: 50px; height: 50px; border-radius: 50px;">
+                    </div>
 
-                   <div class="feed_title" style="text-indent: 4px;">
-                     <?php echo $row["post_title"]; ?>
-                   </div>
+                    <div class="feed_post_author" style="text-indent: 4px;">
+                      <a href="profile.php">
+                        <?php echo $row["username"]; ?>
+                      </a>
+                    </div> 
 
-                   <div class="feed_post_time" style="text-indent: 4px;">
-                     <?php echo $row["date_time"]; ?>
-                   </div>
+                    <div class="feed_post_time" style="text-indent: 4px;">
+                      <?php echo $row["date_time"]; ?>
+                    </div><br>
 
-                   <div class="feed_post_author" style="text-indent: 4px;">
-                     <a href="profile.php">
-                       <?php echo 'Posted by '. $row["username"]; ?>
-                     </a>
-                   </div> <br>
-
-                   <div class="feed_content">
-                     <?php echo nl2br($row["post_content"]); ?>
-                   </div><br>
-
+                    <div class="feed_title">
+                      <?php echo $row["post_title"]; ?>
+                    </div><br>
+                  
+                    <div class="feed_content">
+                      <?php echo nl2br($row["post_content"]); ?>
+                    </div>
+                    <br>
 
                    <!-- Only display image div if there is image. -->
                    <?php if (isset($row["post_img"])): ?>

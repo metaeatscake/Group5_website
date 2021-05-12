@@ -88,7 +88,6 @@ textarea{
   text-align: left;
   font-size: 18px;
   font-weight: bold !important;
-
 }
 
 .feed_image{
@@ -108,22 +107,16 @@ textarea{
 .feed_post_time{
   font-size: 14px;
   font-weight: lighter;
-  position: absolute;
-  top: 59px;
-  right: 737px;
 }
 
 .feed_post_author{
+  font-size: 18px;
   font-weight: lighter;
-  position: absolute;
-  left: 464px;
-  top: 39px;
 }
 
 .feed_post_author a{
   text-decoration: none;
   color: #ff4081;
-  font-size: 20px !important;
 }
 
 .feed_post_author a:hover{
