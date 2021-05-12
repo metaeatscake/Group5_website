@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 10, 2021 at 12:35 PM
+-- Generation Time: May 12, 2021 at 06:16 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.10
 
@@ -155,6 +155,26 @@ CREATE TABLE `view_posts_full` (
 -- --------------------------------------------------------
 
 --
+-- Stand-in structure for view `view_user_stats`
+-- (See below for the actual view)
+--
+DROP VIEW IF EXISTS `view_user_stats`;
+CREATE TABLE `view_user_stats` (
+`user_id` int(11)
+,`username` varchar(255)
+,`email` varchar(255)
+,`profile_pic` varchar(255)
+,`bio` mediumtext
+,`cover_photo` varchar(255)
+,`register_time` timestamp
+,`count_comments` bigint(21)
+,`count_post_likes` bigint(21)
+,`count_posts` bigint(21)
+);
+
+-- --------------------------------------------------------
+
+--
 -- Stand-in structure for view `v_count_comments`
 -- (See below for the actual view)
 --
@@ -174,6 +194,42 @@ DROP VIEW IF EXISTS `v_count_likes`;
 CREATE TABLE `v_count_likes` (
 `post_id` int(11)
 ,`count_likes` bigint(21)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `v_count_user_comments`
+-- (See below for the actual view)
+--
+DROP VIEW IF EXISTS `v_count_user_comments`;
+CREATE TABLE `v_count_user_comments` (
+`user_id` int(11)
+,`count_comments` bigint(21)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `v_count_user_postlikes`
+-- (See below for the actual view)
+--
+DROP VIEW IF EXISTS `v_count_user_postlikes`;
+CREATE TABLE `v_count_user_postlikes` (
+`poster_id` int(11)
+,`count_post_likes` bigint(21)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `v_count_user_posts`
+-- (See below for the actual view)
+--
+DROP VIEW IF EXISTS `v_count_user_posts`;
+CREATE TABLE `v_count_user_posts` (
+`user_id` int(11)
+,`count_posts` bigint(21)
 );
 
 -- --------------------------------------------------------
@@ -209,6 +265,16 @@ CREATE OR REPLACE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DE
 -- --------------------------------------------------------
 
 --
+-- Structure for view `view_user_stats`
+--
+DROP TABLE IF EXISTS `view_user_stats`;
+
+DROP VIEW IF EXISTS `view_user_stats`;
+CREATE OR REPLACE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_user_stats`  AS  select `u`.`user_id` AS `user_id`,`u`.`username` AS `username`,`u`.`email` AS `email`,`u`.`profile_pic` AS `profile_pic`,`u`.`bio` AS `bio`,`u`.`cover_photo` AS `cover_photo`,`u`.`register_time` AS `register_time`,`vcuc`.`count_comments` AS `count_comments`,`vcupl`.`count_post_likes` AS `count_post_likes`,`vcup`.`count_posts` AS `count_posts` from (((`tbl_users` `u` left join `v_count_user_comments` `vcuc` on(`u`.`user_id` = `vcuc`.`user_id`)) left join `v_count_user_postlikes` `vcupl` on(`u`.`user_id` = `vcupl`.`poster_id`)) left join `v_count_user_posts` `vcup` on(`u`.`user_id` = `vcup`.`user_id`)) where `u`.`user_id` is not null union select `u`.`user_id` AS `user_id`,`u`.`username` AS `username`,`u`.`email` AS `email`,`u`.`profile_pic` AS `profile_pic`,`u`.`bio` AS `bio`,`u`.`cover_photo` AS `cover_photo`,`u`.`register_time` AS `register_time`,`vcuc`.`count_comments` AS `count_comments`,`vcupl`.`count_post_likes` AS `count_post_likes`,`vcup`.`count_posts` AS `count_posts` from (`v_count_user_posts` `vcup` left join (`v_count_user_postlikes` `vcupl` left join (`v_count_user_comments` `vcuc` left join `tbl_users` `u` on(`u`.`user_id` = `vcuc`.`user_id`)) on(`u`.`user_id` = `vcupl`.`poster_id`)) on(`u`.`user_id` = `vcup`.`user_id`)) where `u`.`user_id` is not null ;
+
+-- --------------------------------------------------------
+
+--
 -- Structure for view `v_count_comments`
 --
 DROP TABLE IF EXISTS `v_count_comments`;
@@ -225,6 +291,36 @@ DROP TABLE IF EXISTS `v_count_likes`;
 
 DROP VIEW IF EXISTS `v_count_likes`;
 CREATE OR REPLACE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_count_likes`  AS  select `tbl_feed_likes`.`post_id` AS `post_id`,count(`tbl_feed_likes`.`like_id`) AS `count_likes` from `tbl_feed_likes` group by `tbl_feed_likes`.`post_id` ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `v_count_user_comments`
+--
+DROP TABLE IF EXISTS `v_count_user_comments`;
+
+DROP VIEW IF EXISTS `v_count_user_comments`;
+CREATE OR REPLACE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_count_user_comments`  AS  select `tbl_comments`.`user_id` AS `user_id`,count(0) AS `count_comments` from `tbl_comments` group by `tbl_comments`.`user_id` ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `v_count_user_postlikes`
+--
+DROP TABLE IF EXISTS `v_count_user_postlikes`;
+
+DROP VIEW IF EXISTS `v_count_user_postlikes`;
+CREATE OR REPLACE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_count_user_postlikes`  AS  select `f`.`user_id` AS `poster_id`,count(`fl`.`user_id`) AS `count_post_likes` from (`tbl_feed` `f` left join `tbl_feed_likes` `fl` on(`fl`.`post_id` = `f`.`post_id`)) where `f`.`post_id` is not null group by `f`.`user_id` union select `f`.`user_id` AS `poster_id`,count(`fl`.`user_id`) AS `count_post_likes` from (`tbl_feed_likes` `fl` left join `tbl_feed` `f` on(`fl`.`post_id` = `f`.`post_id`)) where `f`.`post_id` is not null group by `f`.`user_id` ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `v_count_user_posts`
+--
+DROP TABLE IF EXISTS `v_count_user_posts`;
+
+DROP VIEW IF EXISTS `v_count_user_posts`;
+CREATE OR REPLACE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_count_user_posts`  AS  select `tbl_feed`.`user_id` AS `user_id`,count(0) AS `count_posts` from `tbl_feed` group by `tbl_feed`.`user_id` ;
 
 --
 -- Indexes for dumped tables
