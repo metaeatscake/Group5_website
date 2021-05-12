@@ -432,7 +432,7 @@
     box-shadow: 0 15px 45px rgba(24, 249, 141, 0.2);
   }
 
-  /*DON'T UNCOMMENT THIS. IT BREAKS THE ALIGNMENT OF DIALOG. 
+  /*DON'T UNCOMMENT THIS. IT BREAKS THE ALIGNMENT OF DIALOG.
   *{
   margin: 0;
   padding: 0;
@@ -484,7 +484,7 @@
     -o-transition: all 1s ease;
     -ms-transition: all 1s ease;
     transition: all 1s ease;
-    height: 11em;
+    height: 10em;
 }
 .footerSCL #footer_container{
   margin-top:5px;
@@ -527,16 +527,15 @@
   margin-left: 20px;
 }
 
-.footer_logo ul{
+.footer_logo li{
   float: right;
   display: inline;
-}
-
-.footer_logo ul li{
-  display: inline-block;
   margin-right: 20px;
   padding-top: 7px;
   font-weight: bold;
 }
 
+.footer-list  li a{
+  margin-bottom: 10px;
+}
 </style>
