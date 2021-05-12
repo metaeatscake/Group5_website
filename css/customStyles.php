@@ -292,7 +292,6 @@
 
   .feed_title{
     text-align: left;
-    font-weight: bold;
     font-size: 18px;
   }
 

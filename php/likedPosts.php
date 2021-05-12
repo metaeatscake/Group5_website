@@ -169,7 +169,6 @@
                      <a href="#">
                       <span class="material-icons" style="color: #262626;">share</span>
                     </a>
-
                    </div>
                     <hr>
                  </div>
