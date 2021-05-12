@@ -227,4 +227,15 @@ label:hover {
   margin-top: -29.6% !important;
 }
 
+.sponsored-bar-footer{
+  font-size: 10px;
+  color: white;
+}
+.sponsored-bar-footer a{
+  text-decoration: none;
+}
+
+.sponsored-bar-footer a:hover{
+  text-decoration: underline;
+}
 </style>

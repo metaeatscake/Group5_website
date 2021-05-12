@@ -131,6 +131,16 @@
                   </div>
 
                 </div>
+                <div class="sponsored-bar-footer">
+                  <a href="#">Privacy</a> · 
+                  <a href="#">Terms</a> · 
+                  <a href="#">Advertising</a> · 
+                  <a href="#">Ad Choices</a> · 
+                  <a href="#">Cookies</a> · 
+                  <a href="#">More</a> · 
+                  <a href="#">Sociality</a> &copy 2021
+                </div>
+
               </div>
 
                <!--POSTS AREA/ABOUT AREA/CUSTOMIZE PROFILE-->
