@@ -7,6 +7,16 @@
   $file_sclLogoSrc = ($file_inPHPFolder) ? $file_sclLogoLocation: 'php/'.$file_sclLogoLocation;
 
  ?>
+ <?php include_once("inc/footer.php") ?>
+<script src="https://kit.fontawesome.com/7f2eccabe0.js" crossorigin="anonymous"></script>
+<div class="footer">
+  <div id="button"></div>
+  <div id="container">
+    <div class="logo">
+      <img src="<?php echo $file_sclLogoSrc; ?>" alt="socialityLogo.png" style="height:30px;">
+      <a href="index.php">Sociality</a>
+      <i class="fab fa-github"></i>
+      <a href="https://github.com/metaeatscake/Group5_website" id="git">Github</a>
 
 <footer class="mdl-mini-footer">
   <div class="mdl-mini-footer__left-section">
