@@ -77,4 +77,9 @@ textarea{
   border-bottom-color: transparent;  
 }
 
-
+/*YAN NA YUN, DI KO LANG TALAGA ALAM TONG MAX-WIDTH MIN-WIDTH ISH*/
+@media only screen and (max-width: 600px){
+	.comment-dp img{
+		display: none;
+	}
+}
