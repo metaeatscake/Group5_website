@@ -149,13 +149,14 @@ label:hover {
 }
 
 .feed_post_author{
-  font-size: 14px;
+  
   font-weight: lighter;
 }
 
 .feed_post_author a{
   text-decoration: none;
   color: #ff4081;
+  font-size: 18px !important;
 }
 
 .feed_post_author a:hover{
