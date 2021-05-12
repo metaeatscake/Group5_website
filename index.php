@@ -115,7 +115,7 @@
                     //Prepare link for ViewPost.
                     $post_viewPost_href = "php/viewPost.php?id=$post_fancyID";
                   ?>
-
+                  <br>
                   <div class="feed_post" id="<?php echo 'p_'.$post_fancyID; ?>">
 
                     <div class="feed_title">
