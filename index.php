@@ -97,7 +97,7 @@
                ?>
 
                <?php foreach ($post_dataArray as $row): ?>
-
+                
                  <?php
                     // Like Data setup.
                     $isLiked = (isset($user_liked_post_id) && in_array($row["post_id"], $user_liked_post_id));
@@ -171,9 +171,8 @@
                   </div>
                   <br>
 
-               <?php endforeach; ?>
-
-             <?php endif; ?>
+                <?php endforeach; ?>
+              <?php endif; ?>
          </div>
        </main>
 
