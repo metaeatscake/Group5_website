@@ -63,7 +63,7 @@
 				Directory: images/post_img/
 		*/
 		$timeFormat = "%Y-%m-%d_%H-%i-%s";
-		$time = $sql->query("SELECT DATE_FORMAT(SYSDATE(), '$timeFormat') AS time_now")->fetch_assoc()["time_now"];
+		$time = $pdo->query("SELECT DATE_FORMAT(SYSDATE(), '$timeFormat') AS time_now")->fetch(PDO::FETCH_COLUMN);
 
 		// Filename of uploaded image.
 		$ext = $vld_i->getFileExtension();
@@ -74,12 +74,20 @@
 		$savePath = $saveFolder.$newFileName;
 		move_uploaded_file($_FILES["inputPic"]["tmp_name"], $savePath);
 
-		$queryString = "INSERT INTO tbl_feed(
-			user_id, post_title, post_content, post_img
-		)VALUES( '$q_id', '$q_title', '$q_content', '$savePath')";
+		// $queryString = "INSERT INTO tbl_feed(
+		// 	user_id, post_title, post_content, post_img
+		// )VALUES( '$q_id', '$q_title', '$q_content', '$savePath')";
 
 		// Redirect when done.
-		$sql->query($queryString);
+		// $sql->query($queryString);
+
+		$pdoq_imgInsert = $pdo->prepare("CALL add_post_img(?, ?, ?, ?)");
+		$pdoq_imgInsert->bindParam(1, $q_id);
+		$pdoq_imgInsert->bindParam(2, $q_title);
+		$pdoq_imgInsert->bindParam(3, $q_content);
+		$pdoq_imgInsert->bindParam(4, $savePath);
+		$pdoq_imgInsert->execute();
+
 		header("location: ../");
 		exit();
 	}
