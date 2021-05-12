@@ -22,7 +22,7 @@
   <div class="mdl-mini-footer__right-section">
     <ul class="mdl-mini-footer__link-list">
       <li>Dependencies: </li>
-      <li><a href="https://getmdl.io/index.html">[Material Design Lite]</a></li>
+      <li><a href="https://getmdl.io/index.html">[--Material Design Lite--]</a></li>
       <li><a href="https://material.io/resources/icons/?style=baseline">[Material Icons]</a></li>
     </ul>
   </div>
