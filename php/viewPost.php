@@ -119,6 +119,10 @@
                 <?php echo $row["date_time"]; ?>
               </div>
 
+              <div class="feed-pic">
+                <img src="<?php echo $db_profile_pic; ?> "width="60" height="70">
+              </div>
+
               <div class="feed_post_author">
                 <a href="profile.php">
                   <?php echo 'Posted by '. $row["username"]; ?>
