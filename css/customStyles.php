@@ -167,42 +167,6 @@
         color: purple;
       }
 
-      .feed_post{
-        margin:auto;
-        text-align:left;
-        width: 60%;
-        font-family: Segoe UI;
-        color:white;
-        background: rgba(30,30,30,0.2);
-        padding: 20px;
-        margin-top: 30px;
-      }
-
-      .feed_title{
-        text-align: left;
-      }
-
-      .feed_image{
-        width:100%;
-      }
-
-      .feed_image img{
-        width:100%;
-        height:100%;
-      }
-
-      .feed_content{
-
-      }
-
-      .feed_post_time{
-
-      }
-
-      .feed_post_author{
-
-      }
-
       #gender{
         display: flex;
         height: 15vh;
@@ -317,13 +281,12 @@
 
   .feed_post{
     margin:auto;
-    text-align:left;
-    width: 600px;
+    width: 39%;
     min-height: 20%;
     color: black;
     background-color: white;
-    padding: 15px;
-    margin-top: 15px;
+    padding: 1.5%;
+    margin-top: 1.5%;
     border-radius: 8px;
   }
 
@@ -372,11 +335,10 @@
   }
 
   .feed_actions a{
-    text-decoration: none;
-    padding: 15px 83px;
+    padding: 15px 60px;
     border: none;
     cursor: pointer;
-    text-align: center;
+    align-items: center;
     text-decoration: none;
   }
 
@@ -424,5 +386,5 @@
     color: white;
     box-shadow: 0 15px 45px rgba(24, 249, 141, 0.2);
   }
->>>>>>> 1d692c5b6b55cbaff12ae0c4371a9ab375d2155c
+
 </style>

@@ -1,0 +1,1 @@
+this is for initializing the post_img folder and not breaking the create post function.

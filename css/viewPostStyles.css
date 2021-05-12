@@ -1,0 +1,98 @@
+textarea{
+	outline: none;
+	resize: none;
+	overflow: auto;
+	border-radius: 8px;
+	max-width: 75%;
+}
+
+.btn-primary {
+	background-color: #660066;
+	border-color: #007bff;
+	border-radius: 20px;
+	width: 120px;
+	height: 40px;
+	float: right;
+	border: none;
+	color: white;
+	font-size: 14px;
+	margin-right: 2%;
+}
+
+.btn-primary:hover {
+  color: #fff;
+  background-color:#ff80ff;
+  border-color: #0062cc;
+}
+
+.comment-dp img{
+  width: 50px;
+  border-radius: 50%;
+  border: solid 3px white;	
+  float: left;
+}
+
+.dialogbox{
+	text-align: justify;
+	height: auto;
+	width: auto;
+}
+
+.content-comment {
+  min-height: 30px;
+  border-radius: 3px;
+  font-family: Arial;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #797979;
+  text-indent: -20px;
+}
+
+.body-box {
+	position: relative;
+    max-width: 75%;
+    height: auto;
+    margin: 20px 20px;
+    padding: 5px;
+    background-color: #f2f2f2;
+    border-radius: 10px;
+    border: 5px solid #e6e6e6;
+    left: 70px;
+    text-indent: 5px;
+}
+
+.tip {
+  width: 0px;
+  height: 0px;
+  position: absolute;
+  background: transparent;
+  border: 10px solid #e6e6e6;
+}
+
+.tip-left {
+  top: 10px;
+  left: -25px;
+  border-top-color: transparent;
+  border-left-color: transparent;
+  border-bottom-color: transparent;  
+}
+
+@media only screen and (max-width: 760px){
+	.comment-dp{
+		display: none;
+	}
+	.body-box{
+		position: relative;
+	    max-width: 70%;
+	    min-width: 70%;
+	    height: auto;
+	    margin: 9px 8px;
+	    padding: 2px;
+	    background-color: #f2f2f2;
+	    left: 20px;
+	    border-radius: 10px;
+	    border: 5px solid #e6e6e6;
+
+	}
+}
+

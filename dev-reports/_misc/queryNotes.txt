@@ -11,3 +11,29 @@ Index.php Query. (This can be inserted into Phpmyadmin SQL for testing.)
   LEFT OUTER JOIN tbl_comments c ON (f.post_id = c.post_id)
   GROUP BY f.post_id
   ORDER BY f.post_time;
+
+
+  THE CODE ABOVE IS DEFUNCT AND DOES NOT WORK. The following version is the NEW ONE.
+
+
+  SELECT f.post_id, f.user_id, u.username, u.profile_pic,
+  	f.post_title, f.post_content, f.post_time,
+  	f.post_img, DATE_FORMAT(f.post_time, '%M %d %Y, %H:%i:%s') AS date_time,
+      v.count_comments, vl.count_likes
+  FROM tbl_feed f
+  LEFT JOIN v_count_comments v ON f.post_id = v.post_id
+  LEFT JOIN v_count_likes vl ON vl.post_id = f.post_id
+  LEFT JOIN tbl_users u ON f.user_id = u.user_id
+  WHERE f.post_id IS NOT NULL
+
+  UNION
+  
+  SELECT f.post_id, f.user_id, u.username, u.profile_pic,
+  	f.post_title, f.post_content, f.post_time,
+  	f.post_img, DATE_FORMAT(f.post_time, '%M %d %Y, %H:%i:%s') AS date_time,
+      v.count_comments, vl.count_likes
+  FROM tbl_feed f
+  RIGHT JOIN v_count_comments v ON f.post_id = v.post_id
+  RIGHT JOIN v_count_likes vl ON vl.post_id = f.post_id
+  RIGHT JOIN tbl_users u ON f.user_id = u.user_id
+  WHERE f.post_id IS NOT NULL

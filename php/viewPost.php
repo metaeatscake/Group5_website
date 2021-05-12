@@ -8,15 +8,13 @@
     exit();
   }
 
-  //
-
  ?>
  <!DOCTYPE html>
  <html lang="en" dir="ltr">
    <head>
      <meta charset="utf-8">
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <title>Sociality | View Profile</title>
+     <title>Sociality | View Post</title>
 
      <!-- Import Material Design Lite CSS -->
      <link rel="stylesheet" href="../mdl/material.min.css">
@@ -30,6 +28,7 @@
 
      <!-- Custom CSS File -->
      <?php include_once("../css/customStyles.php"); ?>
+     <link rel="stylesheet" type="text/css" href="../css/viewPostStyles.css">
    </head>
    <body>
      <?php include_once("inc/_js_mdl_formAlert.php"); ?>
@@ -72,7 +71,7 @@
                exit();
              endif;
 
-             $pdoq_getPostData = $pdo->prepare("SELECT * FROM view_posts WHERE post_id = :post_id");
+             $pdoq_getPostData = $pdo->prepare("SELECT * FROM view_posts_full WHERE post_id = :post_id");
              $pdoq_getPostData->execute(['post_id' => $decodedID]);
              $row = $pdoq_getPostData->fetch(PDO::FETCH_ASSOC);
 
@@ -103,6 +102,10 @@
              //Prepare link for ViewPost.
              $post_viewPost_href = "viewPost.php?id=$post_fancyID";
 
+             //Prepare like and comment count for each post.
+             $post_likeCount = (isset($row['count_likes'])) ? $row['count_likes'] : 0;
+             $post_commentCount = (isset($row['count_comments'])) ? $row['count_comments'] : 0;
+
             ?>
 
             <?php // Post holder. ?>
@@ -116,6 +119,10 @@
                 <?php echo $row["date_time"]; ?>
               </div>
 
+              <div class="feed-pic">
+                <img src="<?php echo $db_profile_pic; ?> "width="60" height="70">
+              </div>
+
               <div class="feed_post_author">
                 <a href="profile.php">
                   <?php echo 'Posted by '. $row["username"]; ?>
@@ -127,33 +134,73 @@
               </div>
               <br>
               <!-- Only display image div if there is image. -->
-              <?php if (isset($row["post_img"])): ?>
+              <?php if (isset($row["post_img"]) && file_exists($row["post_img"])): ?>
                 <div class="feed_image">
                     <img src="<?php echo $row['post_img']; ?>" alt="<?php echo $row['post_img']; ?>">
                 </div>
               <?php endif; ?>
 
               <div class="feed_actions">
-                <a href="<?php echo $post_likeButton_href; ?>" style="color:<?php echo $post_likeButton_color; ?>"> <i class="material-icons">thumb_up</i><?php echo $row["count_likes"]; ?></a>
-                <a href="<?php echo $post_viewPost_href; ?>"><span class="material-icons" style="color: #262626;">mode_comment</span> <span style="color:black;"><?php echo $row["count_comments"]; ?></span>  </a>
-                <a href="#"><span class="material-icons" style="color: #262626;">share</span></a>
+                <center>
+                  <a href="<?php echo $post_likeButton_href; ?>" style="color:<?php echo $post_likeButton_color; ?>"> <i class="material-icons">thumb_up</i><?php echo $post_likeCount; ?></a>
+                    <a href="<?php echo $post_viewPost_href; ?>"><span class="material-icons" style="color: #262626;">mode_comment</span> <span style="color:black;"><?php echo $post_commentCount; ?></span></a>
+                    <a href="#"><span class="material-icons" style="color: #262626;">share</span></a><hr>
+                      <!-- COMMENT BOX HOLDER -->
+                      <div class="create_comment_wrapper" style="margin:auto;text-align: center;">
+                        <form class="form_addComment" action="handleAddComment.php" method="POST">
+
+                        <!-- <div class="addComment_title"> <h2>Add Comment</h2> </div> -->
+                        <textarea name="post_comment" rows="5" cols="68" placeholder=" Write a comment..."></textarea><br>
+                        <input type="submit" name="subm_addComment" class="btn-primary" value="Add Comment">
+                        <input type="hidden" name="post_id" value="<?php echo $_GET["id"]; ?>">
+                      </form>
+                    </div>
+                    <br><br>  <hr>
+                </center>
+                <!-- COMMENT HOLDER -->
+                <?php
+                  $pdo_getComments = $pdo->prepare("SELECT * FROM view_comments WHERE post_id = :post_id");
+                  $pdo_getComments->execute(['post_id' => $decodedID]);
+                  $arr_comments = $pdo_getComments->fetchAll(PDO::FETCH_ASSOC);
+                ?>
+                <div class="comment-wrapper">
+
+                  <?php if (empty($arr_comments)):?>
+
+                    <div class="comment-wrapper_noComments">
+                      <h7>Be the first one to comment</h7>
+                    </div>
+
+                  <?php else: ?>
+
+                    <?php foreach ($arr_comments as $row): ?>
+       
+                        <div class="comment-dp">
+                          <img  src="<?php echo $row['profile_pic']; ?>" alt="userPic">
+                        </div>
+                        <div class="dialogbox">
+                          <div class="body-box">
+                            <span class="tip tip-left"></span>
+                            <div class="content-comment">
+                              <span><b><?php echo $row['username']; ?></b></span><br><br>
+                              <span style="text-indent: -20px;"><?php echo $row['comment_content']; ?> </span>
+                            </div>
+                          </div>
+                        </div>
+
+                    <?php endforeach; ?>
+
+                  <?php endif; ?>
+
+                </div>
+
               </div>
 
             </div>
 
-            <?php // Comment box holder ?>
-            <div class="create_comment_wrapper">
+          </div>
 
-            </div>
-
-            <?php // Comments holder ?>
-            <div class="comment-wrapper">
-
-            </div>
-
-         </div>
-
-       </main>
+        </main>
 
        <?php include_once("inc/footer.php"); ?>
 

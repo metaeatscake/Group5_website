@@ -136,10 +136,16 @@ label:hover {
   height:100%;
 }
 
+.feed-pic 
+{
+	padding-right: 10px; 
+}
+
 .feed_content{
   font-size: 18px;
   font-weight: lighter;
 }
+ 
 
 .feed_post_time{
   font-size: 14px;
@@ -206,7 +212,7 @@ label:hover {
   border-bottom: 3.6px solid #262626;
 }
 
-#text-area{
+#text-area {
   border-radius: 8px;
   padding: 10px;
   background-color: white;
@@ -215,7 +221,7 @@ label:hover {
   margin: auto;
 }
 
-#about{
+#about {
   background-color: white;
   border-radius: 8px;
   padding: 13px;
