@@ -1,6 +1,6 @@
 <?php
 
-  include_once("../inc/database.php");
+  include_once("_newPDO.php");
 
   //This file is for updating stored procedures in the databases of
   //the development team.
