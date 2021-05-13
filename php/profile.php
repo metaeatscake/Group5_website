@@ -283,6 +283,7 @@
                   <?php
                     if($user_dataArray['bio'] != NULL){
                       echo "
+                      
                         <h4>Bio</h4>
                         <h7>{$user_dataArray['bio']}</h7>
                       ";
@@ -295,15 +296,187 @@
                 </div>
                  <!--CONTENT OF CUSTOMIZE PROFILE -->
                 <div id="customizeProfile" class="tabmenu" style="display:none;">
-                <a href="#">Ad Choices</a> · 
+                <?php
+                  //Get database and session.
+                  include_once("inc/database.php");
+
+                    $id = $_SESSION["account_id"];
+
+                    // If the query only returns one row, the array can be fetched in one line.
+                    $row = $sql->query("SELECT * FROM tbl_users WHERE user_id = '$id'")->fetch_assoc();
+
+                    extract($row, EXTR_PREFIX_ALL, "db");
+
+                      //Redirect Admins
+                      if (isset($_SESSION["account_type"]) && $_SESSION["account_type"] === "admin") {
+                        header("location: adm_viewUsers.php");
+                        exit();
+                      }
+
+                        $requireInput = false;
+
+                      ?>
+                      <main class="mdl-layout__content">
+
+                      <div class="page-content" align="center">
+
+                      <!-- Edit Profile Card. -->
+                      <!--Form Proper-->
+                      <br><br>
+                      <form class="" action="handleEditProfile.php" method="POST">
+                      <div class="formCard mdl-card mdl-shadow--4dp">
+
+                      <div class="formItem">
+                        <h3>New Username</h3>
+                      </div>
+                      <div class="">
+                        <input type="text" name="username" class="input" id="username" value="<?php echo $db_username;?>">
+                      </div>
+                      <div class="formItem">
+                        <h3>New Password</h3>
+                      <input class="input "type="password" name="password" required placeholder="Type your new password" min="8">
+                      <i class="fas fa-key" aria-hidden="true"></i>
+                      </div>
+                      <br>
+                      
+                      <div class="formItem">
+                        <input class="input "type="password" name="confirm_password" required placeholder="Re-type your password" min="8">
+                        <i class="fas fa-key" aria-hidden="true"></i>
+                      </div>
+                      <label for="password">Confirm Password</label>
+                      <br>
+                      <div class="formItem">
+                        <div class="labelform">
+                          <div class="formItem">Sex</div>
+                            <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-1">
+                              <input type="radio" id="option-1" class="mdl-radio__button" name="sex" value="male" checked>
+                             <span class="mdl-radio__label">Male</span>
+                            </label>
+                            <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-2">
+                              <input type="radio" id="option-2" class="mdl-radio__button" name="sex" value="female">
+                              <span class="mdl-radio__label">Female</span>
+                            </label>
+                            <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-3">
+                              <input type="radio" id="option-3" class="mdl-radio__button" name="sex" value="Prefer not to say">
+                              <span class="mdl-radio__label">Prefer not to say</span>
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                      <br>
+                      <div class="formItem">
+                        <label class="label" for="email">Email</label>
+                      </div>
+                      <div class="formItem">
+                        <input class="input" type="email" id="email" name="email" value="<?php echo $db_email; ?>">
+                      </div>
+                      <br>
+                      <button class="mdl-button mdl-js-button mdl-button--raised" id="formSubmitButton-container">
+                        <i class="material-icons">done</i>
+                        <input type="submit" name="registerSubmit" id="formSubmitButton" value="submit">
+                      </button>
+                      </div>
+                      </form>
+                      <br><br>
+                      </div>
+
+                    </main>
+                    </div>
                 </div> 
                 <!--CONTENT OF CUSTOMIZE BIO -->
                 <div id="customizeBio" class="tabmenu" style="display:none;">
-                <a href="#">Ad Choices</a> · 
+                <?php
+                  //Get database and session.
+                  include_once("inc/database.php");
+
+                    $id = $_SESSION["account_id"];
+
+                    // If the query only returns one row, the array can be fetched in one line.
+                    $row = $sql->query("SELECT * FROM tbl_users WHERE user_id = '$id'")->fetch_assoc();
+
+                    extract($row, EXTR_PREFIX_ALL, "db");
+
+                      //Redirect Admins
+                      if (isset($_SESSION["account_type"]) && $_SESSION["account_type"] === "admin") {
+                        header("location: adm_viewUsers.php");
+                        exit();
+                      }
+
+                      ?>
+                      <main class="mdl-layout__content">
+
+                      <div class="page-content" align="center">
+
+                      <br><br>
+                      <form class="" action="handleEditProfile.php" method="POST">
+                      <div class="formCard mdl-card mdl-shadow--4dp">
+
+
+                      <div class="formItem">
+                        <h3>Bio</h3>
+                      </div>
+                      <div>
+                      <textarea name="bio" rows="4" cols="50" placeholder="What's your mood today <?php echo $db_bio; ?>" required></textarea>
+                      </div>
+                      <br>
+                      </form>
+                      <br><br>
+                      </div>
+
+                    </main>
+                    </div>
                 </div> 
                 <!--CONTENT OF CUSTOMIZE PROFILE PICTURE BANNER -->
                 <div id="customizeProfileBanner" class="tabmenu" style="display:none;">
-                <a href="#">Ad Choices</a> · >
+                <?php
+                  //Get database and session.
+                  include_once("inc/database.php");
+
+                    $id = $_SESSION["account_id"];
+
+                    // If the query only returns one row, the array can be fetched in one line.
+                    $row = $sql->query("SELECT * FROM tbl_users WHERE user_id = '$id'")->fetch_assoc();
+
+                    extract($row, EXTR_PREFIX_ALL, "db");   
+                      //Redirect Admins
+                      if (isset($_SESSION["account_type"]) && $_SESSION["account_type"] === "admin") {
+                        header("location: adm_viewUsers.php");
+                        exit();
+                      }
+
+                      //Changing Profile Picture
+                      $tmp_id = $_SESSION["account_id"];
+                      if($result = $sql->query("SELECT * FROM tbl_users WHERE id = '$tmp_id'")){
+                        while($row = $result->fetch_assoc())
+                        {
+                          extract($row, EXTR_PREFIX_ALL, "data");
+                        }
+                      }
+                        $requireInput = false;
+
+                      ?>
+                      <main class="mdl-layout__content">
+
+                      <div class="page-content" align="center">
+
+                      <br><br>
+                      <form class="" action="handleEditProfile.php" method="POST">
+                      <div class="formCard mdl-card mdl-shadow--4dp">
+
+                      <center><br><img src="images/assets/socialitylogoblack.png" width="300" height="70"><center>
+                      <br>
+                      <img src="<?php echo $db_profile_pic; ?> "width="215" height="200">
+                      <div class="formItem">
+                        <h3 class="text-align: center" >--- <?php echo $db_username; ?> ---</h3>
+                      </div>
+                      <div class="formItem">
+                      <h3>Profile Picture</h3>
+                      <div>
+                        <input type="file" name="profile_pic" accept="image/*" <?php echo ($requireInput) ? "required":''; ?>>
+                      </div>
+
+                    </main>
+                    </div>
                 </div> 
               </div> 
             </div>
