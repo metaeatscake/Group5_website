@@ -313,14 +313,14 @@
 
   @media only screen and (max-width: 992px){
     .feed_post{
-      width: 70%;
+      width: 90%;
       min-height: 20%;
     }
   }
 
   @media only screen and (min-width: 1200px){
     .feed_post{
-      width: 50%;
+      width: 32.3%;
       min-height: 20%;
     }
   }
@@ -374,15 +374,20 @@
   }
 
   .feed_actions{
-    width: 100%;
-    display: inline-block;
-    margin: 8px;
+    width: 45%;
+    display: inline-flex;
+    margin: -15px 10px;
   }
 
   .feed_actions a{
-    padding: 15px 60px;
+    padding: 5px 55px;
+    margin-top: 12px;
+    margin-left: auto;
     border: none;
+    white-space: nowrap;
+    align-content: space-evenly;
     cursor: pointer;
+    display: inline-flex;
     align-items: center;
     text-decoration: none;
   }
@@ -390,6 +395,49 @@
   .feed_actions a:hover{
     border-radius: 5px;
     background-color: #cccccc;
+  }
+
+  @media only screen and (min-width: 600px){
+    .feed_actions{
+      width: 50%;
+      min-height: 20%;
+    }
+  }
+
+  @media only screen and (max-width: 600px){
+    .feed_actions{
+      width: 50%;
+      min-height: 20%;
+    }
+  }
+
+  @media only screen and (min-width: 768px){
+    .feed_actions{
+      width: 55%;
+      min-height: 20%;
+    }
+  }
+
+  @media only screen and (max-width: 992px){
+    .feed_actions{
+      width: 89%;
+      min-height: 20%;
+    }
+  }
+
+  @media only screen and (min-width: 1200px){
+    .feed_actions{
+      width: 89%;
+      min-height: 20%;
+    }
+  }
+  hr{
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 0.5em 0px;
+    padding: 0;
   }
 
   #gender{
