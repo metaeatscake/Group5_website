@@ -67,11 +67,8 @@
   // If the user already liked it, delete that record.
   if ($isLiked) {
 
-    //PDO Style DELETE Query.
-    $pdo->prepare("DELETE FROM tbl_feed_likes
-      WHERE post_id = :post_id
-      AND user_id = :user_id
-    ")->execute([
+    //PDO procedure to delete data
+    $pdo->prepare("CALL delete_like(:post_id, :user_id)")->execute([
       'post_id' => $decodedID,
       'user_id' => $_SESSION["account_id"]
     ]);
@@ -83,10 +80,8 @@
   // If the user didn't like it yet, insert it.
   else {
 
-    // PDO Style INSERT query. Execution is also chained.
-    $pdo->prepare(
-    "INSERT INTO tbl_feed_likes(post_id, user_id) VALUES (:post_id, :user_id)"
-    )->execute([
+    // PDO Insert data through procedure
+    $pdo->prepare("CALL add_like(:post_id, :user_id)")->execute([
       'post_id' => $decodedID,
       'user_id' => $_SESSION["account_id"]
     ]);

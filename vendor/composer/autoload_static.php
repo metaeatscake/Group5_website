@@ -7,10 +7,6 @@ namespace Composer\Autoload;
 class ComposerStaticInitb5133841496953fb2653035138cf79fc
 {
     public static $prefixLengthsPsr4 = array (
-        'I' => 
-        array (
-            'Ifsnop\\' => 7,
-        ),
         'H' => 
         array (
             'Hashids\\' => 8,
@@ -18,10 +14,6 @@ class ComposerStaticInitb5133841496953fb2653035138cf79fc
     );
 
     public static $prefixDirsPsr4 = array (
-        'Ifsnop\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/ifsnop/mysqldump-php/src/Ifsnop',
-        ),
         'Hashids\\' => 
         array (
             0 => __DIR__ . '/..' . '/hashids/hashids/src',
