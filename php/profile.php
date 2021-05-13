@@ -100,9 +100,9 @@
                     <i class="fa fa-caret-down"></i>
                   </button>
                 <div class="dropdown-content">
-                  <a href="#" onclick="opentabs(event,'customizeProfile')" >Edit Profile</button>
-                  <a href="#" onclick="opentabs(event,'customizeBio')" >Edit Bio</button>
-                  <a href="#" onclick="opentabs(event,'customizeProfileBanner')" >Edit Profile Picture Banner</button>
+                  <button class="w3-bar-item w3-button tablink" onclick="opentabs(event,'customizeProfile')" style="margin:10px auto;">Edit Profile</button>
+                  <button class="w3-bar-item w3-button tablink" onclick="opentabs(event,'customizeBio')" style="margin:10px auto;">Edit Bio</button>
+                  <button class="w3-bar-item w3-button tablink" onclick="opentabs(event,'customizeProfileBanner')" style="margin:10px auto;">Edit Profile Picture Banner</button>
                 </div>
                 </div>
               </div>
