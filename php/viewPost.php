@@ -124,7 +124,7 @@
               </div>
 
               <div class="feed_post_time" style="text-indent: 4px;">
-                <a href="#">
+                <a href="<?php echo $post_viewPost_href; ?>">
                   <?php echo $row["date_time"]; ?>
                 </a>
               </div><br>
