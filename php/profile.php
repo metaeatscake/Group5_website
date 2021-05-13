@@ -29,14 +29,10 @@
 
     <!-- Custom CSS File -->
     <link rel="stylesheet" href="../css/socialityOverrides.css">
-    <link rel="stylesheet" href="../css/profileStyles.css">
+    <link rel="stylesheet" type="text/css" href="../css/profileStyles.css">
     <link rel="stylesheet" href="../css/w3.css">
-<<<<<<< HEAD
     <link rel="stylesheet" href="../css/navbar.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-=======
-    <link rel="stylesheet" href="../css/scrollbar.css">
->>>>>>> 7da46d68e61bf8d12941e1a776ee05841d7f9e7a
   </head>
   <body>
     <?php include_once("inc/_js_mdl_formAlert.php") ?>
@@ -104,9 +100,9 @@
                     <i class="fa fa-caret-down"></i>
                   </button>
                 <div class="dropdown-content">
-                  <a href="#">Edit Profile</a>
-                  <a href="#">Edit Bio</a>
-                  <a href="#">Edit Profile Picture and Banner</a>
+                  <a href="#" onclick="opentabs(event,'customizeProfile')" >Edit Profile</button>
+                  <a href="#" onclick="opentabs(event,'customizeBio')" >Edit Bio</button>
+                  <a href="#" onclick="opentabs(event,'customizeProfileBanner')" >Edit Profile Picture Banner</button>
                 </div>
                 </div>
               </div>
@@ -225,7 +221,6 @@
 
                     <?php if ($row['user_id'] === $_SESSION["account_id"]): ?>
 
-<<<<<<< HEAD
                       <div class="feed_post" id="<?php echo 'p_'.$post_fancyID; ?>">
                         
                         <div class="feed_userpic">
@@ -237,24 +232,10 @@
                             <?php echo $row["username"]; ?>
                           </a>
                         </div> 
-=======
-                        <div class="feed_post" id="<?php echo 'p_'.$post_fancyID; ?>">
-
-                          <div class="feed_userpic">
-                            <img src="<?php echo $row['profile_pic']; ?>" style=" float: left; width: 50px; height: 50px; border-radius: 50px;">
-                          </div>
-
-                          <div class="feed_post_author" style="text-indent: 4px;">
-                            <a href="profile.php">
-                              <?php echo $row["username"]; ?>
-                            </a>
-                          </div>
->>>>>>> 7da46d68e61bf8d12941e1a776ee05841d7f9e7a
 
                         <div class="feed_post_time" style="text-indent: 4px;">
                           <a href="#">
                             <?php echo $row["date_time"]; ?>
-<<<<<<< HEAD
                           </a>
                         </div><br>
 
@@ -266,41 +247,6 @@
                           <?php echo nl2br($row["post_content"]); ?>
                         </div><br>
                         
-=======
-                          </div><br>
-
-                          <div class="feed_title">
-                            <?php echo $row["post_title"]; ?>
-                          </div><br>
-
-                          <div class="feed_content">
-                            <?php echo nl2br($row["post_content"]); ?>
-                          </div>
-                          <br>
-                          <!-- Only display image div if there is image. -->
-                          <?php if (isset($row["post_img"])): ?>
-                            <div class="feed_image">
-                                <img src="<?php echo $row['post_img']; ?>" alt="<?php echo $row['post_img']; ?>">
-                            </div>
-                          <?php endif; ?>
-
-                          <div class="feed_actions">
-                            <hr>
-                            <a href="<?php echo $post_likeButton_href; ?>" style="color:<?php echo $post_likeButton_color; ?>">
-                              <i class="material-icons">thumb_up</i><?php echo $row["count_likes"]; ?>
-                            </a>
-                            <a href="<?php echo $post_viewPost_href; ?>">
-                              <span class="material-icons" style="color: #262626;">mode_comment</span>
-                              <span style="color:black;"><?php echo $row["count_comments"]; ?></span>
-                            </a>
-                            <a href="#">
-                              <span class="material-icons" style="color: #262626;">share</span>
-                            </a>
-                          </div>
-                          <hr>
-                        </div>
-                        <br>
->>>>>>> 7da46d68e61bf8d12941e1a776ee05841d7f9e7a
 
                         <!-- Only display image div if there is image. -->
                         <?php if (isset($row["post_img"])): ?>
@@ -308,9 +254,8 @@
                               <img src="<?php echo $row['post_img']; ?>" alt="<?php echo $row['post_img']; ?>">
                           </div>
                         <?php endif; ?>
-                        <hr>
 
-                        <div class="feed_actions">
+                        <div class="feed_actions"><hr>
                           
                           <a href="<?php echo $post_likeButton_href; ?>" style="color:<?php echo $post_likeButton_color; ?>"> 
                             <i class="material-icons">thumb_up</i><?php echo $row["count_likes"]; ?>
@@ -348,15 +293,19 @@
                   <h7><?php echo $user_dataArray['register_time']; ?></h7>
 
                 </div>
-<<<<<<< HEAD
                  <!--CONTENT OF CUSTOMIZE PROFILE -->
                 <div id="customizeProfile" class="tabmenu" style="display:none;">
-
+                <a href="#">Ad Choices</a> · 
+                </div> 
+                <!--CONTENT OF CUSTOMIZE BIO -->
+                <div id="customizeBio" class="tabmenu" style="display:none;">
+                <a href="#">Ad Choices</a> · 
+                </div> 
+                <!--CONTENT OF CUSTOMIZE PROFILE PICTURE BANNER -->
+                <div id="customizeProfileBanner" class="tabmenu" style="display:none;">
+                <a href="#">Ad Choices</a> · >
                 </div> 
               </div> 
-=======
-              </div>
->>>>>>> 7da46d68e61bf8d12941e1a776ee05841d7f9e7a
             </div>
           </div>
         </div>
