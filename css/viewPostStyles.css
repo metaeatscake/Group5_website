@@ -80,8 +80,6 @@ textarea{
   border-bottom-color: transparent;
 }
 
-<<<<<<< HEAD
-=======
 /*YAN NA YUN, DI KO LANG TALAGA ALAM TONG MAX-WIDTH MIN-WIDTH ISH*/
 @media only screen and (max-width: 600px){
 	.comment-dp img{
@@ -101,7 +99,6 @@ textarea{
 	}
 }
 
->>>>>>> 7da46d68e61bf8d12941e1a776ee05841d7f9e7a
 .feed_title{
   text-align: left;
   font-size: 18px;
