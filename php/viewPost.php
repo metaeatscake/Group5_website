@@ -165,7 +165,7 @@
                   <input type="hidden" name="post_id" value="<?php echo $_GET["id"]; ?>">
                 </form>
               </div>
-              <br><br>  <hr>
+              <br><br><hr>
               <!-- COMMENT HOLDER -->
               <?php
                 $pdo_getComments = $pdo->prepare("SELECT * FROM view_comments WHERE post_id = :post_id");
@@ -190,9 +190,11 @@
                       <div class="dialogbox">
                         <div class="body-box">
                           <span class="tip tip-left"></span>
+                          <div class="user-comment"><br style="content: ""; margin: 0em; display: block;">
+                            <span><b><a href="#"><?php echo $row['username']; ?></a></b></span>
+                          </div><br>
                           <div class="content-comment">
-                            <span><b><?php echo $row['username']; ?></b></span><br><br>
-                            <span style="text-indent: -20px;"><?php echo $row['comment_content']; ?> </span>
+                            <span><?php echo $row['comment_content']; ?> </span>
                           </div>
                         </div>
                       </div>

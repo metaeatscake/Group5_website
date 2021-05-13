@@ -33,10 +33,11 @@ textarea{
   border-radius: 50%;
   border: solid 3px white;
   float: left;
+  cursor: pointer;
 }
 
 .dialogbox{
-	text-align: justify;
+  text-align: justify;
 	height: auto;
 	width: auto;
 }
@@ -48,20 +49,31 @@ textarea{
   font-size: 14px;
   line-height: 1.5;
   color: #797979;
-  text-indent: -20px;
+}
+
+.user-comment{
+  line-height: 5px;
+}
+
+.user-comment a{
+  text-decoration: none;
+  color: black;
+}
+
+.user-comment a:hover{
+  text-decoration: underline;
 }
 
 .body-box {
 	position: relative;
-    max-width: 75%;
-    height: auto;
-    margin: 20px 20px;
-    padding: 5px;
-    background-color: #f2f2f2;
-    border-radius: 10px;
-    border: 5px solid #e6e6e6;
-    left: 70px;
-    text-indent: 5px;
+  max-width: 75%;
+  height: auto;
+  margin: 20px 20px;
+  padding: 5px;
+  background-color: #f2f2f2;
+  border-radius: 10px;
+  border: 5px solid #e6e6e6;
+  left: 70px;
 }
 
 .tip {
@@ -80,7 +92,6 @@ textarea{
   border-bottom-color: transparent;
 }
 
-/*YAN NA YUN, DI KO LANG TALAGA ALAM TONG MAX-WIDTH MIN-WIDTH ISH*/
 @media only screen and (max-width: 600px){
 	.comment-dp img{
 		width: 30px;
@@ -217,4 +228,39 @@ hr{
   background-color: white;
   border-radius: 8px;
   padding: 13px;
+}
+
+@media only screen and (min-width: 600px){
+  .feed_post{
+    width: 50%;
+    min-height: 20%;
+  }
+}
+
+@media only screen and (max-width: 600px){
+  .feed_post{
+    width: 50%;
+    min-height: 20%;
+  }
+}
+
+@media only screen and (min-width: 768px){
+  .feed_post{
+    width: 83%;
+    min-height: 20%;
+  }
+}
+
+@media only screen and (max-width: 992px){
+  .feed_post{
+    width: 85%;
+    min-height: 20%;
+  }
+}
+
+@media only screen and (min-width: 1200px){
+  .feed_post{
+    width: 45%;
+    min-height: 20%;
+  }
 }
