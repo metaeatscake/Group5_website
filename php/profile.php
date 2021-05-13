@@ -31,6 +31,7 @@
     <link rel="stylesheet" href="../css/socialityOverrides.css">
     <link rel="stylesheet" type="text/css" href="../css/profileStyles.css">
     <link rel="stylesheet" href="../css/w3.css">
+    <link rel="stylesheet" href="../css/scrollbar.css">
   </head>
   <body>
     <?php include_once("inc/_js_mdl_formAlert.php") ?>
@@ -201,7 +202,7 @@
                       <?php if ($row['user_id'] === $_SESSION["account_id"]): ?>
 
                         <div class="feed_post" id="<?php echo 'p_'.$post_fancyID; ?>">
-                          
+
                           <div class="feed_userpic">
                             <img src="<?php echo $row['profile_pic']; ?>" style=" float: left; width: 50px; height: 50px; border-radius: 50px;">
                           </div>
@@ -210,7 +211,7 @@
                             <a href="profile.php">
                               <?php echo $row["username"]; ?>
                             </a>
-                          </div> 
+                          </div>
 
                           <div class="feed_post_time" style="text-indent: 4px;">
                             <?php echo $row["date_time"]; ?>
@@ -219,7 +220,7 @@
                           <div class="feed_title">
                             <?php echo $row["post_title"]; ?>
                           </div><br>
-                        
+
                           <div class="feed_content">
                             <?php echo nl2br($row["post_content"]); ?>
                           </div>
@@ -233,12 +234,12 @@
 
                           <div class="feed_actions">
                             <hr>
-                            <a href="<?php echo $post_likeButton_href; ?>" style="color:<?php echo $post_likeButton_color; ?>"> 
+                            <a href="<?php echo $post_likeButton_href; ?>" style="color:<?php echo $post_likeButton_color; ?>">
                               <i class="material-icons">thumb_up</i><?php echo $row["count_likes"]; ?>
                             </a>
                             <a href="<?php echo $post_viewPost_href; ?>">
-                              <span class="material-icons" style="color: #262626;">mode_comment</span> 
-                              <span style="color:black;"><?php echo $row["count_comments"]; ?></span>  
+                              <span class="material-icons" style="color: #262626;">mode_comment</span>
+                              <span style="color:black;"><?php echo $row["count_comments"]; ?></span>
                             </a>
                             <a href="#">
                               <span class="material-icons" style="color: #262626;">share</span>
@@ -270,8 +271,8 @@
                   <h4>Joined</h4>
                   <h7><?php echo $user_dataArray['register_time']; ?></h7>
                 </div>
-              </div> 
-            </div> 
+              </div>
+            </div>
           </div>
         </div>
       </main>
