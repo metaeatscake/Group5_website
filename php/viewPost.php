@@ -155,7 +155,6 @@
                   <a href="#">
                     <span class="material-icons" style="color: #262626;">share</span>
                   </a>
-<<<<<<< HEAD
               </div><br><br><br><hr>
                 <!-- COMMENT BOX HOLDER -->
               <div class="create_comment_wrapper" style="margin:auto;text-align: center;">
@@ -167,6 +166,7 @@
                 </form>
               </div>
               <br><br>  <hr>
+            </div>
               <!-- COMMENT HOLDER -->
               <?php
                 $pdo_getComments = $pdo->prepare("SELECT * FROM view_comments WHERE post_id = :post_id");
@@ -184,7 +184,7 @@
                 <?php else: ?>
 
                   <?php foreach ($arr_comments as $row): ?>
-     
+
                       <div class="comment-dp">
                         <img  src="<?php echo $row['profile_pic']; ?>" alt="userPic">
                       </div>
@@ -194,55 +194,13 @@
                           <div class="content-comment">
                             <span><b><?php echo $row['username']; ?></b></span><br><br>
                             <span style="text-indent: -20px;"><?php echo $row['comment_content']; ?> </span>
-=======
-                <hr>
-                  <!-- COMMENT BOX HOLDER -->
-                  <div class="create_comment_wrapper" style="margin:auto;text-align: center;">
-                    <form class="form_addComment" action="handleAddComment.php" method="POST">
-
-                    <!-- <div class="addComment_title"> <h2>Add Comment</h2> </div> -->
-                    <textarea name="post_comment" rows="5" cols="68" placeholder=" Write a comment..."></textarea><br>
-                    <input type="submit" name="subm_addComment" class="btn-primary" value="Add Comment">
-                    <input type="hidden" name="post_id" value="<?php echo $_GET["id"]; ?>">
-                  </form>
-                </div>
-                <br><br>  <hr>
-                <!-- COMMENT HOLDER -->
-                <?php
-                  $pdo_getComments = $pdo->prepare("SELECT * FROM view_comments WHERE post_id = :post_id");
-                  $pdo_getComments->execute(['post_id' => $decodedID]);
-                  $arr_comments = $pdo_getComments->fetchAll(PDO::FETCH_ASSOC);
-                ?>
-                <div class="comment-wrapper">
-
-                  <?php if (empty($arr_comments)):?>
-
-                    <div class="comment-wrapper_noComments">
-                      <h7>Be the first one to comment</h7>
-                    </div>
-
-                  <?php else: ?>
-
-                    <?php foreach ($arr_comments as $row): ?>
-
-                        <div class="comment-dp">
-                          <img  src="<?php echo $row['profile_pic']; ?>" alt="userPic">
-                        </div>
-                        <div class="dialogbox">
-                          <div class="body-box">
-                            <span class="tip tip-left"></span>
-                            <div class="content-comment">
-                              <span><b><?php echo $row['username']; ?></b></span><br><br>
-                              <span style="text-indent: -20px;"><?php echo $row['comment_content']; ?> </span>
-                            </div>
->>>>>>> 7da46d68e61bf8d12941e1a776ee05841d7f9e7a
                           </div>
                         </div>
                       </div>
 
-                  <?php endforeach; ?>
-
-                <?php endif; ?>
+                    <?php endforeach; ?>
+                  <?php endif; ?>
+                <hr>
 
               </div>
 
