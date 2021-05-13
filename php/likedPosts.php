@@ -26,6 +26,7 @@
      <!-- Custom CSS File -->
      <?php include_once("../css/customStyles.php"); ?>
      <link rel="stylesheet" type="text/css" href="../css/likedPostStyles.css">
+     <link rel="stylesheet" href="../css/scrollbar.css">
    </head>
    <body>
 

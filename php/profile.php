@@ -33,6 +33,7 @@
     <link rel="stylesheet" href="../css/w3.css">
     <link rel="stylesheet" href="../css/navbar.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/scrollbar.css">
   </head>
   <body>
     <?php include_once("inc/_js_mdl_formAlert.php") ?>

@@ -31,6 +31,7 @@
 
      <!-- Custom CSS File -->
      <?php include_once("css/customStyles.php"); ?>
+     <link rel="stylesheet" href="css/scrollbar.css">
    </head>
    <body>
 
