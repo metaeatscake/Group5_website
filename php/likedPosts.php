@@ -3,10 +3,7 @@
   //Get database and session.
   include_once("inc/database.php");
 
-  if (isset($_SESSION["account_type"]) && $_SESSION["account_type"] === "admin") {
-    header("location: viewUsers.php");
-    exit();
-  }
+  $func_redirGuests();
 
  ?>
  <!DOCTYPE html>
@@ -136,7 +133,7 @@
                       <a href="profile.php">
                         <?php echo $row["username"]; ?>
                       </a>
-                    </div> 
+                    </div>
 
                     <div class="feed_post_time" style="text-indent: 4px;">
                       <a href="#">
@@ -147,7 +144,7 @@
                     <div class="feed_title">
                       <?php echo $row["post_title"]; ?>
                     </div><br>
-                  
+
                     <div class="feed_content">
                       <?php echo nl2br($row["post_content"]); ?>
                     </div>
@@ -161,13 +158,13 @@
                    <?php endif; ?>
                     <hr>
                    <div class="feed_actions">
-                    
-                     <a href="<?php echo $post_likeButton_href; ?>" style="color:<?php echo $post_likeButton_color; ?>"> 
+
+                     <a href="<?php echo $post_likeButton_href; ?>" style="color:<?php echo $post_likeButton_color; ?>">
                       <i class="material-icons">thumb_up</i><?php echo $row["count_likes"]; ?>
                     </a>
                      <a href="<?php echo $post_viewPost_href; ?>">
-                      <span class="material-icons" style="color: #262626;">mode_comment</span> 
-                      <span style="color:black;"><?php echo $row["count_comments"]; ?></span>  
+                      <span class="material-icons" style="color: #262626;">mode_comment</span>
+                      <span style="color:black;"><?php echo $row["count_comments"]; ?></span>
                     </a>
                      <a href="#">
                       <span class="material-icons" style="color: #262626;">share</span>
