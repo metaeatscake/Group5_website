@@ -1,5 +1,6 @@
 {
     "require": {
-        "hashids/hashids": "^4.1"
+        "hashids/hashids": "^4.1",
+        "ifsnop/mysqldump-php": "^2.9"
     }
 }
