@@ -283,7 +283,6 @@
                   <?php
                     if($user_dataArray['bio'] != NULL){
                       echo "
-                      
                         <h4>Bio</h4>
                         <h7>{$user_dataArray['bio']}</h7>
                       ";
@@ -343,7 +342,7 @@
                         <input class="input "type="password" name="confirm_password" required placeholder="Re-type your password" min="8">
                         <i class="fas fa-key" aria-hidden="true"></i>
                       </div>
-                      <label for="password">Confirm Password</label>
+
                       <br>
                       <div class="formItem">
                         <div class="labelform">
@@ -416,11 +415,15 @@
                         <h3>Bio</h3>
                       </div>
                       <div>
-                      <textarea name="bio" rows="4" cols="50" placeholder="What's your mood today <?php echo $db_bio; ?>" required></textarea>
+                      <textarea name="bio" rows="10" cols="50" placeholder="Edit your Bio. <?php echo $db_bio; ?>" required></textarea>
                       </div>
                       <br>
                       </form>
                       <br><br>
+                      <button class="mdl-button mdl-js-button mdl-button--raised" id="formSubmitButton-container">
+                        <i class="material-icons">done</i>
+                        <input type="submit" name="registerSubmit" id="formSubmitButton" value="submit">
+                      </button>
                       </div>
 
                     </main>
@@ -474,7 +477,10 @@
                       <div>
                         <input type="file" name="profile_pic" accept="image/*" <?php echo ($requireInput) ? "required":''; ?>>
                       </div>
-
+                      <button class="mdl-button mdl-js-button mdl-button--raised" id="formSubmitButton-container">
+                        <i class="material-icons">done</i>
+                        <input type="submit" name="registerSubmit" id="formSubmitButton" value="submit">
+                      </button>
                     </main>
                     </div>
                 </div> 
