@@ -413,7 +413,7 @@
 
   @media only screen and (min-width: 768px){
     .feed_actions{
-      width: 55%;
+      width: 88%;
       min-height: 20%;
     }
   }

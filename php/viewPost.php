@@ -142,9 +142,9 @@
                 <div class="feed_image">
                     <img src="<?php echo $row['post_img']; ?>" alt="<?php echo $row['post_img']; ?>">
                 </div>
-              <?php endif; ?>
-              <div class="feed_actions">
-                <hr>
+              <?php endif; ?><hr>
+
+              <div class="feed_actions"><br>
                   <a href="<?php echo $post_likeButton_href; ?>" style="color:<?php echo $post_likeButton_color; ?>">
                     <i class="material-icons">thumb_up</i><?php echo $post_likeCount; ?>
                   </a>
@@ -184,24 +184,24 @@
 
                   <?php foreach ($arr_comments as $row): ?>
 
-                      <div class="comment-dp">
-                        <img  src="<?php echo $row['profile_pic']; ?>" alt="userPic">
-                      </div>
-                      <div class="dialogbox">
-                        <div class="body-box">
-                          <span class="tip tip-left"></span>
-                          <div class="user-comment"><br style="content: ""; margin: 0em; display: block;">
-                            <span><b><a href="#"><?php echo $row['username']; ?></a></b></span>
-                          </div><br>
-                          <div class="content-comment">
-                            <span><?php echo $row['comment_content']; ?> </span>
-                          </div>
+                    <div class="comment-dp">
+                      <img  src="<?php echo $row['profile_pic']; ?>" alt="userPic">
+                    </div>
+                    <div class="dialogbox">
+                      <div class="body-box">
+                        <span class="tip tip-left"></span>
+                        <div class="user-comment"><br style="content: ""; margin: 0em; display: block;">
+                          <span><b><a href="#"><?php echo $row['username']; ?></a></b></span>
+                        </div><br>
+                        <div class="content-comment">
+                          <span><?php echo $row['comment_content']; ?> </span>
                         </div>
                       </div>
+                    </div>
 
-                    <?php endforeach; ?>
-                  <?php endif; ?>
-                <hr>
+                  <?php endforeach; ?>
+
+                <?php endif; ?>
 
               </div>
 

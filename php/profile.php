@@ -254,9 +254,9 @@
                           <div class="feed_image">
                               <img src="<?php echo $row['post_img']; ?>" alt="<?php echo $row['post_img']; ?>">
                           </div>
-                        <?php endif; ?>
+                        <?php endif; ?><hr>
 
-                        <div class="feed_actions"><hr>
+                        <div class="feed_actions">
                           
                           <a href="<?php echo $post_likeButton_href; ?>" style="color:<?php echo $post_likeButton_color; ?>"> 
                             <i class="material-icons">thumb_up</i><?php echo $row["count_likes"]; ?>
