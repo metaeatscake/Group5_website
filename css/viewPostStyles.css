@@ -28,7 +28,7 @@ textarea{
 .comment-dp img{
   width: 50px;
   border-radius: 50%;
-  border: solid 3px white;	
+  border: solid 3px white;
   float: left;
 }
 
@@ -74,13 +74,25 @@ textarea{
   left: -25px;
   border-top-color: transparent;
   border-left-color: transparent;
-  border-bottom-color: transparent;  
+  border-bottom-color: transparent;
 }
 
 /*YAN NA YUN, DI KO LANG TALAGA ALAM TONG MAX-WIDTH MIN-WIDTH ISH*/
 @media only screen and (max-width: 600px){
 	.comment-dp img{
-		display: none;
+		width: 30px;
+	  border-radius: 50%;
+	  border: solid 3px white;
+	  float: left;
+	}
+}
+
+@media only screen and (min-width: 600px){
+	.comment-dp img{
+		width: 50px;
+	  border-radius: 50%;
+	  border: solid 3px white;
+	  float: left;
 	}
 }
 
@@ -156,4 +168,3 @@ textarea{
   border-radius: 8px;
   padding: 13px;
 }
-

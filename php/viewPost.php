@@ -18,6 +18,7 @@
 
      <!-- Import Material Design Lite CSS -->
      <link rel="stylesheet" href="../mdl/material.min.css">
+
      <!-- Import Material Design Lite Javascript -->
      <script src="../mdl/material.min.js" charset="utf-8"></script>
      <!-- Import Material Design Icons from Google -->
@@ -29,6 +30,7 @@
      <!-- Custom CSS File -->
      <?php include_once("../css/customStyles.php"); ?>
      <link rel="stylesheet" type="text/css" href="../css/viewPostStyles.css">
+     <link rel="stylesheet" href="../css/scrollbar.css">
    </head>
    <body>
      <?php include_once("inc/_js_mdl_formAlert.php"); ?>
@@ -119,7 +121,7 @@
                 <a href="profile.php">
                   <?php echo $row["username"]; ?>
                 </a>
-              </div> 
+              </div>
 
               <div class="feed_post_time" style="text-indent: 4px;">
                 <a href="#">
@@ -130,7 +132,7 @@
               <div class="feed_title">
                 <?php echo $row["post_title"]; ?>
               </div><br>
-            
+
               <div class="feed_content">
                 <?php echo nl2br($row["post_content"]); ?>
               </div>
@@ -143,11 +145,11 @@
               <?php endif; ?>
               <div class="feed_actions">
                 <hr>
-                  <a href="<?php echo $post_likeButton_href; ?>" style="color:<?php echo $post_likeButton_color; ?>"> 
+                  <a href="<?php echo $post_likeButton_href; ?>" style="color:<?php echo $post_likeButton_color; ?>">
                     <i class="material-icons">thumb_up</i><?php echo $post_likeCount; ?>
                   </a>
                   <a href="<?php echo $post_viewPost_href; ?>">
-                    <span class="material-icons" style="color: #262626;">mode_comment</span> 
+                    <span class="material-icons" style="color: #262626;">mode_comment</span>
                     <span style="color:black;"><?php echo $post_commentCount; ?></span>
                   </a>
                   <a href="#">
@@ -182,7 +184,7 @@
                   <?php else: ?>
 
                     <?php foreach ($arr_comments as $row): ?>
-       
+
                         <div class="comment-dp">
                           <img  src="<?php echo $row['profile_pic']; ?>" alt="userPic">
                         </div>
