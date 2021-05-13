@@ -153,9 +153,9 @@
                           <img src="<?php echo 'php/'.$row['post_img']; ?>" alt="<?php echo $row['post_img']; ?>">
                       </div>
                     <?php endif; ?>
-
+                    <hr>
                     <div class="feed_actions">
-                      <hr>
+                      
                       <a href="<?php echo $post_likeButton_href; ?>" style="color:<?php echo $post_likeButton_color; ?>">
                         <i class="material-icons">thumb_up</i>
                         <?php echo $post_likeCount; ?>

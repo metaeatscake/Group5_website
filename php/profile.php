@@ -29,7 +29,7 @@
 
     <!-- Custom CSS File -->
     <link rel="stylesheet" href="../css/socialityOverrides.css">
-    <link rel="stylesheet" type="text/css" href="../css/profileStyles.css">
+    <link rel="stylesheet" href="../css/profileStyles.css">
     <link rel="stylesheet" href="../css/w3.css">
     <link rel="stylesheet" href="../css/navbar.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -254,8 +254,9 @@
                               <img src="<?php echo $row['post_img']; ?>" alt="<?php echo $row['post_img']; ?>">
                           </div>
                         <?php endif; ?>
+                        <hr>
 
-                        <div class="feed_actions"><hr>
+                        <div class="feed_actions">
                           
                           <a href="<?php echo $post_likeButton_href; ?>" style="color:<?php echo $post_likeButton_color; ?>"> 
                             <i class="material-icons">thumb_up</i><?php echo $row["count_likes"]; ?>
