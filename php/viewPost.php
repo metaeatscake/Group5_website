@@ -166,7 +166,6 @@
                 </form>
               </div>
               <br><br>  <hr>
-            </div>
               <!-- COMMENT HOLDER -->
               <?php
                 $pdo_getComments = $pdo->prepare("SELECT * FROM view_comments WHERE post_id = :post_id");
