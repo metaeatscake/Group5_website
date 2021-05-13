@@ -32,6 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../css/profileStyles.css">
     <link rel="stylesheet" href="../css/w3.css">
     <link rel="stylesheet" href="../css/navbar.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   </head>
   <body>
     <?php include_once("inc/_js_mdl_formAlert.php") ?>
@@ -100,6 +101,7 @@
                   </button>
                 <div class="dropdown-content">
                   <a href="#">Edit Profile</a>
+                  <a href="#">Edit Bio</a>
                   <a href="#">Edit Profile Picture and Banner</a>
                 </div>
                 </div>
@@ -108,7 +110,7 @@
 
             <style media="screen">
               .w3-bar{
-                display: flex;
+                align-items: left;
                 justify-content: center;
               }
             </style>
@@ -197,82 +199,81 @@
 
                   ?>
 
-                   <?php foreach ($post_dataArray as $row): ?>
+                  <?php foreach ($post_dataArray as $row): ?>
 
-                     <?php
-                        // Like Data setup.
-                        $isLiked = (isset($user_liked_post_id) && in_array($row["post_id"], $user_liked_post_id));
+                   <?php
+                      // Like Data setup.
+                      $isLiked = (isset($user_liked_post_id) && in_array($row["post_id"], $user_liked_post_id));
 
-                        // NOTE: First string is the color/text when the post IS LIKED, the other is when it is NOT liked.
-                        $post_likeButton_color = ($isLiked) ? "#000099" : "#262626";
-                        $post_likeButton_text = ($isLiked) ? "Unlike" : "Like";
+                      // NOTE: First string is the color/text when the post IS LIKED, the other is when it is NOT liked.
+                      $post_likeButton_color = ($isLiked) ? "#000099" : "#262626";
+                      $post_likeButton_text = ($isLiked) ? "Unlike" : "Like";
 
-                        //"Encrypted" POST ID because style.
-                        $post_fancyID = $hashId->encode($row['post_id']);
+                      //"Encrypted" POST ID because style.
+                      $post_fancyID = $hashId->encode($row['post_id']);
 
-                        //String for building the link to handleLikePost.php
-                        $post_likeButton_href = "handleLikePost.php?id=$post_fancyID&returnTo=profile.php";
+                      //String for building the link to handleLikePost.php
+                      $post_likeButton_href = "handleLikePost.php?id=$post_fancyID&returnTo=profile.php";
 
-                        //Prepare link for ViewPost.
-                        $post_viewPost_href = "viewPost.php?id=$post_fancyID";
-                      ?>
+                      //Prepare link for ViewPost.
+                      $post_viewPost_href = "viewPost.php?id=$post_fancyID";
+                    ?>
 
-                      <?php if ($row['user_id'] === $_SESSION["account_id"]): ?>
+                    <?php if ($row['user_id'] === $_SESSION["account_id"]): ?>
 
-                        <div class="feed_post" id="<?php echo 'p_'.$post_fancyID; ?>">
-                          
-                          <div class="feed_userpic">
-                            <img src="<?php echo $row['profile_pic']; ?>" style=" float: left; width: 50px; height: 50px; border-radius: 50px;">
-                          </div>
-
-                          <div class="feed_post_author" style="text-indent: 4px;">
-                            <a href="profile.php">
-                              <?php echo $row["username"]; ?>
-                            </a>
-                          </div> 
-
-                          <div class="feed_post_time" style="text-indent: 4px;">
-                            <a href="#">
-                              <?php echo $row["date_time"]; ?>
-                            </a>
-                          </div><br>
-
-                          <div class="feed_title">
-                            <?php echo $row["post_title"]; ?>
-                          </div><br>
+                      <div class="feed_post" id="<?php echo 'p_'.$post_fancyID; ?>">
                         
-                          <div class="feed_content">
-                            <?php echo nl2br($row["post_content"]); ?>
-                          </div>
-                          <br>
-                          <!-- Only display image div if there is image. -->
-                          <?php if (isset($row["post_img"])): ?>
-                            <div class="feed_image">
-                                <img src="<?php echo $row['post_img']; ?>" alt="<?php echo $row['post_img']; ?>">
-                            </div>
-                          <?php endif; ?>
-
-                          <div class="feed_actions">
-                            <hr>
-                            <a href="<?php echo $post_likeButton_href; ?>" style="color:<?php echo $post_likeButton_color; ?>"> 
-                              <i class="material-icons">thumb_up</i><?php echo $row["count_likes"]; ?>
-                            </a>
-                            <a href="<?php echo $post_viewPost_href; ?>">
-                              <span class="material-icons" style="color: #262626;">mode_comment</span> 
-                              <span style="color:black;"><?php echo $row["count_comments"]; ?></span>  
-                            </a>
-                            <a href="#">
-                              <span class="material-icons" style="color: #262626;">share</span>
-                            </a>
-                          </div>
-                          <hr>
+                        <div class="feed_userpic">
+                          <img src="<?php echo $row['profile_pic']; ?>" style=" float: left; width: 50px; height: 50px; border-radius: 50px;">
                         </div>
-                        <br>
 
-                      <?php endif; ?>
+                        <div class="feed_post_author" style="text-indent: 4px;">
+                          <a href="profile.php">
+                            <?php echo $row["username"]; ?>
+                          </a>
+                        </div> 
 
-                   <?php endforeach; ?>
+                        <div class="feed_post_time" style="text-indent: 4px;">
+                          <a href="#">
+                            <?php echo $row["date_time"]; ?>
+                          </a>
+                        </div><br>
 
+                        <div class="feed_title">
+                          <?php echo $row["post_title"]; ?>
+                        </div><br>
+                      
+                        <div class="feed_content">
+                          <?php echo nl2br($row["post_content"]); ?>
+                        </div><br>
+                        
+
+                        <!-- Only display image div if there is image. -->
+                        <?php if (isset($row["post_img"])): ?>
+                          <div class="feed_image">
+                              <img src="<?php echo $row['post_img']; ?>" alt="<?php echo $row['post_img']; ?>">
+                          </div>
+                        <?php endif; ?>
+
+                        <div class="feed_actions"><hr>
+                          
+                          <a href="<?php echo $post_likeButton_href; ?>" style="color:<?php echo $post_likeButton_color; ?>"> 
+                            <i class="material-icons">thumb_up</i><?php echo $row["count_likes"]; ?>
+                          </a>
+
+                          <a href="<?php echo $post_viewPost_href; ?>">
+                            <span class="material-icons" style="color: #262626;">mode_comment</span> 
+                            <span style="color:black;"><?php echo $row["count_comments"]; ?></span>  
+                          </a>
+
+                          <a href="#">
+                            <span class="material-icons" style="color: #262626;">share</span>
+                          </a>
+
+                        </div><hr>
+                      </div><br>
+                    <?php endif; ?>
+                  <?php endforeach; ?>
                 </div>
 
                 <!--CONTENT OF ABOUT -->
@@ -294,40 +295,10 @@
                 </div>
                  <!--CONTENT OF CUSTOMIZE PROFILE -->
                 <div id="customizeProfile" class="tabmenu" style="display:none;">
-                <meta name="viewport" content="width=device-width, initial-scale=1">
-                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-                <style>
-                
-               </style>
-                </head>
-                <body>
 
-                <div class="topnav" id="myTopnav">
-                  <a href="#home" class="active"><?php echo $user_dataArray['username']; ?></a>
-                  <a href="#news"></a>
-                  <a href="#contact">Contact</a>
-                <div class="dropdown">
-                  <button class="dropbtn">Dropdown 
-                    <i class="fa fa-caret-down"></i>
-                  </button>
-                <div class="dropdown-content">
-                  <a href="#">Link 1</a>
-                  <a href="#">Link 2</a>
-                  <a href="#">Link 3</a>
-                </div>
                 </div> 
-                  <a href="#about">About</a>
-                  <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a>
-                </div>
-
-                <div style="padding-left:16px">
-                  <h2>Change your Profile</h2>
-                  <p></p>
-                  <p></p>
-                </div>
-
               </div> 
-            </div> 
+            </div>
           </div>
         </div>
       </main>
