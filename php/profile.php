@@ -8,6 +8,11 @@
   $user_dataArray = $pdoq_getUserData->fetch(PDO::FETCH_ASSOC);
 
   //var_dump($user_dataArray);
+  
+  //Prefetch User Stats.
+  $pdoq_getUserStats = $pdo->prepare("SELECT * FROM view_user_stats WHERE user_id = :user_id");
+  $pdoq_getUserStats->execute(['user_id' => $_SESSION["account_id"]]);
+  $user_statsArray = $pdoq_getUserStats->fetch(PDO::FETCH_ASSOC);
 
  ?>
  <!DOCTYPE html>
@@ -279,20 +284,37 @@
 
                 <!--CONTENT OF ABOUT -->
                 <div id="about" class="tabmenu" style="display:none;">
-                  <h2>About</h2>
+                  <h2><b>About</b></h2>
 
                   <?php
                     if($user_dataArray['bio'] != NULL){
                       echo "
-                        <h4>Bio</h4>
+                        <h4><b>Bio</b></h4>
                         <h7>{$user_dataArray['bio']}</h7>
                       ";
                     }
                   ?>
 
-                  <h4>Joined</h4>
+                  <h4><b>Joined</b></h4>
                   <h7><?php echo $user_dataArray['register_time']; ?></h7>
 
+                  <?php 
+                    if($user_statsArray['count_comments'] != NULL){
+                      echo "
+                        <h4><b>Number of Comments</b></h4>
+                        <h7>{$user_statsArray['count_comments']}</h7>
+                      ";
+                    }
+                  ?>
+
+                  <?php 
+                    if($user_statsArray['count_post_likes'] != NULL){
+                      echo "
+                        <h4><b>Number of Likes</b></h4>
+                        <h7>{$user_statsArray['count_post_likes']}</h7>
+                      ";
+                    }
+                  ?>
                 </div>
 
                  <!--CONTENT OF CUSTOMIZE PROFILE -->
