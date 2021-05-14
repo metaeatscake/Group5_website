@@ -97,14 +97,14 @@
                 <button class="w3-bar-item w3-button tablink" onclick="opentabs(event,'myPosts')" style="margin:10px;">My Posts</button>
                 <button class="w3-bar-item w3-button tablink" onclick="opentabs(event,'about')" style="margin:10px auto;">About</button>
                 <div class="dropdown">
-                <button class="w3-bar-item w3-button tablink" onclick="opentabs(event,'customizeProfile')" style="margin:10px;">Customize Profile</button>
+                  <button class="w3-bar-item w3-button tablink" onclick="opentabs(event,'customizeProfile')" style="margin:10px;">Customize Profile</button>
                     <i class="fa fa-caret-down"></i>
                   </button>
-                <div class="dropdown-content">
-                  <button class="w3-bar-item w3-button tablink" onclick="opentabs(event,'customizeProfile')" style="margin:10px auto;">Edit Profile</button>
-                  <button class="w3-bar-item w3-button tablink" onclick="opentabs(event,'customizeBio')" style="margin:10px auto;">Edit Bio</button>
-                  <button class="w3-bar-item w3-button tablink" onclick="opentabs(event,'customizeProfileBanner')" style="margin:10px auto;">Edit Profile Picture Banner</button>
-                </div>
+                  <div class="dropdown-content">
+                    <button class="w3-bar-item w3-button tablink" onclick="opentabs(event,'customizeProfile')">Edit Profile</button><br><br>
+                    <button class="w3-bar-item w3-button tablink" onclick="opentabs(event,'customizeBio')">Edit Bio</button><br>
+                    <button class="w3-bar-item w3-button tablink" onclick="opentabs(event,'customizeProfileBanner')">Edit Profile Picture Banner</button>
+                  </div>
                 </div>
               </div>
             </div>
@@ -127,19 +127,19 @@
                   <div id="sponsored">
                     <img id="sponsored-img" src="images/assets/mfi-dts.jpg">
                     <br>
-                    <a href="#">MFI Polytechnic Institute Inc.</a>
+                    <a href="#">MFI Dual Training System Program</a>
                   </div>
 
                   <div id="sponsored">
-                    <img id="sponsored-img" src="images/assets/jolibee.jpg">
+                    <img id="sponsored-img" src="images/assets/mfi-shs.jpg">
                     <br><br>
-                    <a href="#">ph.jolibee.com</a>
+                    <a href="#">MFI Senior High School Program</a>
                   </div>
 
                   <div id="sponsored">
-                    <img id="sponsored-img" src="images/assets/shein.jpg">
+                    <img id="sponsored-img" src="images/assets/mfi-womencourse.png">
                     <br>
-                    <a href="#">ph.shein.com</a>
+                    <a href="#">MFI Women in STEM</a>
                   </div>
 
                 </div>
@@ -294,11 +294,10 @@
                   <h7><?php echo $user_dataArray['register_time']; ?></h7>
 
                 </div>
+
                  <!--CONTENT OF CUSTOMIZE PROFILE -->
                 <div id="customizeProfile" class="tabmenu" style="display:none;">
-                <?php
-                  //Get database and session.
-                  include_once("inc/database.php");
+                  <?php
 
                     $id = $_SESSION["account_id"];
 
@@ -307,87 +306,75 @@
 
                     extract($row, EXTR_PREFIX_ALL, "db");
 
-                      //Redirect Admins
-                      if (isset($_SESSION["account_type"]) && $_SESSION["account_type"] === "admin") {
-                        header("location: adm_viewUsers.php");
-                        exit();
-                      }
+                    //Redirect Admins
+                    if (isset($_SESSION["account_type"]) && $_SESSION["account_type"] === "admin") {
+                      header("location: adm_viewUsers.php");
+                      exit();
+                    }
 
-                        $requireInput = false;
+                      $requireInput = false;
 
-                      ?>
-                      <main class="mdl-layout__content">
+                  ?>
 
-                      <div class="page-content" align="center">
+                  <div class="page-content" align="center"><br><br>
 
-                      <!-- Edit Profile Card. -->
-                      <!--Form Proper-->
-                      <br><br>
-                      <form class="" action="handleEditProfile.php" method="POST">
+                    <!-- Edit Profile Card. -->
+                    <!--Form Proper-->
+                    <form class="" action="handleEditProfile.php" method="POST">
                       <div class="formCard mdl-card mdl-shadow--4dp">
 
-                      <div class="formItem">
-                        <h3>New Username</h3>
-                      </div>
-                      <div class="">
-                        <input type="text" name="username" class="input" id="username" value="<?php echo $db_username;?>">
-                      </div>
-                      <div class="formItem">
-                        <h3>New Password</h3>
-                      <input class="input "type="password" name="password" required placeholder="Type your new password" min="8">
-                      <i class="fas fa-key" aria-hidden="true"></i>
-                      </div>
-                      <br>
-                      
-                      <div class="formItem">
-                        <input class="input "type="password" name="confirm_password" required placeholder="Re-type your password" min="8">
-                        <i class="fas fa-key" aria-hidden="true"></i>
-                      </div>
+                        <div class="formItem">
+                          <h3>New Username</h3>
+                          <input type="text" name="username" class="input" id="username" value="<?php echo $db_username;?>">
+                        </div>
 
-                      <br>
-                      <div class="formItem">
-                        <div class="labelform">
-                          <div class="formItem">Sex</div>
-                            <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-1">
+                        <div class="formItem">
+                          <h3>New Password</h3>
+                          <input class="input" type="password" name="password" required placeholder="Type your new password" min="8">
+                          <i class="fas fa-key" aria-hidden="true"></i>
+                        </div><br>
+                        
+                        <div class="formItem">
+                          <input class="input "type="password" name="confirm_password" required placeholder="Re-type your password" min="8">
+                          <i class="fas fa-key" aria-hidden="true"></i>
+                        </div><br>
+
+                        <div class="formItem">
+                          <div class="labelform">
+
+                            <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-1" style="padding: 14px 26px 29px;">
                               <input type="radio" id="option-1" class="mdl-radio__button" name="sex" value="male" checked>
                              <span class="mdl-radio__label">Male</span>
                             </label>
-                            <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-2">
+                            <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-2" style="padding: 14px 26px 29px;">
                               <input type="radio" id="option-2" class="mdl-radio__button" name="sex" value="female">
                               <span class="mdl-radio__label">Female</span>
-                            </label>
-                            <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-3">
+                            </label><br>
+
+                            <!-- <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-3">
                               <input type="radio" id="option-3" class="mdl-radio__button" name="sex" value="Prefer not to say">
                               <span class="mdl-radio__label">Prefer not to say</span>
-                            </label>
+                            </label> -->
+
+                            <div class="formItem">
+                              <h3>Email</h3>
+                              <input class="input" type="email" id="email" name="email" value="<?php echo $db_email; ?>">
+                            </div><br>
                           </div>
                         </div>
-                      </div>
-                      <br>
-                      <div class="formItem">
-                        <label class="label" for="email">Email</label>
-                      </div>
-                      <div class="formItem">
-                        <input class="input" type="email" id="email" name="email" value="<?php echo $db_email; ?>">
-                      </div>
-                      <br>
-                      <button class="mdl-button mdl-js-button mdl-button--raised" id="formSubmitButton-container">
-                        <i class="material-icons">done</i>
-                        <input type="submit" name="registerSubmit" id="formSubmitButton" value="submit">
-                      </button>
-                      </div>
-                      </form>
-                      <br><br>
-                      </div>
 
-                    </main>
-                    </div>
+                        <button class="mdl-button mdl-js-button mdl-button--raised" id="formSubmitButton-container">
+                          <i class="material-icons">done</i>
+                          <input type="submit" name="registerSubmit" id="formSubmitButton" value="submit">
+                        </button>
+
+                      </div>
+                    </form>
+                  </div><br><br>
                 </div> 
                 <!--CONTENT OF CUSTOMIZE BIO -->
                 <div id="customizeBio" class="tabmenu" style="display:none;">
-                <?php
-                  //Get database and session.
-                  include_once("inc/database.php");
+                  <?php
 
                     $id = $_SESSION["account_id"];
 
@@ -402,39 +389,32 @@
                         exit();
                       }
 
-                      ?>
-                      <main class="mdl-layout__content">
+                  ?>
 
-                      <div class="page-content" align="center">
-
-                      <br><br>
-                      <form class="" action="handleEditProfile.php" method="POST">
+                  <div class="page-content" align="center"><br><br>
+   
+                    <form class="" action="handleEditProfile.php" method="POST">
                       <div class="formCard mdl-card mdl-shadow--4dp">
 
+                        <div class="formItem">
+                          <h3>Bio</h3>
+                        </div>
+                        <div>
+                          <textarea name="bio" rows="10" cols="50" placeholder="Edit your Bio. <?php echo $db_bio; ?>" required></textarea>
+                        </div><br><br><br>
+                    
+                        <button class="mdl-button mdl-js-button mdl-button--raised" id="formSubmitButton-container">
+                          <i class="material-icons">done</i>
+                          <input type="submit" name="registerSubmit" id="formSubmitButton" value="submit">
+                        </button>
 
-                      <div class="formItem">
-                        <h3>Bio</h3>
                       </div>
-                      <div>
-                      <textarea name="bio" rows="10" cols="50" placeholder="Edit your Bio. <?php echo $db_bio; ?>" required></textarea>
-                      </div>
-                      <br>
-                      </form>
-                      <br><br>
-                      <button class="mdl-button mdl-js-button mdl-button--raised" id="formSubmitButton-container">
-                        <i class="material-icons">done</i>
-                        <input type="submit" name="registerSubmit" id="formSubmitButton" value="submit">
-                      </button>
-                      </div>
-
-                    </main>
-                    </div>
+                    </form>
+                  </div>
                 </div> 
                 <!--CONTENT OF CUSTOMIZE PROFILE PICTURE BANNER -->
                 <div id="customizeProfileBanner" class="tabmenu" style="display:none;">
-                <?php
-                  //Get database and session.
-                  include_once("inc/database.php");
+                  <?php
 
                     $id = $_SESSION["account_id"];
 
@@ -442,48 +422,48 @@
                     $row = $sql->query("SELECT * FROM tbl_users WHERE user_id = '$id'")->fetch_assoc();
 
                     extract($row, EXTR_PREFIX_ALL, "db");   
-                      //Redirect Admins
-                      if (isset($_SESSION["account_type"]) && $_SESSION["account_type"] === "admin") {
-                        header("location: adm_viewUsers.php");
-                        exit();
+                    //Redirect Admins
+                    if (isset($_SESSION["account_type"]) && $_SESSION["account_type"] === "admin") {
+                      header("location: adm_viewUsers.php");
+                      exit();
+                    }
+
+                    //Changing Profile Picture
+                    $tmp_id = $_SESSION["account_id"];
+                    if($result = $sql->query("SELECT * FROM tbl_users WHERE id = '$tmp_id'")){
+                      while($row = $result->fetch_assoc())
+                      {
+                        extract($row, EXTR_PREFIX_ALL, "data");
                       }
+                    }
+                      $requireInput = false;
 
-                      //Changing Profile Picture
-                      $tmp_id = $_SESSION["account_id"];
-                      if($result = $sql->query("SELECT * FROM tbl_users WHERE id = '$tmp_id'")){
-                        while($row = $result->fetch_assoc())
-                        {
-                          extract($row, EXTR_PREFIX_ALL, "data");
-                        }
-                      }
-                        $requireInput = false;
+                  ?>
+                  <div class="page-content" align="center"><br><br>
 
-                      ?>
-                      <main class="mdl-layout__content">
-
-                      <div class="page-content" align="center">
-
-                      <br><br>
-                      <form class="" action="handleEditProfile.php" method="POST">
+                    <form class="" action="handleEditProfile.php" method="POST">
                       <div class="formCard mdl-card mdl-shadow--4dp">
 
-                      <center><br><img src="images/assets/socialitylogoblack.png" width="300" height="70"><center>
-                      <br>
-                      <img src="<?php echo $db_profile_pic; ?> "width="215" height="200">
-                      <div class="formItem">
-                        <h3 class="text-align: center" >--- <?php echo $db_username; ?> ---</h3>
+                        <center><br><img src="images/assets/socialitylogoblack.png" width="300" height="70"><center> <br>
+                       
+                        <img src="<?php echo $db_profile_pic; ?> "width="215" height="200">
+                        <div class="formItem">
+                          <h3 class="text-align: center;" <?php echo $db_username; ?> </h3>
+                        </div>
+
+                        <div class="formItem">
+                          <h3>Profile Picture</h3>
+                          <div>
+                            <input type="file" name="profile_pic" accept="image/*" <?php echo ($requireInput) ? "required":''; ?>>
+                          </div>
+                        </div>
+                        <button class="mdl-button mdl-js-button mdl-button--raised" id="formSubmitButton-container">
+                          <i class="material-icons">done</i>
+                          <input type="submit" name="registerSubmit" id="formSubmitButton" value="submit">
+                        </button>
                       </div>
-                      <div class="formItem">
-                      <h3>Profile Picture</h3>
-                      <div>
-                        <input type="file" name="profile_pic" accept="image/*" <?php echo ($requireInput) ? "required":''; ?>>
-                      </div>
-                      <button class="mdl-button mdl-js-button mdl-button--raised" id="formSubmitButton-container">
-                        <i class="material-icons">done</i>
-                        <input type="submit" name="registerSubmit" id="formSubmitButton" value="submit">
-                      </button>
-                    </main>
-                    </div>
+                    </form>
+                  </div>
                 </div> 
               </div> 
             </div>
