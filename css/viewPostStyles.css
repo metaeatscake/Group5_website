@@ -125,6 +125,12 @@ textarea{
   border-radius: 50px;
 }
 
+.more-horiz:hover{
+  background-color: #d9d9d9;
+  border-radius: 50px;
+  width: 40px;
+}
+
 .feed_title{
   text-align: left;
   font-size: 18px;

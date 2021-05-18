@@ -333,6 +333,12 @@
     cursor: pointer;
   }
 
+  .more-horiz:hover{
+    background-color: #d9d9d9;
+    border-radius: 50px;
+    width: 40px;
+  }
+
   .feed_userpic img{
     float: left; 
     width: 50px; 
