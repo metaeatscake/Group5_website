@@ -4,25 +4,23 @@ textarea{
   font-family: tahoma;
   font-size: 14px;
   height: 100%;
+  resize: none;
 }
 
 .btn-primary {
-  color: #fff;
-  background-color: #660066;
-  border-color: #007bff;
-  border-radius: 20px;
-  width: 60px;
-  height: 30px;
+  background-color: #b300b3;
+  border-radius: 5px;
+  width: 95px;
+  height: 40px;
   float: right;
   border: none;
-  color: white;
-  font-size: 14px;
+  color: #fff;
+  font-size: 16px;
 }
 
 .btn-primary:hover {
   color: #fff;
-  background-color:#ff80ff;
-  border-color: #0062cc;
+  background-color:#990099;
 }
 
 #title-bar{
@@ -35,12 +33,35 @@ textarea{
 
 #actual-btn{
   cursor: pointer;
+  float
+}
+
+.friends-button{
+  cursor: pointer;
+  position: relative;
+  left: 3px;
+  text-indent: 6px;
+  background-color: #cccccc;
+  width: 135px;
+  height: 35px;
+  float: left;
+  font-size: 16px;
+  border-radius: 5px;
+}
+
+.friends-button:hover{
+  color: #fff;
+  background-color:#990099;
+}
+
+.icon{
+  position: relative;
+  top: 7px;
 }
 
 label {
-  background-color:#8a426d;
-  color: white;
-  padding: 0.5rem;
+  background-color: #cccccc;
+  color: #000000;
   font-family: sans-serif;
   padding: 0.9rem;
   cursor: pointer;
@@ -50,17 +71,19 @@ label {
 
 label:hover {
   color: #fff;
-  background-color:#ff80ff;
-  border-color: #0062cc;
+  background-color:#990099;
 }
 
 #text-area {
   border-radius: 8px;
   padding: 10px;
-  background-color: white;
-  width: 600px;
-  height: 280px;
+  background-color: #ffffff;
+  height: 355px;
   margin: auto;
+}
+
+#text-area a{
+  color: black;
 }
 
 @media only screen and (min-width: 600px){
@@ -96,4 +119,43 @@ label:hover {
     width: 55%;
     min-height: 20%;
   }
+}
+
+.create-post{
+  min-height: 400px; 
+  flex:-5;
+  padding: 90px;
+}
+
+.centered{
+  text-align: center;
+}
+
+.left{
+  float: right;
+  position: relative;
+  top: -1px;
+  right: 8px;
+}
+
+.feed_userpic img{
+  float: left; 
+  width: 50px; 
+  height: 50px; 
+  border-radius: 50px;
+}
+
+.feed_post_author{
+  font-size: 18px;
+  font-weight: normal;
+  text-indent: 4px;
+}
+
+.feed_post_author a{
+  text-decoration: none;
+  color: black;
+}
+
+.feed_post_author a:hover{
+  text-decoration: underline;
 }
