@@ -12,37 +12,37 @@
   }
 
 @media only screen and (max-width: 600px){
-    .form-wrapper{
-      width: 500px;
-      height: 500px;
-      }
+  .form-wrapper{
+    width: 600px;
+    height: 390px;
+  }
 }
 
 @media only screen and (min-width: 600px){
-    .form-wrapper{
-      width: 500px;
-      height: 500px;
-      }
+  .form-wrapper{
+    width: 500px;
+    height: 390px;
+  }
 }
 
 @media only screen and (min-width: 992px){
   .form-wrapper{
-    width: 800px;
-    height: 500px;
+    width: 500px;
+    height: 390px;
   }
 }
 
 @media only screen and (max-width: 768px){
   .form-wrapper{
     width: 500px;
-    height: 500px;
+    height: 340px;
     }
 }
 
 @media only screen and (min-width: 1200px){
   .form-wrapper{
-    width: 800px;
-    height: 500px;
+    width: 495px;
+    height: 400px;
   }
 }
 
