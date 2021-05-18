@@ -156,6 +156,8 @@ label:hover {
   font-size: 14px;
   font-weight: lighter;
   text-indent: 4px;
+  position: relative;
+  top: -10px;
 }
 
 .feed_post_time a{
@@ -246,6 +248,12 @@ hr{
   border-top: 1px solid #ccc;
   margin: 0.5em 0px;
   padding: 0;
+}
+
+.icon{
+  position: relative;
+  top: 5px;
+  cursor: pointer;
 }
 
 .feed_post{

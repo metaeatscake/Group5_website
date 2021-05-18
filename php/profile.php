@@ -243,10 +243,11 @@
                           </a>
                         </div> 
 
-                        <div class="feed_post_time">
+                        <div class="feed_post_time ">
                           <a href="<?php echo $post_viewPost_href; ?>">
                             <?php echo $row["date_time"]; ?>
                           </a>
+                          <span class="material-icons icon">public</span>
                         </div><br>
 
                         <div class="feed_title">
