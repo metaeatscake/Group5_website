@@ -325,6 +325,20 @@
     }
   }
 
+  .more-horiz{
+    float: right;
+    position: relative;
+    top: -1px;
+    right: 8px;
+  }
+
+  .feed_userpic img{
+    float: left; 
+    width: 50px; 
+    height: 50px; 
+    border-radius: 50px;
+  }
+
   .feed_title{
     text-align: left;
     font-size: 18px;
