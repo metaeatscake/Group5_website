@@ -2,7 +2,7 @@
 
   include_once("_newPDOEmulateOn.php");
 
-  $sqlDump = file_get_contents("../../database/socialitydb.sql");
+  $sqlDump = file_get_contents("../../database/socialitydb_FULL.sql");
 
   $qr = $pdo->exec($sqlDump);
 

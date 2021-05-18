@@ -205,7 +205,7 @@
     END");
 
   //When finished, go back to index.
-  header("location: ../../");
+  header("location: ../../index_dev.html");
   exit();
 
  ?>
