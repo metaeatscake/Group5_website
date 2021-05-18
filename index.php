@@ -130,13 +130,13 @@
                       <img src="<?php echo 'php/'.$row['profile_pic']; ?>">
                     </div>
 
-                    <div class="feed_post_author" style="text-indent: 4px;">
+                    <div class="feed_post_author">
                       <a href="profile.php">
                         <?php echo $row["username"]; ?>
                       </a>
                     </div> 
 
-                    <div class="feed_post_time" style="text-indent: 4px;">
+                    <div class="feed_post_time">
                       <a href="<?php echo $post_viewPost_href; ?>">
                         <?php echo $row["date_time"]; ?>
                       </a>

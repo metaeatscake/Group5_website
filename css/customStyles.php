@@ -330,6 +330,7 @@
     position: relative;
     top: -1px;
     right: 8px;
+    cursor: pointer;
   }
 
   .feed_userpic img{
@@ -362,6 +363,7 @@
   .feed_post_time{
     font-size: 14px;
     font-weight: lighter;
+    text-indent: 4px;
   }
 
   .feed_post_time a{
@@ -376,6 +378,7 @@
   .feed_post_author{
     font-size: 18px;
     font-weight: normal;
+    text-indent: 4px;
   }
 
   .feed_post_author a{
