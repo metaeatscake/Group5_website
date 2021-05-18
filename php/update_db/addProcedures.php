@@ -168,7 +168,13 @@
     EDIT USER ACCOUNT
   */
   $pdo->exec("
-  CREATE DEFINER=`root`@`localhost` PROCEDURE `edit_user_account`(IN `prm_user_id` INT(11), IN `prm_username` VARCHAR(255), IN `prm_password` VARCHAR(255), IN `prm_email` VARCHAR(255), IN `prm_sex` VARCHAR(255))
+  CREATE DEFINER=`root`@`localhost` PROCEDURE `edit_user_account`(
+    IN `prm_user_id` INT(11),
+    IN `prm_username` VARCHAR(255),
+    IN `prm_password` VARCHAR(255),
+    IN `prm_email` VARCHAR(255),
+    IN `prm_sex` VARCHAR(255)
+  )
   BEGIN
 
         DECLARE	plc_sex VARCHAR(255);
