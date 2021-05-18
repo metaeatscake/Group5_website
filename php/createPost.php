@@ -96,7 +96,7 @@
                 </div> 
 
                 <div class="friends-button">
-                  <span class="material-icons icon">people</span> Friends
+                  <span class="material-icons icon">public</span> Public
                   <span class="material-icons icon">arrow_drop_down</span>
                 </div>
 

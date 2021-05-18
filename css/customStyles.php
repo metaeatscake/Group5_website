@@ -364,6 +364,8 @@
     font-size: 14px;
     font-weight: lighter;
     text-indent: 4px;
+    position: relative;
+    top: -10px;
   }
 
   .feed_post_time a{
@@ -390,6 +392,12 @@
     text-decoration: underline;
   }
 
+  .icon{
+    position: relative;
+    top: 5px;
+    cursor: pointer;
+  }
+  
   .feed_actions{
     width: 45%;
     display: inline-flex;

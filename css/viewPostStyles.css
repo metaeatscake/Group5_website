@@ -148,6 +148,9 @@ textarea{
 .feed_post_time{
   font-size: 14px;
   font-weight: lighter;
+  position: relative;
+  top: -10px;
+  text-indent: 4px;
 }
 
 .feed_post_time a{
@@ -278,4 +281,10 @@ hr{
     width: 45%;
     min-height: 20%;
   }
+}
+
+.icon{
+  position: relative;
+  top: 5px;
+  cursor: pointer;
 }
