@@ -328,12 +328,6 @@
 
                     extract($row, EXTR_PREFIX_ALL, "db");
 
-                    //Redirect Admins
-                    if (isset($_SESSION["account_type"]) && $_SESSION["account_type"] === "admin") {
-                      header("location: adm_viewUsers.php");
-                      exit();
-                    }
-
                       $requireInput = false;
 
                   ?>
@@ -373,11 +367,6 @@
                               <span class="mdl-radio__label">Female</span>
                             </label><br>
 
-                            <!-- <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-3">
-                              <input type="radio" id="option-3" class="mdl-radio__button" name="sex" value="Prefer not to say">
-                              <span class="mdl-radio__label">Prefer not to say</span>
-                            </label> -->
-
                             <div class="formItem">
                               <h3>Email</h3>
                               <input class="input" type="email" id="email" name="email" value="<?php echo $db_email; ?>">
@@ -404,12 +393,6 @@
                     $row = $sql->query("SELECT * FROM tbl_users WHERE user_id = '$id'")->fetch_assoc();
 
                     extract($row, EXTR_PREFIX_ALL, "db");
-
-                      //Redirect Admins
-                      if (isset($_SESSION["account_type"]) && $_SESSION["account_type"] === "admin") {
-                        header("location: adm_viewUsers.php");
-                        exit();
-                      }
 
                   ?>
 
@@ -439,16 +422,11 @@
                   <?php
 
                     $id = $_SESSION["account_id"];
-
+                    
                     // If the query only returns one row, the array can be fetched in one line.
                     $row = $sql->query("SELECT * FROM tbl_users WHERE user_id = '$id'")->fetch_assoc();
 
                     extract($row, EXTR_PREFIX_ALL, "db");   
-                    //Redirect Admins
-                    if (isset($_SESSION["account_type"]) && $_SESSION["account_type"] === "admin") {
-                      header("location: adm_viewUsers.php");
-                      exit();
-                    }
 
                     //Changing Profile Picture
                     $tmp_id = $_SESSION["account_id"];
@@ -477,6 +455,7 @@
                           <h3>Profile Picture</h3>
                           <div>
                             <input type="file" name="profile_pic" accept="image/*" <?php echo ($requireInput) ? "required":''; ?>>
+                            
                           </div>
                         </div>
                         <button class="mdl-button mdl-js-button mdl-button--raised" id="formSubmitButton-container">

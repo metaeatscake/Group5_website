@@ -30,8 +30,22 @@
     echo "<br><br>";
     echo "<center><a href='profile.php' class='' style='text-align: center;'>Go back</a></center>"; exit;
   } else {
-    $data = $sql->query("UPDATE tbl_users SET username = '$username', bio = '$bio', sex = '$sex', email = '$email' WHERE user_id = '$id'");
+    $data = $sql->query("UPDATE tbl_users SET username = '$username', sex = '$sex', email = '$email' WHERE user_id = '$id'");
     header("location: profile.php");
   exit();
   }
+
+  if($row != NULL) {
+    echo "<h3 style='text-align: center;'><br>Duplicate Record! This user already exist. </h3>";
+    echo "<br><br>";
+    echo "<center><a href='profile.php' class='' style='text-align: center;'>Go back</a></center>"; exit;
+  } else {
+    $data = $sql->query("UPDATE tbl_users SET bio = '$bio' WHERE user_id = '$id'");
+    header("location: profile.php");
+  exit();
+  }
+
+  //----------------------
+  
+
   ?>
