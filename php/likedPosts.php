@@ -115,6 +115,10 @@
 
                  <div class="feed_post" id="<?php echo 'p_'.$post_fancyID; ?>">
 
+                    <div class="more-horiz">
+                      <span class="material-icons">more_horiz</span>
+                    </div>
+                    
                     <div class="feed_userpic">
                       <img src="<?php echo $row['profile_pic']; ?>" style=" float: left; width: 50px; height: 50px; border-radius: 50px;">
                     </div>

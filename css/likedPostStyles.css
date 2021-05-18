@@ -64,3 +64,11 @@ hr{
   margin: 0.5em 0px;
   padding: 0;
 }
+
+.more-horiz{
+  float: right;
+  position: relative;
+  top: -1px;
+  right: 8px;
+  cursor: pointer;
+}

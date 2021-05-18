@@ -117,6 +117,14 @@ label:hover {
   border-color: #0062cc;
 }
 
+.more-horiz{
+  float: right;
+  position: relative;
+  top: -1px;
+  right: 8px;
+  cursor: pointer;
+}
+
 .feed_title{
   text-align: left;
   font-size: 18px;
