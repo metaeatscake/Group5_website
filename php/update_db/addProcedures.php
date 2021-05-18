@@ -168,40 +168,32 @@
     EDIT USER ACCOUNT
   */
   $pdo->exec("
-    CREATE DEFINER=`root`@`localhost` PROCEDURE `edit_user_account`(
-      IN prm_user_id INT(11),
-      IN prm_username VARCHAR(255),
-      IN prm_password VARCHAR(255),
-      IN prm_email VARCHAR(255),
-      IN prm_sex VARCHAR(255)
-    )
-    BEGIN
+  CREATE DEFINER=`root`@`localhost` PROCEDURE `edit_user_account`(IN `prm_user_id` INT(11), IN `prm_username` VARCHAR(255), IN `prm_password` VARCHAR(255), IN `prm_email` VARCHAR(255), IN `prm_sex` VARCHAR(255))
+  BEGIN
 
-    	  DECLARE plc_username VARCHAR(255);
-        DECLARE plc_password VARCHAR(255);
-        DECLARE plc_email VARCHAR(255);
         DECLARE	plc_sex VARCHAR(255);
+        DECLARE vrf_username INT;
+        DECLARE vrf_email INT;
 
-        SELECT username, password, email, sex
-    		INTO plc_username, plc_password, plc_email, plc_sex
-            FROM tbl_users
-            WHERE user_id = prm_user_id;
+        SELECT sex INTO plc_sex FROM tbl_users WHERE user_id = prm_user_id;
+        SELECT count(username) INTO vrf_username FROM tbl_users WHERE username = prm_username;
+        SELECT count(email) INTO vrf_email FROM tbl_users WHERE email = prm_email;
 
-      	IF prm_username <> plc_username AND prm_username <> '' THEN
-      		UPDATE tbl_users SET username = prm_username WHERE user_id = prm_user_id;
-      	END IF;
+        IF prm_username <> '' AND vrf_username < 1 THEN
+          UPDATE tbl_users SET username = prm_username WHERE user_id = prm_user_id;
+        END IF;
 
-        IF prm_password <> plc_password AND prm_password <> '' THEN
-      		UPDATE tbl_users SET password = prm_password WHERE user_id = prm_user_id;
-      	END IF;
+        IF prm_password <> '' THEN
+          UPDATE tbl_users SET password = prm_password WHERE user_id = prm_user_id;
+        END IF;
 
-      	IF prm_email <> plc_email AND prm_email <> '' THEN
-      		UPDATE tbl_users SET email = prm_email WHERE user_id = prm_user_id;
-      	END IF;
+        IF prm_email <> '' AND vrf_email < 1 THEN
+          UPDATE tbl_users SET email = prm_email WHERE user_id = prm_user_id;
+        END IF;
 
         IF prm_sex <> plc_sex AND prm_sex <> '' THEN
-      		UPDATE tbl_users SET sex = prm_sex WHERE user_id = prm_user_id;
-      	END IF;
+          UPDATE tbl_users SET sex = prm_sex WHERE user_id = prm_user_id;
+        END IF;
     END");
 
   //When finished, go back to index.

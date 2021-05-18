@@ -15,9 +15,9 @@ $pdo_config = [
 
 try {
   $pdo = new PDO($pdo_conn, $pdo_user, $pdo_pass, $pdo_config);
-  $pdo->exec("CREATE DATABASE IF NOT EXISTS `socialitydb` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci");
 } catch (\PDOException $e) {
   throw new \PDOException($e->getMessage(), (int)$e->getCode());
 }
 
+  $pdo->exec("CREATE DATABASE IF NOT EXISTS `socialitydb` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci");
  ?>

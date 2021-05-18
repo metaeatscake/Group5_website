@@ -2,11 +2,12 @@
 
   include_once("_newPDOEmulateOn.php");
 
-  $sqlDump = file_get_contents("../../database/socialitydb_FULLPDO.sql");
+  $sqlDump = file_get_contents("../../database/socialitydb.sql");
 
   $qr = $pdo->exec($sqlDump);
 
-  header("location: ../../index_dev.html");
+  // After setting up database, add the procedures
+  header("location: addProcedures.php");
   exit();
 
  ?>
