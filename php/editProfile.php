@@ -60,6 +60,7 @@
 
      <!-- Custom CSS File -->
      <link rel="stylesheet" href="../css/socialityOverrides.css">
+     
    </head>
 
    <body>
@@ -131,13 +132,13 @@
                <br>
                <div class="formItem">
                 <input class="input "type="password" name="password" required placeholder="Type your new password" min="8">
-               <i class="fas fa-key" aria-hidden="true"></i>
+                <i class="fa fa-key" style="font-size:24px"></i>
                </div>
                <br>
                <label for="password">Confirm Password</label>
                 <div class="formItem">
-                   <input class="input "type="password" name="confirm_password" required placeholder="Re-type your password" min="8">
-                    <i class="fas fa-key" aria-hidden="true"></i>
+                  <input class="input "type="password" name="confirm_password" required placeholder="Re-type your password" min="8">
+                  <i class="fa fa-key" style="font-size:24px"></i>
                </div>
                <br>
               <div class="formItem">

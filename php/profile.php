@@ -346,18 +346,19 @@
 
                         <div class="formItem">
                           <h3>New Username</h3>
+                          <i class="fa fa-user"></i>
                           <input type="text" name="username" class="input" id="username" value="<?php echo $db_username;?>">
                         </div>
 
                         <div class="formItem">
                           <h3>New Password</h3>
+                          <i style="font-size:24px" class="fa">&#xf084;</i>
                           <input class="input" type="password" name="password" required placeholder="Type your new password" min="8">
-                          <i class="fas fa-key" aria-hidden="true"></i>
                         </div><br>
                         
                         <div class="formItem">
+                          <i style="font-size:24px" class="fa">&#xf084;</i>
                           <input class="input "type="password" name="confirm_password" required placeholder="Re-type your password" min="8">
-                          <i class="fas fa-key" aria-hidden="true"></i>
                         </div><br>
 
                         <div class="formItem">
@@ -374,16 +375,17 @@
 
                             <div class="formItem">
                               <h3>Email</h3>
-                              <input class="input" type="email" id="email" name="email" value="<?php echo $db_email; ?>">
+                              <i class="fa fa-envelope"></i>
+                              <input class="input" type="email" id="email" name="email" required placeholder="Type your new E-mail" value="<?php echo $db_email; ?>">
+                              
                             </div><br>
                           </div>
                         </div>
-
                         <button class="mdl-button mdl-js-button mdl-button--raised" id="formSubmitButton-container">
                           <i class="material-icons">done</i>
-                          <input type="submit" name="registerSubmit" id="formSubmitButton" value="submit">
+                          <input type="submit" name="registerSubmit" id="formSubmitButton" value="Submit">
                         </button>
-
+                        <br>
                       </div>
                     </form>
                   </div><br><br>
