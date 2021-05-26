@@ -1,5 +1,5 @@
 #profile-page-menu-top{
-  line-height: 22px;
+  line-height: 0;
 }
 
 #profile_pic{
@@ -12,11 +12,7 @@
 #profile-menu-username{
   font-size: 30px;
   font-weight: normal;
-}
-
-#profile-menu-username a{
   color: black;
-  text-decoration: none;
 }
 
 #profile-menu-bio{
