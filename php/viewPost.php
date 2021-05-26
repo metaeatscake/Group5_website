@@ -107,7 +107,9 @@
              //Prepare like and comment count for each post.
              $post_likeCount = (isset($row['count_likes'])) ? $row['count_likes'] : 0;
              $post_commentCount = (isset($row['count_comments'])) ? $row['count_comments'] : 0;
-
+             
+             $profileIDHolder = $row["user_id"];
+             $profileLink = ($row["user_id"] === $_SESSION["account_id"]) ? "profile.php" : "viewProfile.php?id=$profileIDHolder";
             ?>
 
             <?php // Post holder. ?>
@@ -122,7 +124,7 @@
               </div>
 
               <div class="feed_post_author">
-                <a href="profile.php">
+                <a href="<?php echo $profileLink?>">
                   <?php echo $row["username"]; ?>
                 </a>
               </div>

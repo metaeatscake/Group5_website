@@ -208,10 +208,13 @@
                       $post_fancyID = $hashId->encode($row['post_id']);
 
                       //String for building the link to handleLikePost.php
-                      $post_likeButton_href = "handleLikePost.php?id=$post_fancyID&returnTo=profile.php";
+                      $post_likeButton_href = "handleLikePost.php?id=$post_fancyID&returnTo=viewProfile.php";
 
                       //Prepare link for ViewPost.
                       $post_viewPost_href = "viewPost.php?id=$post_fancyID";
+
+                      $profileIDHolder = $row["user_id"];
+                      $profileLink = ($row["user_id"] === $_SESSION["account_id"]) ? "profile.php" : "viewProfile.php?id=$profileIDHolder";
                     ?>
 
                     <?php if ($row['user_id'] == $_GET["id"]): ?>
@@ -227,7 +230,7 @@
                         </div>
 
                         <div class="feed_post_author">
-                          <a href="profile.php">
+                          <a href="<?php echo $profileLink?>">
                             <?php echo $row["username"]; ?>
                           </a>
                         </div> 

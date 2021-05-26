@@ -40,6 +40,11 @@
         $redirLink = "profile.php$postTag";
         break;
 
+      case 'viewProfile.php':
+        $profileID = $_GET["profileID"];
+        $redirLink = "viewProfile.php?postID=$postTag&userID=$profileID";
+        break;
+
       case 'index_clean':
         $redirLink = "../";
         break;
