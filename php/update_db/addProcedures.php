@@ -11,7 +11,9 @@
   $pdo->exec("DROP PROCEDURE IF EXISTS `add_post_img`");
   $pdo->exec("DROP PROCEDURE IF EXISTS `add_post_text`");
   $pdo->exec("DROP PROCEDURE IF EXISTS `add_user`");
+  $pdo->exec("DROP PROCEDURE IF EXISTS `delete_comment`");
   $pdo->exec("DROP PROCEDURE IF EXISTS `delete_like`");
+  $pdo->exec("DROP PROCEDURE IF EXISTS `edit_comment`");
   $pdo->exec("DROP PROCEDURE IF EXISTS `edit_user_pictures`");
   $pdo->exec("DROP PROCEDURE IF EXISTS `edit_user_bio`");
   $pdo->exec("DROP PROCEDURE IF EXISTS `edit_user_account`");
@@ -198,6 +200,34 @@
         IF prm_sex <> '' THEN
       		UPDATE tbl_users SET sex = prm_sex WHERE user_id = prm_user_id;
       	END IF;
+    END");
+
+    /*
+      EDIT POST COMMENT
+    */
+    $pdo->exec("
+    CREATE DEFINER=`root`@`localhost` PROCEDURE `edit_comment`(
+    	IN `prm_comment_id` INT(11),
+    	IN `prm_new_comment` text
+    )
+    BEGIN
+    	IF prm_new_comment <> NULL AND prm_new_comment <> '' THEN
+    		UPDATE tbl_comments
+    			SET comment_content = prm_new_comment
+                WHERE comment_id = prm_comment_id;
+        END IF;
+    END");
+
+    /*
+      DELETE POST COMMENT
+    */
+    $pdo->exec("
+    CREATE DEFINER=`root`@`localhost` PROCEDURE `delete_comment`(
+  	   IN `prm_comment_id` INT(11)
+    )
+    BEGIN
+    	DELETE FROM tbl_comments
+    		WHERE comment_id = prm_comment_id;
     END");
 
   //When finished, go back to index.
