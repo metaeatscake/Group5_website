@@ -51,14 +51,18 @@
 }
 
 .form-wrapper-register{
-  margin:5px auto 0px auto;
+  margin:5px auto 0px;
   padding:25px;
   border-radius:5px;
   -moz-border-radius:5px;
   -webkit-border-radius:5px;
   background-color:#fff;
+  background: -webkit-linear-gradient(to bottom, #fff 20%, #fff6e9);
+  background: linear-gradient(to bottom, #fff 20%, #fff6e9);
   overflow:auto;
   align-items: center;
+  float: left;
+  margin-left: 100px;
 }
 
 @media only screen and (min-width: 600px){
@@ -116,13 +120,13 @@
       }
 
       input[type="text"]:focus {
-        border-color: purple;
-        box-shadow: 0 0 8px 0 purple;
+        border-color: #6148bf;
+        box-shadow: 0 0 8px 0 #6148bf;
       }
 
       input[type="password"]:focus {
-        border-color: purple;
-        box-shadow: 0 0 8px 0 purple;
+        border-color: #6148bf;
+        box-shadow: 0 0 8px 0 #6148bf;
       }
 
       .formItem{
@@ -149,11 +153,11 @@
       }
 
       .formItem input[type="text"]:focus + i {
-        color: purple;
+        color: #6148bf;
       }
 
       .formItem input[type="password"]:focus + i {
-        color: purple;
+        color: #6148bf;
       }
 
       #gender{
@@ -168,7 +172,7 @@
       #gender label{
         height: 100px;
         width: 150px;
-        border: 4px solid #ad5389;
+        border: 4px solid #6148bf;
         position: relative;
         right: 6px;
         margin: auto;
@@ -191,7 +195,7 @@
         transform: translate(-50%, -80%);
       }
       #gender input[type="radio"]:checked + label{
-        background-color: #ad5389;
+        background-color: #6148bf;
         color: white;
         box-shadow: 0 15px 45px rgba(24, 249, 141, 0.2);
       }
@@ -237,8 +241,8 @@
   input[type="text"]:focus,
   input[type="password"]:focus,
   input[type="email"]:focus {
-    border-color: purple;
-    box-shadow: 0 0 8px 0 purple;
+    border-color: #6148bf;
+    box-shadow: 0 0 8px 0 #6148bf;
   }
 
   .formItem{
@@ -264,7 +268,7 @@
   .formItem input[type="text"]:focus + i,
   .formItem input[type="password"]:focus + i,
   .formItem input[type="email"]:focus + i {
-    color: purple;
+    color: #6148bf;
   }
 
   .feed_post{
@@ -328,9 +332,9 @@
   }
 
   .feed_userpic img{
-    float: left; 
-    width: 50px; 
-    height: 50px; 
+    float: left;
+    width: 50px;
+    height: 50px;
     border-radius: 50px;
   }
 
@@ -391,7 +395,7 @@
     top: 5px;
     cursor: pointer;
   }
-  
+
   .feed_actions{
     width: 45%;
     display: inline-flex;
@@ -471,7 +475,7 @@
   #gender label{
     height: 100px;
     width: 150px;
-    border: 4px solid #ad5389;
+    border: 4px solid #6148bf;
     position: relative;
     right: 6px;
     margin: auto;
@@ -494,7 +498,7 @@
     transform: translate(-50%, -80%);
   }
   #gender input[type="radio"]:checked + label{
-    background-color: #ad5389;
+    background-color: #6148bf;
     color: white;
     box-shadow: 0 15px 45px rgba(24, 249, 141, 0.2);
   }
