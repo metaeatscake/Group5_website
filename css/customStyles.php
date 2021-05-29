@@ -1,14 +1,18 @@
 <style media="screen">
 
 .form-wrapper{
-  margin:80px auto 0px auto;
+  margin: 50px auto 0px;
   padding:25px;
   border-radius:5px;
   -moz-border-radius:5px;
   -webkit-border-radius:5px;
   background-color:#fff;
+  background: -webkit-linear-gradient(to bottom, #fff 70%, #fff6e9);
+  background: linear-gradient(to bottom, #fff 70%, #fff6e9);
   overflow:auto;
   align-items: center;
+  float: left;
+  margin-left: 100px;
   }
 
 @media only screen and (max-width: 600px){
@@ -92,21 +96,6 @@
     label{
       font-family: "Roboto","Helvetica","Arial",sans-serif;
       font-size: 1.5rem;
-    }
-
-    .button{
-      width:100px;
-    	height:35px;
-    	background-color:#ad5389;
-    	color:#fff;
-    	font-size:1.2em;
-    	cursor:pointer;
-    	float:right;
-      display: inline-block;
-      box-shadow: inset 0 0 0 0 #D80286;
-      -webkit-transition: ease-out 0.4s;
-      -moz-transition: ease-out 0.4s;
-      transition: ease-out 0.4s;
     }
 
     .button:hover{
@@ -216,13 +205,12 @@
   .button{
     width:100px;
   	height:35px;
-  	background-color:#ad5389;
+  	background-color: #6148bf;
   	color:#fff;
   	font-size:1.2em;
   	cursor:pointer;
   	float:right;
     display: inline-block;
-    box-shadow: inset 0 0 0 0 #D80286;
     -webkit-transition: ease-out 0.4s;
     -moz-transition: ease-out 0.4s;
     transition: ease-out 0.4s;
@@ -230,7 +218,7 @@
   }
 
   .button:hover{
-    box-shadow: inset 400px 0 0 0 #3c1053;
+    color: inset 400px 0 0 0 #3c1053;
   }
 
   .input{

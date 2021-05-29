@@ -97,7 +97,7 @@
                ?>
 
                <?php foreach ($post_dataArray as $row): ?>
-                
+
                  <?php
                     // Like Data setup.
                     $isLiked = (isset($user_liked_post_id) && in_array($row["post_id"], $user_liked_post_id));
@@ -130,7 +130,7 @@
                       <a href="profile.php">
                         <?php echo $row["username"]; ?>
                       </a>
-                    </div> 
+                    </div>
 
                     <div class="feed_post_time" style="text-indent: 4px;">
                       <?php echo $row["date_time"]; ?>
@@ -139,7 +139,7 @@
                     <div class="feed_title">
                       <?php echo $row["post_title"]; ?>
                     </div><br>
-                  
+
                     <div class="feed_content">
                       <?php echo nl2br($row["post_content"]); ?>
                     </div>
