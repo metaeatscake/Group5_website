@@ -50,4 +50,12 @@
   //echo "<h2> SESSION data </h2>";
   //echo "<pre>"; var_dump($_SESSION); echo "</pre>";
 
+  $func_redirGuests = function(){
+    if (!isset($_SESSION["account_id"])) {
+      $func_redirGuests_link = "login.php";
+      header("location: $func_redirGuests_link");
+      exit();
+    }
+  }
+
  ?>

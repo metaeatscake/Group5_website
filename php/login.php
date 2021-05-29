@@ -24,7 +24,8 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <!-- Backup for <dialog> not being supported by browser -->
     <script src="../vendor/dialog-polyfill/dist/dialog-polyfill.js" charset="utf-8"></script>
-
+    <!-- Css for Scrollbar -->
+    <link rel="stylesheet" href="css/scrollbar.css">
     <!-- Shortcut Icon -->
     <link rel="shortcut icon" href="images/assets/sample2.png">
 
@@ -71,7 +72,7 @@
     <main class="mdl-layout__content">
 
       <div class="page-content">
-        <br>
+        
         <!-- MAIN CONTENT -->
         <div class="form-wrapper">
           <form class="form-main" action="handleLogin.php" method="POST" >
@@ -95,11 +96,11 @@
               <input class="input "type="password" name="password" required placeholder="Type your password">
               <i class="fas fa-key" aria-hidden="true"></i>
             </div>
-            <br><br><br>
+            
             <div class="formItem">
               <input class="button" type="submit" name="loginForm" value="Log In">
-            </div>
-
+            </div><br>
+            
           </form>
         </div>
 

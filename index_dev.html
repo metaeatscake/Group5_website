@@ -40,23 +40,34 @@
   <div id="main-body">
 
     <h1 id="title">Sociality DB Updater</h1>
+    <a href="php/logout.php"> Return to main site and log out</a> <br>
+    <a href="index.php">Return to main site as is. (Not recommended if resetting database)</a>
     <hr>
 
-    <h1>Update Database</h1>
-    <strong>Warning: Resets all data in database.</strong> <br>
-    <a href="php/update_db/updateDatabase.php">Click me</a>
-
+    <h1>Update/Import Database - FIRST TIME SETUP</h1>
+    <strong>Warning: Resets all data in database if already imported </strong><br>
+    <a href="php/update_db/updateDatabase_FULL.php">Click me</a>
     <hr>
 
     <h1>Update View Tables only</h1>
+    <strong>Only alters view tables, keeps everything else</strong><br>
     <a href="php/update_db/updateViews.php">Click me</a>
 
     <hr>
 
-    <h1>Update Stored Procedures</h1>
+    <h1>Update Stored Procedures only</h1>
+    <strong>Only updates procedure definitions.</strong><br>
     <a href="php/update_db/addProcedures.php">Click me</a>
-
     <hr>
+
+    <h1>Clean Posts Images</h1>
+    <strong>Removes any png/jpg files of image posts in the server storage</strong> <br>
+    <strong>Use this to clean leftover files after resetting database.</strong>
+    <br>
+    <a href="php/update_db/cleanImages.php">Click me</a>
+    <hr>
+    <!-- Emmet Expansion Syntax: h1+strong+br+a+hr -->
+
   </div>
 
 

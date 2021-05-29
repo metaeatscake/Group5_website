@@ -107,24 +107,33 @@
              //Prepare like and comment count for each post.
              $post_likeCount = (isset($row['count_likes'])) ? $row['count_likes'] : 0;
              $post_commentCount = (isset($row['count_comments'])) ? $row['count_comments'] : 0;
-
+             
+             $profileIDHolder = $row["user_id"];
+             $profileLink = ($row["user_id"] === $_SESSION["account_id"]) ? "profile.php" : "viewProfile.php?id=$profileIDHolder";
             ?>
 
             <?php // Post holder. ?>
             <div class="feed_post">
 
-              <div class="feed_userpic">
-                <img src="<?php echo $row['profile_pic']; ?>" style=" float: left; width: 50px; height: 50px; border-radius: 50px;">
+              <div class="more-horiz">
+                <span class="material-icons">more_horiz</span>
               </div>
 
-              <div class="feed_post_author" style="text-indent: 4px;">
-                <a href="profile.php">
+              <div class="feed_userpic">
+                <img src="<?php echo $row['profile_pic']; ?>">
+              </div>
+
+              <div class="feed_post_author">
+                <a href="<?php echo $profileLink?>">
                   <?php echo $row["username"]; ?>
                 </a>
               </div>
 
-              <div class="feed_post_time" style="text-indent: 4px;">
-                <?php echo $row["date_time"]; ?>
+              <div class="feed_post_time">
+                <a href="<?php echo $post_viewPost_href; ?>">
+                  <?php echo $row["date_time"]; ?>
+                </a>
+                <span class="material-icons icon">public</span>
               </div><br>
 
               <div class="feed_title">
@@ -140,9 +149,9 @@
                 <div class="feed_image">
                     <img src="<?php echo $row['post_img']; ?>" alt="<?php echo $row['post_img']; ?>">
                 </div>
-              <?php endif; ?>
-              <div class="feed_actions">
-                <hr>
+              <?php endif; ?><hr>
+
+              <div class="feed_actions"><br>
                   <a href="<?php echo $post_likeButton_href; ?>" style="color:<?php echo $post_likeButton_color; ?>">
                     <i class="material-icons">thumb_up</i><?php echo $post_likeCount; ?>
                   </a>
@@ -153,54 +162,53 @@
                   <a href="#">
                     <span class="material-icons" style="color: #262626;">share</span>
                   </a>
-                <hr>
-                  <!-- COMMENT BOX HOLDER -->
-                  <div class="create_comment_wrapper" style="margin:auto;text-align: center;">
-                    <form class="form_addComment" action="handleAddComment.php" method="POST">
+              </div><br><br><br><hr>
+                <!-- COMMENT BOX HOLDER -->
+              <div class="create_comment_wrapper" style="margin:auto;text-align: center;">
+                <form class="form_addComment" action="handleAddComment.php" method="POST">
+                  <!-- <div class="addComment_title"> <h2>Add Comment</h2> </div> -->
+                  <textarea name="post_comment" rows="5" cols="68" placeholder=" Write a comment..."></textarea><br>
+                  <input type="submit" name="subm_addComment" class="btn-primary" value="Comment">
+                  <input type="hidden" name="post_id" value="<?php echo $_GET["id"]; ?>">
+                </form>
+              </div>
+              <br><br><hr>
+              <!-- COMMENT HOLDER -->
+              <?php
+                $pdo_getComments = $pdo->prepare("SELECT * FROM view_comments WHERE post_id = :post_id");
+                $pdo_getComments->execute(['post_id' => $decodedID]);
+                $arr_comments = $pdo_getComments->fetchAll(PDO::FETCH_ASSOC);
+              ?>
+              <div class="comment-wrapper">
 
-                    <!-- <div class="addComment_title"> <h2>Add Comment</h2> </div> -->
-                    <textarea name="post_comment" rows="5" cols="68" placeholder=" Write a comment..."></textarea><br>
-                    <input type="submit" name="subm_addComment" class="btn-primary" value="Add Comment">
-                    <input type="hidden" name="post_id" value="<?php echo $_GET["id"]; ?>">
-                  </form>
-                </div>
-                <br><br>  <hr>
-                <!-- COMMENT HOLDER -->
-                <?php
-                  $pdo_getComments = $pdo->prepare("SELECT * FROM view_comments WHERE post_id = :post_id");
-                  $pdo_getComments->execute(['post_id' => $decodedID]);
-                  $arr_comments = $pdo_getComments->fetchAll(PDO::FETCH_ASSOC);
-                ?>
-                <div class="comment-wrapper">
+                <?php if (empty($arr_comments)):?>
 
-                  <?php if (empty($arr_comments)):?>
+                  <div class="comment-wrapper_noComments">
+                    <h7>Be the first one to comment</h7>
+                  </div>
 
-                    <div class="comment-wrapper_noComments">
-                      <h7>Be the first one to comment</h7>
+                <?php else: ?>
+
+                  <?php foreach ($arr_comments as $row): ?>
+
+                    <div class="comment-dp">
+                      <img  src="<?php echo $row['profile_pic']; ?>" alt="userPic">
+                    </div>
+                    <div class="dialogbox">
+                      <div class="body-box">
+                        <span class="tip tip-left"></span>
+                        <div class="user-comment"><br style="content: ""; margin: 0em; display: block;">
+                          <span><b><a href="#"><?php echo $row['username']; ?></a></b></span>
+                        </div><br>
+                        <div class="content-comment">
+                          <span><?php echo $row['comment_content']; ?> </span>
+                        </div>
+                      </div>
                     </div>
 
-                  <?php else: ?>
+                  <?php endforeach; ?>
 
-                    <?php foreach ($arr_comments as $row): ?>
-
-                        <div class="comment-dp">
-                          <img  src="<?php echo $row['profile_pic']; ?>" alt="userPic">
-                        </div>
-                        <div class="dialogbox">
-                          <div class="body-box">
-                            <span class="tip tip-left"></span>
-                            <div class="content-comment">
-                              <span><b><?php echo $row['username']; ?></b></span><br><br>
-                              <span style="text-indent: -20px;"><?php echo $row['comment_content']; ?> </span>
-                            </div>
-                          </div>
-                        </div>
-
-                    <?php endforeach; ?>
-
-                  <?php endif; ?>
-
-                </div>
+                <?php endif; ?>
 
               </div>
 

@@ -1,22 +1,25 @@
 textarea{
-	resize: none;
-	overflow: auto;
-	border-radius: 8px;
-	max-width: 75%;
+  resize: none;
+  overflow: auto;
+  border-radius: 8px;
+  margin-top: 15px;
+  max-width: 75%;
   border-color: #d9d9d9;
+  font-family: tahoma;
+  font-size: 14px;
 }
 
 .btn-primary {
-	background-color: #660066;
-	border-color: #007bff;
-	border-radius: 20px;
-	width: 120px;
-	height: 40px;
-	float: right;
-	border: none;
-	color: white;
-	font-size: 14px;
-	margin-right: 2%;
+  background-color: #660066;
+  border-color: #007bff;
+  border-radius: 20px;
+  width: 127px;
+  height: 43px;
+  float: right;
+  border: none;
+  color: white;
+  font-size: 14px;
+  margin-right: 2%;
 }
 
 .btn-primary:hover {
@@ -30,10 +33,11 @@ textarea{
   border-radius: 50%;
   border: solid 3px white;
   float: left;
+  cursor: pointer;
 }
 
 .dialogbox{
-	text-align: justify;
+  text-align: justify;
 	height: auto;
 	width: auto;
 }
@@ -45,20 +49,31 @@ textarea{
   font-size: 14px;
   line-height: 1.5;
   color: #797979;
-  text-indent: -20px;
+}
+
+.user-comment{
+  line-height: 5px;
+}
+
+.user-comment a{
+  text-decoration: none;
+  color: black;
+}
+
+.user-comment a:hover{
+  text-decoration: underline;
 }
 
 .body-box {
 	position: relative;
-    max-width: 75%;
-    height: auto;
-    margin: 20px 20px;
-    padding: 5px;
-    background-color: #f2f2f2;
-    border-radius: 10px;
-    border: 5px solid #e6e6e6;
-    left: 70px;
-    text-indent: 5px;
+  max-width: 75%;
+  height: auto;
+  margin: 20px 20px;
+  padding: 5px;
+  background-color: #f2f2f2;
+  border-radius: 10px;
+  border: 5px solid #e6e6e6;
+  left: 70px;
 }
 
 .tip {
@@ -77,7 +92,6 @@ textarea{
   border-bottom-color: transparent;
 }
 
-/*YAN NA YUN, DI KO LANG TALAGA ALAM TONG MAX-WIDTH MIN-WIDTH ISH*/
 @media only screen and (max-width: 600px){
 	.comment-dp img{
 		width: 30px;
@@ -94,6 +108,27 @@ textarea{
 	  border: solid 3px white;
 	  float: left;
 	}
+}
+
+.more-horiz{
+  float: right;
+  position: relative;
+  top: -1px;
+  right: 8px;
+  cursor: pointer;
+}
+
+.feed_userpic img{
+  float: left; 
+  width: 50px; 
+  height: 50px; 
+  border-radius: 50px;
+}
+
+.more-horiz:hover{
+  background-color: #d9d9d9;
+  border-radius: 50px;
+  width: 40px;
 }
 
 .feed_title{
@@ -119,16 +154,27 @@ textarea{
 .feed_post_time{
   font-size: 14px;
   font-weight: lighter;
+  position: relative;
+  top: -10px;
+  text-indent: 4px;
+}
+
+.feed_post_time a{
+  text-decoration: none;
+}
+
+.feed_post_time a:hover{
+  text-decoration: underline;
 }
 
 .feed_post_author{
   font-size: 18px;
-  font-weight: lighter;
+  font-weight: normal;
 }
 
 .feed_post_author a{
   text-decoration: none;
-  color: #ff4081;
+  color: black;
 }
 
 .feed_post_author a:hover{
@@ -136,17 +182,21 @@ textarea{
 }
 
 .feed_actions{
-  width: 100%;
-  display: inline-block;
-  margin: 8px;
+  width: 45%;
+  display: inline-flex;
+  margin: -35px 35px;
 }
 
 .feed_actions a{
-  text-decoration: none;
-  padding: 15px 71px;
+  padding: 5px 55px;
+  margin-top: 12px;
+  margin-left: auto;
   border: none;
+  white-space: nowrap;
+  align-content: space-evenly;
   cursor: pointer;
-  text-align: center;
+  display: inline-flex;
+  align-items: center;
   text-decoration: none;
 }
 
@@ -155,8 +205,92 @@ textarea{
   background-color: #cccccc;
 }
 
+@media only screen and (min-width: 600px){
+  .feed_actions{
+    width: 50%;
+    min-height: 20%;
+  }
+}
+
+@media only screen and (max-width: 600px){
+  .feed_actions{
+    width: 50%;
+    min-height: 20%;
+  }
+}
+
+@media only screen and (min-width: 768px){
+  .feed_actions{
+    width: 85%;
+    min-height: 20%;
+  }
+}
+
+@media only screen and (max-width: 992px){
+  .feed_actions{
+    width: 85%;
+    min-height: 20%;
+  }
+}
+
+@media only screen and (min-width: 1200px){
+  .feed_actions{
+    width: 84%;
+    min-height: 20%;
+  }
+}
+hr{
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #ccc;
+  margin: 0.5em 0px;
+  padding: 0;
+}
+
 .feed_post{
   background-color: white;
   border-radius: 8px;
   padding: 13px;
+}
+
+@media only screen and (min-width: 600px){
+  .feed_post{
+    width: 50%;
+    min-height: 20%;
+  }
+}
+
+@media only screen and (max-width: 600px){
+  .feed_post{
+    width: 50%;
+    min-height: 20%;
+  }
+}
+
+@media only screen and (min-width: 768px){
+  .feed_post{
+    width: 83%;
+    min-height: 20%;
+  }
+}
+
+@media only screen and (max-width: 992px){
+  .feed_post{
+    width: 85%;
+    min-height: 20%;
+  }
+}
+
+@media only screen and (min-width: 1200px){
+  .feed_post{
+    width: 45%;
+    min-height: 20%;
+  }
+}
+
+.icon{
+  position: relative;
+  top: 5px;
+  cursor: pointer;
 }

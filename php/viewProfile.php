@@ -4,14 +4,14 @@
 
   //Prefetch User data.
   $pdoq_getUserData = $pdo->prepare("SELECT * FROM tbl_users WHERE user_id = :user_id");
-  $pdoq_getUserData->execute(['user_id' => $_SESSION["account_id"]]);
+  $pdoq_getUserData->execute(['user_id' => $_GET["id"]]);
   $user_dataArray = $pdoq_getUserData->fetch(PDO::FETCH_ASSOC);
 
   //var_dump($user_dataArray);
   
   //Prefetch User Stats.
   $pdoq_getUserStats = $pdo->prepare("SELECT * FROM view_user_stats WHERE user_id = :user_id");
-  $pdoq_getUserStats->execute(['user_id' => $_SESSION["account_id"]]);
+  $pdoq_getUserStats->execute(['user_id' => $_GET["id"]]);
   $user_statsArray = $pdoq_getUserStats->fetch(PDO::FETCH_ASSOC);
 
  ?>
@@ -101,16 +101,6 @@
               <div class="w3-bar">
                 <button class="w3-bar-item w3-button tablink" onclick="opentabs(event,'myPosts')" style="margin:10px;">My Posts</button>
                 <button class="w3-bar-item w3-button tablink" onclick="opentabs(event,'about')" style="margin:10px auto;">About</button>
-                <div class="dropdown">
-                  <button class="w3-bar-item w3-button tablink" onclick="opentabs(event,'customizeProfile')" style="margin:10px;">Customize Profile</button>
-                    <i class="fa fa-caret-down"></i>
-                  </button>
-                  <div class="dropdown-content">
-                    <button class="w3-bar-item w3-button tablink" onclick="opentabs(event,'customizeProfile')">Edit Profile</button><br><br>
-                    <button class="w3-bar-item w3-button tablink" onclick="opentabs(event,'customizeBio')">Edit Bio</button><br>
-                    <button class="w3-bar-item w3-button tablink" onclick="opentabs(event,'customizeProfileBanner')">Edit Profile Picture Banner</button>
-                  </div>
-                </div>
               </div>
             </div>
 
@@ -191,7 +181,7 @@
                         DATE_FORMAT(f.post_time, '$feed_dateFormat') AS date_time,
                         COUNT(c.comment_id) AS count_comments,
                         COUNT(fl.like_id) AS count_likes
-                      FROM tbl_feed f
+                      FROM tbl_feed f 
 
                       JOIN tbl_users u ON (f.user_id = u.user_id)
                       LEFT OUTER JOIN tbl_feed_likes fl ON (f.post_id = fl.post_id)
@@ -201,8 +191,7 @@
                       ORDER BY f.post_time DESC";
 
                     $post_dataArray = $pdo->query($feed_queryString)->fetchAll(PDO::FETCH_ASSOC);
-                    //echo "<pre style='color:white;'>"; var_dump($post_dataArray); echo "</pre>";
-
+                    // echo "<pre style='color:white;'>"; var_dump($post_dataArray); echo "</pre>";
                   ?>
 
                   <?php foreach ($post_dataArray as $row): ?>
@@ -219,13 +208,16 @@
                       $post_fancyID = $hashId->encode($row['post_id']);
 
                       //String for building the link to handleLikePost.php
-                      $post_likeButton_href = "handleLikePost.php?id=$post_fancyID&returnTo=profile.php";
+                      $post_likeButton_href = "handleLikePost.php?id=$post_fancyID&returnTo=viewProfile.php";
 
                       //Prepare link for ViewPost.
                       $post_viewPost_href = "viewPost.php?id=$post_fancyID";
+
+                      $profileIDHolder = $row["user_id"];
+                      $profileLink = ($row["user_id"] === $_SESSION["account_id"]) ? "profile.php" : "viewProfile.php?id=$profileIDHolder";
                     ?>
 
-                    <?php if ($row['user_id'] === $_SESSION["account_id"]): ?>
+                    <?php if ($row['user_id'] == $_GET["id"]): ?>
 
                       <div class="feed_post" id="<?php echo 'p_'.$post_fancyID; ?>">
 
@@ -238,7 +230,7 @@
                         </div>
 
                         <div class="feed_post_author">
-                          <a href="profile.php">
+                          <a href="<?php echo $profileLink?>">
                             <?php echo $row["username"]; ?>
                           </a>
                         </div> 
@@ -309,9 +301,6 @@
                         <h4><b>Number of Comments</b></h4>
                         <h7>{$user_statsArray['count_comments']}</h7>
                       ";
-                    } else{
-                      echo "<h4><b>Number of Comments</b></h4>
-                            <h7>0</h7>";
                     }
                   ?>
 
@@ -321,166 +310,9 @@
                         <h4><b>Number of Likes</b></h4>
                         <h7>{$user_statsArray['count_post_likes']}</h7>
                       ";
-                    } else{
-                      echo "
-                        <h4><b>Number of Likes</b></h4>
-                        <h7>0</h7>
-                      ";
                     }
                   ?>
                 </div>
-
-                 <!--CONTENT OF CUSTOMIZE PROFILE -->
-                <div id="customizeProfile" class="tabmenu" style="display:none;">
-                  <?php
-
-                    $id = $_SESSION["account_id"];
-
-                    // If the query only returns one row, the array can be fetched in one line.
-                    $row = $sql->query("SELECT * FROM tbl_users WHERE user_id = '$id'")->fetch_assoc();
-
-                    extract($row, EXTR_PREFIX_ALL, "db");
-
-                      $requireInput = false;
-
-                  ?>
-
-                  <div class="page-content" align="center"><br><br>
-
-                    <!-- Edit Profile Card. -->
-                    <!--Form Proper-->
-                    <form class="" action="handleEditProfile.php" method="POST">
-                      <div class="formCard mdl-card mdl-shadow--4dp">
-
-                        <div class="formItem">
-                          <h3>New Username</h3>
-                          <i class="fa fa-user"></i>
-                          <input type="text" name="username" class="input" id="username" value="<?php echo $db_username;?>">
-                        </div>
-
-                        <div class="formItem">
-                          <h3>New Password</h3>
-                          <i style="font-size:24px" class="fa">&#xf084;</i>
-                          <input class="input" type="password" name="password" required placeholder="Type your new password" min="8">
-                        </div><br>
-                        
-                        <div class="formItem">
-                          <i style="font-size:24px" class="fa">&#xf084;</i>
-                          <input class="input "type="password" name="confirm_password" required placeholder="Re-type your password" min="8">
-                        </div><br>
-
-                        <div class="formItem">
-                          <div class="labelform">
-
-                            <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-1" style="padding: 14px 26px 29px;">
-                              <input type="radio" id="option-1" class="mdl-radio__button" name="sex" value="male" checked>
-                             <span class="mdl-radio__label">Male</span>
-                            </label>
-                            <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-2" style="padding: 14px 26px 29px;">
-                              <input type="radio" id="option-2" class="mdl-radio__button" name="sex" value="female">
-                              <span class="mdl-radio__label">Female</span>
-                            </label><br>
-
-                            <div class="formItem">
-                              <h3>Email</h3>
-                              <i class="fa fa-envelope"></i>
-                              <input class="input" type="email" id="email" name="email" required placeholder="Type your new E-mail" value="<?php echo $db_email; ?>">
-                              
-                            </div><br>
-                          </div>
-                        </div>
-                        <button class="mdl-button mdl-js-button mdl-button--raised" id="formSubmitButton-container">
-                          <i class="material-icons">done</i>
-                          <input type="submit" name="registerSubmit" id="formSubmitButton" value="Submit">
-                        </button>
-                        <br>
-                      </div>
-                    </form>
-                  </div><br><br>
-                </div> 
-                <!--CONTENT OF CUSTOMIZE BIO -->
-                <div id="customizeBio" class="tabmenu" style="display:none;">
-                  <?php
-
-                    $id = $_SESSION["account_id"];
-
-                    // If the query only returns one row, the array can be fetched in one line.
-                    $row = $sql->query("SELECT * FROM tbl_users WHERE user_id = '$id'")->fetch_assoc();
-
-                    extract($row, EXTR_PREFIX_ALL, "db");
-
-                  ?>
-
-                  <div class="page-content" align="center"><br><br>
-   
-                    <form class="" action="handleEditProfile.php" method="POST">
-                      <div class="formCard mdl-card mdl-shadow--4dp">
-
-                        <div class="formItem">
-                          <h3>Bio</h3>
-                        </div>
-                        <div>
-                          <textarea name="bio" rows="10" cols="50" placeholder="Edit your Bio. <?php echo $db_bio; ?>" required></textarea>
-                        </div><br><br><br>
-                    
-                        <button class="mdl-button mdl-js-button mdl-button--raised" id="formSubmitButton-container">
-                          <i class="material-icons">done</i>
-                          <input type="submit" name="registerSubmit" id="formSubmitButton" value="submit">
-                        </button>
-
-                      </div>
-                    </form>
-                  </div>
-                </div> 
-                <!--CONTENT OF CUSTOMIZE PROFILE PICTURE BANNER -->
-                <div id="customizeProfileBanner" class="tabmenu" style="display:none;">
-                  <?php
-
-                    $id = $_SESSION["account_id"];
-                    
-                    // If the query only returns one row, the array can be fetched in one line.
-                    $row = $sql->query("SELECT * FROM tbl_users WHERE user_id = '$id'")->fetch_assoc();
-
-                    extract($row, EXTR_PREFIX_ALL, "db");   
-
-                    //Changing Profile Picture
-                    $tmp_id = $_SESSION["account_id"];
-                    if($result = $sql->query("SELECT * FROM tbl_users WHERE id = '$tmp_id'")){
-                      while($row = $result->fetch_assoc())
-                      {
-                        extract($row, EXTR_PREFIX_ALL, "data");
-                      }
-                    }
-                      $requireInput = false;
-
-                  ?>
-                  <div class="page-content" align="center"><br><br>
-
-                    <form class="" action="handleEditProfile.php" method="POST">
-                      <div class="formCard mdl-card mdl-shadow--4dp">
-
-                        <center><br><img src="images/assets/socialitylogoblack.png" width="300" height="70"><center> <br>
-                       
-                        <img src="<?php echo $db_profile_pic; ?> "width="215" height="200">
-                        <div class="formItem">
-                          <h3 class="text-align: center;" <?php echo $db_username; ?> </h3>
-                        </div>
-
-                        <div class="formItem">
-                          <h3>Profile Picture</h3>
-                          <div>
-                            <input type="file" name="profile_pic" accept="image/*" <?php echo ($requireInput) ? "required":''; ?>>
-                            
-                          </div>
-                        </div>
-                        <button class="mdl-button mdl-js-button mdl-button--raised" id="formSubmitButton-container">
-                          <i class="material-icons">done</i>
-                          <input type="submit" name="registerSubmit" id="formSubmitButton" value="submit">
-                        </button>
-                      </div>
-                    </form>
-                  </div>
-                </div> 
               </div> 
             </div>
           </div>
@@ -503,14 +335,5 @@
     }
     document.getElementById(tabname).style.display = "block";
     tab.currentTarget.className += " w3-purple";
-  }
-  
-  function myFunction() {
-    var x = document.getElementById("myTopnav");
-    if (x.className === "topnav") {
-      x.className += " responsive";
-    } else {
-       x.className = "topnav";
-    }
   }
 </script>

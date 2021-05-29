@@ -31,6 +31,7 @@
 
      <!-- Custom CSS File -->
      <?php include_once("css/customStyles.php"); ?>
+     <link rel="stylesheet" href="css/scrollbar.css">
    </head>
    <body>
 
@@ -92,7 +93,7 @@
                 $feed_queryString = "SELECT * FROM view_posts_full ORDER BY post_time DESC";
 
                 $post_dataArray = $pdo->query($feed_queryString)->fetchAll(PDO::FETCH_ASSOC);
-                //echo "<pre style='color:white;'>"; var_dump($post_dataArray); echo "</pre>";
+                // echo "<pre style='color:white;'>"; var_dump($post_dataArray); echo "</pre>"; 
 
                ?>
 
@@ -118,22 +119,31 @@
                     //Prepare like and comment count for each post.
                     $post_likeCount = (isset($row['count_likes'])) ? $row['count_likes'] : 0;
                     $post_commentCount = (isset($row['count_comments'])) ? $row['count_comments'] : 0;
+
+                    $profileIDHolder = $row["user_id"];
+                    $profileLink = ($row["user_id"] === $_SESSION["account_id"]) ? "php/profile.php" : "php/viewProfile.php?id=$profileIDHolder";
                   ?>
                   <br>
                   <div class="feed_post" id="<?php echo 'p_'.$post_fancyID; ?>">
-
-                    <div class="feed_userpic">
-                      <img src="<?php echo 'php/'.$row['profile_pic']; ?>" style=" float: left; width: 50px; height: 50px; border-radius: 50px;">
+                    <div class="more-horiz">
+                      <span class="material-icons">more_horiz</span>
                     </div>
 
-                    <div class="feed_post_author" style="text-indent: 4px;">
-                      <a href="profile.php">
+                    <div class="feed_userpic">
+                      <img src="<?php echo 'php/'.$row['profile_pic']; ?>">
+                    </div>
+
+                    <div class="feed_post_author">
+                      <a href="<?php echo $profileLink?>">
                         <?php echo $row["username"]; ?>
                       </a>
                     </div>
 
-                    <div class="feed_post_time" style="text-indent: 4px;">
-                      <?php echo $row["date_time"]; ?>
+                    <div class="feed_post_time">
+                      <a href="<?php echo $post_viewPost_href; ?>">
+                        <?php echo $row["date_time"]; ?>
+                      </a>
+                      <span class="material-icons icon">public</span>
                     </div><br>
 
                     <div class="feed_title">
@@ -151,9 +161,9 @@
                           <img src="<?php echo 'php/'.$row['post_img']; ?>" alt="<?php echo $row['post_img']; ?>">
                       </div>
                     <?php endif; ?>
-
+                    <hr>
                     <div class="feed_actions">
-                      <hr>
+                      
                       <a href="<?php echo $post_likeButton_href; ?>" style="color:<?php echo $post_likeButton_color; ?>">
                         <i class="material-icons">thumb_up</i>
                         <?php echo $post_likeCount; ?>

@@ -3,10 +3,7 @@
   //Get database and session.
   include_once("inc/database.php");
 
-  if (isset($_SESSION["account_type"]) && $_SESSION["account_type"] === "admin") {
-    header("location: viewUsers.php");
-    exit();
-  }
+  $func_redirGuests();
 
  ?>
  <!DOCTYPE html>
@@ -28,6 +25,8 @@
 
      <!-- Custom CSS File -->
      <?php include_once("../css/customStyles.php"); ?>
+     <link rel="stylesheet" type="text/css" href="../css/likedPostStyles.css">
+     <link rel="stylesheet" href="../css/scrollbar.css">
    </head>
    <body>
 
@@ -77,28 +76,17 @@
 
            <?php
 
-             //PDO Style, get all data from tbl_feed.
-             //Also implement variable sort process.
+              //Extremely redundant but a cool concept.
+             $feed_queryString = function($column, $direction){
+                 return ("SELECT * FROM view_posts_full ORDER BY ".$column." ".$direction);
+               };
 
-             $feed_dateFormat = "%M %d %Y, %H:%i:%s";
+              //For future implementations of $_GET-based post sorting code.
+              $feed_sort_col = "post_time";
+              $feed_sort_direction = "DESC";
 
-             //Don't touch.
-
-
-             $feed_queryString = "SELECT f.*, u.*,
-                 DATE_FORMAT(f.post_time, '$feed_dateFormat') AS date_time,
-                 COUNT(c.comment_id) AS count_comments,
-                 COUNT(fl.like_id) AS count_likes
-               FROM tbl_feed f
-
-               JOIN tbl_users u ON (f.user_id = u.user_id)
-               LEFT OUTER JOIN tbl_feed_likes fl ON (f.post_id = fl.post_id)
-               LEFT OUTER JOIN tbl_comments c ON (f.post_id = c.post_id)
-
-               GROUP BY f.post_id
-               ORDER BY f.post_time DESC";
-
-             $post_dataArray = $pdo->query($feed_queryString)->fetchAll(PDO::FETCH_ASSOC);
+              //Don't touch.
+             $post_dataArray = $pdo->query($feed_queryString($feed_sort_col, $feed_sort_direction))->fetchAll(PDO::FETCH_ASSOC);
              //echo "<pre style='color:white;'>"; var_dump($post_dataArray); echo "</pre>";
 
             ?>
@@ -121,50 +109,60 @@
 
                  //Prepare link for ViewPost.
                  $post_viewPost_href = "viewPost.php?id=$post_fancyID";
+
+                 $profileIDHolder = $row["user_id"];
+                 $profileLink = ($row["user_id"] === $_SESSION["account_id"]) ? "profile.php" : "viewProfile.php?id=$profileIDHolder";
                ?>
 
                <?php if (in_array($row['post_id'], $user_liked_post_id)): ?>
 
                  <div class="feed_post" id="<?php echo 'p_'.$post_fancyID; ?>">
 
-                    <div class="feed_userpic">
-                      <img src="<?php echo $row['profile_pic']; ?>" style=" float: left; width: 50px; height: 50px; border-radius: 50px;">
+                    <div class="more-horiz">
+                      <span class="material-icons">more_horiz</span>
                     </div>
 
-                    <div class="feed_post_author" style="text-indent: 4px;">
-                      <a href="profile.php">
+                    <div class="feed_userpic">
+                      <img src="<?php echo $row['profile_pic']; ?>">
+                    </div>
+
+                    <div class="feed_post_author">
+                      <a href="<?php echo $profileLink?>">
                         <?php echo $row["username"]; ?>
                       </a>
-                    </div> 
+                    </div>
 
-                    <div class="feed_post_time" style="text-indent: 4px;">
-                      <?php echo $row["date_time"]; ?>
+                    <div class="feed_post_time">
+                      <a href="<?php echo $post_viewPost_href; ?>">
+                        <?php echo $row["date_time"]; ?>
+                      </a>
+                      <span class="material-icons icon">public</span>
                     </div><br>
 
                     <div class="feed_title">
                       <?php echo $row["post_title"]; ?>
                     </div><br>
-                  
+
                     <div class="feed_content">
                       <?php echo nl2br($row["post_content"]); ?>
                     </div>
                     <br>
 
                    <!-- Only display image div if there is image. -->
-                   <?php if (isset($row["post_img"])): ?>
+                   <?php if (isset($row["post_img"]) && file_exists($row["post_img"])): ?>
                      <div class="feed_image">
                          <img src="<?php echo $row['post_img']; ?>" alt="<?php echo $row['post_img']; ?>">
                      </div>
                    <?php endif; ?>
-
-                   <div class="feed_actions">
                     <hr>
-                     <a href="<?php echo $post_likeButton_href; ?>" style="color:<?php echo $post_likeButton_color; ?>"> 
+                   <div class="feed_actions">
+
+                     <a href="<?php echo $post_likeButton_href; ?>" style="color:<?php echo $post_likeButton_color; ?>">
                       <i class="material-icons">thumb_up</i><?php echo $row["count_likes"]; ?>
                     </a>
                      <a href="<?php echo $post_viewPost_href; ?>">
-                      <span class="material-icons" style="color: #262626;">mode_comment</span> 
-                      <span style="color:black;"><?php echo $row["count_comments"]; ?></span>  
+                      <span class="material-icons" style="color: #262626;">mode_comment</span>
+                      <span style="color:black;"><?php echo $row["count_comments"]; ?></span>
                     </a>
                      <a href="#">
                       <span class="material-icons" style="color: #262626;">share</span>

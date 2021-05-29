@@ -6,7 +6,8 @@
 
   $qr = $pdo->exec($sqlDump);
 
-  header("location: ../logout.php");
+  // After setting up database, add the procedures
+  header("location: addProcedures.php");
   exit();
 
  ?>

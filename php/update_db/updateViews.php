@@ -6,7 +6,7 @@
 
   $qr = $pdo->exec($sqlDump);
 
-  header("location: ../../");
+  header("location: ../../index_dev.html");
   exit();
 
  ?>

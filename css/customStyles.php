@@ -16,37 +16,37 @@
   }
 
 @media only screen and (max-width: 600px){
-    .form-wrapper{
-      width: 500px;
-      height: 500px;
-      }
+  .form-wrapper{
+    width: 600px;
+    height: 390px;
+  }
 }
 
 @media only screen and (min-width: 600px){
-    .form-wrapper{
-      width: 500px;
-      height: 500px;
-      }
+  .form-wrapper{
+    width: 500px;
+    height: 390px;
+  }
 }
 
 @media only screen and (min-width: 992px){
   .form-wrapper{
-    width: 800px;
-    height: 500px;
+    width: 500px;
+    height: 390px;
   }
 }
 
 @media only screen and (max-width: 768px){
   .form-wrapper{
     width: 500px;
-    height: 500px;
+    height: 340px;
     }
 }
 
 @media only screen and (min-width: 1200px){
   .form-wrapper{
-    width: 800px;
-    height: 500px;
+    width: 495px;
+    height: 400px;
   }
 }
 
@@ -301,16 +301,37 @@
 
   @media only screen and (max-width: 992px){
     .feed_post{
-      width: 70%;
+      width: 90%;
       min-height: 20%;
     }
   }
 
   @media only screen and (min-width: 1200px){
     .feed_post{
-      width: 50%;
+      width: 32.3%;
       min-height: 20%;
     }
+  }
+
+  .more-horiz{
+    float: right;
+    position: relative;
+    top: -1px;
+    right: 8px;
+    cursor: pointer;
+  }
+
+  .more-horiz:hover{
+    background-color: #d9d9d9;
+    border-radius: 50px;
+    width: 40px;
+  }
+
+  .feed_userpic img{
+    float: left; 
+    width: 50px; 
+    height: 50px; 
+    border-radius: 50px;
   }
 
   .feed_title{
@@ -336,31 +357,56 @@
   .feed_post_time{
     font-size: 14px;
     font-weight: lighter;
+    text-indent: 4px;
+    position: relative;
+    top: -10px;
+  }
+
+  .feed_post_time a{
+    text-decoration: none;
+    color: black;
+  }
+
+  .feed_post_time a:hover{
+    text-decoration: underline;
   }
 
   .feed_post_author{
     font-size: 18px;
-    font-weight: lighter;
+    font-weight: normal;
+    text-indent: 4px;
   }
 
   .feed_post_author a{
     text-decoration: none;
+    color: black;
   }
 
   .feed_post_author a:hover{
     text-decoration: underline;
   }
 
+  .icon{
+    position: relative;
+    top: 5px;
+    cursor: pointer;
+  }
+  
   .feed_actions{
-    width: 100%;
-    display: inline-block;
-    margin: 8px;
+    width: 45%;
+    display: inline-flex;
+    margin: -15px 10px;
   }
 
   .feed_actions a{
-    padding: 15px 60px;
+    padding: 5px 55px;
+    margin-top: 12px;
+    margin-left: auto;
     border: none;
+    white-space: nowrap;
+    align-content: space-evenly;
     cursor: pointer;
+    display: inline-flex;
     align-items: center;
     text-decoration: none;
   }
@@ -368,6 +414,49 @@
   .feed_actions a:hover{
     border-radius: 5px;
     background-color: #cccccc;
+  }
+
+  @media only screen and (min-width: 600px){
+    .feed_actions{
+      width: 50%;
+      min-height: 20%;
+    }
+  }
+
+  @media only screen and (max-width: 600px){
+    .feed_actions{
+      width: 50%;
+      min-height: 20%;
+    }
+  }
+
+  @media only screen and (min-width: 768px){
+    .feed_actions{
+      width: 88%;
+      min-height: 20%;
+    }
+  }
+
+  @media only screen and (max-width: 992px){
+    .feed_actions{
+      width: 89%;
+      min-height: 20%;
+    }
+  }
+
+  @media only screen and (min-width: 1200px){
+    .feed_actions{
+      width: 89%;
+      min-height: 20%;
+    }
+  }
+  hr{
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 0.5em 0px;
+    padding: 0;
   }
 
   #gender{

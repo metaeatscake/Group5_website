@@ -24,13 +24,13 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <!-- Backup for <dialog> not being supported by browser -->
     <script src="../vendor/dialog-polyfill/dist/dialog-polyfill.js" charset="utf-8"></script>
-
+    <!-- Css for Scrollbar -->
+    <link rel="stylesheet" href="css/scrollbar.css">
     <!-- Shortcut Icon -->
     <link rel="shortcut icon" href="images/assets/sample2.png">
 
     <!-- Custom CSS File -->
     <?php include_once("../css/customStyles.php"); ?>
-
     <script src="https://kit.fontawesome.com/7f2eccabe0.js" crossorigin="anonymous"></script>
   </head>
   <body>
@@ -64,7 +64,6 @@
         <div class="form-wrapper-register">
           <form class="form-main" action="handleRegister.php" method="POST">
             <div class="formItem">
-            <br>
             <center><img src="images/assets/socialitylogoblack.png" width="300" height="75"><center>
               <h3 style="text-align: center">Register Now!</h3>
             </div>

@@ -17,7 +17,7 @@
    <head>
      <meta charset="utf-8">
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <title> <?php echo $username; ?> | View Profile</title>
+     <title> <?php echo $username; ?> | Create Post</title>
 
      <!-- Import Material Design Lite CSS -->
      <link rel="stylesheet" href="../mdl/material.min.css">
@@ -34,6 +34,7 @@
      <!-- Custom CSS File -->
      <!-- <link rel="stylesheet" type="text/css" href="../css/profileStyles.css"> -->
      <link rel="stylesheet" type="text/css" href="../css/tmp.css">
+     <link rel="stylesheet" href="../css/scrollbar.css">
    </head>
 
    <!-- MDL Error Dialog support. -->
@@ -68,26 +69,53 @@
 
          <div class="page-content">
 
-            <div style="min-height: 400px; flex:-5; padding: 90px;">
+            <div class="create-post">
 
               <div id="text-area">
                 <?php
-                  // Direct/One-line fetch of column data. Extreme shortcut.
-                   $username = $sql->query("SELECT * FROM tbl_users WHERE user_id = '{$_SESSION["account_id"]}'")->fetch_assoc()["username"];
-                  ?>
-                  <form action="handleCreatePost.php" method="POST" enctype="multipart/form-data">
-                    <input type="text" name="inputTitle" id="title-bar" placeholder="Title" required>
-                      <br>
-                    <textarea name="inputText" rows="8" cols="80" placeholder="What's on your mind, <?php echo $username; ?>?"></textarea>
-                      <br>
-                    <input type="file" id="actual-btn" name="inputPic" hidden/>
-                    <label for="actual-btn"><span class="material-icons">
-                    drive_folder_upload
-                    </span> Photo  </label>
-                      <br>
-                    <input type="submit" name="btnSubmit" class="btn-primary" value="Post">
-                    <br><br>
-                  </form>
+
+                  //PDO Style, get all data from tbl_feed.
+                  $feed_queryString = "SELECT * FROM tbl_users";
+
+                  $post_dataArray = $pdo->query($feed_queryString)->fetchAll(PDO::FETCH_ASSOC);
+                  //echo "<pre style='color:white;'>"; var_dump($post_dataArray); echo "<pre>";
+                  $row = $post_dataArray;
+                ?>
+
+                <a href="../"><span class="material-icons left">close</span></a>
+                <h4 class="centered"><strong>Create Post</strong></h4><hr>
+
+                <div class="feed_userpic">
+                  <img src="<?php echo $row[0]['profile_pic']; ?>">
+                </div>
+
+                <div class="feed_post_author">
+                  <a href="profile.php">
+                    <?php echo $row[0]['username']; ?>
+                  </a>
+                </div> 
+
+                <div class="friends-button">
+                  <span class="material-icons icon">public</span> Public
+                  <span class="material-icons icon">arrow_drop_down</span>
+                </div>
+
+                <form action="handleCreatePost.php" method="POST" enctype="multipart/form-data"><br><br>
+                  
+                  <input type="text" name="inputTitle" id="title-bar" placeholder="Title" required>
+                    <br>
+                  <textarea name="inputText" rows="5" cols="50" placeholder="What's on your mind, <?php echo $row[0]['username']; ?>?"></textarea>
+                    <br>
+
+                  <input type="file" id="actual-btn" name="inputPic" hidden/>
+                  <label for="actual-btn">
+                    <span class="material-icons icon">photo</span>   
+                  </label>  
+
+                  <input type="submit" name="btnSubmit" class="btn-primary" value="Post">
+                    
+                </form>
+
               </div>
 
             </div>
