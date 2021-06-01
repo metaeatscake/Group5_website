@@ -36,6 +36,22 @@
      <script src="https://code.jquery.com/jquery-3.6.0.min.js"
        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
        crossorigin="anonymous"></script>
+
+     <!-- Like Post in JS, work in progress -->
+     <!-- <script type="text/javascript">
+        function likePost(postID) {
+          $.ajax({
+            url: 'ajax/likePost.php',
+            type: 'post',
+            data: {
+              encPostId: postID
+            },
+            success: function(response){
+
+            }
+          });
+        }
+     </script> -->
    </head>
    <body>
      <?php include_once("inc/_js_mdl_formAlert.php"); ?>
@@ -157,7 +173,11 @@
               <?php endif; ?><hr>
 
               <div class="feed_actions"><br>
-                  <a href="<?php echo $post_likeButton_href; ?>" style="color:<?php echo $post_likeButton_color; ?>">
+                <!--  -->
+                  <a
+                    href="<?php echo $post_likeButton_href; ?>"
+                    style="color:<?php echo $post_likeButton_color; ?>"
+                  >
                     <i class="material-icons">thumb_up</i><?php echo $post_likeCount; ?>
                   </a>
                   <a href="<?php echo $post_viewPost_href; ?>">
