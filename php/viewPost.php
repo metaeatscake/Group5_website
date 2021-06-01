@@ -38,20 +38,19 @@
        crossorigin="anonymous"></script>
 
      <!-- Like Post in JS, work in progress -->
-     <!-- <script type="text/javascript">
-        function likePost(postID) {
-          $.ajax({
-            url: 'ajax/likePost.php',
-            type: 'post',
-            data: {
-              encPostId: postID
-            },
-            success: function(response){
-
-            }
+     <script type="text/javascript">
+        $(document).ready(function(){
+          $("feed_actions a:first_child").click({
+            $.post( "ajax/ajax_likePost.php",{
+                postID: this.id
+              }, function(data){
+                $("feed_actions a:first_child").css("color", data.color);
+                $("feed_actions a:first_child span").text(data.likeCount);
+              }
+            );
           });
-        }
-     </script> -->
+        });
+     </script>
    </head>
    <body>
      <?php include_once("inc/_js_mdl_formAlert.php"); ?>
@@ -173,12 +172,13 @@
               <?php endif; ?><hr>
 
               <div class="feed_actions"><br>
-                <!--  -->
+                <!-- href="<?php echo $post_likeButton_href; ?>" -->
                   <a
-                    href="<?php echo $post_likeButton_href; ?>"
+
                     style="color:<?php echo $post_likeButton_color; ?>"
+                    id="<?php echo "lpid_".$post_fancyID; ?>"
                   >
-                    <i class="material-icons">thumb_up</i><?php echo $post_likeCount; ?>
+                    <i class="material-icons">thumb_up</i><span><?php echo $post_likeCount; ?></span>
                   </a>
                   <a href="<?php echo $post_viewPost_href; ?>">
                     <span class="material-icons" style="color: #262626;">mode_comment</span>
