@@ -31,6 +31,11 @@
      <?php include_once("../css/customStyles.php"); ?>
      <link rel="stylesheet" type="text/css" href="../css/viewPostStyles.css">
      <link rel="stylesheet" href="../css/scrollbar.css">
+
+     <!-- Import jQuery v3.6.0 -->
+     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+       integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+       crossorigin="anonymous"></script>
    </head>
    <body>
      <?php include_once("inc/_js_mdl_formAlert.php"); ?>
@@ -107,7 +112,7 @@
              //Prepare like and comment count for each post.
              $post_likeCount = (isset($row['count_likes'])) ? $row['count_likes'] : 0;
              $post_commentCount = (isset($row['count_comments'])) ? $row['count_comments'] : 0;
-             
+
              $profileIDHolder = $row["user_id"];
              $profileLink = ($row["user_id"] === $_SESSION["account_id"]) ? "profile.php" : "viewProfile.php?id=$profileIDHolder";
             ?>
