@@ -2,10 +2,9 @@
 
   include("php/inc/database.php");
 
-  // Redirect Admins
-  if (isset($_SESSION["account_type"]) && $_SESSION["account_type"] === "admin") {
-    header("location: adm_viewUsers.php");
-    exit();
+  // Redirect to login if not logged in.
+  if(!isset($_SESSION["account_type"])){
+    header("location: php/login.php");
   }
 
   // Clients can/should still see posts even if they are not logged in, so index.php will contain the feed.
@@ -68,40 +67,35 @@
 
          <div class="page-content">
 
-           <!-- Default Card when user is not logged in. -->
-           <!-- This could be changed. -->
-            <?php if(!isset($_SESSION["account_type"])): ?>
-              <?php //include_once("php/inc/welcomeCard.php");
-                header("location: php/login.php");
-              ?>
+            <?php
 
-              <!-- USER FEED -->
-            <?php else:?>
+              // Handling Like data.
+              if (isset($_SESSION["account_id"])):
 
-              <?php
+                // PDO: Prepare the user's like data so the posts can be marked.
+                $pdoq_getUserLikedPosts = $pdo->prepare("SELECT post_id FROM tbl_feed_likes WHERE user_id = :user_id");
+                $pdoq_getUserLikedPosts->execute(['user_id' => $_SESSION["account_id"]]);
+                $user_liked_post_id = $pdoq_getUserLikedPosts->fetchAll(PDO::FETCH_COLUMN);
 
-                // Handling Like data.
-                if (isset($_SESSION["account_id"])):
+              endif;
 
-                  // PDO: Prepare the user's like data so the posts can be marked.
-                  $pdoq_getUserLikedPosts = $pdo->prepare("SELECT post_id FROM tbl_feed_likes WHERE user_id = :user_id");
-                  $pdoq_getUserLikedPosts->execute(['user_id' => $_SESSION["account_id"]]);
-                  $user_liked_post_id = $pdoq_getUserLikedPosts->fetchAll(PDO::FETCH_COLUMN);
+             ?>
 
-                endif;
+            <?php
 
-               ?>
+              //PDO Style, get all data from tbl_feed.
+              $feed_queryString = "SELECT * FROM view_posts_full ORDER BY post_time DESC";
 
-              <?php
+              $post_dataArray = $pdo->query($feed_queryString)->fetchAll(PDO::FETCH_ASSOC);
+              // echo "<pre style='color:white;'>"; var_dump($post_dataArray); echo "</pre>";
 
-                //PDO Style, get all data from tbl_feed.
-                $feed_queryString = "SELECT * FROM view_posts_full ORDER BY post_time DESC";
+             ?>
 
-                $post_dataArray = $pdo->query($feed_queryString)->fetchAll(PDO::FETCH_ASSOC);
-                // echo "<pre style='color:white;'>"; var_dump($post_dataArray); echo "</pre>";
+             <?php if (empty($post_dataArray)): ?>
+               <!-- INSERT HOW TO HANDLE SITE WITHOUT POSTS -->
+               <h1>lmao no posts xdddd</h1>
 
-               ?>
-
+             <?php else: ?>
                <?php foreach ($post_dataArray as $row): ?>
 
                  <?php
