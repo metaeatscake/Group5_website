@@ -1,7 +1,7 @@
 <style media="screen">
 
 .form-wrapper{
-  margin: 50px auto 0px;
+  margin: 1em auto 0px;
   padding:25px;
   border-radius:5px;
   -moz-border-radius:5px;
@@ -45,8 +45,11 @@
 
 @media only screen and (min-width: 1200px){
   .form-wrapper{
-    width: 495px;
+    /*width: 495px;
     height: 400px;
+    */  
+    width: 450px;
+    height: 301px;
   }
 }
 

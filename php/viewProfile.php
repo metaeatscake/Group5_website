@@ -301,6 +301,9 @@
                         <h4><b>Number of Comments</b></h4>
                         <h7>{$user_statsArray['count_comments']}</h7>
                       ";
+                    } else{
+                      echo "<h4><b>Number of Comment</b></h4>
+                            <h7>0</h7>";
                     }
                   ?>
 
@@ -309,6 +312,11 @@
                       echo "
                         <h4><b>Number of Likes</b></h4>
                         <h7>{$user_statsArray['count_post_likes']}</h7>
+                      ";
+                    } else{
+                      echo "
+                        <h4><b>Number of Like</b></h4>
+                        <h7>0</h7>
                       ";
                     }
                   ?>

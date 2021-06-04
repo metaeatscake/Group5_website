@@ -31,6 +31,12 @@
      <?php include_once("../css/customStyles.php"); ?>
      <link rel="stylesheet" type="text/css" href="../css/viewPostStyles.css">
      <link rel="stylesheet" href="../css/scrollbar.css">
+
+     <!-- Import jQuery v3.6.0 -->
+     <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
+
+     <!-- Like Post in JS, work in progress -->
+     <script src="ajax/xmlhttp.js" charset="utf-8"></script>
    </head>
    <body>
      <?php include_once("inc/_js_mdl_formAlert.php"); ?>
@@ -98,22 +104,22 @@
              //"Encrypted" POST ID because style.
              $post_fancyID = $_GET["id"];
 
-             //String for building the link to handleLikePost.php
-             $post_likeButton_href = "handleLikePost.php?id=$post_fancyID&returnTo=viewPost";
-
              //Prepare link for ViewPost.
              $post_viewPost_href = "viewPost.php?id=$post_fancyID";
 
              //Prepare like and comment count for each post.
              $post_likeCount = (isset($row['count_likes'])) ? $row['count_likes'] : 0;
              $post_commentCount = (isset($row['count_comments'])) ? $row['count_comments'] : 0;
-             
+
              $profileIDHolder = $row["user_id"];
              $profileLink = ($row["user_id"] === $_SESSION["account_id"]) ? "profile.php" : "viewProfile.php?id=$profileIDHolder";
+
+             //For JS XMLHttpRequest
+             $js_likePostLink = "ajax/xmlhttp_likePost.php?id=".$post_fancyID;
             ?>
 
             <?php // Post holder. ?>
-            <div class="feed_post">
+            <div class="feed_post" id="<?php echo 'p_'.$post_fancyID; ?>">
 
               <div class="more-horiz">
                 <span class="material-icons">more_horiz</span>
@@ -152,8 +158,13 @@
               <?php endif; ?><hr>
 
               <div class="feed_actions"><br>
-                  <a href="<?php echo $post_likeButton_href; ?>" style="color:<?php echo $post_likeButton_color; ?>">
-                    <i class="material-icons">thumb_up</i><?php echo $post_likeCount; ?>
+                <!-- href="<?php echo $post_likeButton_href; ?>" -->
+                  <a
+                    href="Javascript:void(0)"
+                    style="color:<?php echo $post_likeButton_color; ?>"
+                    onclick="xml_likePost('<?php echo $post_fancyID; ?>', '<?php echo $js_likePostLink; ?>')"
+                  >
+                    <i class="material-icons">thumb_up</i><span><?php echo $post_likeCount; ?></span>
                   </a>
                   <a href="<?php echo $post_viewPost_href; ?>">
                     <span class="material-icons" style="color: #262626;">mode_comment</span>

@@ -25,7 +25,7 @@
     <!-- Backup for <dialog> not being supported by browser -->
     <script src="../vendor/dialog-polyfill/dist/dialog-polyfill.js" charset="utf-8"></script>
     <!-- Css for Scrollbar -->
-    <link rel="stylesheet" href="css/scrollbar.css">
+    <link rel="stylesheet" href="../css/scrollbar.css">
     <!-- Shortcut Icon -->
     <link rel="shortcut icon" href="images/assets/sample2.png">
 
@@ -79,7 +79,6 @@
             <div class="formItem">
             <br>
               <center><img src="images/assets/socialitylogoblack.png" width="300" height="75"><center>
-              <h3 style="text-align: center">Log In</h3>
             </div>
             <div class="formItem">
               <label for="username">Username</label>
