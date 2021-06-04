@@ -67,7 +67,6 @@
   overflow:auto;
   align-items: center;
   float: left;
-  margin-left: 100px;
 }
 
 @media only screen and (min-width: 600px){
@@ -75,9 +74,17 @@
       width: 500px;
       height: 750px;
       margin-top: 50px;
+      margin-left: 150px;
       }
   }
 
+@media only screen and (max-width: 600px){
+  .form-wrapper{
+    width: 500px;
+    height: 390px;
+
+  }
+}
 
 @media only screen and (min-width: 992px){
   .form-wrapper-register{
@@ -101,8 +108,9 @@
     margin-top: 10px;*/
 
     width: 480px;
-    height: 500px;
-    margin-top: 10px;
+    height: 700px;
+    margin-top: 50px;
+    margin-left: 250px;
   }
 }
 
