@@ -69,7 +69,7 @@
           <form class="form-main" action="handleRegister.php" method="POST">
             <div class="formItem">
             <center><img src="images/assets/socialitylogoblack.png" width="300" height="75"><center>
-              <h3 style="text-align: center">Register Now!</h3>
+              <p style="text-align: center">Sign Up now, it's quick and easy!</p>
             </div>
             <div class="formItem">
               <label for="lname">Email</label>

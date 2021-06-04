@@ -94,8 +94,12 @@
 
 @media only screen and (min-width: 1200px){
   .form-wrapper-register{
-    width: 800px;
+    /*width: 800px;
     height: 710px;
+    margin-top: 10px;*/
+
+    width: 480px;
+    height: 500px;
     margin-top: 10px;
   }
 }

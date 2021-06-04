@@ -209,7 +209,7 @@
                       <div class="body-box">
                         <span class="tip tip-left"></span>
                         <div class="user-comment"><br style="content: ""; margin: 0em; display: block;">
-                          <span><b><a href="#"><?php echo $row['username']; ?></a></b></span>
+                          <span><strong><a href="<?php echo $profileLink?>"><?php echo $row["username"]; ?></a></strong></span>
                         </div><br>
                         <div class="content-comment">
                           <span><?php echo $row['comment_content']; ?> </span>
