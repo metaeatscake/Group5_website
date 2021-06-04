@@ -126,7 +126,9 @@
               </div>
 
               <div class="feed_userpic">
-                <img src="<?php echo $row['profile_pic']; ?>">
+                <a href="<?php echo $profileLink?>">
+                  <img src="<?php echo $row['profile_pic']; ?>">
+                </a>
               </div>
 
               <div class="feed_post_author">
