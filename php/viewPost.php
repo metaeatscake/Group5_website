@@ -33,24 +33,10 @@
      <link rel="stylesheet" href="../css/scrollbar.css">
 
      <!-- Import jQuery v3.6.0 -->
-     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
-       integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
-       crossorigin="anonymous"></script>
+     <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
 
      <!-- Like Post in JS, work in progress -->
-     <script type="text/javascript">
-        $(document).ready(function(){
-          $("feed_actions a:first_child").click({
-            $.post( "ajax/ajax_likePost.php",{
-                postID: this.id
-              }, function(data){
-                $("feed_actions a:first_child").css("color", data.color);
-                $("feed_actions a:first_child span").text(data.likeCount);
-              }
-            );
-          });
-        });
-     </script>
+     <script src="ajax/xmlhttp.js" charset="utf-8"></script>
    </head>
    <body>
      <?php include_once("inc/_js_mdl_formAlert.php"); ?>
@@ -130,10 +116,13 @@
 
              $profileIDHolder = $row["user_id"];
              $profileLink = ($row["user_id"] === $_SESSION["account_id"]) ? "profile.php" : "viewProfile.php?id=$profileIDHolder";
+
+             //For JS XMLHttpRequest
+             $js_likePostLink = "ajax/xmlhttp_likePost.php?id=".$post_fancyID;
             ?>
 
             <?php // Post holder. ?>
-            <div class="feed_post">
+            <div class="feed_post" id="<?php echo 'p_'.$post_fancyID; ?>">
 
               <div class="more-horiz">
                 <span class="material-icons">more_horiz</span>
@@ -174,9 +163,9 @@
               <div class="feed_actions"><br>
                 <!-- href="<?php echo $post_likeButton_href; ?>" -->
                   <a
-
+                    href="Javascript:void(0)"
                     style="color:<?php echo $post_likeButton_color; ?>"
-                    id="<?php echo "lpid_".$post_fancyID; ?>"
+                    onclick="xml_likePost('<?php echo $post_fancyID; ?>', '<?php echo $js_likePostLink; ?>')"
                   >
                     <i class="material-icons">thumb_up</i><span><?php echo $post_likeCount; ?></span>
                   </a>
