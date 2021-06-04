@@ -1,7 +1,6 @@
 <style media="screen">
 
 .form-wrapper{
-  margin: 1em auto 0px;
   padding:25px;
   border-radius:5px;
   -moz-border-radius:5px;
@@ -12,13 +11,14 @@
   overflow:auto;
   align-items: center;
   float: left;
-  margin-left: 100px;
+  margin-top: 100px;
   }
 
 @media only screen and (max-width: 600px){
   .form-wrapper{
     width: 600px;
     height: 390px;
+
   }
 }
 
@@ -26,6 +26,7 @@
   .form-wrapper{
     width: 500px;
     height: 390px;
+    margin: 100px auto auto 150px;
   }
 }
 
@@ -47,9 +48,10 @@
   .form-wrapper{
     /*width: 495px;
     height: 400px;
-    */  
+    */
     width: 450px;
     height: 301px;
+    margin-left: 250px;
   }
 }
 
