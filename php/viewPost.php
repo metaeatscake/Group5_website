@@ -104,9 +104,6 @@
              //"Encrypted" POST ID because style.
              $post_fancyID = $_GET["id"];
 
-             //String for building the link to handleLikePost.php
-             $post_likeButton_href = "handleLikePost.php?id=$post_fancyID&returnTo=viewPost";
-
              //Prepare link for ViewPost.
              $post_viewPost_href = "viewPost.php?id=$post_fancyID";
 

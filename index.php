@@ -32,6 +32,9 @@
      <!-- Custom CSS File -->
      <?php include_once("css/customStyles.php"); ?>
      <link rel="stylesheet" href="css/scrollbar.css">
+
+     <!-- Magic Custom Javascript -->
+     <script src="php/ajax/xmlhttp.js" charset="utf-8"></script>
    </head>
    <body>
 
@@ -68,7 +71,9 @@
            <!-- Default Card when user is not logged in. -->
            <!-- This could be changed. -->
             <?php if(!isset($_SESSION["account_type"])): ?>
-              <?php include_once("php/inc/welcomeCard.php"); ?>
+              <?php //include_once("php/inc/welcomeCard.php");
+                header("location: php/login.php");
+              ?>
 
               <!-- USER FEED -->
             <?php else:?>
@@ -93,7 +98,7 @@
                 $feed_queryString = "SELECT * FROM view_posts_full ORDER BY post_time DESC";
 
                 $post_dataArray = $pdo->query($feed_queryString)->fetchAll(PDO::FETCH_ASSOC);
-                // echo "<pre style='color:white;'>"; var_dump($post_dataArray); echo "</pre>"; 
+                // echo "<pre style='color:white;'>"; var_dump($post_dataArray); echo "</pre>";
 
                ?>
 
@@ -110,9 +115,6 @@
                     //"Encrypted" POST ID because style.
                     $post_fancyID = $hashId->encode($row['post_id']);
 
-                    //String for building the link to handleLikePost.php
-                    $post_likeButton_href = "php/handleLikePost.php?id=$post_fancyID&returnTo=index_clean";
-
                     //Prepare link for ViewPost.
                     $post_viewPost_href = "php/viewPost.php?id=$post_fancyID";
 
@@ -122,6 +124,8 @@
 
                     $profileIDHolder = $row["user_id"];
                     $profileLink = ($row["user_id"] === $_SESSION["account_id"]) ? "php/profile.php" : "php/viewProfile.php?id=$profileIDHolder";
+
+                    $js_likePostLink = "php/ajax/xmlhttp_likePost.php?id=".$post_fancyID;
                   ?>
                   <br>
                   <div class="feed_post" id="<?php echo 'p_'.$post_fancyID; ?>">
@@ -163,10 +167,11 @@
                     <?php endif; ?>
                     <hr>
                     <div class="feed_actions">
-                      
-                      <a href="<?php echo $post_likeButton_href; ?>" style="color:<?php echo $post_likeButton_color; ?>">
+
+                      <a href="Javascript:void(0)" style="color:<?php echo $post_likeButton_color; ?>"
+                        onClick="xml_likePost('<?php echo $post_fancyID ?>', '<?php echo $js_likePostLink ?>')">
                         <i class="material-icons">thumb_up</i>
-                        <?php echo $post_likeCount; ?>
+                        <span><?php echo $post_likeCount; ?></span>
                       </a>
 
                       <a href="<?php echo $post_viewPost_href; ?>">
