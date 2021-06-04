@@ -7,3 +7,6 @@ php/images/users_cover/*
 !php/images/users/_default.jpg
 !php/images/users_cover/_default.png
 !php/images/post_img/temp.txt
+
+# Atom Package Files
+.tern-project
