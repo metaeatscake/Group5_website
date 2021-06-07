@@ -75,10 +75,99 @@
 
     case "Edit Profile Picture and Banner":
 
+      $validImages = [
+    		"image/png",
+    		"image/gif",
+    		"image/jpeg"
+    	];
+
+      $profPic = new Validate_Image($_FILES, "profile_pic", $validImages);
+      $bannerPic = new Validate_Image($_FILES, "banner_pic", $validImages);
+
+      // Validation.
+      $errString = "";
+
+      // Filepath vars
+      $loc_profPic = "";
+      $loc_banner = "";
+
+      //Profile Pic Setup
+      if ($profPic->hasFile()) {
+        $errProfPic = $profPic->getValidationMessage();
+        if (!empty($errProfPic)) {
+          $errString .= "\n".$errProfPic;
+        } else{
+
+          //Clean old profile pic, don't remove it if it's the default.
+          $pdoq_getOldProfilePic = $pdo->prepare("SELECT profile_pic FROM view_user_stats WHERE user_id = :user_id");
+          $pdoq_getOldProfilePic->execute(["user_id" => $_SESSION["account_id"]]);
+          $oldPic = $pdoq_getOldProfilePic->fetch(PDO::FETCH_COLUMN);
+          $defaultPic = "images/users/_default.jpg";
+          if ($oldPic !== $defaultPic) {
+            unlink($oldPic);
+          }
+
+          //Prepare upload filename
+          $profPic_fileExt = $profPic->getFileExtension();
+          $profPic_fileName = $_SESSION["account_id"] . "_profilePic" . "." . $profPic_fileExt;
+          $saveFolder = "images/users/";
+
+          //Save pic to server then mark the filepath to pass to db
+          $loc_profPic = $saveFolder.$profPic_fileName;
+          move_uploaded_file($_FILES["profile_pic"]["tmp_name"], $loc_profPic);
+
+        }
+      }
+
+      //Banner Pic setup.
+      if ($bannerPic->hasFile()) {
+        $errBanner = $bannerPic->getValidationMessage();
+        if (!empty($errBanner)) {
+          $errString .= "\n".$errBanner;
+        } else{
+
+          //Clean old banner pic
+          $pdoq_getOldBanner = $pdo->prepare("SELECT cover_photo FROM view_user_stats WHERE user_id = :user_id");
+          $pdoq_getOldBanner->execute(["user_id" => $_SESSION["account_id"]]);
+          $oldBanner = $pdoq_getOldBanner->fetch(PDO::FETCH_COLUMN);
+          $defaultBanner = "images/users_cover/_default.png";
+          if ($oldBanner !== $defaultBanner) {
+            unlink($oldBanner);
+          }
+
+          //Prepare upload filename
+          $bannerPic_fileExt = $bannerPic->getFileExtension();
+          $bannerPic_fileName = $_SESSION["account_id"] . "_cover_photo" . "." . $bannerPic_fileExt;
+          $saveFolder = "images/users_cover/";
+
+          //Save pic to server then pass filepath to var
+          $loc_banner = $saveFolder.$bannerPic_fileName;
+          move_uploaded_file($_FILES["banner_pic"]["tmp_name"], $loc_banner);
+
+        }
+      }
+
+      //If either the banner or profile pic had errors, redirect.
+      if (!empty($errString)) {
+        $_SESSION["handler-alert"] = $errString;
+        $_SESSION["handler-alert-type"] = "Error";
+        header("location: profile.php");
+        exit();
+      }
+
+      //Add file locations to database.
+      $pdoq_updatePics = $pdo->prepare("CALL edit_user_pictures(:user_id, :prof_pic, :cover)");
+      $pdoq_updatePics->execute([
+        "user_id" => $_SESSION["account_id"],
+        "prof_pic" => $loc_profPic,
+        "cover" => $loc_banner
+      ]);
+      header("location: profile.php");
+      exit();
       break;
 
     default:
-      // code...
+      echo "unknown Submit Button value.";
       break;
   }
  ?>
