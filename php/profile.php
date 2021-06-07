@@ -161,7 +161,7 @@
               </div>
 
                <!--POSTS AREA/ABOUT AREA/CUSTOMIZE PROFILE-->
-              <div id="post-area-menu" style="flex:2.5; padding: 20px; padding-right: 0px;">
+              <div id="post-area-menu">
                 <!--CONTENT OF MY POSTS -->
                 <div id="myPosts" class="tabmenu">
                   <?php
