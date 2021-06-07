@@ -8,7 +8,7 @@
   $user_dataArray = $pdoq_getUserData->fetch(PDO::FETCH_ASSOC);
 
   //var_dump($user_dataArray);
-  
+
   //Prefetch User Stats.
   $pdoq_getUserStats = $pdo->prepare("SELECT * FROM view_user_stats WHERE user_id = :user_id");
   $pdoq_getUserStats->execute(['user_id' => $_SESSION["account_id"]]);
@@ -149,12 +149,12 @@
 
                 </div>
                 <div class="sponsored-bar-footer">
-                  <a href="#">Privacy</a> · 
-                  <a href="#">Terms</a> · 
-                  <a href="#">Advertising</a> · 
-                  <a href="#">Ad Choices</a> · 
-                  <a href="#">Cookies</a> · 
-                  <a href="#">More</a> · 
+                  <a href="#">Privacy</a> ·
+                  <a href="#">Terms</a> ·
+                  <a href="#">Advertising</a> ·
+                  <a href="#">Ad Choices</a> ·
+                  <a href="#">Cookies</a> ·
+                  <a href="#">More</a> ·
                   <a href="#">Sociality</a> &copy 2021
                 </div>
 
@@ -231,7 +231,7 @@
 
                         <div class="more-horiz">
                           <span class="material-icons">more_horiz</span>
-                        </div>    
+                        </div>
 
                         <div class="feed_userpic">
                           <a href="<?php echo $profileLink?>">
@@ -243,7 +243,7 @@
                           <a href="profile.php">
                             <?php echo $row["username"]; ?>
                           </a>
-                        </div> 
+                        </div>
 
                         <div class="feed_post_time">
                           <a href="<?php echo $post_viewPost_href; ?>">
@@ -255,11 +255,11 @@
                         <div class="feed_title">
                           <?php echo $row["post_title"]; ?>
                         </div><br>
-                      
+
                         <div class="feed_content">
                           <?php echo nl2br($row["post_content"]); ?>
                         </div><br>
-                        
+
 
                         <!-- Only display image div if there is image. -->
                         <?php if (isset($row["post_img"])): ?>
@@ -269,14 +269,14 @@
                         <?php endif; ?><hr>
 
                         <div class="feed_actions">
-                          
-                          <a href="<?php echo $post_likeButton_href; ?>" style="color:<?php echo $post_likeButton_color; ?>"> 
+
+                          <a href="<?php echo $post_likeButton_href; ?>" style="color:<?php echo $post_likeButton_color; ?>">
                             <i class="material-icons">thumb_up</i><?php echo $row["count_likes"]; ?>
                           </a>
 
                           <a href="<?php echo $post_viewPost_href; ?>">
-                            <span class="material-icons" style="color: #262626;">mode_comment</span> 
-                            <span style="color:black;"><?php echo $row["count_comments"]; ?></span>  
+                            <span class="material-icons" style="color: #262626;">mode_comment</span>
+                            <span style="color:black;"><?php echo $row["count_comments"]; ?></span>
                           </a>
 
                           <a href="#">
@@ -305,7 +305,7 @@
                   <h4><b>Joined</b></h4>
                   <h7><?php echo $user_dataArray['register_time']; ?></h7>
 
-                  <?php 
+                  <?php
                     if($user_statsArray['count_comments'] != NULL){
                       echo "
                         <h4><b>Number of Comments</b></h4>
@@ -317,7 +317,7 @@
                     }
                   ?>
 
-                  <?php 
+                  <?php
                     if($user_statsArray['count_post_likes'] != NULL){
                       echo "
                         <h4><b>Number of Likes</b></h4>
@@ -355,20 +355,26 @@
                       <div class="formCard mdl-card mdl-shadow--4dp">
 
                         <div class="formItem">
-                          <h3>New Username</h3>
+                          <h3>Edit Username</h3>
                           <i class="fa fa-user"></i>
                           <input type="text" name="username" class="input" id="username" value="<?php echo $db_username;?>">
                         </div>
 
                         <div class="formItem">
-                          <h3>New Password</h3>
+                          <h3>Change Password</h3>
+                          <p> (Leave blank to not change password) </p>
                           <i style="font-size:24px" class="fa">&#xf084;</i>
-                          <input class="input" type="password" name="password" required placeholder="Type your new password" min="8">
+                          <input class="input" type="password" name="password" required placeholder="Type your old password" min="8">
                         </div><br>
-                        
+
                         <div class="formItem">
                           <i style="font-size:24px" class="fa">&#xf084;</i>
-                          <input class="input "type="password" name="confirm_password" required placeholder="Re-type your password" min="8">
+                          <input class="input "type="password" name="new_password" required placeholder="Type your new password" min="8">
+                        </div><br>
+
+                        <div class="formItem">
+                          <i style="font-size:24px" class="fa">&#xf084;</i>
+                          <input class="input "type="password" name="confirm_new_password" required placeholder="Confirm your new password" min="8">
                         </div><br>
 
                         <div class="formItem">
@@ -387,19 +393,19 @@
                               <h3>Email</h3>
                               <i class="fa fa-envelope"></i>
                               <input class="input" type="email" id="email" name="email" required placeholder="Type your new E-mail" value="<?php echo $db_email; ?>">
-                              
+
                             </div><br>
                           </div>
                         </div>
                         <button class="mdl-button mdl-js-button mdl-button--raised" id="formSubmitButton-container">
                           <i class="material-icons">done</i>
-                          <input type="submit" name="registerSubmit" id="formSubmitButton" value="Submit">
+                          <input type="submit" name="registerSubmit" id="formSubmitButton" value="Edit Account">
                         </button>
                         <br>
                       </div>
                     </form>
                   </div><br><br>
-                </div> 
+                </div>
                 <!--CONTENT OF CUSTOMIZE BIO -->
                 <div id="customizeBio" class="tabmenu" style="display:none;">
                   <?php
@@ -414,7 +420,7 @@
                   ?>
 
                   <div class="page-content" align="center"><br><br>
-   
+
                     <form class="" action="handleEditProfile.php" method="POST">
                       <div class="formCard mdl-card mdl-shadow--4dp">
 
@@ -424,26 +430,26 @@
                         <div>
                           <textarea name="bio" rows="10" cols="50" placeholder="Edit your Bio. <?php echo $db_bio; ?>" required></textarea>
                         </div><br><br><br>
-                    
+
                         <button class="mdl-button mdl-js-button mdl-button--raised" id="formSubmitButton-container">
                           <i class="material-icons">done</i>
-                          <input type="submit" name="registerSubmit" id="formSubmitButton" value="submit">
+                          <input type="submit" name="registerSubmit" id="formSubmitButton" value="Edit Bio">
                         </button>
 
                       </div>
                     </form>
                   </div>
-                </div> 
+                </div>
                 <!--CONTENT OF CUSTOMIZE PROFILE PICTURE BANNER -->
                 <div id="customizeProfileBanner" class="tabmenu" style="display:none;">
                   <?php
 
                     $id = $_SESSION["account_id"];
-                    
+
                     // If the query only returns one row, the array can be fetched in one line.
                     $row = $sql->query("SELECT * FROM tbl_users WHERE user_id = '$id'")->fetch_assoc();
 
-                    extract($row, EXTR_PREFIX_ALL, "db");   
+                    extract($row, EXTR_PREFIX_ALL, "db");
 
                     //Changing Profile Picture
                     $tmp_id = $_SESSION["account_id"];
@@ -462,7 +468,7 @@
                       <div class="formCard mdl-card mdl-shadow--4dp">
 
                         <center><br><img src="images/assets/socialitylogoblack.png" width="300" height="70"><center> <br>
-                       
+
                         <img src="<?php echo $db_profile_pic; ?> "width="215" height="200">
                         <div class="formItem">
                           <h3 class="text-align: center;" <?php echo $db_username; ?> </h3>
@@ -472,18 +478,18 @@
                           <h3>Profile Picture</h3>
                           <div>
                             <input type="file" name="profile_pic" accept="image/*" <?php echo ($requireInput) ? "required":''; ?>>
-                            
+
                           </div>
                         </div>
                         <button class="mdl-button mdl-js-button mdl-button--raised" id="formSubmitButton-container">
                           <i class="material-icons">done</i>
-                          <input type="submit" name="registerSubmit" id="formSubmitButton" value="submit">
+                          <input type="submit" name="registerSubmit" id="formSubmitButton" value="Edit Profile Picture and Banner">
                         </button>
                       </div>
                     </form>
                   </div>
-                </div> 
-              </div> 
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -506,7 +512,7 @@
     document.getElementById(tabname).style.display = "block";
     tab.currentTarget.className += " w3-purple";
   }
-  
+
   function myFunction() {
     var x = document.getElementById("myTopnav");
     if (x.className === "topnav") {
