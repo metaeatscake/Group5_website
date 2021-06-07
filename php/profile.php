@@ -87,14 +87,10 @@
 
             <div style="background-color: white; text-align: center; color: #405d9b">
 
-              <!--TEMPORARY ONLY, ONCE I KNOW HOW TO WORK ON PUTTING UPLOAD IMAGE ICON BESIDE THE PROFILE PICTURE-->
-              <p><img src="images/users_cover/_default.png" style="width: 100%; height: 380px;" class="cover"></p>
 
-              <!---CHANGE THIS WITH THE TEMPORARY IMG THAT I PUT <img src="images/users_cover/bglight.jpg" style="width: 100%;"> -->
+              <p><img src="<?php echo $user_dataArray['cover_photo']; ?>" style="width: 100%; height: 380px;" class="cover"></p>
 
-              <!--TEMPORARY ONLY, ONCE I KNOW HOW TO WORK ON PUTTING UPLOAD IMAGE ICON BESIDE THE PROFILE PICTURE-->
-
-              <img src="images/users/_default.jpg" id="profile_pic">
+              <img src="<?php echo $user_dataArray['profile_pic'] ?>" id="profile_pic">
 
               <!--CHANGE THIS WITH THE TEMPORARY IMG THAT I PUT <img id="profile_p
               ic" src="images/users/$db_profile_pic"> --> <br>
