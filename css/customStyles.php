@@ -341,7 +341,7 @@
   #covid-sidebar{
     background-color: #ffffff;
     width: 23em;
-    height: 7em;
+    height: 50em;
     margin:29px 93px 0;
     color: #8c8c8c;
     padding: 4.5%;
@@ -351,12 +351,38 @@
   .covid-updates{
     font-size: 18px;
     font-weight: normal;
-    text-indent: 4px;
+  }
+
+  .covid-updates p{
+    color:  #000000;
+    text-indent: 5px;
+  }
+
+  .covid-updates img{
+    float: left;
+    width: 20px;
+    height:20px;
+    border-radius: 50px;
+  }
+
+  .covid-websites a{
+    color:  #000000;
+    text-indent: 5px;
+    text-decoration: none;
+  }
+
+  .covid-websites a:hover{
+    text-decoration: underline;
+  }
+
+  .covid-websites p{
+    color:  #000000;
   }
 
   .covid-updates a{
     text-decoration: none;
     color: #ff8566;
+    text-indent: 5px;
   }
 
   .covid-updates a:hover{
@@ -389,7 +415,7 @@
   .more-horiz:hover{
     background-color: #d9d9d9;
     border-radius: 50px;
-    width: 40px;
+    width: 30px;
   }
 
   .feed_userpic img{

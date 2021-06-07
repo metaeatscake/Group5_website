@@ -191,23 +191,35 @@
                   <div class="side-content">
                     <div id = "covid-sidebar">
                       <div class="feed_userpic">
-                        <a href="<?php echo $profileLink?>">
-                          <img src="<?php echo 'php/'.$row['profile_pic']; ?>">
+                        <a href="#">
+                          <img src="php/images/assets/coronavirus.png">
                         </a>
-                      </div> <br>
-
-                      <div class="feed_post_author">
-                        <a href="<?php echo $profileLink?>">
-                          <?php echo $row["username"]; ?>
-                        </a>
-                      </div> <br>
-
-                      <div class="feed_userpic">
-                        <img src="php/images/assets/coronavirus.png">
                       </div> <br>
 
                       <div class="covid-updates">
-                        <a href="#">COVID-19 Information Center</a>
+                        <a href="#">COVID-19 Information Center</a><br><br>
+                        <p><strong>Latest Updates</strong> (June 7, 2021)</p>
+                        <img src="php/images/assets/global1.png"><p>Global confirmed cases: 172,997,361; total deaths: 3,721,867; people fully vaccinated: 450,454,935</p>
+                        <img src="php/images/assets/india.png"><p>India to ease some restrictions in New Delhi from Monday as cases fall slightly</p>
+                        <img src="php/images/assets/us.png"><p>US surpasses 300 million COVID-19 vaccine doses administered</p>
+                        <img src="php/images/assets/uk.png"><p>UK prime minister urges G7 nations to commit to vaccinating world by end of 2022</p>
+                        <img src="php/images/assets/malaysia.png"><p>Malaysia to invite 3,000 people for trials of new vaccine by Shenzhen Kangtai Biological Products</p>
+                      </div>
+                      <div class="covid-websites">
+                        <p>To know more, visit these websites:</p>
+                        <?php 
+                          echo '<a href="https://doh.gov.ph/2019-nCoV?fbclid=IwAR0QGeHmsHvDSF5erj1mLvW-bM6wYb2kOuAazhDbHcNE16N55uzEPOnKJQE">Department of Health (Philippines)</a><br><br>';
+
+                          echo '<a href="https://www.who.int/westernpacific?fbclid=IwAR0OsMVcS3XIPV-gLedOkQRUbNdMmqjxvDdv_VfGs1xN3SpbTmszDOu8FwM">World Health Organization Western Pacific Region</a><br><br>';
+
+                          echo '<a href="https://www.who.int/westernpacific?fbclid=IwAR0OsMVcS3XIPV-gLedOkQRUbNdMmqjxvDdv_VfGs1xN3SpbTmszDOu8FwM">World Health Organization Western Pacific Region</a><br><br>';
+
+                          echo '<a href="https://www.unicef.org/philippines/">UNICEF Philippines</a><br><br>';
+
+                          echo '<a href="https://www.unicef.org/coronavirus/covid-19?fbclid=IwAR3-f2q7v2dpcFISXNBULZ5KPP033Cvu4nvJzbxk_7r8X9q3o-47I0HpBHc">UNICEF</a><br><br>';
+
+                          echo '<a href="https://www.who.int/emergencies/diseases/novel-coronavirus-2019">World Health Organization (WHO) </a><br><br>';
+                       ?>
                       </div>
                     </div> 
                     <div class="covid-bar-footer">
