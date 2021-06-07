@@ -56,6 +56,53 @@
     min-height: 20%;
   }
 }
+
+.feed_post{
+  margin:auto;
+  width: 39%;
+  min-height: 20%;
+  color: black;
+  background-color: white;
+  padding: 1.5%;
+  margin-top: 1.5%;
+  border-radius: 8px;
+}
+
+@media only screen and (min-width: 600px){
+  .feed_post{
+    width: 50%;
+    min-height: 20%;
+  }
+}
+
+@media only screen and (max-width: 600px){
+  .feed_post{
+    width: 50%;
+    min-height: 20%;
+  }
+}
+
+@media only screen and (min-width: 768px){
+  .feed_post{
+    width: 55%;
+    min-height: 20%;
+  }
+}
+
+@media only screen and (max-width: 992px){
+  .feed_post{
+    width: 95%;
+    min-height: 20%;
+  }
+}
+
+@media only screen and (min-width: 1200px){
+  .feed_post{
+    width: 32.3%;
+    min-height: 20%;
+  }
+}
+
 hr{
   display: block;
   height: 1px;
