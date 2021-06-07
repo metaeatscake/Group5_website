@@ -364,17 +364,17 @@
                           <h3>Change Password</h3>
                           <p> (Leave blank to not change password) </p>
                           <i style="font-size:24px" class="fa">&#xf084;</i>
-                          <input class="input" type="password" name="password" required placeholder="Type your old password" min="8">
+                          <input class="input" type="password" name="password" placeholder="Type your old password" min="8">
                         </div><br>
 
                         <div class="formItem">
                           <i style="font-size:24px" class="fa">&#xf084;</i>
-                          <input class="input "type="password" name="new_password" required placeholder="Type your new password" min="8">
+                          <input class="input "type="password" name="new_password" placeholder="Type your new password" min="8">
                         </div><br>
 
                         <div class="formItem">
                           <i style="font-size:24px" class="fa">&#xf084;</i>
-                          <input class="input "type="password" name="confirm_new_password" required placeholder="Confirm your new password" min="8">
+                          <input class="input "type="password" name="confirm_new_password" placeholder="Confirm your new password" min="8">
                         </div><br>
 
                         <div class="formItem">
