@@ -333,6 +333,76 @@
       min-height: 20%;
     }
   }
+  
+  .side-content{
+    flex: 1; 
+  }
+
+  #covid-sidebar{
+    background-color: #ffffff;
+    width: 23em;
+    height: 50em;
+    margin:29px 93px 0;
+    color: #8c8c8c;
+    padding: 4.5%;
+    border-radius: 8px;
+  }
+
+  .covid-updates{
+    font-size: 18px;
+    font-weight: normal;
+  }
+
+  .covid-updates p{
+    color:  #000000;
+    text-indent: 5px;
+  }
+
+  .covid-updates img{
+    float: left;
+    width: 20px;
+    height:20px;
+    border-radius: 50px;
+  }
+
+  .covid-websites a{
+    color:  #000000;
+    text-indent: 5px;
+    text-decoration: none;
+  }
+
+  .covid-websites a:hover{
+    text-decoration: underline;
+  }
+
+  .covid-websites p{
+    color:  #000000;
+  }
+
+  .covid-updates a{
+    text-decoration: none;
+    color: #ff8566;
+    text-indent: 5px;
+  }
+
+  .covid-updates a:hover{
+    text-decoration: underline;
+  }
+
+  .covid-bar-footer{
+    font-size: 10px;
+    color: white;
+    text-indent: 102px;
+  }
+
+  .covid-bar-footer a{
+    text-decoration: none;
+    color: white;
+  }
+
+  .covid-bar-footer a:hover{
+    text-decoration: underline;
+  }
 
   .side-content{
     flex: 1;
