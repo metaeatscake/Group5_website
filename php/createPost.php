@@ -49,8 +49,8 @@
           /* REPLACE THIS IMAGE WITH A BETTER BACKGROUND */
           /*background: url('php/images/assets/test (1).jpg') center / cover;*/
           background: #ad5389;  /* fallback for old browsers */
-          background: -webkit-linear-gradient(to right, #3c1053, #ad5389);  /* Chrome 10-25, Safari 5.1-6 */
-          background: linear-gradient(to right, #3c1053, #ad5389); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+          background: -webkit-linear-gradient(#21094e, #6148bf);  /* Chrome 10-25, Safari 5.1-6 */
+          background: linear-gradient(#21094e, #6148bf); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
         }
         .demo-layout-transparent .mdl-layout__header,
@@ -93,7 +93,7 @@
                   <a href="profile.php">
                     <?php echo $row[0]['username']; ?>
                   </a>
-                </div> 
+                </div>
 
                 <div class="friends-button">
                   <span class="material-icons icon">public</span> Public
@@ -101,7 +101,7 @@
                 </div>
 
                 <form action="handleCreatePost.php" method="POST" enctype="multipart/form-data"><br><br>
-                  
+
                   <input type="text" name="inputTitle" id="title-bar" placeholder="Title" required>
                     <br>
                   <textarea name="inputText" rows="5" cols="50" placeholder="What's on your mind, <?php echo $row[0]['username']; ?>?"></textarea>
@@ -109,11 +109,11 @@
 
                   <input type="file" id="actual-btn" name="inputPic" hidden/>
                   <label for="actual-btn">
-                    <span class="material-icons icon">photo</span>   
-                  </label>  
+                    <span class="material-icons icon">photo</span>
+                  </label>
 
                   <input type="submit" name="btnSubmit" class="btn-primary" value="Post">
-                    
+
                 </form>
 
               </div>
