@@ -391,6 +391,7 @@
 
                             <div class="formItem">
                               <h3>Email</h3>
+                              <p> (Leave empty or as is if you don't want to change it) </p>
                               <i class="fa fa-envelope"></i>
                               <input class="input" type="email" id="email" name="email" required placeholder="Type your new E-mail" value="<?php echo $db_email; ?>">
 
