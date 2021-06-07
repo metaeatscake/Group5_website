@@ -161,7 +161,7 @@
               </div>
 
                <!--POSTS AREA/ABOUT AREA/CUSTOMIZE PROFILE-->
-              <div id="post-area-menu" style="flex:2.5; padding: 20px; padding-right: 0px;">
+              <div id="post-area-menu">
                 <!--CONTENT OF MY POSTS -->
                 <div id="myPosts" class="tabmenu">
                   <?php
@@ -355,20 +355,26 @@
                       <div class="formCard mdl-card mdl-shadow--4dp">
 
                         <div class="formItem">
-                          <h3>New Username</h3>
+                          <h3>Edit Username</h3>
                           <i class="fa fa-user"></i>
                           <input type="text" name="username" class="input" id="username" value="<?php echo $db_username;?>">
                         </div>
 
                         <div class="formItem">
-                          <h3>New Password</h3>
+                          <h3>Change Password</h3>
+                          <p> (Leave blank to not change password) </p>
                           <i style="font-size:24px" class="fa">&#xf084;</i>
-                          <input class="input" type="password" name="password" required placeholder="Type your new password" min="8">
+                          <input class="input" type="password" name="password" required placeholder="Type your old password" min="8">
                         </div><br>
 
                         <div class="formItem">
                           <i style="font-size:24px" class="fa">&#xf084;</i>
-                          <input class="input "type="password" name="confirm_password" required placeholder="Re-type your password" min="8">
+                          <input class="input "type="password" name="new_password" required placeholder="Type your new password" min="8">
+                        </div><br>
+
+                        <div class="formItem">
+                          <i style="font-size:24px" class="fa">&#xf084;</i>
+                          <input class="input "type="password" name="confirm_new_password" required placeholder="Confirm your new password" min="8">
                         </div><br>
 
                         <div class="formItem">
@@ -393,7 +399,7 @@
                         </div>
                         <button class="mdl-button mdl-js-button mdl-button--raised" id="formSubmitButton-container">
                           <i class="material-icons">done</i>
-                          <input type="submit" name="registerSubmit" id="formSubmitButton" value="Submit">
+                          <input type="submit" name="registerSubmit" id="formSubmitButton" value="Edit Account">
                         </button>
                         <br>
                       </div>
@@ -427,7 +433,7 @@
 
                         <button class="mdl-button mdl-js-button mdl-button--raised" id="formSubmitButton-container">
                           <i class="material-icons">done</i>
-                          <input type="submit" name="registerSubmit" id="formSubmitButton" value="submit">
+                          <input type="submit" name="registerSubmit" id="formSubmitButton" value="Edit Bio">
                         </button>
 
                       </div>
@@ -477,7 +483,7 @@
                         </div>
                         <button class="mdl-button mdl-js-button mdl-button--raised" id="formSubmitButton-container">
                           <i class="material-icons">done</i>
-                          <input type="submit" name="registerSubmit" id="formSubmitButton" value="submit">
+                          <input type="submit" name="registerSubmit" id="formSubmitButton" value="Edit Profile Picture and Banner">
                         </button>
                       </div>
                     </form>
