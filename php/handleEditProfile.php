@@ -65,7 +65,7 @@
 
       $pdoq_updateBio = $pdo->prepare("CALL edit_user_bio(:user_id, :bio)");
       $pdoq_updateBio->execute([
-        "user_id" => $_SESSION["account_id"];
+        "user_id" => $_SESSION["account_id"],
         "bio" => $bio
       ]);
       header("location: profile.php");
