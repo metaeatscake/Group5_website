@@ -393,10 +393,10 @@
                             </div><br>
                           </div>
                         </div>
-                        <button class="mdl-button mdl-js-button mdl-button--raised" id="formSubmitButton-container">
+                        <div class="formItem">
                           <i class="material-icons">done</i>
-                          <input type="submit" name="registerSubmit" id="formSubmitButton" value="Edit Account">
-                        </button>
+                          <input type="submit" name="registerSubmit" id="formSubmitButton" class="button" value="Edit Account">
+                        </div>
                         <br>
                       </div>
                     </form>
@@ -417,11 +417,11 @@
                           <textarea name="bio" rows="10" cols="50" placeholder="Edit your Bio. <?php echo $db_bio; ?>" required></textarea>
                         </div><br><br><br>
 
-                        <button class="mdl-button mdl-js-button mdl-button--raised" id="formSubmitButton-container">
-                          <i class="material-icons">done</i>
-                          <input type="submit" name="registerSubmit" id="formSubmitButton" value="Edit Bio">
-                        </button>
-
+                        <div class="formItem">
+                        <i class="material-icons">done</i>
+                        <input type="submit" name="registerSubmit" id="formSubmitButton" value="Edit Bio">
+                        </div>
+                        <br>
                       </div>
                     </form>
                   </div>
@@ -452,10 +452,13 @@
                             <input type="file" name="banner_pic" accept="image/*">
                           </div>
                         </div> <br><br>
-                        <button class="mdl-button mdl-js-button mdl-button--raised" id="formSubmitButton-container">
-                          <i class="material-icons">done</i>
-                          <input type="submit" name="registerSubmit" id="formSubmitButton" value="Edit Profile Picture and Banner">
-                        </button>
+                    
+                        <div class="formItem">
+                        <i class="material-icons">done</i>
+                        <input type="submit" name="registerSubmit" id="formSubmitButton" value="Edit Profile Picture and Banner">
+                        </div>
+                        <br>
+
                       </div>
                     </form>
                   </div>
