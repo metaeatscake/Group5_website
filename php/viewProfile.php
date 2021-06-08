@@ -8,7 +8,7 @@
   $user_dataArray = $pdoq_getUserData->fetch(PDO::FETCH_ASSOC);
 
   //var_dump($user_dataArray);
-  
+
   //Prefetch User Stats.
   $pdoq_getUserStats = $pdo->prepare("SELECT * FROM view_user_stats WHERE user_id = :user_id");
   $pdoq_getUserStats->execute(['user_id' => $_GET["id"]]);
@@ -53,8 +53,8 @@
         /* REPLACE THIS IMAGE WITH A BETTER BACKGROUND */
         /*background: url('php/images/assets/test (1).jpg') center / cover;*/
         background: #ad5389;  /* fallback for old browsers */
-        background: -webkit-linear-gradient(to right, #3c1053, #ad5389);  /* Chrome 10-25, Safari 5.1-6 */
-        background: linear-gradient(to right, #3c1053, #ad5389); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        background: -webkit-linear-gradient(#6148bf, #fff);  /* Chrome 10-25, Safari 5.1-6 */
+        background: linear-gradient(#6148bf, #fff); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
       }
       .demo-layout-transparent .mdl-layout__header,
@@ -139,12 +139,12 @@
 
                 </div>
                 <div class="sponsored-bar-footer">
-                  <a href="#">Privacy</a> · 
-                  <a href="#">Terms</a> · 
-                  <a href="#">Advertising</a> · 
-                  <a href="#">Ad Choices</a> · 
-                  <a href="#">Cookies</a> · 
-                  <a href="#">More</a> · 
+                  <a href="#">Privacy</a> ·
+                  <a href="#">Terms</a> ·
+                  <a href="#">Advertising</a> ·
+                  <a href="#">Ad Choices</a> ·
+                  <a href="#">Cookies</a> ·
+                  <a href="#">More</a> ·
                   <a href="#">Sociality</a> &copy 2021
                 </div>
 
@@ -181,7 +181,7 @@
                         DATE_FORMAT(f.post_time, '$feed_dateFormat') AS date_time,
                         COUNT(c.comment_id) AS count_comments,
                         COUNT(fl.like_id) AS count_likes
-                      FROM tbl_feed f 
+                      FROM tbl_feed f
 
                       JOIN tbl_users u ON (f.user_id = u.user_id)
                       LEFT OUTER JOIN tbl_feed_likes fl ON (f.post_id = fl.post_id)
@@ -223,7 +223,7 @@
 
                         <div class="more-horiz">
                           <span class="material-icons">more_horiz</span>
-                        </div>    
+                        </div>
 
                         <div class="feed_userpic">
                           <a href="<?php echo $profileLink?>">
@@ -235,7 +235,7 @@
                           <a href="<?php echo $profileLink?>">
                             <?php echo $row["username"]; ?>
                           </a>
-                        </div> 
+                        </div>
 
                         <div class="feed_post_time">
                           <a href="<?php echo $post_viewPost_href; ?>">
@@ -247,11 +247,11 @@
                         <div class="feed_title">
                           <?php echo $row["post_title"]; ?>
                         </div><br>
-                      
+
                         <div class="feed_content">
                           <?php echo nl2br($row["post_content"]); ?>
                         </div><br>
-                        
+
 
                         <!-- Only display image div if there is image. -->
                         <?php if (isset($row["post_img"])): ?>
@@ -261,14 +261,14 @@
                         <?php endif; ?><hr>
 
                         <div class="feed_actions">
-                          
-                          <a href="<?php echo $post_likeButton_href; ?>" style="color:<?php echo $post_likeButton_color; ?>"> 
+
+                          <a href="<?php echo $post_likeButton_href; ?>" style="color:<?php echo $post_likeButton_color; ?>">
                             <i class="material-icons">thumb_up</i><?php echo $row["count_likes"]; ?>
                           </a>
 
                           <a href="<?php echo $post_viewPost_href; ?>">
-                            <span class="material-icons" style="color: #262626;">mode_comment</span> 
-                            <span style="color:black;"><?php echo $row["count_comments"]; ?></span>  
+                            <span class="material-icons" style="color: #262626;">mode_comment</span>
+                            <span style="color:black;"><?php echo $row["count_comments"]; ?></span>
                           </a>
 
                           <a href="#">
@@ -297,7 +297,7 @@
                   <h4><b>Joined</b></h4>
                   <h7><?php echo $user_dataArray['register_time']; ?></h7>
 
-                  <?php 
+                  <?php
                     if($user_statsArray['count_comments'] != NULL){
                       echo "
                         <h4><b>Number of Comments</b></h4>
@@ -309,7 +309,7 @@
                     }
                   ?>
 
-                  <?php 
+                  <?php
                     if($user_statsArray['count_post_likes'] != NULL){
                       echo "
                         <h4><b>Number of Likes</b></h4>
@@ -323,7 +323,7 @@
                     }
                   ?>
                 </div>
-              </div> 
+              </div>
             </div>
           </div>
         </div>
