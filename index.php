@@ -96,7 +96,7 @@
              <h1>lmao no posts xdddd</h1>
 
            <?php else: ?>
-              <div style="width: 900px; margin:auto; background: -webkit-linear-gradient(to right, #3c1053, #ad5389); align-content: center;">
+              <div style="width: 85em; margin:auto; background: -webkit-linear-gradient(to right, #3c1053, #ad5389); align-content: center;">
                 <div style="display: flex;">
                   <div>
                     <?php foreach ($post_dataArray as $row): ?>

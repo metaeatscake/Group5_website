@@ -51,6 +51,21 @@
 
     }
 
+    public function getValidationMessageCustom($customBoolArray){
+      $message = "";
+      if (in_array(true, $customBoolArray)) {
+        $message = "The following fields were found empty: "."\n";
+        foreach ($this->booleanArray as $key => $value) {
+          if ($value) {
+            $message .= "\n" . ucfirst($key);
+          }
+        }
+
+      }
+
+      return $message;
+    }
+
     public function debugData(){
       echo "<h2> Cleaned Form Data </h2>";
       echo "<pre>";
@@ -124,7 +139,7 @@
             $message .= "\n" . str_replace("_", " ",ucfirst($key));
           }
         }
-        
+
       }
 
       return $message;

@@ -14,6 +14,16 @@
   $pdoq_getUserStats->execute(['user_id' => $_SESSION["account_id"]]);
   $user_statsArray = $pdoq_getUserStats->fetch(PDO::FETCH_ASSOC);
 
+  //Kinda meh code that supports the edit forms
+  $id = $_SESSION["account_id"];
+
+  // If the query only returns one row, the array can be fetched in one line.
+  $row = $sql->query("SELECT * FROM tbl_users WHERE user_id = '$id'")->fetch_assoc();
+
+  extract($row, EXTR_PREFIX_ALL, "db");
+
+    $requireInput = false;
+
  ?>
  <!DOCTYPE html>
  <html lang="en" dir="ltr">
@@ -53,8 +63,8 @@
         /* REPLACE THIS IMAGE WITH A BETTER BACKGROUND */
         /*background: url('php/images/assets/test (1).jpg') center / cover;*/
         background: #ad5389;  /* fallback for old browsers */
-        background: -webkit-linear-gradient(#21094e, #6148bf);  /* Chrome 10-25, Safari 5.1-6 */
-        background: linear-gradient(#21094e, #6148bf); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        background: -webkit-linear-gradient(#6148bf, #fff);  /* Chrome 10-25, Safari 5.1-6 */
+        background: linear-gradient(#6148bf, #fff); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
       }
       .demo-layout-transparent .mdl-layout__header,
@@ -77,16 +87,13 @@
 
             <div style="background-color: white; text-align: center; color: #405d9b">
 
-              <!--TEMPORARY ONLY, ONCE I KNOW HOW TO WORK ON PUTTING UPLOAD IMAGE ICON BESIDE THE PROFILE PICTURE-->
-              <p><img src="images/users_cover/_default.png" style="width: 100%; height: 380px;" class="cover"></p>
 
-              <!---CHANGE THIS WITH THE TEMPORARY IMG THAT I PUT <img src="images/users_cover/bglight.jpg" style="width: 100%;"> -->
+              <p><img src="<?php echo $user_dataArray['cover_photo']; ?>" style="width: 100%; height: 380px;" class="cover"></p>
 
-              <!--TEMPORARY ONLY, ONCE I KNOW HOW TO WORK ON PUTTING UPLOAD IMAGE ICON BESIDE THE PROFILE PICTURE-->
+              <img src="<?php echo $user_dataArray['profile_pic'] ?>" id="profile_pic">
 
-              <img src="images/users/_default.jpg" id="profile_pic">
-
-              <!--CHANGE THIS WITH THE TEMPORARY IMG THAT I PUT <img id="profile_pic" src="images/users/$db_profile_pic"> --> <br>
+              <!--CHANGE THIS WITH THE TEMPORARY IMG THAT I PUT <img id="profile_p
+              ic" src="images/users/$db_profile_pic"> --> <br>
 
               <!--BELOW AREA OF PROFILE PICTURE-->
               <div id="profile-page-menu-top">
@@ -161,7 +168,7 @@
               </div>
 
                <!--POSTS AREA/ABOUT AREA/CUSTOMIZE PROFILE-->
-              <div id="post-area-menu" style="flex:2.5; padding: 20px; padding-right: 0px;">
+              <div id="post-area-menu">
                 <!--CONTENT OF MY POSTS -->
                 <div id="myPosts" class="tabmenu">
                   <?php
@@ -334,18 +341,6 @@
 
                  <!--CONTENT OF CUSTOMIZE PROFILE -->
                 <div id="customizeProfile" class="tabmenu" style="display:none;">
-                  <?php
-
-                    $id = $_SESSION["account_id"];
-
-                    // If the query only returns one row, the array can be fetched in one line.
-                    $row = $sql->query("SELECT * FROM tbl_users WHERE user_id = '$id'")->fetch_assoc();
-
-                    extract($row, EXTR_PREFIX_ALL, "db");
-
-                      $requireInput = false;
-
-                  ?>
 
                   <div class="page-content" align="center"><br><br>
 
@@ -355,20 +350,26 @@
                       <div class="formCard mdl-card mdl-shadow--4dp">
 
                         <div class="formItem">
-                          <h3>New Username</h3>
+                          <h3>Edit Username</h3>
                           <i class="fa fa-user"></i>
                           <input type="text" name="username" class="input" id="username" value="<?php echo $db_username;?>">
                         </div>
 
                         <div class="formItem">
-                          <h3>New Password</h3>
+                          <h3>Change Password</h3>
+                          <p> (Leave blank to not change password) </p>
                           <i style="font-size:24px" class="fa">&#xf084;</i>
-                          <input class="input" type="password" name="password" required placeholder="Type your new password" min="8">
+                          <input class="input" type="password" name="password" placeholder="Type your old password" min="8">
                         </div><br>
 
                         <div class="formItem">
                           <i style="font-size:24px" class="fa">&#xf084;</i>
-                          <input class="input "type="password" name="confirm_password" required placeholder="Re-type your password" min="8">
+                          <input class="input "type="password" name="new_password" placeholder="Type your new password" min="8">
+                        </div><br>
+
+                        <div class="formItem">
+                          <i style="font-size:24px" class="fa">&#xf084;</i>
+                          <input class="input "type="password" name="confirm_new_password" placeholder="Confirm your new password" min="8">
                         </div><br>
 
                         <div class="formItem">
@@ -385,16 +386,17 @@
 
                             <div class="formItem">
                               <h3>Email</h3>
+                              <p> (Leave empty or as is if you don't want to change it) </p>
                               <i class="fa fa-envelope"></i>
                               <input class="input" type="email" id="email" name="email" required placeholder="Type your new E-mail" value="<?php echo $db_email; ?>">
 
                             </div><br>
                           </div>
                         </div>
-                        <button class="mdl-button mdl-js-button mdl-button--raised" id="formSubmitButton-container">
+                        <div class="formItem">
                           <i class="material-icons">done</i>
-                          <input type="submit" name="registerSubmit" id="formSubmitButton" value="Submit">
-                        </button>
+                          <input type="submit" name="registerSubmit" id="formSubmitButton" class="button" value="Edit Account">
+                        </div>
                         <br>
                       </div>
                     </form>
@@ -402,16 +404,6 @@
                 </div>
                 <!--CONTENT OF CUSTOMIZE BIO -->
                 <div id="customizeBio" class="tabmenu" style="display:none;">
-                  <?php
-
-                    $id = $_SESSION["account_id"];
-
-                    // If the query only returns one row, the array can be fetched in one line.
-                    $row = $sql->query("SELECT * FROM tbl_users WHERE user_id = '$id'")->fetch_assoc();
-
-                    extract($row, EXTR_PREFIX_ALL, "db");
-
-                  ?>
 
                   <div class="page-content" align="center"><br><br>
 
@@ -425,60 +417,48 @@
                           <textarea name="bio" rows="10" cols="50" placeholder="Edit your Bio. <?php echo $db_bio; ?>" required></textarea>
                         </div><br><br><br>
 
-                        <button class="mdl-button mdl-js-button mdl-button--raised" id="formSubmitButton-container">
-                          <i class="material-icons">done</i>
-                          <input type="submit" name="registerSubmit" id="formSubmitButton" value="submit">
-                        </button>
-
+                        <div class="formItem">
+                        <i class="material-icons">done</i>
+                        <input type="submit" name="registerSubmit" id="formSubmitButton" value="Edit Bio">
+                        </div>
+                        <br>
                       </div>
                     </form>
                   </div>
                 </div>
                 <!--CONTENT OF CUSTOMIZE PROFILE PICTURE BANNER -->
                 <div id="customizeProfileBanner" class="tabmenu" style="display:none;">
-                  <?php
 
-                    $id = $_SESSION["account_id"];
-
-                    // If the query only returns one row, the array can be fetched in one line.
-                    $row = $sql->query("SELECT * FROM tbl_users WHERE user_id = '$id'")->fetch_assoc();
-
-                    extract($row, EXTR_PREFIX_ALL, "db");
-
-                    //Changing Profile Picture
-                    $tmp_id = $_SESSION["account_id"];
-                    if($result = $sql->query("SELECT * FROM tbl_users WHERE id = '$tmp_id'")){
-                      while($row = $result->fetch_assoc())
-                      {
-                        extract($row, EXTR_PREFIX_ALL, "data");
-                      }
-                    }
-                      $requireInput = false;
-
-                  ?>
                   <div class="page-content" align="center"><br><br>
 
-                    <form class="" action="handleEditProfile.php" method="POST">
+                    <form class="" action="handleEditProfile.php" method="POST" enctype="multipart/form-data">
                       <div class="formCard mdl-card mdl-shadow--4dp">
 
                         <center><br><img src="images/assets/socialitylogoblack.png" width="300" height="70"><center> <br>
 
                         <img src="<?php echo $db_profile_pic; ?> "width="215" height="200">
-                        <div class="formItem">
-                          <h3 class="text-align: center;" <?php echo $db_username; ?> </h3>
-                        </div>
 
                         <div class="formItem">
                           <h3>Profile Picture</h3>
                           <div>
-                            <input type="file" name="profile_pic" accept="image/*" <?php echo ($requireInput) ? "required":''; ?>>
-
+                            <input type="file" name="profile_pic" accept="image/*">
                           </div>
+                        </div> <br><br>
+
+                        <img src="<?php echo $db_cover_photo ?>" width="215" height="200">
+                        <div class="formItem">
+                          <h3>Banner</h3>
+                          <div class="">
+                            <input type="file" name="banner_pic" accept="image/*">
+                          </div>
+                        </div> <br><br>
+                    
+                        <div class="formItem">
+                        <i class="material-icons">done</i>
+                        <input type="submit" name="registerSubmit" id="formSubmitButton" value="Edit Profile Picture and Banner">
                         </div>
-                        <button class="mdl-button mdl-js-button mdl-button--raised" id="formSubmitButton-container">
-                          <i class="material-icons">done</i>
-                          <input type="submit" name="registerSubmit" id="formSubmitButton" value="submit">
-                        </button>
+                        <br>
+
                       </div>
                     </form>
                   </div>
