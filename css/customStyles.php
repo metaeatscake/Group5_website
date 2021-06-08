@@ -322,8 +322,9 @@
 
   @media only screen and (max-width: 992px){
     .feed_post{
-      width: 100%;
-      min-height: 20%;
+      width: 730px;
+      min-height: 50px;
+      margin-top: 50px;
     }
   }
 
@@ -351,6 +352,15 @@
   .covid-updates{
     font-size: 18px;
     font-weight: normal;
+  }
+
+  @media only screen and (max-width: 992px){
+    #covid-sidebar{
+      display: none;
+    }
+    .covid-bar-footer{
+      display: none;
+    }
   }
 
   .covid-updates p{
@@ -422,6 +432,8 @@
     font-size: 18px;
     font-weight: normal;
   }
+
+
 
   .covid-updates p{
     color:  #000000;
