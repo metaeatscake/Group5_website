@@ -53,8 +53,8 @@
         /* REPLACE THIS IMAGE WITH A BETTER BACKGROUND */
         /*background: url('php/images/assets/test (1).jpg') center / cover;*/
         background: #ad5389;  /* fallback for old browsers */
-        background: -webkit-linear-gradient(#6148bf, #fff);  /* Chrome 10-25, Safari 5.1-6 */
-        background: linear-gradient(#6148bf, #fff); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        background: -webkit-linear-gradient(#21094e, #6148bf);  /* Chrome 10-25, Safari 5.1-6 */
+        background: linear-gradient(#21094e, #6148bf); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
       }
       .demo-layout-transparent .mdl-layout__header,

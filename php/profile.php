@@ -53,8 +53,8 @@
         /* REPLACE THIS IMAGE WITH A BETTER BACKGROUND */
         /*background: url('php/images/assets/test (1).jpg') center / cover;*/
         background: #ad5389;  /* fallback for old browsers */
-        background: -webkit-linear-gradient(#6148bf, #fff);  /* Chrome 10-25, Safari 5.1-6 */
-        background: linear-gradient(#6148bf, #fff); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        background: -webkit-linear-gradient(#21094e, #6148bf);  /* Chrome 10-25, Safari 5.1-6 */
+        background: linear-gradient(#21094e, #6148bf); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
       }
       .demo-layout-transparent .mdl-layout__header,
@@ -161,7 +161,7 @@
               </div>
 
                <!--POSTS AREA/ABOUT AREA/CUSTOMIZE PROFILE-->
-              <div id="post-area-menu">
+              <div id="post-area-menu" style="flex:2.5; padding: 20px; padding-right: 0px;">
                 <!--CONTENT OF MY POSTS -->
                 <div id="myPosts" class="tabmenu">
                   <?php
@@ -355,26 +355,20 @@
                       <div class="formCard mdl-card mdl-shadow--4dp">
 
                         <div class="formItem">
-                          <h3>Edit Username</h3>
+                          <h3>New Username</h3>
                           <i class="fa fa-user"></i>
                           <input type="text" name="username" class="input" id="username" value="<?php echo $db_username;?>">
                         </div>
 
                         <div class="formItem">
-                          <h3>Change Password</h3>
-                          <p> (Leave blank to not change password) </p>
+                          <h3>New Password</h3>
                           <i style="font-size:24px" class="fa">&#xf084;</i>
-                          <input class="input" type="password" name="password" required placeholder="Type your old password" min="8">
+                          <input class="input" type="password" name="password" required placeholder="Type your new password" min="8">
                         </div><br>
 
                         <div class="formItem">
                           <i style="font-size:24px" class="fa">&#xf084;</i>
-                          <input class="input "type="password" name="new_password" required placeholder="Type your new password" min="8">
-                        </div><br>
-
-                        <div class="formItem">
-                          <i style="font-size:24px" class="fa">&#xf084;</i>
-                          <input class="input "type="password" name="confirm_new_password" required placeholder="Confirm your new password" min="8">
+                          <input class="input "type="password" name="confirm_password" required placeholder="Re-type your password" min="8">
                         </div><br>
 
                         <div class="formItem">
@@ -399,7 +393,7 @@
                         </div>
                         <button class="mdl-button mdl-js-button mdl-button--raised" id="formSubmitButton-container">
                           <i class="material-icons">done</i>
-                          <input type="submit" name="registerSubmit" id="formSubmitButton" value="Edit Account">
+                          <input type="submit" name="registerSubmit" id="formSubmitButton" value="Submit">
                         </button>
                         <br>
                       </div>
@@ -433,7 +427,7 @@
 
                         <button class="mdl-button mdl-js-button mdl-button--raised" id="formSubmitButton-container">
                           <i class="material-icons">done</i>
-                          <input type="submit" name="registerSubmit" id="formSubmitButton" value="Edit Bio">
+                          <input type="submit" name="registerSubmit" id="formSubmitButton" value="submit">
                         </button>
 
                       </div>
@@ -483,7 +477,7 @@
                         </div>
                         <button class="mdl-button mdl-js-button mdl-button--raised" id="formSubmitButton-container">
                           <i class="material-icons">done</i>
-                          <input type="submit" name="registerSubmit" id="formSubmitButton" value="Edit Profile Picture and Banner">
+                          <input type="submit" name="registerSubmit" id="formSubmitButton" value="submit">
                         </button>
                       </div>
                     </form>

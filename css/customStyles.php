@@ -333,9 +333,9 @@
       min-height: 20%;
     }
   }
-  
+
   .side-content{
-    flex: 1; 
+    flex: 1;
   }
 
   #covid-sidebar{
