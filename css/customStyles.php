@@ -6,8 +6,12 @@
   -moz-border-radius:5px;
   -webkit-border-radius:5px;
   background-color:#fff;
+  /* uncomment this, if you want to return it on white bg
   background: -webkit-linear-gradient(to bottom, #fff 70%, #fff6e9);
   background: linear-gradient(to bottom, #fff 70%, #fff6e9);
+  */
+  background: -webkit-linear-gradient(#6148bf, #fff);
+  background: linear-gradient(#6148bf, #fff);
   overflow:auto;
   align-items: center;
   float: left;
@@ -62,8 +66,8 @@
   -moz-border-radius:5px;
   -webkit-border-radius:5px;
   background-color:#fff;
-  background: -webkit-linear-gradient(to bottom, #fff 70%, #fff6e9);
-  background: linear-gradient(to bottom, #fff 70%, #fff6e9);
+  background: -webkit-linear-gradient(#6148bf, #fff);
+  background: linear-gradient(#6148bf, #fff);
   overflow:auto;
   align-items: center;
   float: left;
