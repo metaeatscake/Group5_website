@@ -119,10 +119,6 @@
       font-size: 1.5rem;
     }
 
-    .button:hover{
-      box-shadow: inset 400px 0 0 0 #3c1053;
-    }
-
     .input{
       background-color: transparent;
       width: 100%;
@@ -240,6 +236,7 @@
 
   .button:hover{
     color: inset 400px 0 0 0 #3c1053;
+    box-shadow: inset 400px 0 0 0 #3c1053;
   }
 
   .input{
@@ -322,7 +319,7 @@
 
   @media only screen and (max-width: 992px){
     .feed_post{
-      width: 100%;
+      width: 82%;
       min-height: 20%;
     }
   }

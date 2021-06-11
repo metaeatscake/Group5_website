@@ -87,7 +87,7 @@
 
                 <div class="feed_userpic">
                   <img src="<?php echo $row[0]['profile_pic']; ?>">
-                </div>
+                </div><br>
 
                 <div class="feed_post_author">
                   <a href="profile.php">
@@ -95,10 +95,10 @@
                   </a>
                 </div>
 
-                <div class="friends-button">
+                <!-- <div class="friends-button">
                   <span class="material-icons icon">public</span> Public
                   <span class="material-icons icon">arrow_drop_down</span>
-                </div>
+                </div> -->
 
                 <form action="handleCreatePost.php" method="POST" enctype="multipart/form-data"><br><br>
 

@@ -93,10 +93,10 @@
 
            <?php if (empty($post_dataArray)): ?>
              <!-- INSERT HOW TO HANDLE SITE WITHOUT POSTS -->
-             <h1>lmao no posts xdddd</h1>
+             <h2>Share what's on your mind. It matter to us. </h2>
 
            <?php else: ?>
-              <div style="width: 85em; margin:auto; background: -webkit-linear-gradient(to right, #3c1053, #ad5389); align-content: center;">
+              <div style="width: 80em; margin:auto; background: -webkit-linear-gradient(to right, #3c1053, #ad5389); align-content: center;">
                 <div style="display: flex;">
                   <div>
                     <?php foreach ($post_dataArray as $row): ?>
