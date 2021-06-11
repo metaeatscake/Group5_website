@@ -60,7 +60,7 @@
 
      <!-- Custom CSS File -->
      <link rel="stylesheet" href="../css/socialityOverrides.css">
-     
+
    </head>
 
    <body>
@@ -75,8 +75,8 @@
           /* REPLACE THIS IMAGE WITH A BETTER BACKGROUND */
           /*background: url('php/images/assets/test (1).jpg') center / cover;*/
           background: #ad5389;  /* fallback for old browsers */
-          background: -webkit-linear-gradient(to right, #3c1053, #ad5389);  /* Chrome 10-25, Safari 5.1-6 */
-          background: linear-gradient(to right, #3c1053, #ad5389); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+          background: -webkit-linear-gradient(#21094e, #6148bf);  /* Chrome 10-25, Safari 5.1-6 */
+          background: linear-gradient(#21094e, #6148bf); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
         }
         .demo-layout-transparent .mdl-layout__header,
@@ -103,7 +103,7 @@
 
             <!-- Title Area (including the background pic) -->
             <!--i just copied some css on register, you can still change it-->
-            
+
             <center><br><br><img src="images/assets/socialitylogoblack.png" width="300" height="70"><center>
             <br>
             <img src="<?php echo $db_profile_pic; ?> "width="215" height="200">
@@ -115,7 +115,7 @@
                <div>
                <input type="file" name="profile_pic" accept="image/*" <?php echo ($requireInput) ? "required":''; ?>>
                </div>
-        
+
                <div class="formItem">
                  <label>Username</label>
                  <div class="">

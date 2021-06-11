@@ -62,8 +62,8 @@
   -moz-border-radius:5px;
   -webkit-border-radius:5px;
   background-color:#fff;
-  background: -webkit-linear-gradient(#6148bf, #fff);
-  background: linear-gradient(#6148bf, #fff);
+  background: -webkit-linear-gradient(to bottom, #fff 70%, #fff6e9);
+  background: linear-gradient(to bottom, #fff 70%, #fff6e9);
   overflow:auto;
   align-items: center;
   float: left;
@@ -319,8 +319,14 @@
 
   @media only screen and (max-width: 992px){
     .feed_post{
+<<<<<<< HEAD
       width: 82%;
       min-height: 20%;
+=======
+      width: 730px;
+      min-height: 50px;
+      margin-top: 50px;
+>>>>>>> d3c00f8149714a9d24b0e0c7140530532378d8f6
     }
   }
 
@@ -330,9 +336,9 @@
       min-height: 20%;
     }
   }
-  
+
   .side-content{
-    flex: 1; 
+    flex: 1;
   }
 
   #covid-sidebar{
@@ -348,6 +354,15 @@
   .covid-updates{
     font-size: 18px;
     font-weight: normal;
+  }
+
+  @media only screen and (max-width: 992px){
+    #covid-sidebar{
+      display: none;
+    }
+    .covid-bar-footer{
+      display: none;
+    }
   }
 
   .covid-updates p{
@@ -419,6 +434,8 @@
     font-size: 18px;
     font-weight: normal;
   }
+
+
 
   .covid-updates p{
     color:  #000000;

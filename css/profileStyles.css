@@ -36,22 +36,13 @@
 }
 
 #post-area-menu{
-<<<<<<< HEAD
-<<<<<<< HEAD
-  background: -webkit-linear-gradient(#6148bf, #fff);
   padding: 0px;
-=======
-  background: -webkit-linear-gradient(to right, #3c1053, #ad5389);
->>>>>>> 2e1ce9f0665c1428325542fde2e1b0fccc14fe06
-=======
-  background: -webkit-linear-gradient(to right, #3c1053, #ad5389);
->>>>>>> 2e1ce9f0665c1428325542fde2e1b0fccc14fe06
   margin-top: 15px;
   border-radius: 8px;
   min-height: 20%;
   margin: auto;
-  flex:2.5; 
-  padding: 20px; 
+  flex:2.5;
+  padding: 20px;
   padding-right: 0px;
 }
 
