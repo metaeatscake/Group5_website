@@ -110,7 +110,7 @@
                 <button class="w3-bar-item w3-button tablink" onclick="opentabs(event,'about')" style="margin:10px auto;">About</button>
                 <div class="dropdown">
                   <button class="w3-bar-item w3-button tablink" onclick="opentabs(event,'customizeProfile')" style="margin:10px;">Customize Profile</button>
-                    <i class="fa fa-caret-down"></i>
+                    <i class="fa fa-caret-down downtip"></i>
                   </button>
                   <div class="dropdown-content">
                     <button class="w3-bar-item w3-button tablink" onclick="opentabs(event,'customizeProfile')">Edit Profile</button><br><br>

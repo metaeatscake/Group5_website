@@ -323,4 +323,11 @@ hr{
   margin: 0.5em 0px;
   padding: 0;
 }
+
+.downtip{
+  position: relative;
+  bottom: -32px;
+  left: -6em;
+}
+
 </style>

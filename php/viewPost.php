@@ -205,7 +205,9 @@
                   <?php foreach ($arr_comments as $row): ?>
 
                     <div class="comment-dp">
-                      <img  src="<?php echo $row['profile_pic']; ?>" alt="userPic">
+                      <a href="<?php echo $profileLink?>">
+                        <img  src="<?php echo $row['profile_pic']; ?>" alt="userPic">
+                      </a>
                     </div>
                     <div class="dialogbox">
                       <div class="body-box">
