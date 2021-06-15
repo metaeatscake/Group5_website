@@ -92,8 +92,9 @@
             ?>
 
            <?php if (empty($post_dataArray)): ?>
-             <!-- INSERT HOW TO HANDLE SITE WITHOUT POSTS -->
-             <h2>Share what's on your mind. It matter to us. </h2>
+            <!-- INSERT HOW TO HANDLE SITE WITHOUT POSTS -->
+            <br><br>
+            <center><h2 style="color:white">Share what's on your mind. It matter to us.</h2></center>
 
            <?php else: ?>
               <div style="width: 80em; margin:auto; background: -webkit-linear-gradient(to right, #3c1053, #ad5389); align-content: center;">
