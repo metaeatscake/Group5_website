@@ -399,7 +399,7 @@
                       <h3>Bio</h3>
                     </div>
                     <div>
-                      <textarea name="bio" rows="10" cols="50" placeholder="Edit your Bio. <?php echo $db_bio; ?>" required></textarea>
+                      <textarea name="bio" rows="10" cols="50" placeholder="<?php echo $db_bio; ?>" required></textarea>
                     </div><br><br><br>
                     <div class="formItem">
                     <i class="material-icons">done</i>
