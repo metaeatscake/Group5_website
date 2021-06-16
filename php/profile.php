@@ -367,29 +367,37 @@
                     </div><br>
 
                     <div class="formItem">
-                      <div class="labelform">
+                      
+                      <div class="formItem" id="gender">
 
-                        <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-1" style="padding: 14px 26px 29px;">
-                          <input type="radio" id="option-1" class="mdl-radio__button" name="sex" value="male" checked>
-                         <span class="mdl-radio__label">Male</span>
-                        </label>
-                        <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-2" style="padding: 14px 26px 29px;">
-                          <input type="radio" id="option-2" class="mdl-radio__button" name="sex" value="female">
-                          <span class="mdl-radio__label">Female</span>
-                        </label><br>
+                        <input class="gender" type="radio" name="sex" id="male" value="male" checked>
+                          <label for="male">
+                            <span>&#9794;</span>
+                            <span>Male</span>
+                          </label>
+                         
+                        <input class="gender" type="radio" name="sex" id="female" value="female">
+                          <label for="female">
+                            <span>&#9792;</span>
+                            <span>Female</span>
+                          </label>
 
-                        <div class="formItem">
-                          <h3>Email</h3>
-                          <p> (Leave empty or as is if you don't want to change it) </p>
-                          <i class="fa fa-envelope"></i>
-                          <input class="input" type="email" id="email" name="email" required placeholder="Type your new E-mail" value="<?php echo $db_email; ?>">
-                        </div><br>
                       </div>
+
                     </div>
+
+                    <div class="formItem">
+                      <h3>Email</h3>
+                        <p> (Leave empty or as is if you don't want to change it) </p>
+                          <i class="fa fa-envelope"></i>
+                            <input class="input" type="email" id="email" name="email" required placeholder="Type your new E-mail" value="<?php echo $db_email; ?>">
+                    </div><br>
+
                     <div class="formItem">
                       <i class="material-icons">done</i>
-                      <input type="submit" name="registerSubmit" id="formSubmitButton" class="button" value="Edit Account">
+                        <input class="button" type="submit" name="registerSubmit" id="formSubmitButton" class="button" value="Edit Account">
                     </div><br>
+
                   </form><br><br>
                 </div>
                 <!--CONTENT OF CUSTOMIZE BIO -->
@@ -403,7 +411,7 @@
                     </div><br><br><br>
                     <div class="formItem">
                     <i class="material-icons">done</i>
-                    <input type="submit" name="registerSubmit" id="formSubmitButton" value="Edit Bio">
+                    <input class="button"  type="submit" name="registerSubmit" id="formSubmitButton" value="Edit Bio">
                     </div><br>                   
                   </form>
                 </div>
@@ -427,7 +435,7 @@
                 
                     <div class="formItem">
                     <i class="material-icons">done</i>        
-                      <input type="submit" name="registerSubmit" id="formSubmitButton" value="Edit Profile Picture and Banner"> 
+                      <input class="button" type="submit" name="registerSubmit" id="formSubmitButton" value="Edit Profile Picture and Banner"> 
                     </div><br>
 
                   </form>
