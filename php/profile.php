@@ -414,23 +414,22 @@
 
                     <div class="formItem">
                       <h3>Profile Picture</h3>
-                      <div>
+                     
                         <input type="file" name="profile_pic" accept="image/*">
-                      </div>
+                      
                     </div> <br><br>
 
-                    <img src="<?php echo $db_cover_photo ?>" width="215" height="200">
+                    <img src="<?php echo $db_cover_photo ?>" width="480" height="200">
                     <div class="formItem">
                       <h3>Banner</h3>
-                      <div class="">
-                        <input type="file" name="banner_pic" accept="image/*">
-                      </div>
-                    </div> <br><br>
+                      <input type="file" name="banner_pic" accept="image/*">       
+                    </div> <br>
                 
                     <div class="formItem">
-                    <i class="material-icons">done</i>
-                    <input type="submit" name="registerSubmit" id="formSubmitButton" value="Edit Profile Picture and Banner">
+                    <i class="material-icons">done</i>        
+                      <input type="submit" name="registerSubmit" id="formSubmitButton" value="Edit Profile Picture and Banner"> 
                     </div><br>
+
                   </form>
                 </div>
               </div>

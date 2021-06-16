@@ -351,12 +351,13 @@ hr{
 }
 
 form{
+  margin: auto;
+  text-align: center;
   background-color: white;
   border-radius: 8px;
   padding: 13px;
+  
 }
-
-.edit-profile-form{
 
 }
 
@@ -364,4 +365,3 @@ form{
   margin-top: -13px;
   position: relative;
 }
-</style>
