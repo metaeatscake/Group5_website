@@ -318,9 +318,9 @@
 
   @media only screen and (max-width: 992px){
     .feed_post{
-      width: 580px;
+    width: 650px;
 	  margin-top: 50px;
-	  margin-left: 9px;
+	  margin-left: 3%;
     }
   }
 

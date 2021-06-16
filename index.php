@@ -55,7 +55,7 @@
         .demo-layout-transparent .mdl-layout__drawer-button {
           /* This background is dark, so we set text to white. Use 87% black instead if
              your background is light. */
-          color: #cca8e6;
+          color: #fff;
         }
       </style>
 
@@ -187,8 +187,8 @@
                         </div>
                         <br>
                       </div>
-                    <?php endforeach; ?> 
-                  </div> 
+                    <?php endforeach; ?>
+                  </div>
                   <div class="side-content">
                     <div id = "covid-sidebar">
                       <div class="feed_userpic">
@@ -208,7 +208,7 @@
                       </div>
                       <div class="covid-websites">
                         <p>To know more, visit these websites:</p>
-                        <?php 
+                        <?php
                           echo '<a href="https://doh.gov.ph/2019-nCoV?fbclid=IwAR0QGeHmsHvDSF5erj1mLvW-bM6wYb2kOuAazhDbHcNE16N55uzEPOnKJQE">Department of Health (Philippines)</a><br><br>';
 
                           echo '<a href="https://www.who.int/westernpacific?fbclid=IwAR0OsMVcS3XIPV-gLedOkQRUbNdMmqjxvDdv_VfGs1xN3SpbTmszDOu8FwM">World Health Organization Western Pacific Region</a><br><br>';
@@ -222,14 +222,14 @@
                           echo '<a href="https://www.who.int/emergencies/diseases/novel-coronavirus-2019">World Health Organization (WHO) </a><br><br>';
                        ?>
                       </div>
-                    </div> 
+                    </div>
                     <div class="covid-bar-footer">
-                      <a href="#">Privacy</a> · 
-                      <a href="#">Terms</a> · 
-                      <a href="#">Advertising</a> · 
-                      <a href="#">Ad Choices</a> · 
-                      <a href="#">Cookies</a> · 
-                      <a href="#">More</a> · 
+                      <a href="#">Privacy</a> ·
+                      <a href="#">Terms</a> ·
+                      <a href="#">Advertising</a> ·
+                      <a href="#">Ad Choices</a> ·
+                      <a href="#">Cookies</a> ·
+                      <a href="#">More</a> ·
                       <a href="#">Sociality</a> &copy 2021
                     </div>
                   </div>
