@@ -320,7 +320,7 @@
     .feed_post{
     width: 650px;
 	  margin-top: 50px;
-	  margin-left: 3%;
+	  margin-left: 4%;
     }
   }
 
