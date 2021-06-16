@@ -63,8 +63,8 @@
         /* REPLACE THIS IMAGE WITH A BETTER BACKGROUND */
         /*background: url('php/images/assets/test (1).jpg') center / cover;*/
         background: #ad5389;  /* fallback for old browsers */
-        background: -webkit-linear-gradient(#6148bf, #fff);  /* Chrome 10-25, Safari 5.1-6 */
-        background: linear-gradient(#6148bf, #fff); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        background: -webkit-linear-gradient(#21094e, #6148bf);  /* Chrome 10-25, Safari 5.1-6 */
+        background: linear-gradient(#21094e, #6148bf); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
       }
       .demo-layout-transparent .mdl-layout__header,
@@ -367,7 +367,7 @@
                     </div><br>
 
                     <div class="formItem">
-                      
+
                       <div class="formItem" id="gender">
 
                         <input class="gender" type="radio" name="sex" id="male" value="male" checked>
@@ -375,7 +375,7 @@
                             <span>&#9794;</span>
                             <span>Male</span>
                           </label>
-                         
+
                         <input class="gender" type="radio" name="sex" id="female" value="female">
                           <label for="female">
                             <span>&#9792;</span>
@@ -412,7 +412,7 @@
                     <div class="formItem">
                     <i class="material-icons">done</i>
                     <input class="button"  type="submit" name="registerSubmit" id="formSubmitButton" value="Edit Bio">
-                    </div><br>                   
+                    </div><br>
                   </form>
                 </div>
                 <!--CONTENT OF CUSTOMIZE PROFILE PICTURE BANNER -->
@@ -422,20 +422,20 @@
 
                     <div class="formItem">
                       <h3>Profile Picture</h3>
-                     
+
                         <input type="file" name="profile_pic" accept="image/*">
-                      
+
                     </div> <br><br>
 
                     <img src="<?php echo $db_cover_photo ?>" width="480" height="200">
                     <div class="formItem">
                       <h3>Banner</h3>
-                      <input type="file" name="banner_pic" accept="image/*">       
+                      <input type="file" name="banner_pic" accept="image/*">
                     </div> <br>
-                
+
                     <div class="formItem">
-                    <i class="material-icons">done</i>        
-                      <input class="button" type="submit" name="registerSubmit" id="formSubmitButton" value="Edit Profile Picture and Banner"> 
+                    <i class="material-icons">done</i>
+                      <input class="button" type="submit" name="registerSubmit" id="formSubmitButton" value="Edit Profile Picture and Banner">
                     </div><br>
 
                   </form>
