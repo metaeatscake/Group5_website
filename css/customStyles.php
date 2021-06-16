@@ -287,8 +287,6 @@
 
   .feed_post{
     margin:auto;
-    width: 39%;
-    min-height: 20%;
     color: black;
     background-color: white;
     padding: 4.5%;
@@ -314,19 +312,15 @@
     .feed_post{
       width: 100%;
       min-height: 20%;
+      margin-top: -8px;
     }
   }
 
   @media only screen and (max-width: 992px){
     .feed_post{
-<<<<<<< HEAD
-      width: 82%;
-      min-height: 20%;
-=======
-      width: 730px;
-      min-height: 50px;
-      margin-top: 50px;
->>>>>>> d3c00f8149714a9d24b0e0c7140530532378d8f6
+      width: 580px;
+	  margin-top: 50px;
+	  margin-left: 9px;
     }
   }
 
@@ -334,6 +328,7 @@
     .feed_post{
       width: 100.3%;
       min-height: 20%;
+      margin-top: -10px;
     }
   }
 

@@ -125,7 +125,7 @@
 
                         $js_likePostLink = "php/ajax/xmlhttp_likePost.php?id=".$post_fancyID;
                       ?>
-                      <div style="flex: 2.5; padding: 20px; padding-right: 0px;">
+                      <div style="flex: 2.5; padding: 39px 43px 0; padding-right: 0px;">
                         <div class="feed_post" id="<?php echo 'p_'.$post_fancyID; ?>">
                           <div class="more-horiz">
                             <span class="material-icons">more_horiz</span>
