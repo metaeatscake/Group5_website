@@ -341,127 +341,97 @@
 
                  <!--CONTENT OF CUSTOMIZE PROFILE -->
                 <div id="customizeProfile" class="tabmenu" style="display:none;">
+                  <!-- EDIT PROFILE CARD -->
+                  <form class="edit-profile-card" action="handleEditProfile.php" method="POST">
+                    <div class="formItem">
+                      <h3>Edit Username</h3>
+                      <i class="fa fa-user"></i>
+                      <input type="text" name="username" class="input" id="username" value="<?php echo $db_username;?>">
+                    </div>
 
-                  <div class="page-content" align="center"><br><br>
+                    <div class="formItem">
+                      <h3>Change Password</h3>
+                      <p> (Leave blank to not change password) </p>
+                      <i style="font-size:24px" class="fa">&#xf084;</i>
+                      <input class="input" type="password" name="password" placeholder="Type your old password" min="8">
+                    </div><br>
 
-                    <!-- Edit Profile Card. -->
-                    <!--Form Proper-->
-                    <form class="" action="handleEditProfile.php" method="POST">
-                      <div class="formCard mdl-card mdl-shadow--4dp">
+                    <div class="formItem">
+                      <i style="font-size:24px" class="fa">&#xf084;</i>
+                      <input class="input "type="password" name="new_password" placeholder="Type your new password" min="8">
+                    </div><br>
+
+                    <div class="formItem">
+                      <i style="font-size:24px" class="fa">&#xf084;</i>
+                      <input class="input "type="password" name="confirm_new_password" placeholder="Confirm your new password" min="8">
+                    </div><br>
+
+                    <div class="formItem">
+                      <div class="labelform">
+
+                        <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-1" style="padding: 14px 26px 29px;">
+                          <input type="radio" id="option-1" class="mdl-radio__button" name="sex" value="male" checked>
+                         <span class="mdl-radio__label">Male</span>
+                        </label>
+                        <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-2" style="padding: 14px 26px 29px;">
+                          <input type="radio" id="option-2" class="mdl-radio__button" name="sex" value="female">
+                          <span class="mdl-radio__label">Female</span>
+                        </label><br>
 
                         <div class="formItem">
-                          <h3>Edit Username</h3>
-                          <i class="fa fa-user"></i>
-                          <input type="text" name="username" class="input" id="username" value="<?php echo $db_username;?>">
-                        </div>
-
-                        <div class="formItem">
-                          <h3>Change Password</h3>
-                          <p> (Leave blank to not change password) </p>
-                          <i style="font-size:24px" class="fa">&#xf084;</i>
-                          <input class="input" type="password" name="password" placeholder="Type your old password" min="8">
+                          <h3>Email</h3>
+                          <p> (Leave empty or as is if you don't want to change it) </p>
+                          <i class="fa fa-envelope"></i>
+                          <input class="input" type="email" id="email" name="email" required placeholder="Type your new E-mail" value="<?php echo $db_email; ?>">
                         </div><br>
-
-                        <div class="formItem">
-                          <i style="font-size:24px" class="fa">&#xf084;</i>
-                          <input class="input "type="password" name="new_password" placeholder="Type your new password" min="8">
-                        </div><br>
-
-                        <div class="formItem">
-                          <i style="font-size:24px" class="fa">&#xf084;</i>
-                          <input class="input "type="password" name="confirm_new_password" placeholder="Confirm your new password" min="8">
-                        </div><br>
-
-                        <div class="formItem">
-                          <div class="labelform">
-
-                            <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-1" style="padding: 14px 26px 29px;">
-                              <input type="radio" id="option-1" class="mdl-radio__button" name="sex" value="male" checked>
-                             <span class="mdl-radio__label">Male</span>
-                            </label>
-                            <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-2" style="padding: 14px 26px 29px;">
-                              <input type="radio" id="option-2" class="mdl-radio__button" name="sex" value="female">
-                              <span class="mdl-radio__label">Female</span>
-                            </label><br>
-
-                            <div class="formItem">
-                              <h3>Email</h3>
-                              <p> (Leave empty or as is if you don't want to change it) </p>
-                              <i class="fa fa-envelope"></i>
-                              <input class="input" type="email" id="email" name="email" required placeholder="Type your new E-mail" value="<?php echo $db_email; ?>">
-
-                            </div><br>
-                          </div>
-                        </div>
-                        <div class="formItem">
-                          <i class="material-icons">done</i>
-                          <input type="submit" name="registerSubmit" id="formSubmitButton" class="button" value="Edit Account">
-                        </div>
-                        <br>
                       </div>
-                    </form>
-                  </div><br><br>
+                    </div>
+                    <div class="formItem">
+                      <i class="material-icons">done</i>
+                      <input type="submit" name="registerSubmit" id="formSubmitButton" class="button" value="Edit Account">
+                    </div><br>
+                  </form><br><br>
                 </div>
                 <!--CONTENT OF CUSTOMIZE BIO -->
                 <div id="customizeBio" class="tabmenu" style="display:none;">
-
-                  <div class="page-content" align="center"><br><br>
-
-                    <form class="" action="handleEditProfile.php" method="POST">
-                      <div class="formCard mdl-card mdl-shadow--4dp">
-
-                        <div class="formItem">
-                          <h3>Bio</h3>
-                        </div>
-                        <div>
-                          <textarea name="bio" rows="10" cols="50" placeholder="Edit your Bio. <?php echo $db_bio; ?>" required></textarea>
-                        </div><br><br><br>
-
-                        <div class="formItem">
-                        <i class="material-icons">done</i>
-                        <input type="submit" name="registerSubmit" id="formSubmitButton" value="Edit Bio">
-                        </div>
-                        <br>
-                      </div>
-                    </form>
-                  </div>
+                  <form class="edit-bio-form" action="handleEditProfile.php" method="POST">
+                    <div class="formItem">
+                      <h3>Bio</h3>
+                    </div>
+                    <div>
+                      <textarea name="bio" rows="10" cols="50" placeholder="Edit your Bio. <?php echo $db_bio; ?>" required></textarea>
+                    </div><br><br><br>
+                    <div class="formItem">
+                    <i class="material-icons">done</i>
+                    <input type="submit" name="registerSubmit" id="formSubmitButton" value="Edit Bio">
+                    </div><br>                   
+                  </form>
                 </div>
                 <!--CONTENT OF CUSTOMIZE PROFILE PICTURE BANNER -->
                 <div id="customizeProfileBanner" class="tabmenu" style="display:none;">
+                  <form class="" action="handleEditProfile.php" method="POST" enctype="multipart/form-data">
+                    <img src="<?php echo $db_profile_pic; ?> "width="215" height="200">
 
-                  <div class="page-content" align="center"><br><br>
-
-                    <form class="" action="handleEditProfile.php" method="POST" enctype="multipart/form-data">
-                      <div class="formCard mdl-card mdl-shadow--4dp">
-
-                        <center><br><img src="images/assets/socialitylogoblack.png" width="300" height="70"><center> <br>
-
-                        <img src="<?php echo $db_profile_pic; ?> "width="215" height="200">
-
-                        <div class="formItem">
-                          <h3>Profile Picture</h3>
-                          <div>
-                            <input type="file" name="profile_pic" accept="image/*">
-                          </div>
-                        </div> <br><br>
-
-                        <img src="<?php echo $db_cover_photo ?>" width="215" height="200">
-                        <div class="formItem">
-                          <h3>Banner</h3>
-                          <div class="">
-                            <input type="file" name="banner_pic" accept="image/*">
-                          </div>
-                        </div> <br><br>
-                    
-                        <div class="formItem">
-                        <i class="material-icons">done</i>
-                        <input type="submit" name="registerSubmit" id="formSubmitButton" value="Edit Profile Picture and Banner">
-                        </div>
-                        <br>
-
+                    <div class="formItem">
+                      <h3>Profile Picture</h3>
+                      <div>
+                        <input type="file" name="profile_pic" accept="image/*">
                       </div>
-                    </form>
-                  </div>
+                    </div> <br><br>
+
+                    <img src="<?php echo $db_cover_photo ?>" width="215" height="200">
+                    <div class="formItem">
+                      <h3>Banner</h3>
+                      <div class="">
+                        <input type="file" name="banner_pic" accept="image/*">
+                      </div>
+                    </div> <br><br>
+                
+                    <div class="formItem">
+                    <i class="material-icons">done</i>
+                    <input type="submit" name="registerSubmit" id="formSubmitButton" value="Edit Profile Picture and Banner">
+                    </div><br>
+                  </form>
                 </div>
               </div>
             </div>
@@ -481,10 +451,10 @@
     }
     tablinks = document.getElementsByClassName("tablink");
     for (i = 0; i < x.length; i++) {
-      tablinks[i].className = tablinks[i].className.replace(" w3-purple", "");
+      tablinks[i].className = tablinks[i].className.replace(" btn-primary", "");
     }
     document.getElementById(tabname).style.display = "block";
-    tab.currentTarget.className += " w3-purple";
+    tab.currentTarget.className += " btn-primary";
   }
 
   function myFunction() {
