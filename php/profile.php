@@ -344,26 +344,32 @@
                   <!-- EDIT PROFILE CARD -->
                   <form class="edit-profile-card" action="handleEditProfile.php" method="POST">
                     <div class="formItem">
-                      <h3>Edit Username</h3>
-                      <i class="fa fa-user"></i>
+                      <h5>Edit Username</h5>
+                      <i  class="fa fa-user"></i>
                       <input type="text" name="username" class="input" id="username" value="<?php echo $db_username;?>">
                     </div>
 
                     <div class="formItem">
-                      <h3>Change Password</h3>
-                      <p> (Leave blank to not change password) </p>
-                      <i style="font-size:24px" class="fa">&#xf084;</i>
+                      <h5 style="float: left; position: relative;">Change Password</h5><p style="float: right;position: relative; bottom: -8px; left: -200px; color: #ff0000;"> *Leave blank to not change password </p>
+                      
+                      <i  class="fa">&#xf084;</i>
                       <input class="input" type="password" name="password" placeholder="Type your old password" min="8">
-                    </div><br>
+                    </div>
 
                     <div class="formItem">
-                      <i style="font-size:24px" class="fa">&#xf084;</i>
+                      <i  class="fa">&#xf084;</i>
                       <input class="input "type="password" name="new_password" placeholder="Type your new password" min="8">
-                    </div><br>
+                    </div>
 
                     <div class="formItem">
-                      <i style="font-size:24px" class="fa">&#xf084;</i>
+                      <i class="fa">&#xf084;</i>
                       <input class="input "type="password" name="confirm_new_password" placeholder="Confirm your new password" min="8">
+                    </div>
+
+                    <div class="formItem">
+                      <h5 style="float: left;">Email</h5><p style="float: right;position: relative; bottom: -8px; right: 330px; color: #ff0000;"> *Leave blank to not change email </p>
+                      <i class="fa fa-envelope"></i>
+                      <input class="input" type="email" id="email" name="email" required placeholder="Type your new E-mail" value="<?php echo $db_email; ?>">
                     </div><br>
 
                     <div class="formItem">
@@ -371,31 +377,23 @@
                       <div class="formItem" id="gender">
 
                         <input class="gender" type="radio" name="sex" id="male" value="male" checked>
-                          <label for="male">
-                            <span>&#9794;</span>
-                            <span>Male</span>
-                          </label>
+                        <label for="male">
+                          <i class="fa fa-male"></i>
+                          <span>Male</span>
+                        </label>
 
                         <input class="gender" type="radio" name="sex" id="female" value="female">
-                          <label for="female">
-                            <span>&#9792;</span>
-                            <span>Female</span>
-                          </label>
+                        <label for="female">
+                          <i class="fa fa-female"></i>
+                          <span>Female</span>
+                        </label>
 
                       </div>
 
                     </div>
 
                     <div class="formItem">
-                      <h3>Email</h3>
-                        <p> (Leave empty or as is if you don't want to change it) </p>
-                          <i class="fa fa-envelope"></i>
-                            <input class="input" type="email" id="email" name="email" required placeholder="Type your new E-mail" value="<?php echo $db_email; ?>">
-                    </div><br>
-
-                    <div class="formItem">
-                      <i class="material-icons">done</i>
-                        <input class="button" type="submit" name="registerSubmit" id="formSubmitButton" class="button" value="Edit Account">
+                        <input class="button" type="submit" name="registerSubmit" id="formSubmitButton" class="button" value="Save">
                     </div><br>
 
                   </form><br><br>
@@ -408,34 +406,30 @@
                     </div>
                     <div>
                       <textarea name="bio" rows="10" cols="50" placeholder="<?php echo $db_bio; ?>" required></textarea>
-                    </div><br><br><br>
+                    </div><br>
                     <div class="formItem">
-                    <i class="material-icons">done</i>
-                    <input class="button"  type="submit" name="registerSubmit" id="formSubmitButton" value="Edit Bio">
+                      <br><br><br>
+                    <input class="button"  type="submit" name="registerSubmit" id="formSubmitButton" value="Save">
                     </div><br>
                   </form>
                 </div>
                 <!--CONTENT OF CUSTOMIZE PROFILE PICTURE BANNER -->
                 <div id="customizeProfileBanner" class="tabmenu" style="display:none;">
-                  <form class="" action="handleEditProfile.php" method="POST" enctype="multipart/form-data">
-                    <img src="<?php echo $db_profile_pic; ?> "width="215" height="200">
-
+                  <form class="" action="handleEditProfile.php" method="POST" enctype="multipart/form-data" align="center">
+                    <img src="<?php echo $db_cover_photo ?>" width="480" height="250">
                     <div class="formItem">
-                      <h3>Profile Picture</h3>
-
-                        <input type="file" name="profile_pic" accept="image/*">
-
-                    </div> <br><br>
-
-                    <img src="<?php echo $db_cover_photo ?>" width="480" height="200">
-                    <div class="formItem">
-                      <h3>Banner</h3>
+                      <h3>Profile Banner</h3>
                       <input type="file" name="banner_pic" accept="image/*">
                     </div> <br>
 
+                    <img src="<?php echo $db_profile_pic; ?> "width="215" height="200">
                     <div class="formItem">
-                    <i class="material-icons">done</i>
-                      <input class="button" type="submit" name="registerSubmit" id="formSubmitButton" value="Edit Profile Picture and Banner">
+                      <h3>Profile Picture</h3>
+                        <input type="file" name="profile_pic" accept="image/*">
+                    </div> <br><br>
+
+                    <div class="formItem">
+                      <input class="button" type="submit" name="registerSubmit" id="formSubmitButton" value="Save">
                     </div><br>
 
                   </form>
