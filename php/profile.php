@@ -344,16 +344,26 @@
                   <!-- EDIT PROFILE CARD -->
                   <form class="edit-profile-card" action="handleEditProfile.php" method="POST">
                     <div class="formItem">
-                      <h5>Edit Username</h5>
-                      <i  class="fa fa-user"></i>
+                      <label for="username">Edit Username</label>
+                    </div>
+
+                    <div class="formItem">  
                       <input type="text" name="username" class="input" id="username" value="<?php echo $db_username;?>">
+                      <i class="fa fa-user"></i>
                     </div>
 
                     <div class="formItem">
-                      <h5 style="float: left; position: relative;">Change Password</h5><p style="float: right;position: relative; bottom: -8px; left: -200px; color: #ff0000;"> *Leave blank to not change password </p>
-                      
+                      <label for="password">Password</label>
+                    </div>
+
+                    <div class="formItem">
+                      <p style="color: #ff0000;"> *Leave blank to not change password </p>
+                    </div>
+
+                    <div class="formItem">  
                       <i  class="fa">&#xf084;</i>
                       <input class="input" type="password" name="password" placeholder="Type your old password" min="8">
+                      
                     </div>
 
                     <div class="formItem">
@@ -367,9 +377,17 @@
                     </div>
 
                     <div class="formItem">
-                      <h5 style="float: left;">Email</h5><p style="float: right;position: relative; bottom: -8px; right: 330px; color: #ff0000;"> *Leave blank to not change email </p>
-                      <i class="fa fa-envelope"></i>
+                      <label for="lname">Email</label>
+                    
+                    </div>
+
+                    <div class="formItem">
+                      <p style="color: #ff0000;"> *Leave blank to not change email </p>
+                    </div>
+
+                    <div class="formItem">
                       <input class="input" type="email" id="email" name="email" required placeholder="Type your new E-mail" value="<?php echo $db_email; ?>">
+                      <i class="fa fa-envelope"></i>
                     </div><br>
 
                     <div class="formItem">
@@ -381,7 +399,7 @@
                           <i class="fa fa-male"></i>
                           <span>Male</span>
                         </label>
-
+                      &nbsp;
                         <input class="gender" type="radio" name="sex" id="female" value="female">
                         <label for="female">
                           <i class="fa fa-female"></i>
