@@ -49,6 +49,14 @@
     <link rel="stylesheet" href="../css/navbar.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="../css/scrollbar.css">
+
+    <!-- Custom JS stuff -->
+    <script type="text/javascript">
+      let previewImage = function(event, targetID){
+        let imgtag = document.getElementById(targetID);
+        imgtag.src = URL.createObjectURL(event.target.files[0]);
+      }
+    </script>
   </head>
   <body>
     <?php include_once("inc/_js_mdl_formAlert.php") ?>
@@ -436,16 +444,16 @@
                 <!--CONTENT OF CUSTOMIZE PROFILE PICTURE BANNER -->
                 <div id="customizeProfileBanner" class="tabmenu" style="display:none;">
                   <form class="" action="handleEditProfile.php" method="POST" enctype="multipart/form-data" align="center">
-                    <img src="<?php echo $db_cover_photo ?>" width="480" height="250">
+                    <img src="<?php echo $db_cover_photo ?>" width="480" height="250" id="editProfPics_banner">
                     <div class="formItem">
                       <h3>Profile Banner</h3>
-                      <input type="file" name="banner_pic" accept="image/*">
+                      <input type="file" name="banner_pic" accept="image/*" onchange="previewImage(event, 'editProfPics_banner')">
                     </div> <br>
 
-                    <img src="<?php echo $db_profile_pic; ?> "width="215" height="200">
+                    <img src="<?php echo $db_profile_pic; ?> "width="215" height="200" id="editProfPics_profilePic">
                     <div class="formItem">
                       <h3>Profile Picture</h3>
-                        <input type="file" name="profile_pic" accept="image/*">
+                        <input type="file" name="profile_pic" accept="image/*" onchange="previewImage(event, 'editProfPics_profilePic')">
                     </div> <br><br>
 
                     <div class="formItem">
