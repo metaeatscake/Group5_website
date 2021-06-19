@@ -35,6 +35,19 @@
      <!-- <link rel="stylesheet" type="text/css" href="../css/profileStyles.css"> -->
      <link rel="stylesheet" type="text/css" href="../css/tmp.css">
      <link rel="stylesheet" href="../css/scrollbar.css">
+
+     <!-- Custom Create Post Javascript -->
+     <script type="text/javascript">
+      let loadFile = function(event) {
+        let image = document.getElementById('js_previewImage');
+        image.src = URL.createObjectURL(event.target.files[0]);
+      };
+
+      let updateUploadButton = function(divId){
+        let txtfield = document.getElementById(divId);
+        txtfield.innerText = "1 Photo Uploaded";
+      }
+     </script>
    </head>
 
    <!-- MDL Error Dialog support. -->
@@ -107,14 +120,19 @@
                   <textarea name="inputText" rows="5" cols="50" placeholder="What's on your mind, <?php echo $row[0]['username']; ?>?"></textarea>
                     <br>
 
-                  <input type="file" id="actual-btn" name="inputPic" hidden/>
+                  <input type="file" id="actual-btn" name="inputPic" onchange="updateUploadButton('js_pic_count');loadFile(event)" hidden/>
                   <label for="actual-btn">
                     <span class="material-icons icon">photo</span>
+                    <span id="js_pic_count">Upload Photo (Optional)</span>
                   </label>
-
                   <input type="submit" name="btnSubmit" class="btn-primary" value="Post">
 
                 </form>
+
+                <!-- IMAGE PREVIEW -->
+                <div id="post_uploadImagePreview">
+                  <img id="js_previewImage" style="margin:auto;width:50%;height:50%;padding:50px;">
+                </div>
 
               </div>
 
