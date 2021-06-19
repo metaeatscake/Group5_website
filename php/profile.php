@@ -347,7 +347,7 @@
                       <label for="username">Edit Username</label>
                     </div>
 
-                    <div class="formItem">  
+                    <div class="formItem">
                       <input type="text" name="username" class="input" id="username" value="<?php echo $db_username;?>">
                       <i class="fa fa-user"></i>
                     </div>
@@ -360,10 +360,10 @@
                       <p style="color: #ff0000;"> *Leave blank to not change password </p>
                     </div>
 
-                    <div class="formItem">  
+                    <div class="formItem">
                       <i  class="fa">&#xf084;</i>
                       <input class="input" type="password" name="password" placeholder="Type your old password" min="8">
-                      
+
                     </div>
 
                     <div class="formItem">
@@ -378,7 +378,7 @@
 
                     <div class="formItem">
                       <label for="lname">Email</label>
-                    
+
                     </div>
 
                     <div class="formItem">
@@ -412,6 +412,7 @@
 
                     <div class="formItem">
                         <input class="button" type="submit" name="registerSubmit" id="formSubmitButton" class="button" value="Save">
+                        <input type="hidden" name="editProfileTarget" value="Edit Account">
                     </div><br>
 
                   </form><br><br>
@@ -428,6 +429,7 @@
                     <div class="formItem">
                       <br><br><br>
                     <input class="button"  type="submit" name="registerSubmit" id="formSubmitButton" value="Save">
+                    <input type="hidden" name="editProfileTarget" value="Edit Bio">
                     </div><br>
                   </form>
                 </div>
@@ -448,6 +450,7 @@
 
                     <div class="formItem">
                       <input class="button" type="submit" name="registerSubmit" id="formSubmitButton" value="Save">
+                      <input type="hidden" name="editProfileTarget" value="Edit Profile Picture and Banner">
                     </div><br>
 
                   </form>

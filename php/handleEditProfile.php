@@ -5,7 +5,7 @@
   include_once("oop/_main.php");
 
   //Get value of Submit button.
-  $editTarget = $_POST["registerSubmit"];
+  $editTarget = $_POST["editProfileTarget"];
 
   switch ($editTarget) {
     case "Edit Account":
