@@ -44,8 +44,8 @@
       'comment' => $vld->getFormVar("post_comment")
     ]);
 
-    $_SESSION["handler-alert"] = "Comment successfully posted!";
-    $_SESSION["handler-alert-type"] = "Success";
+    //$_SESSION["handler-alert"] = "Comment successfully posted!";
+    //$_SESSION["handler-alert-type"] = "Success";
     header("location: viewPost.php?id=$postIdHolder");
     exit();
 
