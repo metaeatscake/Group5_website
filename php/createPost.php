@@ -95,8 +95,11 @@
                   $row = $post_dataArray;
                 ?>
 
-                <a href="../"><span class="material-icons left">close</span></a>
-                <h4 class="centered"><strong>Create Post</strong></h4><hr>
+                <div>
+                  <a href="../"><span class="material-icons left">close</span></a>
+                  <h4 class="centered"><strong>Create Post</strong></h4><hr>                  
+                </div>
+
 
                 <div class="feed_userpic">
                   <img src="<?php echo $row[0]['profile_pic']; ?>">
@@ -108,17 +111,17 @@
                   </a>
                 </div>
 
-                <!-- <div class="friends-button">
-                  <span class="material-icons icon">public</span> Public
-                  <span class="material-icons icon">arrow_drop_down</span>
-                </div> -->
-
-                <form action="handleCreatePost.php" method="POST" enctype="multipart/form-data"><br><br>
+                <form action="handleCreatePost.php" method="POST" enctype="multipart/form-data">
 
                   <input type="text" name="inputTitle" id="title-bar" placeholder="Title" required>
                     <br>
                   <textarea name="inputText" rows="5" cols="50" placeholder="What's on your mind, <?php echo $row[0]['username']; ?>?"></textarea>
-                    <br>
+                  
+
+                  <!-- IMAGE PREVIEW -->
+                  <div id="post_uploadImagePreview">
+                    <img id="js_previewImage">
+                  </div><br>       
 
                   <input type="file" id="actual-btn" name="inputPic" onchange="updateUploadButton('js_pic_count');loadFile(event)" hidden/>
                   <label for="actual-btn">
@@ -128,11 +131,6 @@
                   <input type="submit" name="btnSubmit" class="btn-primary" value="Post">
 
                 </form>
-
-                <!-- IMAGE PREVIEW -->
-                <div id="post_uploadImagePreview">
-                  <img id="js_previewImage" style="margin:auto;width:50%;height:50%;padding:50px;">
-                </div>
 
               </div>
 

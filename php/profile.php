@@ -49,14 +49,6 @@
     <link rel="stylesheet" href="../css/navbar.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="../css/scrollbar.css">
-
-    <!-- Custom JS stuff -->
-    <script type="text/javascript">
-      let previewImage = function(event, targetID){
-        let imgtag = document.getElementById(targetID);
-        imgtag.src = URL.createObjectURL(event.target.files[0]);
-      }
-    </script>
   </head>
   <body>
     <?php include_once("inc/_js_mdl_formAlert.php") ?>
@@ -352,26 +344,16 @@
                   <!-- EDIT PROFILE CARD -->
                   <form class="edit-profile-card" action="handleEditProfile.php" method="POST">
                     <div class="formItem">
-                      <label for="username">Edit Username</label>
-                    </div>
-
-                    <div class="formItem">
+                      <h5>Edit Username</h5>
+                      <i  class="fa fa-user"></i>
                       <input type="text" name="username" class="input" id="username" value="<?php echo $db_username;?>">
-                      <i class="fa fa-user"></i>
                     </div>
 
                     <div class="formItem">
-                      <label for="password">Password</label>
-                    </div>
-
-                    <div class="formItem">
-                      <p style="color: #ff0000;"> *Leave blank to not change password </p>
-                    </div>
-
-                    <div class="formItem">
+                      <h5 style="float: left; position: relative;">Change Password</h5><p style="float: right;position: relative; bottom: -8px; left: -200px; color: #ff0000;"> *Leave blank to not change password </p>
+                      
                       <i  class="fa">&#xf084;</i>
                       <input class="input" type="password" name="password" placeholder="Type your old password" min="8">
-
                     </div>
 
                     <div class="formItem">
@@ -385,44 +367,29 @@
                     </div>
 
                     <div class="formItem">
-                      <label for="lname">Email</label>
-
-                    </div>
-
-                    <div class="formItem">
-                      <p style="color: #ff0000;"> *Leave blank to not change email </p>
-                    </div>
-
-                    <div class="formItem">
-                      <input class="input" type="email" id="email" name="email" required placeholder="Type your new E-mail" value="<?php echo $db_email; ?>">
+                      <h5 style="float: left;">Email</h5><p style="float: right;position: relative; bottom: -8px; right: 330px; color: #ff0000;"> *Leave blank to not change email </p>
                       <i class="fa fa-envelope"></i>
+                      <input class="input" type="email" id="email" name="email" required placeholder="Type your new E-mail" value="<?php echo $db_email; ?>">
                     </div><br>
 
                     <div class="formItem">
-
                       <div class="formItem" id="gender">
-
                         <input class="gender" type="radio" name="sex" id="male" value="male" checked>
                         <label for="male">
                           <i class="fa fa-male"></i>
                           <span>Male</span>
                         </label>
-                      &nbsp;
+
                         <input class="gender" type="radio" name="sex" id="female" value="female">
                         <label for="female">
                           <i class="fa fa-female"></i>
                           <span>Female</span>
                         </label>
-
                       </div>
-
                     </div>
-
                     <div class="formItem">
                         <input class="button" type="submit" name="registerSubmit" id="formSubmitButton" class="button" value="Save">
-                        <input type="hidden" name="editProfileTarget" value="Edit Account">
                     </div><br>
-
                   </form><br><br>
                 </div>
                 <!--CONTENT OF CUSTOMIZE BIO -->
@@ -437,28 +404,26 @@
                     <div class="formItem">
                       <br><br><br>
                     <input class="button"  type="submit" name="registerSubmit" id="formSubmitButton" value="Save">
-                    <input type="hidden" name="editProfileTarget" value="Edit Bio">
                     </div><br>
                   </form>
                 </div>
                 <!--CONTENT OF CUSTOMIZE PROFILE PICTURE BANNER -->
                 <div id="customizeProfileBanner" class="tabmenu" style="display:none;">
                   <form class="" action="handleEditProfile.php" method="POST" enctype="multipart/form-data" align="center">
-                    <img src="<?php echo $db_cover_photo ?>" width="480" height="250" id="editProfPics_banner">
+                    <img src="<?php echo $db_cover_photo ?>" width="480" height="250">
                     <div class="formItem">
                       <h3>Profile Banner</h3>
-                      <input type="file" name="banner_pic" accept="image/*" onchange="previewImage(event, 'editProfPics_banner')">
+                      <input type="file" name="banner_pic" accept="image/*">
                     </div> <br>
 
-                    <img src="<?php echo $db_profile_pic; ?> "width="215" height="200" id="editProfPics_profilePic">
+                    <img src="<?php echo $db_profile_pic; ?> "width="215" height="200">
                     <div class="formItem">
                       <h3>Profile Picture</h3>
-                        <input type="file" name="profile_pic" accept="image/*" onchange="previewImage(event, 'editProfPics_profilePic')">
+                        <input type="file" name="profile_pic" accept="image/*">
                     </div> <br><br>
 
                     <div class="formItem">
                       <input class="button" type="submit" name="registerSubmit" id="formSubmitButton" value="Save">
-                      <input type="hidden" name="editProfileTarget" value="Edit Profile Picture and Banner">
                     </div><br>
 
                   </form>
