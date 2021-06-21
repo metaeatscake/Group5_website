@@ -87,10 +87,6 @@ label:hover {
   align-content: space-around;
 }
 
-#text-area a{
-  color: black;
-}
-
 @media only screen and (min-width: 600px){
   #text-area{
     width: 50%;
@@ -138,6 +134,7 @@ label:hover {
   position: relative;
   top: -1px;
   right: 8px;
+  color: #000000;
 }
 
 .feed_userpic img{
@@ -147,13 +144,15 @@ label:hover {
   border-radius: 50px;
 }
 
+.feed_post_author{
+  font-size: 18px;
+  font-weight: normal;
+  text-indent: 4px;
+}
+
 .feed_post_author a{
   text-decoration: none;
-  float: right;
-  position: relative;
-  bottom: 53px;
-  right: 41em;
-
+  color: black;
 }
 
 .feed_post_author a:hover{
