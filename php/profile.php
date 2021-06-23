@@ -2,27 +2,24 @@
   //Get database and session.
   include_once("inc/database.php");
 
-  //Prefetch User data.
-  $pdoq_getUserData = $pdo->prepare("SELECT * FROM tbl_users WHERE user_id = :user_id");
-  $pdoq_getUserData->execute(['user_id' => $_SESSION["account_id"]]);
-  $user_dataArray = $pdoq_getUserData->fetch(PDO::FETCH_ASSOC);
+  //For preventing bugs, redirect if user is not logged in.
+  if (!isset($_SESSION["account_id"])) {
+    header("location: ../");
+    exit();
+  }
 
-  //var_dump($user_dataArray);
+  //Get user's ID.
+  $s_id = $_SESSION["account_id"];
 
-  //Prefetch User Stats.
-  $pdoq_getUserStats = $pdo->prepare("SELECT * FROM view_user_stats WHERE user_id = :user_id");
-  $pdoq_getUserStats->execute(['user_id' => $_SESSION["account_id"]]);
-  $user_statsArray = $pdoq_getUserStats->fetch(PDO::FETCH_ASSOC);
+  //Get User's details.
+  $userData = $pdo->prepare("SELECT *
+    FROM view_user_stats
+    WHERE user_id = :user_id");
+  $userData->execute(["user_id" => $s_id]);
+  $userData = $userData->fetch(PDO::FETCH_ASSOC);
 
-  //Kinda meh code that supports the edit forms
-  $id = $_SESSION["account_id"];
-
-  // If the query only returns one row, the array can be fetched in one line.
-  $row = $sql->query("SELECT * FROM tbl_users WHERE user_id = '$id'")->fetch_assoc();
-
-  extract($row, EXTR_PREFIX_ALL, "db");
-
-    $requireInput = false;
+  //Enable/disable the sponsor box
+  $div_showSponsoredContainer = false;
 
  ?>
  <!DOCTYPE html>
@@ -30,7 +27,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo $user_dataArray['username']; ?> | Profile</title>
+    <title><?php echo $userData['username']; ?> | Profile</title>
 
     <!-- Import Material Design Lite CSS -->
     <link rel="stylesheet" href="../mdl/material.min.css">
@@ -91,9 +88,9 @@
             <div style="background-color: white; text-align: center; color: #405d9b">
 
 
-              <p><img src="<?php echo $user_dataArray['cover_photo']; ?>" style="width: 100%; height: 380px;" class="cover"></p>
+              <p><img src="<?php echo $userData['cover_photo']; ?>" style="width: 100%; height: 380px;" class="cover"></p>
 
-              <img src="<?php echo $user_dataArray['profile_pic'] ?>" id="profile_pic">
+              <img src="<?php echo $userData['profile_pic'] ?>" id="profile_pic">
 
               <!--CHANGE THIS WITH THE TEMPORARY IMG THAT I PUT <img id="profile_p
               ic" src="images/users/$db_profile_pic"> --> <br>
@@ -102,27 +99,30 @@
               <div id="profile-page-menu-top">
                 <!--Name of the User-->
                 <div id="profile-menu-username">
-                  <?php echo $user_dataArray['username']; ?>
+                  <?php echo $userData['username']; ?>
                 </div>
               </div>
               <br>
 
               <!--PROFILE MENU BUTTONS, BELOW THE AREA OF PROFILE PAGE MENU TOP-->
-              <div class="w3-bar">
-                <button class="w3-bar-item w3-button tablink" onclick="opentabs(event,'myPosts')" style="margin:10px;">My Posts</button>
-                <button class="w3-bar-item w3-button tablink" onclick="opentabs(event,'about')" style="margin:10px auto;">About</button>
-                <div class="dropdown">
-                  <button class="w3-bar-item w3-button tablink" onclick="opentabs(event,'customizeProfile')" style="margin:10px;">Customize Profile</button>
-                    <i class="fa fa-caret-down downtip"></i>
-                  </button>
-                  <div class="dropdown-content">
-                    <button class="w3-bar-item w3-button tablink" onclick="opentabs(event,'customizeProfile')">Edit Profile</button><br><br>
-                    <button class="w3-bar-item w3-button tablink" onclick="opentabs(event,'customizeBio')">Edit Bio</button><br>
-                    <button class="w3-bar-item w3-button tablink" onclick="opentabs(event,'customizeProfileBanner')">Edit Profile Picture Banner</button>
+                <div class="w3-bar">
+
+                  <button class="w3-bar-item w3-button tablink" onclick="opentabs(event,'myPosts')" style="margin:10px;">My Posts</button>
+                  <button class="w3-bar-item w3-button tablink" onclick="opentabs(event,'about')" style="margin:10px auto;">About</button>
+                  <div class="dropdown">
+                    <button class="w3-bar-item w3-button tablink" onclick="opentabs(event,'customizeProfile')" style="margin:10px;">Customize Profile</button>
+                      <i class="fa fa-caret-down downtip"></i>
+                    </button>
+                    <div class="dropdown-content">
+                      <button class="w3-bar-item w3-button tablink" onclick="opentabs(event,'customizeProfile')">Edit Profile</button><br><br>
+                      <button class="w3-bar-item w3-button tablink" onclick="opentabs(event,'customizeBio')">Edit Bio</button><br>
+                      <button class="w3-bar-item w3-button tablink" onclick="opentabs(event,'customizeProfileBanner')">Edit Profile Picture Banner</button>
+                    </div>
                   </div>
+
                 </div>
+
               </div>
-            </div>
 
             <style media="screen">
               .w3-bar{
@@ -134,41 +134,43 @@
             <!--BELOW THE PROFILE CARD AREA-->
             <div style="display: flex;">
 
-               <!--SPONSORED-->
-              <div style="min-height: 440px; flex:1;">
-                <div id="sponsored-bar">
-                  <b>Sponsored</b> <br>
+               <!--SPONSORED, ONLY SHOWN IF SERVER VAR IS TRUE-->
+              <?php if ($div_showSponsoredContainer): ?>
+                <div style="min-height: 440px; flex:1;">
+                  <div id="sponsored-bar">
+                    <b>Sponsored</b> <br>
 
-                  <div id="sponsored">
-                    <img id="sponsored-img" src="images/assets/mfi-dts.jpg">
-                    <br>
-                    <a href="#">MFI Dual Training System Program</a>
+                    <div id="sponsored">
+                      <img id="sponsored-img" src="images/assets/mfi-dts.jpg">
+                      <br>
+                      <a href="#">MFI Dual Training System Program</a>
+                    </div>
+
+                    <div id="sponsored">
+                      <img id="sponsored-img" src="images/assets/mfi-shs.jpg">
+                      <br><br>
+                      <a href="#">MFI Senior High School Program</a>
+                    </div>
+
+                    <div id="sponsored">
+                      <img id="sponsored-img" src="images/assets/mfi-womencourse.png">
+                      <br>
+                      <a href="#">MFI Women in STEM</a>
+                    </div>
+
                   </div>
-
-                  <div id="sponsored">
-                    <img id="sponsored-img" src="images/assets/mfi-shs.jpg">
-                    <br><br>
-                    <a href="#">MFI Senior High School Program</a>
-                  </div>
-
-                  <div id="sponsored">
-                    <img id="sponsored-img" src="images/assets/mfi-womencourse.png">
-                    <br>
-                    <a href="#">MFI Women in STEM</a>
+                  <div class="sponsored-bar-footer">
+                    <a href="#">Privacy</a> ·
+                    <a href="#">Terms</a> ·
+                    <a href="#">Advertising</a> ·
+                    <a href="#">Ad Choices</a> ·
+                    <a href="#">Cookies</a> ·
+                    <a href="#">More</a> ·
+                    <a href="#">Sociality</a> &copy 2021
                   </div>
 
                 </div>
-                <div class="sponsored-bar-footer">
-                  <a href="#">Privacy</a> ·
-                  <a href="#">Terms</a> ·
-                  <a href="#">Advertising</a> ·
-                  <a href="#">Ad Choices</a> ·
-                  <a href="#">Cookies</a> ·
-                  <a href="#">More</a> ·
-                  <a href="#">Sociality</a> &copy 2021
-                </div>
-
-              </div>
+              <?php endif; ?>
 
                <!--POSTS AREA/ABOUT AREA/CUSTOMIZE PROFILE-->
               <div id="post-area-menu">
@@ -176,162 +178,154 @@
                 <div id="myPosts" class="tabmenu">
                   <?php
 
-                    // Handling Like data.
-                    if (isset($_SESSION["account_id"])):
-
-                      // PDO: Prepare the user's like data so the posts can be marked.
+                      //Prepare the user's like data so the posts can be marked.
                       $pdoq_getUserLikedPosts = $pdo->prepare("SELECT post_id FROM tbl_feed_likes WHERE user_id = :user_id");
-                      $pdoq_getUserLikedPosts->execute(['user_id' => $_SESSION["account_id"]]);
+                      $pdoq_getUserLikedPosts->execute(['user_id' => $s_id]);
                       $user_liked_post_id = $pdoq_getUserLikedPosts->fetchAll(PDO::FETCH_COLUMN);
 
-                    endif;
+                      //Prepare the user's posts.
+                      $post_dataArray = $pdo->prepare("
+                        SELECT *
+                        FROM view_posts_full
+                        WHERE user_id = :user_id
+                        ORDER BY post_time DESC
+                      ");
+                      $post_dataArray->execute(["user_id" => $s_id]);
+                      $post_dataArray = $post_dataArray->fetchAll(PDO::FETCH_ASSOC);
 
                   ?>
 
-                  <?php
+                  <?php if(empty($post_dataArray)): //IF NO POSTS ?>
+                    <div style="text-align:center;color:white;">
+                      <h1>You don't have any posts yet.</h1>
+                      <h3>Why not <a href="createPost.php" style="text-decoration:underline;color:white;">create one?</a> </h3>
+                    </div>
 
+                  <?php else: ?>
+                    <?php foreach ($post_dataArray as $row):?>
 
-                    $feed_queryString = "SELECT * FROM view_posts_full ORDER BY post_time DESC";
+                     <?php
+                        // Like Data setup.
+                        $isLiked = (isset($user_liked_post_id) && in_array($row["post_id"], $user_liked_post_id));
 
-                    $post_dataArray = $pdo->query($feed_queryString)->fetchAll(PDO::FETCH_ASSOC);
-                    //echo "<pre style='color:white;'>"; var_dump($post_dataArray); echo "</pre>";
+                        // NOTE: First string is the color/text when the post IS LIKED, the other is when it is NOT liked.
+                        $post_likeButton_color = ($isLiked) ? "#000099" : "#262626";
+                        $post_likeButton_text = ($isLiked) ? "Unlike" : "Like";
 
-                  ?>
+                        //"Encrypted" POST ID because style.
+                        $post_fancyID = $hashId->encode($row['post_id']);
 
-                  <?php foreach ($post_dataArray as $row): ?>
+                        //Prepare link for ViewPost.
+                        $post_viewPost_href = "viewPost.php?id=$post_fancyID";
 
-                   <?php
-                      // Like Data setup.
-                      $isLiked = (isset($user_liked_post_id) && in_array($row["post_id"], $user_liked_post_id));
+                        //Prepare like and comment count for each post.
+                        $post_likeCount = (isset($row['count_likes'])) ? $row['count_likes'] : 0;
+                        $post_commentCount = (isset($row['count_comments'])) ? $row['count_comments'] : 0;
 
-                      // NOTE: First string is the color/text when the post IS LIKED, the other is when it is NOT liked.
-                      $post_likeButton_color = ($isLiked) ? "#000099" : "#262626";
-                      $post_likeButton_text = ($isLiked) ? "Unlike" : "Like";
+                        $profileIDHolder = $hashId->encode($row["user_id"]);
+                        $profileLink = "viewProfile.php?id=$profileIDHolder";
 
-                      //"Encrypted" POST ID because style.
-                      $post_fancyID = $hashId->encode($row['post_id']);
+                        //For JavaScript like button
+                        $js_likePostLink = "ajax/xmlhttp_likePost.php?id=".$post_fancyID;
+                      ?>
 
-                      //Prepare link for ViewPost.
-                      $post_viewPost_href = "viewPost.php?id=$post_fancyID";
+                        <div class="feed_post" id="<?php echo 'p_'.$post_fancyID; ?>">
 
-                      //Prepare like and comment count for each post.
-                      $post_likeCount = (isset($row['count_likes'])) ? $row['count_likes'] : 0;
-                      $post_commentCount = (isset($row['count_comments'])) ? $row['count_comments'] : 0;
-
-                      $profileIDHolder = $hashId->encode($row["user_id"]);
-                      $profileLink = "viewProfile.php?id=$profileIDHolder";
-
-                      //For JavaScript like button
-                      $js_likePostLink = "ajax/xmlhttp_likePost.php?id=".$post_fancyID;
-                    ?>
-
-                    <?php if ($row['user_id'] === $_SESSION["account_id"]): ?>
-
-                      <div class="feed_post" id="<?php echo 'p_'.$post_fancyID; ?>">
-
-                        <div class="more-horiz">
-                          <span class="material-icons">more_horiz</span>
-                        </div>
-
-                        <div class="feed_userpic">
-                          <a href="<?php echo $profileLink?>">
-                            <img src="<?php echo $row['profile_pic']; ?>">
-                          </a>
-                        </div>
-
-                        <div class="feed_post_author">
-                          <a href="profile.php">
-                            <?php echo $row["username"]; ?>
-                          </a>
-                        </div>
-
-                        <div class="feed_post_time">
-                          <a href="<?php echo $post_viewPost_href; ?>">
-                            <?php echo $row["date_time"]; ?>
-                          </a>
-                          <span class="material-icons icon">public</span>
-                        </div><br>
-
-                        <div class="feed_title">
-                          <?php echo $row["post_title"]; ?>
-                        </div><br>
-
-                        <div class="feed_content">
-                          <?php echo nl2br($row["post_content"]); ?>
-                        </div><br>
-
-
-                        <!-- Only display image div if there is image. -->
-                        <?php if (isset($row["post_img"]) && file_exists($row["post_img"])): ?>
-                          <div class="feed_image">
-                              <img src="<?php echo $row['post_img']; ?>" alt="<?php echo $row['post_img']; ?>">
+                          <div class="more-horiz">
+                            <span class="material-icons">more_horiz</span>
                           </div>
-                        <?php endif; ?><hr>
 
-                        <div class="feed_actions">
+                          <div class="feed_userpic">
+                            <a href="<?php echo $profileLink; ?>">
+                              <img src="<?php echo $row['profile_pic']; ?>">
+                            </a>
+                          </div>
 
-                          <a href="Javascript:void(0)" style="color:<?php echo $post_likeButton_color; ?>"
-                            onClick="xml_likePost('<?php echo $post_fancyID ?>', '<?php echo $js_likePostLink ?>')">
-                            <i class="material-icons">thumb_up</i>
-                            <span><?php echo $post_likeCount; ?></span>
-                          </a>
+                          <div class="feed_post_author">
+                            <a href="<?php echo $profileLink; ?>">
+                              <?php echo $row["username"]; ?>
+                            </a>
+                          </div>
 
-                          <a href="<?php echo $post_viewPost_href; ?>">
-                            <span class="material-icons" style="color: #262626;">mode_comment</span>
-                            <span style="color:black;"><?php echo $post_commentCount; ?></span>
-                          </a>
+                          <div class="feed_post_time">
+                            <a href="<?php echo $post_viewPost_href; ?>">
+                              <?php echo $row["date_time"]; ?>
+                            </a>
+                            <span class="material-icons icon">public</span>
+                          </div><br>
 
-                          <a href="#">
-                            <span class="material-icons" style="color: #262626;">share</span>
-                          </a>
+                          <div class="feed_title">
+                            <?php echo $row["post_title"]; ?>
+                          </div><br>
 
-                        </div><hr>
-                      </div><br>
-                    <?php endif; ?>
-                  <?php endforeach; ?>
+                          <div class="feed_content">
+                            <?php echo nl2br($row["post_content"]); ?>
+                          </div><br>
+
+                          <!-- Only display image div if there is image. -->
+                          <?php if (isset($row["post_img"]) && file_exists($row["post_img"])): ?>
+                            <div class="feed_image">
+                                <img src="<?php echo $row['post_img']; ?>" alt="<?php echo $row['post_img']; ?>">
+                            </div>
+                          <?php endif; ?><hr>
+
+                          <div class="feed_actions">
+
+                            <a href="Javascript:void(0)" style="color:<?php echo $post_likeButton_color; ?>"
+                              onClick="xml_likePost('<?php echo $post_fancyID ?>', '<?php echo $js_likePostLink ?>')">
+                              <i class="material-icons">thumb_up</i>
+                              <span><?php echo $post_likeCount; ?></span>
+                            </a>
+
+                            <a href="<?php echo $post_viewPost_href; ?>">
+                              <span class="material-icons" style="color: #262626;">mode_comment</span>
+                              <span style="color:black;"><?php echo $post_commentCount; ?></span>
+                            </a>
+
+                            <a href="#">
+                              <span class="material-icons" style="color: #262626;">share</span>
+                            </a>
+
+                          </div><hr>
+                        </div><br>
+
+                    <?php endforeach; ?>
+                  <?php endif; ?>
                 </div>
 
                 <!--CONTENT OF ABOUT -->
                 <div id="about" class="tabmenu" style="display:none;">
                   <h2><b>About</b></h2>
 
-                  <?php
-                    if($user_dataArray['bio'] != NULL){
-                      echo "
-                        <h4><b>Bio</b></h4>
-                        <h7>{$user_dataArray['bio']}</h7>
-                      ";
-                    }
-                  ?>
+                  <h4> <b>Bio</b> </h4>
+                  <h7> <?php echo $userData["bio"]; ?></h7>
 
                   <h4><b>Joined</b></h4>
-                  <h7><?php echo $user_dataArray['register_time']; ?></h7>
+                  <h7><?php echo $userData["register_time"]; ?></h7>
 
                   <?php
-                    if($user_statsArray['count_comments'] != NULL){
-                      echo "
-                        <h4><b>Number of Comments</b></h4>
-                        <h7>{$user_statsArray['count_comments']}</h7>
-                      ";
-                    } else{
-                      echo "<h4><b>Number of Comment</b></h4>
-                            <h7>0</h7>";
-                    }
-                  ?>
+                    //Table data can be null, so these just set them to 0 if null.
+                    $u_totalComments = (isset($userData["count_comments"]))
+                      ? $userData["count_comments"]
+                      : 0; //Can also be set to say "No comments"
 
-                  <?php
-                    if($user_statsArray['count_post_likes'] != NULL){
-                      echo "
-                        <h4><b>Number of Likes</b></h4>
-                        <h7>{$user_statsArray['count_post_likes']}</h7>
-                      ";
-                    } else{
-                      echo "
-                        <h4><b>Number of Like</b></h4>
-                        <h7>0</h7>
-                      ";
-                    }
-                  ?>
+                    $u_totalPostLikes = (isset($userData["count_post_likes"]))
+                      ? $userData["count_post_likes"]
+                      : 0;
+
+                    $u_totalPosts = (isset($userData["count_posts"]))
+                      ? $userData["count_posts"]
+                      : 0;
+                   ?>
+
+                  <h4> <b> Total Number of Comments </b> </h4>
+                  <h7> <?php echo $u_totalComments; ?></h7>
+
+                  <h4> <b> Total Post Count </b> </h4>
+                  <h7> <?php echo $u_totalPosts; ?></h7>
+
+                  <h4> <b> Total Post Likes </b> </h4>
+                  <h7> <?php echo $u_totalPostLikes; ?></h7>
                 </div>
 
                  <!--CONTENT OF CUSTOMIZE PROFILE -->
@@ -345,7 +339,7 @@
                       <i  class="fa fa-user"></i>
                       </div>
                     <div>
-                      <input type="text" name="username" class="input" id="username" value="<?php echo $db_username;?>">
+                      <input type="text" name="username" class="input" id="username" value="<?php echo $userData['username'];?>">
                     </div>
 
                     <div class="formItem">
@@ -377,7 +371,7 @@
                       <i class="fa fa-envelope"></i>
                     </div>
                     <div class="formItem">
-                      <input class="input" type="email" id="email" name="email" required placeholder="Type your new E-mail" value="<?php echo $db_email; ?>">
+                      <input class="input" type="email" id="email" name="email" required placeholder="Type your new E-mail" value="<?php echo $userData['email']; ?>">
                     </div><br>
 
                     <div class="formItem">
@@ -410,7 +404,7 @@
                       <h3>Bio</h3>
                     </div>
                     <div>
-                      <textarea name="bio" rows="10" cols="50" placeholder="<?php echo $db_bio; ?>" required></textarea>
+                      <textarea name="bio" rows="10" cols="50" placeholder="<?php echo $userData['bio']; ?>" required></textarea>
                     </div><br>
                     <div class="formItem">
                       <br><br><br>
@@ -424,13 +418,13 @@
                 <!--CONTENT OF CUSTOMIZE PROFILE PICTURE BANNER -->
                 <div id="customizeProfileBanner" class="tabmenu" style="display:none;">
                   <form class="" action="handleEditProfile.php" method="POST" enctype="multipart/form-data" align="center">
-                    <img src="<?php echo $db_cover_photo ?>" width="480" height="250">
+                    <img src="<?php echo $userData['cover_photo']; ?>" width="480" height="250">
                     <div class="formItem">
                       <h3>Profile Banner</h3>
                       <input type="file" name="banner_pic" accept="image/*">
                     </div> <br>
 
-                    <img src="<?php echo $db_profile_pic; ?> "width="215" height="200">
+                    <img src="<?php echo $userData['profile_pic']; ?> "width="215" height="200">
                     <div class="formItem">
                       <h3>Profile Picture</h3>
                         <input type="file" name="profile_pic" accept="image/*">
