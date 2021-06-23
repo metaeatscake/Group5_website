@@ -132,19 +132,11 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `edit_user_bio` (IN `prm_user_id` IN
 DROP PROCEDURE IF EXISTS `edit_user_pictures`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `edit_user_pictures` (IN `prm_user_id` INT(11), IN `prm_prof_pic` VARCHAR(255), IN `prm_cover_photo` VARCHAR(255))  BEGIN
 
-      DECLARE plc_prof_pic VARCHAR(255);
-      DECLARE plc_cover_photo VARCHAR(255);
-
-      SELECT profile_pic, cover_photo
-      INTO plc_prof_pic, plc_cover_photo
-          FROM tbl_users
-          WHERE user_id = prm_user_id;
-
-      IF prm_prof_pic <> plc_prof_pic AND prm_prof_pic <> '' THEN
+      IF prm_prof_pic <> '' THEN
         UPDATE tbl_users SET profile_pic = prm_prof_pic WHERE user_id = prm_user_id;
       END IF;
 
-      IF prm_cover_photo <> plc_cover_photo AND prm_cover_photo <> '' THEN
+      IF prm_cover_photo <> '' THEN
         UPDATE tbl_users SET cover_photo = prm_cover_photo WHERE user_id = prm_user_id;
       END IF;
     END$$
