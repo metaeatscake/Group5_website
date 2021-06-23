@@ -49,6 +49,9 @@
     <link rel="stylesheet" href="../css/navbar.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="../css/scrollbar.css">
+
+    <!-- Magic Custom Javascript FOR LIKE BUTTON -->
+    <script src="ajax/xmlhttp.js" charset="utf-8"></script>
   </head>
   <body>
     <?php include_once("inc/_js_mdl_formAlert.php") ?>
@@ -187,25 +190,8 @@
 
                   <?php
 
-                    //PDO Style, get all data from tbl_feed.
-                    //Also implement variable sort process.
 
-                    $feed_dateFormat = "%M %d %Y, %H:%i:%s";
-
-                    //Don't touch.
-
-                    $feed_queryString = "SELECT f.*, u.*,
-                        DATE_FORMAT(f.post_time, '$feed_dateFormat') AS date_time,
-                        COUNT(c.comment_id) AS count_comments,
-                        COUNT(fl.like_id) AS count_likes
-                      FROM tbl_feed f
-
-                      JOIN tbl_users u ON (f.user_id = u.user_id)
-                      LEFT OUTER JOIN tbl_feed_likes fl ON (f.post_id = fl.post_id)
-                      LEFT OUTER JOIN tbl_comments c ON (f.post_id = c.post_id)
-
-                      GROUP BY f.post_id
-                      ORDER BY f.post_time DESC";
+                    $feed_queryString = "SELECT * FROM view_posts_full ORDER BY post_time DESC";
 
                     $post_dataArray = $pdo->query($feed_queryString)->fetchAll(PDO::FETCH_ASSOC);
                     //echo "<pre style='color:white;'>"; var_dump($post_dataArray); echo "</pre>";
@@ -225,11 +211,18 @@
                       //"Encrypted" POST ID because style.
                       $post_fancyID = $hashId->encode($row['post_id']);
 
-                      //String for building the link to handleLikePost.php
-                      $post_likeButton_href = "handleLikePost.php?id=$post_fancyID&returnTo=profile.php";
-
                       //Prepare link for ViewPost.
                       $post_viewPost_href = "viewPost.php?id=$post_fancyID";
+
+                      //Prepare like and comment count for each post.
+                      $post_likeCount = (isset($row['count_likes'])) ? $row['count_likes'] : 0;
+                      $post_commentCount = (isset($row['count_comments'])) ? $row['count_comments'] : 0;
+
+                      $profileIDHolder = $row["user_id"];
+                      $profileLink = ($row["user_id"] === $_SESSION["account_id"]) ? "php/profile.php" : "php/viewProfile.php?id=$profileIDHolder";
+
+                      //For JavaScript like button
+                      $js_likePostLink = "ajax/xmlhttp_likePost.php?id=".$post_fancyID;
                     ?>
 
                     <?php if ($row['user_id'] === $_SESSION["account_id"]): ?>
@@ -269,7 +262,7 @@
 
 
                         <!-- Only display image div if there is image. -->
-                        <?php if (isset($row["post_img"])): ?>
+                        <?php if (isset($row["post_img"]) && file_exists($row["post_img"])): ?>
                           <div class="feed_image">
                               <img src="<?php echo $row['post_img']; ?>" alt="<?php echo $row['post_img']; ?>">
                           </div>
@@ -277,13 +270,15 @@
 
                         <div class="feed_actions">
 
-                          <a href="<?php echo $post_likeButton_href; ?>" style="color:<?php echo $post_likeButton_color; ?>">
-                            <i class="material-icons">thumb_up</i><?php echo $row["count_likes"]; ?>
+                          <a href="Javascript:void(0)" style="color:<?php echo $post_likeButton_color; ?>"
+                            onClick="xml_likePost('<?php echo $post_fancyID ?>', '<?php echo $js_likePostLink ?>')">
+                            <i class="material-icons">thumb_up</i>
+                            <span><?php echo $post_likeCount; ?></span>
                           </a>
 
                           <a href="<?php echo $post_viewPost_href; ?>">
                             <span class="material-icons" style="color: #262626;">mode_comment</span>
-                            <span style="color:black;"><?php echo $row["count_comments"]; ?></span>
+                            <span style="color:black;"><?php echo $post_commentCount; ?></span>
                           </a>
 
                           <a href="#">
