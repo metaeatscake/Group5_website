@@ -110,8 +110,8 @@
                  //Prepare link for ViewPost.
                  $post_viewPost_href = "viewPost.php?id=$post_fancyID";
 
-                 $profileIDHolder = $row["user_id"];
-                 $profileLink = ($row["user_id"] === $_SESSION["account_id"]) ? "profile.php" : "viewProfile.php?id=$profileIDHolder";
+                 $profileIDHolder = $hashId->encode($row["user_id"]);
+                 $profileLink = "viewProfile.php?id=$profileIDHolder";
                ?>
 
                <?php if (in_array($row['post_id'], $user_liked_post_id)): ?>

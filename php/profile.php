@@ -218,8 +218,8 @@
                       $post_likeCount = (isset($row['count_likes'])) ? $row['count_likes'] : 0;
                       $post_commentCount = (isset($row['count_comments'])) ? $row['count_comments'] : 0;
 
-                      $profileIDHolder = $row["user_id"];
-                      $profileLink = ($row["user_id"] === $_SESSION["account_id"]) ? "php/profile.php" : "php/viewProfile.php?id=$profileIDHolder";
+                      $profileIDHolder = $hashId->encode($row["user_id"]);
+                      $profileLink = "viewProfile.php?id=$profileIDHolder";
 
                       //For JavaScript like button
                       $js_likePostLink = "ajax/xmlhttp_likePost.php?id=".$post_fancyID;
