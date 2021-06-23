@@ -2,6 +2,9 @@
 
   include_once("_newPDO.php");
 
+  //Functions.
+  include_once("addFunctions.php");
+
   //This file is for updating stored procedures in the databases of
   //the development team.
 
@@ -17,7 +20,6 @@
   $pdo->exec("DROP PROCEDURE IF EXISTS `edit_user_pictures`");
   $pdo->exec("DROP PROCEDURE IF EXISTS `edit_user_bio`");
   $pdo->exec("DROP PROCEDURE IF EXISTS `edit_user_account`");
-
 
   // Write their definitions here.
 
