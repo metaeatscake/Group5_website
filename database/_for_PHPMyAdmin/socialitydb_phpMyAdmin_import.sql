@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 23, 2021 at 10:08 AM
+-- Generation Time: Jun 23, 2021 at 12:56 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.10
 
@@ -81,6 +81,17 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `delete_like` (IN `p_post_id` INT(11
         AND user_id = p_user_id;
     END$$
 
+DROP PROCEDURE IF EXISTS `delete_post`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `delete_post` (IN `p_post_id` INT(11), IN `p_user_id` INT(11))  BEGIN
+
+	IF p_post_id <> '' AND p_user_id <> '' THEN
+		DELETE FROM tbl_feed 
+			WHERE post_id = p_post_id
+            AND user_id = p_user_id;
+    END IF;
+
+END$$
+
 DROP PROCEDURE IF EXISTS `edit_comment`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `edit_comment` (IN `prm_comment_id` INT(11), IN `prm_new_comment` TEXT)  BEGIN
     	IF prm_new_comment <> NULL AND prm_new_comment <> '' THEN
@@ -89,6 +100,32 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `edit_comment` (IN `prm_comment_id` 
                 WHERE comment_id = prm_comment_id;
         END IF;
     END$$
+
+DROP PROCEDURE IF EXISTS `edit_post`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `edit_post` (IN `p_post_id` INT(11), IN `p_new_title` VARCHAR(255), IN `p_new_content` TEXT, IN `p_new_img` VARCHAR(255))  BEGIN
+
+	IF p_new_title <> '' THEN
+		UPDATE tbl_feed 
+			SET post_title = p_new_title
+            WHERE post_id = p_post_id;
+	END IF;
+    
+    IF p_new_content <> '' THEN
+		UPDATE tbl_feed
+			SET post_content = p_new_content
+            WHERE post_id = p_post_id;
+	END IF;
+    
+    IF p_new_img = '' THEN
+		UPDATE tbl_feed 
+			SET post_img = null
+            WHERE post_id = p_post_id;
+	ELSE 
+		UPDATE tbl_feed
+			SET post_img = p_new_img
+            WHERE post_id = p_post_id;
+	END IF;
+END$$
 
 DROP PROCEDURE IF EXISTS `edit_user_account`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `edit_user_account` (IN `prm_user_id` INT(11), IN `prm_username` VARCHAR(255), IN `prm_password` VARCHAR(255), IN `prm_email` VARCHAR(255), IN `prm_sex` VARCHAR(255))  BEGIN
@@ -139,7 +176,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `edit_user_pictures` (IN `prm_user_i
       IF prm_cover_photo <> '' THEN
         UPDATE tbl_users SET cover_photo = prm_cover_photo WHERE user_id = prm_user_id;
       END IF;
-    END$$
+END$$
 
 --
 -- Functions
