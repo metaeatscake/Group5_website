@@ -153,95 +153,100 @@
                       $postData = $pdoq_getUserPosts->fetchAll(PDO::FETCH_ASSOC);
                   ?>
 
-                  <?php //Loop through all of the user's posts
-                    foreach ($postData as $row):
-                  ?>
-
-                   <?php
-                      // Like Data setup. Check if this specific posts is in the array of post IDs that the user likes.
-                      $isLiked = (isset($user_liked_post_id) && in_array($row["post_id"], $user_liked_post_id));
-
-                      // NOTE: First string is the color/text when the post IS LIKED, the other is when it is NOT liked.
-                      $post_likeButton_color = ($isLiked) ? "#000099" : "#262626";
-                      $post_likeButton_text = ($isLiked) ? "Unlike" : "Like";
-
-                      //"Encrypted" POST ID because style.
-                      $post_fancyID = $hashId->encode($row['post_id']);
-
-                      //Prepare link for ViewPost.
-                      $post_viewPost_href = "viewPost.php?id=$post_fancyID";
-
-                      //Prepare like and comment count for each post.
-                      $post_likeCount = (isset($row['count_likes'])) ? $row['count_likes'] : 0;
-                      $post_commentCount = (isset($row['count_comments'])) ? $row['count_comments'] : 0;
-
-                      //Likebutton
-                      $js_likePostLink = "ajax/xmlhttp_likePost.php?id=".$post_fancyID;
+                  <?php if (empty($postData)): ?>
+                    <h1 style="color:white;text-align:center;">This user currently has no posts.</h1>
+                  <?php else: ?>
+                    <?php
+                      //Loop through all of the user's posts
+                      foreach ($postData as $row):
                     ?>
 
-                    <!-- USER POSTS -->
-                      <div class="feed_post" id="<?php echo 'p_'.$post_fancyID; ?>">
+                     <?php
+                        // Like Data setup. Check if this specific posts is in the array of post IDs that the user likes.
+                        $isLiked = (isset($user_liked_post_id) && in_array($row["post_id"], $user_liked_post_id));
 
-                        <div class="more-horiz">
-                          <span class="material-icons">more_horiz</span>
-                        </div>
+                        // NOTE: First string is the color/text when the post IS LIKED, the other is when it is NOT liked.
+                        $post_likeButton_color = ($isLiked) ? "#000099" : "#262626";
+                        $post_likeButton_text = ($isLiked) ? "Unlike" : "Like";
 
-                        <div class="feed_userpic">
-                          <a href="<?php echo $profileLink?>">
-                            <img src="<?php echo $row['profile_pic']; ?>">
-                          </a>
-                        </div>
+                        //"Encrypted" POST ID because style.
+                        $post_fancyID = $hashId->encode($row['post_id']);
 
-                        <div class="feed_post_author">
-                          <a href="Javascript:void(0)">
-                            <?php echo $row["username"]; ?>
-                          </a>
-                        </div>
+                        //Prepare link for ViewPost.
+                        $post_viewPost_href = "viewPost.php?id=$post_fancyID";
 
-                        <div class="feed_post_time">
-                          <a href="<?php echo $post_viewPost_href; ?>">
-                            <?php echo $row["date_time"]; ?>
-                          </a>
-                          <span class="material-icons icon">public</span>
-                        </div><br>
+                        //Prepare like and comment count for each post.
+                        $post_likeCount = (isset($row['count_likes'])) ? $row['count_likes'] : 0;
+                        $post_commentCount = (isset($row['count_comments'])) ? $row['count_comments'] : 0;
 
-                        <div class="feed_title">
-                          <?php echo $row["post_title"]; ?>
-                        </div><br>
+                        //Likebutton
+                        $js_likePostLink = "ajax/xmlhttp_likePost.php?id=".$post_fancyID;
+                      ?>
 
-                        <div class="feed_content">
-                          <?php echo nl2br($row["post_content"]); ?>
-                        </div><br>
+                      <!-- USER POSTS -->
+                        <div class="feed_post" id="<?php echo 'p_'.$post_fancyID; ?>">
 
-
-                        <!-- Only display image div if there is image. -->
-                        <?php if (isset($row["post_img"]) && file_exists($row["post_img"])): ?>
-                          <div class="feed_image">
-                              <img src="<?php echo $row['post_img']; ?>" alt="<?php echo $row['post_img']; ?>">
+                          <div class="more-horiz">
+                            <span class="material-icons">more_horiz</span>
                           </div>
-                        <?php endif; ?><hr>
 
-                        <div class="feed_actions">
+                          <div class="feed_userpic">
+                            <a href="<?php echo $profileLink?>">
+                              <img src="<?php echo $row['profile_pic']; ?>">
+                            </a>
+                          </div>
 
-                          <a href="Javascript:void(0)" style="color:<?php echo $post_likeButton_color; ?>"
-                            onClick="xml_likePost('<?php echo $post_fancyID ?>', '<?php echo $js_likePostLink ?>')">
-                            <i class="material-icons">thumb_up</i>
-                            <span><?php echo $post_likeCount; ?></span>
-                          </a>
+                          <div class="feed_post_author">
+                            <a href="Javascript:void(0)">
+                              <?php echo $row["username"]; ?>
+                            </a>
+                          </div>
 
-                          <a href="<?php echo $post_viewPost_href; ?>">
-                            <span class="material-icons" style="color: #262626;">mode_comment</span>
-                            <span style="color:black;"><?php echo $post_commentCount; ?></span>
-                          </a>
+                          <div class="feed_post_time">
+                            <a href="<?php echo $post_viewPost_href; ?>">
+                              <?php echo $row["date_time"]; ?>
+                            </a>
+                            <span class="material-icons icon">public</span>
+                          </div><br>
 
-                          <a href="#">
-                            <span class="material-icons" style="color: #262626;">share</span>
-                          </a>
+                          <div class="feed_title">
+                            <?php echo $row["post_title"]; ?>
+                          </div><br>
 
-                        </div><hr>
-                      </div><br>
+                          <div class="feed_content">
+                            <?php echo nl2br($row["post_content"]); ?>
+                          </div><br>
 
-                  <?php endforeach; ?>
+
+                          <!-- Only display image div if there is image. -->
+                          <?php if (isset($row["post_img"]) && file_exists($row["post_img"])): ?>
+                            <div class="feed_image">
+                                <img src="<?php echo $row['post_img']; ?>" alt="<?php echo $row['post_img']; ?>">
+                            </div>
+                          <?php endif; ?><hr>
+
+                          <div class="feed_actions">
+
+                            <a href="Javascript:void(0)" style="color:<?php echo $post_likeButton_color; ?>"
+                              onClick="xml_likePost('<?php echo $post_fancyID ?>', '<?php echo $js_likePostLink ?>')">
+                              <i class="material-icons">thumb_up</i>
+                              <span><?php echo $post_likeCount; ?></span>
+                            </a>
+
+                            <a href="<?php echo $post_viewPost_href; ?>">
+                              <span class="material-icons" style="color: #262626;">mode_comment</span>
+                              <span style="color:black;"><?php echo $post_commentCount; ?></span>
+                            </a>
+
+                            <a href="#">
+                              <span class="material-icons" style="color: #262626;">share</span>
+                            </a>
+
+                          </div><hr>
+                        </div><br>
+
+                    <?php endforeach; ?>
+                  <?php endif; ?>
                 </div>
 
                 <!--CONTENT OF ABOUT -->

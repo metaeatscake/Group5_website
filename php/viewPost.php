@@ -207,6 +207,10 @@
                 <?php else: ?>
 
                   <?php foreach ($arr_comments as $row): ?>
+                    <?php
+                      $profileIDHolder = $hashId->encode($row["user_id"]);
+                      $profileLink = "viewProfile.php?id=$profileIDHolder";
+                     ?>
 
                     <div class="comment-dp">
                       <a href="<?php echo $profileLink?>">
@@ -219,7 +223,7 @@
                           <span>
                             <strong>
                               <a href="<?php echo $profileLink?>"><?php echo $row["username"]; ?></a>
-                            </strong> 
+                            </strong>
                             <i style="font-size: 10px;"> <?php echo " ".$row["formatted_comment_time"]; ?> </i>
                           </span>
                         </div><br>
