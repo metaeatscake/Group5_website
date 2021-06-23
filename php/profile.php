@@ -402,6 +402,9 @@
                     </div>
                     <div class="formItem">
                         <input class="button" type="submit" name="registerSubmit" id="formSubmitButton" class="button" value="Save">
+                        <!-- DO NOT REMOVE THIS FIELD. THESE THREE FORMS ONLY SUBMIT TO ONE HANDLER. -->
+                        <!-- Possible Values: "Edit Account", "Edit Profile Picture and Banner", "Edit Bio" -->
+                        <input type="hidden" name="editProfileTarget" value="Edit Account">
                     </div><br>
                   </form><br><br>
                 </div>
@@ -417,6 +420,9 @@
                     <div class="formItem">
                       <br><br><br>
                     <input class="button"  type="submit" name="registerSubmit" id="formSubmitButton" value="Save">
+                    <!-- DO NOT REMOVE THIS FIELD. THESE THREE FORMS ONLY SUBMIT TO ONE HANDLER. -->
+                    <!-- Possible Values: "Edit Account", "Edit Profile Picture and Banner", "Edit Bio" -->
+                    <input type="hidden" name="editProfileTarget" value="Edit Bio">
                     </div><br>
                   </form>
                 </div>
@@ -437,6 +443,9 @@
 
                     <div class="formItem">
                       <input class="button" type="submit" name="registerSubmit" id="formSubmitButton" value="Save">
+                      <!-- DO NOT REMOVE THIS FIELD. THESE THREE FORMS ONLY SUBMIT TO ONE HANDLER. -->
+                      <!-- Possible Values: "Edit Account", "Edit Profile Picture and Banner", "Edit Bio" -->
+                      <input type="hidden" name="editProfileTarget" value="Edit Profile Picture and Banner">
                     </div><br>
 
                   </form>
