@@ -120,9 +120,18 @@
                         $post_likeCount = (isset($row['count_likes'])) ? $row['count_likes'] : 0;
                         $post_commentCount = (isset($row['count_comments'])) ? $row['count_comments'] : 0;
 
-                        $profileIDHolder = $row["user_id"];
-                        $profileLink = ($row["user_id"] === $_SESSION["account_id"]) ? "php/profile.php" : "php/viewProfile.php?id=$profileIDHolder";
+                        //Encode user ID.
+                        $profileIDHolder = $hashId->encode($row["user_id"]);
 
+                        //Has two versions:
+                          //v1: If you are the creator of the post, clicking your name will redirect to profile.php
+                          //v2: Regardless of if you are the post creator, you will be redirected to viewprofile.php
+                        //v1
+                        //$profileLink = ($row["user_id"] === $_SESSION["account_id"]) ? "php/profile.php" : "php/viewProfile.php?id=$profileIDHolder";
+                        //v2 - default.
+                        $profileLink = "php/viewProfile.php?id=$profileIDHolder";
+
+                        //Likebutton
                         $js_likePostLink = "php/ajax/xmlhttp_likePost.php?id=".$post_fancyID;
                       ?>
                       <div style="flex: 2.5; padding: 39px 43px 0; padding-right: 0px;">
