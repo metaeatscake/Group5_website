@@ -188,7 +188,11 @@
               <br><br><hr>
               <!-- COMMENT HOLDER -->
               <?php
-                $pdo_getComments = $pdo->prepare("SELECT * FROM view_comments WHERE post_id = :post_id");
+                $pdo_getComments = $pdo->prepare("SELECT view_comments.*,
+                    DATE_FORMAT(comment_time, '%M %d %Y, %H:%i:%s') AS formatted_comment_time
+                  FROM view_comments
+                  WHERE post_id = :post_id
+                  ORDER BY comment_time DESC");
                 $pdo_getComments->execute(['post_id' => $decodedID]);
                 $arr_comments = $pdo_getComments->fetchAll(PDO::FETCH_ASSOC);
               ?>
@@ -212,7 +216,12 @@
                     <div class="dialogbox">
                       <div class="body-box">
                         <div class="user-comment"><br style="content: ""; margin: 0em; display: block;">
-                          <span><strong><a href="<?php echo $profileLink?>"><?php echo $row["username"]; ?></a></strong> <i style="font-size: 10px;"> <?php echo " ".$row["comment_time"]; ?> </i></span>
+                          <span>
+                            <strong>
+                              <a href="<?php echo $profileLink?>"><?php echo $row["username"]; ?></a>
+                            </strong> 
+                            <i style="font-size: 10px;"> <?php echo " ".$row["formatted_comment_time"]; ?> </i>
+                          </span>
                         </div><br>
                         <div class="content-comment">
                           <span><?php echo $row['comment_content']; ?> </span>
