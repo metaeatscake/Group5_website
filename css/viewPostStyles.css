@@ -176,7 +176,6 @@ textarea{
   margin-left: auto;
   border: none;
   white-space: nowrap;
-  align-content: space-evenly;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
@@ -240,35 +239,32 @@ hr{
 @media only screen and (min-width: 600px){
   .feed_post{
     width: 50%;
-    min-height: 20%;
   }
 }
 
 @media only screen and (max-width: 600px){
   .feed_post{
     width: 50%;
-    min-height: 20%;
   }
 }
 
 @media only screen and (min-width: 768px){
   .feed_post{
-    width: 83%;
-    min-height: 20%;
+    width: 75%;
   }
 }
 
 @media only screen and (max-width: 992px){
   .feed_post{
-    width: 85%;
-    min-height: 20%;
+    width: 85%;     
+    margin: 50px;
   }
 }
 
 @media only screen and (min-width: 1200px){
   .feed_post{
     width: 30%;
-    min-height: 20%;
+    margin-top: 2em;
   }
 }
 

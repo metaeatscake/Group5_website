@@ -9,15 +9,21 @@
   }
 
   // Direct/One-line fetch of column data. Extreme shortcut.
-  $username = $sql->query("SELECT * FROM tbl_users WHERE user_id = '{$_SESSION["account_id"]}'")->fetch_assoc()["username"];
+  // $username = $sql->query("SELECT * FROM tbl_users WHERE user_id = '{$_SESSION["account_id"]}'")->fetch_assoc()["username"];
 
+  // $profile_pic = $sql->query("SELECT * FROM tbl_users WHERE user_id = '{$_SESSION["account_id"]}'")->fetch_assoc()["username"];
+  // 
+  //Prefetch User data.
+  $pdoq_getUserData = $pdo->prepare("SELECT * FROM tbl_users WHERE user_id = :user_id");
+  $pdoq_getUserData->execute(['user_id' => $_SESSION["account_id"]]);
+  $user_dataArray = $pdoq_getUserData->fetch(PDO::FETCH_ASSOC);
  ?>
  <!DOCTYPE html>
  <html lang="en" dir="ltr">
    <head>
      <meta charset="utf-8">
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <title> <?php echo $username; ?> | Create Post</title>
+     <title> <?php echo $user_dataArray['username']; ?> | Create Post</title>
 
      <!-- Import Material Design Lite CSS -->
      <link rel="stylesheet" href="../mdl/material.min.css">
@@ -102,20 +108,19 @@
 
 
                 <div class="feed_userpic">
-                  <img src="<?php echo $row[0]['profile_pic']; ?>">
+                  <img src="<?php echo $user_dataArray['profile_pic']; ?>">
                 </div><br>
 
                 <div class="feed_post_author">
                   <a href="profile.php">
-                    <?php echo $row[0]['username']; ?>
+                    <?php echo $user_dataArray['username']; ?>
                   </a>
                 </div>
-
                 <form action="handleCreatePost.php" method="POST" enctype="multipart/form-data">
 
                   <input type="text" name="inputTitle" id="title-bar" placeholder="Title" required>
                     <br>
-                  <textarea name="inputText" rows="5" cols="50" placeholder="What's on your mind, <?php echo $row[0]['username']; ?>?"></textarea>
+                  <textarea name="inputText" rows="5" cols="50" placeholder="What's on your mind, <?php echo $user_dataArray['username']; ?>?"></textarea>
                   
 
                   <!-- IMAGE PREVIEW -->
