@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 18, 2021 at 08:32 AM
+-- Generation Time: Jun 23, 2021 at 10:08 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.10
 
@@ -23,36 +23,36 @@ SET time_zone = "+00:00";
 CREATE DATABASE IF NOT EXISTS `socialitydb` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 USE `socialitydb`;
 
-`DELIMITER $$`
+DELIMITER $$
 --
 -- Procedures
 --
 DROP PROCEDURE IF EXISTS `add_comment`$$
-CREATE PROCEDURE `add_comment` (IN `p_user_id` INT(11), IN `p_post_id` INT(11), IN `p_comment` TEXT)  BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `add_comment` (IN `p_user_id` INT(11), IN `p_post_id` INT(11), IN `p_comment` TEXT)  BEGIN
       INSERT INTO tbl_comments(user_id, post_id, comment_content)
         VALUES(p_user_id, p_post_id, p_comment);
     END$$
 
 DROP PROCEDURE IF EXISTS `add_like`$$
-CREATE PROCEDURE `add_like` (IN `prm_post_id` INT(11), IN `prm_user_id` INT(11))  BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `add_like` (IN `prm_post_id` INT(11), IN `prm_user_id` INT(11))  BEGIN
     	INSERT INTO tbl_feed_likes(post_id, user_id)
     		VALUES(prm_post_id, prm_user_id);
     END$$
 
 DROP PROCEDURE IF EXISTS `add_post_img`$$
-CREATE PROCEDURE `add_post_img` (IN `prm_user_id` INT(11), IN `prm_title` VARCHAR(255), IN `prm_content` TEXT, IN `prm_img` VARCHAR(255))  BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `add_post_img` (IN `prm_user_id` INT(11), IN `prm_title` VARCHAR(255), IN `prm_content` TEXT, IN `prm_img` VARCHAR(255))  BEGIN
       INSERT INTO tbl_feed(user_id, post_title, post_content, post_img)
         VALUES(prm_user_id, prm_title, prm_content, prm_img);
     END$$
 
 DROP PROCEDURE IF EXISTS `add_post_text`$$
-CREATE PROCEDURE `add_post_text` (IN `p_user_id` INT(11), IN `p_title` VARCHAR(255), IN `p_content` TEXT)  BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `add_post_text` (IN `p_user_id` INT(11), IN `p_title` VARCHAR(255), IN `p_content` TEXT)  BEGIN
       INSERT INTO tbl_feed(user_id, post_title, post_content)
         VALUES(p_user_id, p_title, p_content);
     END$$
 
 DROP PROCEDURE IF EXISTS `add_user`$$
-CREATE PROCEDURE `add_user` (IN `prm_username` VARCHAR(255), IN `prm_password_enc` VARCHAR(255), IN `prm_email` VARCHAR(255), IN `prm_sex` VARCHAR(255), IN `prm_bio` TEXT)  BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `add_user` (IN `prm_username` VARCHAR(255), IN `prm_password_enc` VARCHAR(255), IN `prm_email` VARCHAR(255), IN `prm_sex` VARCHAR(255), IN `prm_bio` TEXT)  BEGIN
     	INSERT INTO tbl_users(
     		username,
             password,
@@ -68,45 +68,56 @@ CREATE PROCEDURE `add_user` (IN `prm_username` VARCHAR(255), IN `prm_password_en
     	);
     END$$
 
+DROP PROCEDURE IF EXISTS `delete_comment`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `delete_comment` (IN `prm_comment_id` INT(11))  BEGIN
+    	DELETE FROM tbl_comments
+    		WHERE comment_id = prm_comment_id;
+    END$$
+
 DROP PROCEDURE IF EXISTS `delete_like`$$
-CREATE PROCEDURE `delete_like` (IN `p_post_id` INT(11), IN `p_user_id` INT(11))  BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `delete_like` (IN `p_post_id` INT(11), IN `p_user_id` INT(11))  BEGIN
       DELETE FROM tbl_feed_likes
         WHERE post_id = p_post_id
         AND user_id = p_user_id;
     END$$
 
+DROP PROCEDURE IF EXISTS `edit_comment`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `edit_comment` (IN `prm_comment_id` INT(11), IN `prm_new_comment` TEXT)  BEGIN
+    	IF prm_new_comment <> NULL AND prm_new_comment <> '' THEN
+    		UPDATE tbl_comments
+    			SET comment_content = prm_new_comment
+                WHERE comment_id = prm_comment_id;
+        END IF;
+    END$$
+
 DROP PROCEDURE IF EXISTS `edit_user_account`$$
-CREATE PROCEDURE `edit_user_account` (IN `prm_user_id` INT(11), IN `prm_username` VARCHAR(255), IN `prm_password` VARCHAR(255), IN `prm_email` VARCHAR(255), IN `prm_sex` VARCHAR(255))  BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `edit_user_account` (IN `prm_user_id` INT(11), IN `prm_username` VARCHAR(255), IN `prm_password` VARCHAR(255), IN `prm_email` VARCHAR(255), IN `prm_sex` VARCHAR(255))  BEGIN
 
-    	  DECLARE plc_username VARCHAR(255);
-        DECLARE plc_password VARCHAR(255);
-        DECLARE plc_email VARCHAR(255);
-        DECLARE	plc_sex VARCHAR(255);
+        DECLARE vrf_username INT;
+        DECLARE vrf_email INT;
 
-        SELECT username, password, email, sex
-    		INTO plc_username, plc_password, plc_email, plc_sex
-            FROM tbl_users
-            WHERE user_id = prm_user_id;
+		    SELECT count(username) INTO vrf_username FROM tbl_users WHERE username = prm_username;
+		    SELECT count(email) INTO vrf_email FROM tbl_users WHERE email = prm_email;
 
-      	IF prm_username <> plc_username AND prm_username <> '' THEN
+      	IF prm_username <> '' AND vrf_username < 1 THEN
       		UPDATE tbl_users SET username = prm_username WHERE user_id = prm_user_id;
       	END IF;
 
-        IF prm_password <> plc_password AND prm_password <> '' THEN
+        IF prm_password <> '' THEN
       		UPDATE tbl_users SET password = prm_password WHERE user_id = prm_user_id;
       	END IF;
 
-      	IF prm_email <> plc_email AND prm_email <> '' THEN
+      	IF prm_email <> '' AND vrf_email < 1 THEN
       		UPDATE tbl_users SET email = prm_email WHERE user_id = prm_user_id;
       	END IF;
 
-        IF prm_sex <> plc_sex AND prm_sex <> '' THEN
+        IF prm_sex <> '' THEN
       		UPDATE tbl_users SET sex = prm_sex WHERE user_id = prm_user_id;
       	END IF;
     END$$
 
 DROP PROCEDURE IF EXISTS `edit_user_bio`$$
-CREATE PROCEDURE `edit_user_bio` (IN `prm_user_id` INT(11), IN `prm_bio` TEXT)  BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `edit_user_bio` (IN `prm_user_id` INT(11), IN `prm_bio` TEXT)  BEGIN
 
     	 DECLARE plc_bio TEXT;
        SELECT bio INTO plc_bio FROM tbl_users WHERE user_id = prm_user_id;
@@ -119,7 +130,7 @@ CREATE PROCEDURE `edit_user_bio` (IN `prm_user_id` INT(11), IN `prm_bio` TEXT)  
     END$$
 
 DROP PROCEDURE IF EXISTS `edit_user_pictures`$$
-CREATE PROCEDURE `edit_user_pictures` (IN `prm_user_id` INT(11), IN `prm_prof_pic` VARCHAR(255), IN `prm_cover_photo` VARCHAR(255))  BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `edit_user_pictures` (IN `prm_user_id` INT(11), IN `prm_prof_pic` VARCHAR(255), IN `prm_cover_photo` VARCHAR(255))  BEGIN
 
       DECLARE plc_prof_pic VARCHAR(255);
       DECLARE plc_cover_photo VARCHAR(255);
@@ -137,6 +148,26 @@ CREATE PROCEDURE `edit_user_pictures` (IN `prm_user_id` INT(11), IN `prm_prof_pi
         UPDATE tbl_users SET cover_photo = prm_cover_photo WHERE user_id = prm_user_id;
       END IF;
     END$$
+
+--
+-- Functions
+--
+DROP FUNCTION IF EXISTS `verify_user_id_exists`$$
+CREATE DEFINER=`root`@`localhost` FUNCTION `verify_user_id_exists` (`prm_id` INTEGER) RETURNS INT(11) BEGIN
+
+  	DECLARE intbool INTEGER DEFAULT 0;
+    DECLARE queryoutput INTEGER;
+
+    SELECT count(user_id) INTO queryoutput
+  		FROM tbl_users
+      WHERE user_id = prm_id;
+
+  	IF	(queryoutput = 1) THEN
+  		SET intbool = 1;
+  	END IF;
+
+  RETURN intbool;
+  END$$
 
 DELIMITER ;
 
