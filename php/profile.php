@@ -49,6 +49,14 @@
 
     <!-- Magic Custom Javascript FOR LIKE BUTTON -->
     <script src="ajax/xmlhttp.js" charset="utf-8"></script>
+
+    <!-- Edit profile preview image. -->
+    <script type="text/javascript">
+      let loadFile = function(event,targetElement) {
+        let image = document.getElementById(targetElement);
+        image.src = URL.createObjectURL(event.target.files[0]);
+      };
+    </script>
   </head>
   <body>
     <?php include_once("inc/_js_mdl_formAlert.php") ?>
@@ -418,16 +426,18 @@
                 <!--CONTENT OF CUSTOMIZE PROFILE PICTURE BANNER -->
                 <div id="customizeProfileBanner" class="tabmenu" style="display:none;">
                   <form class="" action="handleEditProfile.php" method="POST" enctype="multipart/form-data" align="center">
-                    <img src="<?php echo $userData['cover_photo']; ?>" width="480" height="250">
+                    <img id="js_previewBanner" src="<?php echo $userData['cover_photo']; ?>" width="480" height="250">
                     <div class="formItem">
                       <h3>Profile Banner</h3>
-                      <input type="file" name="banner_pic" accept="image/*">
+                      <input type="file" name="banner_pic" accept="image/*"
+                        onChange="loadFile(event,'js_previewBanner')">
                     </div> <br>
 
-                    <img src="<?php echo $userData['profile_pic']; ?> "width="215" height="200">
+                    <img id="js_previewProfilePic" src="<?php echo $userData['profile_pic']; ?> "width="215" height="200">
                     <div class="formItem">
                       <h3>Profile Picture</h3>
-                        <input type="file" name="profile_pic" accept="image/*">
+                        <input type="file" name="profile_pic" accept="image/*"
+                          onChange="loadFile(event, 'js_previewProfilePic')">
                     </div> <br><br>
 
                     <div class="formItem">
