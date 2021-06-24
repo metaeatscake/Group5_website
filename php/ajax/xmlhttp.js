@@ -49,7 +49,7 @@ function xml_deletePost(dialogID, destinationURL){
         let returnval = xhr.response;
         //console.log(returnval);
         //alert(xhr.response.message);
-        
+
         dialog.close();
         location.reload();
       }
@@ -59,4 +59,24 @@ function xml_deletePost(dialogID, destinationURL){
     xhr.send();
 
   });
+}
+
+function xml_submitEditPost(formID, handlerFileURL){
+  let form = document.getElementById(formID);
+  let formData = new FormData( form );
+  let xhr = new XMLHttpRequest();
+
+  form.addEventListener('submit', function(event){
+    event.preventDefault();
+    xhr.onreadystatechange = function(){
+      let r = xhr.response;
+      //Debugging.
+      //alert(JSON.stringify(r));
+      console.log(JSON.stringify(r));
+      //document.location.href = "../";
+    }
+    xhr.responseType = 'json';
+    xhr.open("POST", handlerFileURL, true);
+    xhr.send(formData);
+  })
 }
