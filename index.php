@@ -245,8 +245,8 @@
 
                       <div class="covid-updates">
                         <a href="#">COVID-19 Information Center</a><br><br>
-                        <p><strong>Latest Updates</strong> (June 7, 2021)</p>
-                        <img src="php/images/assets/global1.png"><p>Global confirmed cases: 172,997,361; total deaths: 3,721,867; people fully vaccinated: 450,454,935</p>
+                        <p><strong>Latest Updates</strong> (June 24, 2021)</p>
+                        <img src="php/images/assets/global1.png"><p>Global confirmed cases: 179,164,193; total deaths: 3,882,671; people fully vaccinated: 776,116,123</p>
                         <img src="php/images/assets/india.png"><p>India to ease some restrictions in New Delhi from Monday as cases fall slightly</p>
                         <img src="php/images/assets/us.png"><p>US surpasses 300 million COVID-19 vaccine doses administered</p>
                         <img src="php/images/assets/uk.png"><p>UK prime minister urges G7 nations to commit to vaccinating world by end of 2022</p>

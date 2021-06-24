@@ -91,12 +91,12 @@
 
        <div class="page-content mdl-grid">
 
-          <div style="width: 900px; margin:auto; background: -webkit-linear-gradient(to right, #3c1053, #ad5389); align-content: center;">
+          <div class="start_of_profile_card_css">
 
-            <div style="background-color: white; text-align: center; color: #405d9b">
+            <div class="profile_card">
 
               <?php //This is the cover photo ?>
-              <p><img src="<?php echo $profileData['cover_photo']; ?>" style="width: 100%; height: 380px;" class="cover"></p>
+              <img src="<?php echo $profileData['cover_photo']; ?>" class="cover">
 
               <?php //Profile picture ?>
               <img src="<?php echo $profileData['profile_pic']; ?>" id="profile_pic">
@@ -130,7 +130,7 @@
             <div style="display: flex;">
 
                <!--POSTS AREA/ABOUT AREA/CUSTOMIZE PROFILE-->
-              <div id="post-area-menu" style="flex:2.5; padding: 20px; padding-right: 0px;">
+              <div id="post-area-menu">
                 <!--CONTENT OF MY POSTS -->
                 <div id="myPosts" class="tabmenu">
 
@@ -302,9 +302,9 @@
     }
     tablinks = document.getElementsByClassName("tablink");
     for (i = 0; i < x.length; i++) {
-      tablinks[i].className = tablinks[i].className.replace(" w3-purple", "");
+      tablinks[i].className = tablinks[i].className.replace(" btn-primary", "");
     }
     document.getElementById(tabname).style.display = "block";
-    tab.currentTarget.className += " w3-purple";
+    tab.currentTarget.className += " btn-primary";
   }
 </script>
