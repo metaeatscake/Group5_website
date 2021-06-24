@@ -46,13 +46,17 @@ function xml_deletePost(dialogID, destinationURL){
       if(this.readyState == 4 && this.status == 200){
 
         //For debugging only.
-        alert(xhr.response.message);
+        let returnval = xhr.response;
+        //console.log(returnval);
+        //alert(xhr.response.message);
+        
+        dialog.close();
+        location.reload();
       }
     }
     xhr.responseType = 'json';
     xhr.open("GET", destinationURL ,true);
     xhr.send();
-    dialog.close();
-    location.reload();
+
   });
 }
