@@ -16,7 +16,9 @@
   $pdo->exec("DROP PROCEDURE IF EXISTS `add_user`");
   $pdo->exec("DROP PROCEDURE IF EXISTS `delete_comment`");
   $pdo->exec("DROP PROCEDURE IF EXISTS `delete_like`");
+  $pdo->exec("DROP PROCEDURE IF EXISTS `delete_post`");
   $pdo->exec("DROP PROCEDURE IF EXISTS `edit_comment`");
+  $pdo->exec("DROP PROCEDURE IF EXISTS `edit_post`");
   $pdo->exec("DROP PROCEDURE IF EXISTS `edit_user_pictures`");
   $pdo->exec("DROP PROCEDURE IF EXISTS `edit_user_bio`");
   $pdo->exec("DROP PROCEDURE IF EXISTS `edit_user_account`");
@@ -124,29 +126,21 @@
     EDIT USER PICTURES
   */
   $pdo->exec("
-    CREATE DEFINER=`root`@`localhost` PROCEDURE `edit_user_pictures`(
-      IN prm_user_id INT(11),
-      IN prm_prof_pic VARCHAR(255),
-      IN prm_cover_photo VARCHAR(255)
-    )
-    BEGIN
+  CREATE DEFINER=`root`@`localhost` PROCEDURE `edit_user_pictures`(
+    IN prm_user_id INT(11),
+    IN prm_prof_pic VARCHAR(255),
+    IN prm_cover_photo VARCHAR(255)
+  )
+  BEGIN
 
-      DECLARE plc_prof_pic VARCHAR(255);
-      DECLARE plc_cover_photo VARCHAR(255);
-
-      SELECT profile_pic, cover_photo
-      INTO plc_prof_pic, plc_cover_photo
-          FROM tbl_users
-          WHERE user_id = prm_user_id;
-
-      IF prm_prof_pic <> plc_prof_pic AND prm_prof_pic <> '' THEN
+      IF prm_prof_pic <> '' THEN
         UPDATE tbl_users SET profile_pic = prm_prof_pic WHERE user_id = prm_user_id;
       END IF;
 
-      IF prm_cover_photo <> plc_cover_photo AND prm_cover_photo <> '' THEN
+      IF prm_cover_photo <> '' THEN
         UPDATE tbl_users SET cover_photo = prm_cover_photo WHERE user_id = prm_user_id;
       END IF;
-    END");
+  END");
 
   /*
     EDIT USER BIO
@@ -230,6 +224,59 @@
     BEGIN
     	DELETE FROM tbl_comments
     		WHERE comment_id = prm_comment_id;
+    END");
+
+    /*
+      EDIT POST
+    */
+    $pdo->exec("
+    CREATE DEFINER=`root`@`localhost` PROCEDURE `edit_post`(
+  	   IN p_post_id INT(11),
+       IN p_new_title VARCHAR(255),
+       IN p_new_content TEXT,
+       IN p_new_img VARCHAR(255)
+    )
+    BEGIN
+
+    	IF p_new_title <> '' THEN
+    		UPDATE tbl_feed
+    			SET post_title = p_new_title
+          WHERE post_id = p_post_id;
+    	END IF;
+
+      IF p_new_content <> '' THEN
+    		UPDATE tbl_feed
+    			SET post_content = p_new_content
+          WHERE post_id = p_post_id;
+    	END IF;
+
+      IF p_new_img = '' THEN
+    		UPDATE tbl_feed
+    			SET post_img = null
+          WHERE post_id = p_post_id;
+    	ELSE
+    		UPDATE tbl_feed
+    			SET post_img = p_new_img
+          WHERE post_id = p_post_id;
+    	END IF;
+    END ");
+
+    /*
+      DELETE POST
+    */
+    $pdo->exec("
+    CREATE DEFINER=`root`@`localhost` PROCEDURE `delete_post`(
+    	IN p_post_id int(11),
+      IN p_user_id int(11)
+    )
+    BEGIN
+
+    	IF p_post_id <> '' AND p_user_id <> '' THEN
+    		DELETE FROM tbl_feed
+    			WHERE post_id = p_post_id
+          AND user_id = p_user_id;
+      END IF;
+
     END");
 
   //When finished, go back to index.
