@@ -15,26 +15,6 @@
   color: black;
 }
 
-#profile-menu-bio{
-  font-size: 15px;
-  color: #8c8c8c;
-}
-
-#sponsored-img{
-  width: 115px;
-  float: left;
-  margin: 8px;
-}
-
-#sponsored-bar{
-  background-color: white;
-  min-height: 440px;
-  margin-top: 20px;
-  color: #8c8c8c;
-  padding: 8px;
-  border-radius: 8px;
-}
-
 #post-area-menu{
   padding: 0px;
   margin-top: 15px;
@@ -46,20 +26,6 @@
   padding-right: 0px;
 }
 
-#sponsored{
-  clear: both;
-  font-size: 15px;
-  font-weight: normal;
-  color: #405d9b;
-}
-
-#sponsored a{
-  text-decoration: none;
-}
-
-#sponsored a:hover{
-  text-decoration: underline;
-}
 textarea{
   width: 100%;
   border: none;
@@ -84,18 +50,6 @@ textarea{
   color: #fff;
   background-color:#ff80ff;
   border-color: #0062cc;
-}
-
-#title-bar{
-  width: 100%;
-  border: none;
-  font-family: tahoma;
-  font-size: 14px;
-  height: 60px;
-}
-
-#actual-btn{
-  cursor: pointer;
 }
 
 .more-horiz{
@@ -247,6 +201,8 @@ hr{
   background-color: white;
   border-radius: 8px;
   padding: 13px;
+  width: 100%;
+  margin: -9px;
 }
 
 .topnav {
@@ -274,8 +230,8 @@ hr{
   background-color: white;
   border-radius: 8px;
   padding: 13px;
-  margin-top: -1.6% !important;
-  height: 441px;
+  width: 100%;
+  margin: -9px;
 }
 
 .sponsored-bar-footer{
@@ -495,11 +451,20 @@ input[type="email"]:focus {
   color: #6148bf;
 }
 
-.edit-bio-form{
-  height: 440px;
-  margin-top: -12px;
+.edit-profile-card{
+  width: 100%;
+  margin: -9px;  
 }
 
+.edit-bio-form{
+  width: 100%;
+  margin: -9px;
+}
+
+.editPictureForm{
+  width: 100%;
+  margin: -9px;
+}
 textarea{
   resize: none;
 }
