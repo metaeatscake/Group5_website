@@ -11,13 +11,9 @@
   $s_id = $_SESSION["account_id"];
 
   //Check if this post exists.
-  $checkPostID = $pdo->prepare("SELECT count(user_id) as verifycount
-    FROM view_posts_full
-    WHERE post_id = :post_id
-    AND user_id = :user_id");
+  $checkPostID = $pdo->prepare("SELECT verify_post_id_exists(:post_id)");
   $checkPostID->execute([
-    "post_id" => $g_id,
-    "user_id" => $s_id
+    "post_id" => $g_id
   ]);
   $checkPostID = $checkPostID->fetch(PDO::FETCH_COLUMN);
 
@@ -41,6 +37,7 @@
     "user_id" = $s_id
   ]);
   $imgLoc = $imgLoc->fetch(PDO::FETCH_COLUMN);
+
   if (isset($imgLoc)) {
     //This file is in the /ajax folder, and /images is outside.
     unlink("../$imgLoc");
