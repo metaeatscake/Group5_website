@@ -11,8 +11,6 @@
   $vi_allowedImages = ["image/png","image/gif","image/jpeg"];
   $vi = new Validate_Image($_FILES, "inputPic", $vi_allowedImages);
 
-
-
   $v->cleanData();
 
   //Get post id
@@ -21,6 +19,12 @@
   $p_id = $p_id[0];
 
   //Prepare other vars to pass to database.
+  /*
+    About Procedure `edit_post()`:
+      It runs one update query per column.
+      So if one of these variables stay blank, it does not update it.
+      Except for image. If it is blank, the image will be set to null.
+  */
   $form_newTitle = "";
   $form_newContent = "";
   $form_newImage = "";
@@ -77,12 +81,20 @@
     // Filename of uploaded image.
     $ext = $vi->getFileExtension();
     $newFileName = $_SESSION["account_id"] . "_" . $time . "." . $ext;
+    //This is in /ajax, and /images is outside.
     $saveFolder = "../images/post_img/";
 
     // Don't touch.
     $savePath = $saveFolder.$newFileName;
+    //When pushing to db, it can't be ../images/...
     $form_newImage = "images/post_img/".$newFileName;
     move_uploaded_file($_FILES["inputPic"]["tmp_name"], $savePath);
+
+    //Trash Cleanup.
+    if (isset($_POST["oldImage"])) {
+      $loc = "../".$_POST["oldImage"];
+      unlink($loc);
+    }
   }
 
   //Do query.
