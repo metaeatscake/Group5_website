@@ -33,8 +33,8 @@
     WHERE post_id = :post_id
     AND user_id = :user_id");
   $imgLoc->execute([
-    "post_id" = $g_id,
-    "user_id" = $s_id
+    "post_id" => $g_id,
+    "user_id" => $s_id
   ]);
   $imgLoc = $imgLoc->fetch(PDO::FETCH_COLUMN);
 
