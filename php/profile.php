@@ -91,11 +91,11 @@
 
        <div class="page-content mdl-grid">
         <!-- ADD THE PROFILE CARD HERE. -->
-          <div style="width: 900px; margin:auto; background: -webkit-linear-gradient(to right, #3c1053, #ad5389); align-content: center;">
+          <div class="start_of_profile_card_css">
 
-            <div style="background-color: white; text-align: center; color: #405d9b; border-radius: 15px;">
+            <div class="profile_card">
 
-              <p><img src="<?php echo $userData['cover_photo']; ?>" style="width: 100%; height: 380px;" class="cover"></p>
+              <img src="<?php echo $userData['cover_photo']; ?>" class="cover">
 
               <img src="<?php echo $userData['profile_pic'] ?>" id="profile_pic">
 

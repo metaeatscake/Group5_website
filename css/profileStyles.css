@@ -1,3 +1,17 @@
+.start_of_profile_card_css{
+  width: 900px; 
+  margin:auto; 
+  background: -webkit-linear-gradient(to right, #3c1053, #ad5389); 
+  align-content: center;
+}
+
+.profile_card{
+  background-color: white; 
+  text-align: center; 
+  color: #405d9b; 
+  border-radius: 15px;
+}
+
 #profile-page-menu-top{
   line-height: 0;
 }
@@ -231,7 +245,7 @@ hr{
 .feed_post{
   background-color: white;
   border-radius: 10px;
-  padding: 13px;
+  padding: 2.5%;
   width: 100%;
   margin: -9px;
 }
@@ -382,7 +396,7 @@ input[type="radio"]{
 }
 #gender label{
   height: 100px;
-  width: 150px;
+  width: 100px;
   border: 4px solid #6148bf;
   position: relative;
   right: 6px;
@@ -498,5 +512,10 @@ input[type="email"]:focus {
 }
 textarea{
   resize: none;
+}
+
+.cover{
+  width: 100%; 
+  height: 400px;
 }
 </style>
