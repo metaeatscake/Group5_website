@@ -61,6 +61,11 @@
   <body>
     <?php include_once("inc/_js_mdl_formAlert.php") ?>
 
+    <?php
+      //Dialog for deleting posts.
+      include_once("inc/_js_mdl_deletePostDialog.php");
+    ?>
+
      <!-- Uses a header that contracts as the page scrolls down. -->
      <!-- Pasted CSS/HTML from MDL Documentation -->
 
@@ -228,18 +233,51 @@
                         $post_likeCount = (isset($row['count_likes'])) ? $row['count_likes'] : 0;
                         $post_commentCount = (isset($row['count_comments'])) ? $row['count_comments'] : 0;
 
+
                         $profileIDHolder = $hashId->encode($row["user_id"]);
                         $profileLink = "viewProfile.php?id=$profileIDHolder";
 
                         //For JavaScript like button
                         $js_likePostLink = "ajax/xmlhttp_likePost.php?id=".$post_fancyID;
+
+                        //Post control (edit,delete, etc)
+                        $postControlButtonId = "post_control_$post_fancyID";
+
+                        //Toggle to show the post control links.
+                        $postControlToggleMenu = ($row["user_id"] === $_SESSION["account_id"]);
+                        //Post control links
+                        $postControl_editPost = "createPost.php?e=$post_fancyID";
+                        $postControl_deletePost = "ajax/xmlhttp_deletePost.php?id=$post_fancyID";
                       ?>
 
                         <div class="feed_post" id="<?php echo 'p_'.$post_fancyID; ?>">
+                          <!-- This is the post control menu button -->
 
-                          <div class="more-horiz">
-                            <span class="material-icons">more_horiz</span>
-                          </div>
+                          <!-- For frontend: fix the size of the button, it's hard to activate it. -->
+                          <?php if ($postControlToggleMenu): ?>
+
+                            <div class="more-horiz">
+                              <button id="<?php echo $postControlButtonId; ?>"
+                                class="mdl-button mdl-js-button mdl-button--icon"
+                              >
+                                <i class="material-icons">more_vert</i>
+                              </button>
+
+                              <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
+                                  for="<?php echo $postControlButtonId; ?>">
+                                  <!-- Edit Post -->
+                                <a href="<?php echo $postControl_editPost; ?>">
+                                  <li class="mdl-menu__item">Edit Post</li>
+                                </a>
+                                <!-- Delete Post -->
+                                <a href="Javascript:void(0)" onClick="xml_deletePost('dialog_deletePost',
+                                  '<?php echo $postControl_deletePost; ?>')">
+                                  <li class="mdl-menu__item">Delete Post</li>
+                                </a>
+                              </ul>
+                            </div>
+
+                          <?php endif; ?>
 
                           <div class="feed_userpic">
                             <a href="<?php echo $profileLink; ?>">
@@ -293,7 +331,7 @@
                             </a>
 
                           </div><hr>
-                        </div><br>
+                        </div><br><br><br>
 
                     <?php endforeach; ?>
                   <?php endif; ?>
