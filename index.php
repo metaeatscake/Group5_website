@@ -3,7 +3,7 @@
   include("php/inc/database.php");
 
   // Redirect to login if not logged in.
-  if(!isset($_SESSION["account_type"])){
+  if(!isset($_SESSION["account_id"])){
     header("location: php/login.php");
   }
 

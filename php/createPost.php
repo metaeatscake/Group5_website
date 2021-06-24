@@ -3,16 +3,11 @@
   //Get database and session.
   include_once("inc/database.php");
 
-  if (isset($_SESSION["account_type"]) && $_SESSION["account_type"] === "admin") {
-    header("location: viewUsers.php");
+  //Prevent random access.
+  if (!isset($_SESSION["account_id"])) {
+    header("location: ../");
     exit();
   }
-
-  // Direct/One-line fetch of column data. Extreme shortcut.
-  // $username = $sql->query("SELECT * FROM tbl_users WHERE user_id = '{$_SESSION["account_id"]}'")->fetch_assoc()["username"];
-
-  // $profile_pic = $sql->query("SELECT * FROM tbl_users WHERE user_id = '{$_SESSION["account_id"]}'")->fetch_assoc()["username"];
-  // 
   //Prefetch User data.
   $pdoq_getUserData = $pdo->prepare("SELECT * FROM tbl_users WHERE user_id = :user_id");
   $pdoq_getUserData->execute(['user_id' => $_SESSION["account_id"]]);
@@ -103,7 +98,7 @@
 
                 <div>
                   <a href="../"><span class="material-icons left">close</span></a>
-                  <h4 class="centered"><strong>Create Post</strong></h4><hr>                  
+                  <h4 class="centered"><strong>Create Post</strong></h4><hr>
                 </div>
 
 
@@ -121,12 +116,12 @@
                   <input type="text" name="inputTitle" id="title-bar" placeholder="Title" required>
                     <br>
                   <textarea name="inputText" rows="5" cols="50" placeholder="What's on your mind, <?php echo $user_dataArray['username']; ?>?"></textarea>
-                  
+
 
                   <!-- IMAGE PREVIEW -->
                   <div id="post_uploadImagePreview">
                     <img id="js_previewImage">
-                  </div><br>       
+                  </div><br>
 
                   <input type="file" id="actual-btn" name="inputPic" onchange="updateUploadButton('js_pic_count');loadFile(event)" hidden/>
                   <label for="actual-btn">
