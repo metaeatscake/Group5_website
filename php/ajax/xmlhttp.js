@@ -63,19 +63,23 @@ function xml_deletePost(dialogID, destinationURL){
 
 function xml_submitEditPost(formID, handlerFileURL){
   let form = document.getElementById(formID);
-  let formData = new FormData( form );
   let xhr = new XMLHttpRequest();
 
   form.addEventListener('submit', function(event){
     event.preventDefault();
+    let formData = new FormData( form );
     xhr.onreadystatechange = function(){
-      let r = xhr.response;
-      //Debugging.
-      //alert(JSON.stringify(r));
-      console.log(JSON.stringify(r));
-      //document.location.href = "../";
+      if(this.readyState == 4 && this.status == 200){
+        let r = xhr.response;
+        //Debugging.
+          //alert(JSON.stringify(r));
+          //console.log(JSON.stringify(r));
+          //let testOutput = document.getElementById('editPostTestOutput');
+          //testOutput.innerHTML = xhr.responseText;
+        document.location.href = "../";
+      }
     }
-    xhr.responseType = 'json';
+    //xhr.responseType = 'json';
     xhr.open("POST", handlerFileURL, true);
     xhr.send(formData);
   })

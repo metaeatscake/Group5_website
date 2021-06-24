@@ -213,11 +213,18 @@
                      </label>
                      <input type="submit" name="btnSubmit" class="btn-primary" value="Post">
                      <input type="hidden" name="encodedPostID" value="<?php echo $_GET["e"]; ?>">
+                     <?php if ($hasImage): ?>
+                       <input type="hidden" name="oldImage" value="<?php echo $postData['post_img']; ?>">
+                     <?php endif; ?>
                    </form>
 
                    <script type="text/javascript">
                      xml_submitEditPost('formEditPost', 'ajax/xmlhttp_editPost.php');
                    </script>
+
+                   <div id="editPostTestOutput">
+
+                   </div>
 
                 <?php endif; ?>
 
