@@ -93,7 +93,7 @@
 
           <div style="width: 900px; margin:auto; background: -webkit-linear-gradient(to right, #3c1053, #ad5389); align-content: center;">
 
-            <div style="background-color: white; text-align: center; color: #405d9b">
+            <div style="background-color: white; text-align: center; color: #405d9b; border-radius: 15px;">
 
               <?php //This is the cover photo ?>
               <p><img src="<?php echo $profileData['cover_photo']; ?>" style="width: 100%; height: 380px;" class="cover"></p>
@@ -302,9 +302,9 @@
     }
     tablinks = document.getElementsByClassName("tablink");
     for (i = 0; i < x.length; i++) {
-      tablinks[i].className = tablinks[i].className.replace(" w3-purple", "");
+      tablinks[i].className = tablinks[i].className.replace(" btn-primary", "");
     }
     document.getElementById(tabname).style.display = "block";
-    tab.currentTarget.className += " w3-purple";
+    tab.currentTarget.className += " btn-primary";
   }
 </script>
