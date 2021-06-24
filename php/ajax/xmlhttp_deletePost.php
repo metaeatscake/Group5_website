@@ -30,6 +30,23 @@
   }
 
   //Proceed with delete if it exists.
+
+  //If post has an image, delete it.
+  $imgLoc = $pdo->prepare("SELECT post_img
+    FROM view_posts_full
+    WHERE post_id = :post_id
+    AND user_id = :user_id");
+  $imgLoc->execute([
+    "post_id" = $g_id,
+    "user_id" = $s_id
+  ]);
+  $imgLoc = $imgLoc->fetch(PDO::FETCH_COLUMN);
+  if (isset($imgLoc)) {
+    //This file is in the /ajax folder, and /images is outside.
+    unlink("../$imgLoc");
+  }
+
+  //Delete query proper.
   $pdo->prepare("CALL delete_post(:post_id, :user_id)")->execute([
     "post_id" => $g_id,
     "user_id" => $s_id
