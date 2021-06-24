@@ -49,7 +49,7 @@
       $pdoq_updateProfileAcc->execute([
         "user_id" => $_SESSION["account_id"],
         "username" => $data["username"],
-        "password" => $data["new_password"],
+        "password" => password_hash($data["new_password"], PASSWORD_DEFAULT),
         "email" => $data["email"],
         "sex" => $data["sex"]
       ]);
