@@ -109,7 +109,7 @@
 
     width: 480px;
     height: 700px;
-    margin-top: 50px;
+    margin-top: 20px;
     margin-left: 250px;
   }
 }
