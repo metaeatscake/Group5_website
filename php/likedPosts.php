@@ -29,7 +29,10 @@
      <link rel="stylesheet" href="../css/scrollbar.css">
    </head>
    <body>
-
+      <?php
+        //Dialog for deleting posts.
+        include_once("inc/_js_mdl_deletePostDialog.php");
+      ?>
        <!-- Uses a header that contracts as the page scrolls down. -->
        <!-- Pasted CSS/HTML from MDL Documentation -->
 
@@ -55,11 +58,6 @@
       <div class="demo-layout-transparent mdl-layout mdl-js-layout">
         <!-- Navbar is too long, and is repeated in all pages so it is moved to a dedicated file. -->
         <?php include_once("inc/navbar.php"); ?>
-
-        <?php
-          //Dialog for deleting posts.
-          include_once("inc/_js_mdl_deletePostDialog.php");
-        ?>
         
        <main class="mdl-layout__content">
 
