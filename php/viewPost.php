@@ -8,6 +8,19 @@
     exit();
   }
 
+  //Verify if post ID exists.
+  $p_id = $_GET["id"];
+  $p_id = $hashId->decode($p_id);
+  $p_id = $p_id[0];
+
+  $checkPostID = $pdo->prepare("SELECT verify_post_id_exists(:post_id)");
+  $checkPostID->execute(["post_id" => $p_id]);
+  $checkPostID = $checkPostID->fetch(PDO::FETCH_COLUMN);
+  //Redirect if post does not exist.
+  if (!$checkPostID) {
+    header("location: ../");
+  }
+
  ?>
  <!DOCTYPE html>
  <html lang="en" dir="ltr">
