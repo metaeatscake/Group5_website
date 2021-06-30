@@ -50,7 +50,7 @@
     height: 400px;
     */
     width: 450px;
-    height: 301px;
+    height: 305px;
     margin-left: 250px;
   }
 }
